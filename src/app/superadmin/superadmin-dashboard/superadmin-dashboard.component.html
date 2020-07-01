@@ -1,0 +1,95 @@
+<div class="row">
+  <div
+    class="col s12 m12 l12 xl9 margin-top-12"
+    id="superadim-dash"
+    style="background-color: rgb(249, 253, 255);"
+  >
+    <div class="super-head">
+      <div class="super-left left" style="padding-bottom: 31px;">
+        <article class="super-font" style="text-transform: capitalize">
+          Welcome {{ full_name }}
+        </article>
+      </div>
+      <div class="super-right" class="right">
+        <div class="super-input left"></div>
+        <div id="super-select" class="right">
+        </div>
+      </div>
+    </div>
+    <div id="super-main-section" style="clear: both">
+      <div class="card">
+        <div class="row super-sub">
+          <div class="col s12 m12 l12 xl12 center-align">
+            <div class="col s3 m3 l3 xl3 border-right">
+              <article
+                class="super-header-font text-transform"
+                style="font-size: 11px !important;font-weight: 500"
+              >
+                Full name
+              </article>
+            </div>
+            <div class="col s4 m4 l4 xl4 border-right">
+              <article
+                class="super-header-font text-transform"
+                style="font-size: 11px !important;font-weight: 500"
+              >
+                EMAIL ID
+              </article>
+            </div>
+            <div class="col s3 m3 l3 xl3 border-right">
+              <article
+                class="super-header-font text-transform"
+                style="font-size: 11px !important;font-weight: 500"
+              >
+                PHONE
+              </article>
+              <div class=""></div>
+            </div>
+            <div class="col s2 m2 l2 xl2">
+              <article
+                class="super-header-font text-transform"
+                style="font-size: 11px !important;font-weight: 500"
+              >
+                STATUS
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div
+            class="col s12 m12 l12 xl12 center-align super-user-padding hover-list"
+            style="cursor: pointer;"
+            (click)="editUser(admin)"
+            *ngFor="let admin of adminList"
+          >
+            <div *ngIf="admin.status">
+              <div class="col s3 m3 l3 xl3">
+                <article
+                  class="super-header-font left-admin-text"
+                  style="text-transform: capitalize"
+                >
+                  {{ admin.full_name }}
+                </article>
+              </div>
+              <div class="col s4 m4 l4 xl4">
+                <article class="super-header-font left-admin-text">
+                  {{ admin.email }}
+                </article>
+              </div>
+              <div class="col s3 m3 l3 xl3">
+                <article class="super-header-font">
+                  {{ admin.countryCode }} {{ admin.mobile_number }}
+                </article>
+              </div>
+              <div class="col s2 m2 l2 xl2">
+                <article class="super-header-font">
+                  {{ user_status[admin.status] }}
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

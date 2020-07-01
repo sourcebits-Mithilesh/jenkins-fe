@@ -1,0 +1,71 @@
+<div class="row header-main display-flex-al-center" style="position: relative;">
+  <div class="col s4 m4 l4 xl4 logo-wrapper display-flex-al-center">
+    <!-- hamburger icon for responsive  -->
+    <span class="responsive-img menu-dashboard" (click)="openSideMenu()" >
+       <img src="../../../assets/Nordson Hamburger.svg" alt="" width="24px" height="17px" class="responsive-img"  style="position: absolute;">
+      <!--Menu -->
+    </span>
+    <span><img
+      class="responsive-logo"
+      src="../../../assets/BBconn Cloud logo and font blue.svg"
+    /></span>
+  </div>
+  <div class="col s4 m3 l4 xl4 t-center">
+    <img class="nordson-responsive-logo"src="../../../assets/Nordson_Logo.png"/>
+  </div>
+  <div class="col s2 m2 l2 xl2 header-media-country">
+    <!-- <span class="country-name-profile">US English</span> -->
+    <!-- <select class="country-name-profile" #langSelect (change)="switchLang(langSelect.value)" style="border: none !important;font-size:15px !important;color: #000000 !important;">
+      <option *ngFor="let lang of languages" [value]="lang.file" [selected]="lang.file === currentLang">{{ lang.name }}</option>
+    </select> -->
+    <div id="lang-select">
+      <span class="responsive-img">
+        <img src="../../../assets/language-24px.svg" alt="" height="18px" width="18px" />
+      </span>
+      <span>
+        <mat-form-field [floatLabel]="'never'" id="lang-selct-dropdown">
+          <mat-select
+          panelClass="lang-select"
+          [(value)]="currentLang"
+          disableOptionCentering
+          (selectionChange) = "switchLang($event.value)"
+          >
+          <mat-option
+          *ngFor="let lang of languages"
+          value="{{ lang.file }}"
+          >{{ lang.name }}
+          </mat-option>
+          </mat-select>
+          </mat-form-field>
+      </span>
+    </div>
+    
+  </div>
+  <div class="col s3 m2 l2 xl2 header-media-profile" id="header-profile-media">
+    
+    <div class="profile_menu">
+      <!-- <span class="responsive-img profile-section">
+      <img src="../../../assets/language-24px.svg" alt="" height="18px" width="18px" />
+    </span> -->
+      <span
+        #toggleButton
+        [ngClass]="{'text-captalize now-wrap new-menu-bt':!profilePhoto,'textHide icon-down':profilePhoto}"
+        (click)="toggleMenu()"
+        >{{ userName }}</span>
+      <div class="menu" *ngIf="isMenuOpen" #menu>
+        <div
+          class="header-dropdown new-menu profile-hover cursor-pointer"
+          (click)="openUserModal()"
+        >
+          Profile
+        </div>
+        <div class="profile-hover">
+          <div
+            class="header-dropdown-menu new-menu-singout profile-hover cursor-pointer"
+            (click)="OpenLogoutModal()">Sign Out</div
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

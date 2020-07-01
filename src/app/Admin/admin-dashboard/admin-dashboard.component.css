@@ -1,0 +1,261 @@
+p {
+  margin-top: 0px;
+}
+
+.admin-font {
+  color: #0081c5;
+  font-family: 'Roboto';
+  font-size: 22px;
+  line-height: 25px;
+  font-weight: 500;
+  padding-bottom: 23px;
+}
+
+#admin-input-style {
+  height: 28px;
+  width: 120px;
+  border: 1px solid #acb2b5;
+  border-radius: 3px;
+  background-color: #ffffff;
+  line-height: 0;
+  padding-left: 27px;
+  color: #767576;
+  margin-top: 2px;
+  margin-right: 11px;
+}
+.home .sidenav-shadow {
+  min-height: 1450px !important;
+}
+
+#admin-dash {
+  margin-top: -10px;
+  padding: 40px 13px 40px 30px;
+}
+
+.search {
+  position: relative;
+  left: 23px;
+  top: 4px;
+}
+
+#admin-select {
+  padding-right: 59px;
+}
+#admin-select-1 {
+  padding-right: 29px;
+}
+
+#admin-main-section {
+  background-color: #fff;
+}
+
+.admin-sub {
+  line-height: 48px;
+  background-color: #D5F0FF;
+}
+
+
+.admin-header-font {
+  color: #203535;
+  text-align: center;
+  font-family: 'Roboto';
+  font-size: 11px;
+  letter-spacing: 0.92px;
+  word-break: break-all;
+}
+
+.border-right {
+  border-right: 1px solid #d7dcdc;
+}
+
+.admin-p {
+  color: #0081c5;
+  font-family: Roboto;
+  font-size: 14px;
+  clear: both;
+  float: left;
+}
+
+#admin-dash #admin-cards-1 .card {
+  min-height: 140px;
+  max-width: 190px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+#admin-dash #admin-cards-2 .card {
+  min-height: 459px;
+  width: 98%;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+#admin-dash #admin-cards-3 .card {
+  min-height: 459px;
+  width: 98%;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+#admin-dash .card .card-content .number {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: 'Roboto';
+  font-size: 45px;
+  font-weight: 300;
+}
+
+#admin-cards-1 .card .card-content {
+  padding-top: 18px;
+}
+
+.count-text {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 18px;
+  padding-top: 8px;
+}
+
+#admin-dash .white-c {
+  padding-left: 0px;
+}
+
+#admin-cards-1 {
+  padding-bottom: 22px;
+}
+
+.graph-head {
+  padding-top: 20px;
+}
+
+.graph-p {
+  color: #4a4a4a;
+  font-family: 'Roboto';
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  float: left;
+  padding-left: 22px;
+  text-transform: uppercase;
+}
+
+#graph-container {
+  width: 94%;
+  overflow: unset !important;
+}
+
+#admin-main-section {
+  padding: 0 24px 58px 24px;
+}
+
+#admin-user-padding {
+  padding-top: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5ecf5;
+}
+
+#admin-cards-3 .card {
+  position: relative;
+}
+
+.admin-user-view {
+  position: absolute;
+  position: absolute;
+  bottom: 18px;
+
+  right: 24px;
+  color: #0081c6;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+
+/* material select */
+
+/* .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+  background-color: rgba(0,0,0,.04) !important;
+} */
+.supersel .mat-option {
+  background: #fff !important;
+}
+#admin-select .mat-form-field-infix,
+#admin-select-1 .mat-form-field-infix {
+  height: 28px;
+  width: 160px;
+  border: 1px solid #acb2b5;
+  border-radius: 3px;
+  background-color: #ffffff;
+  color: #767576;
+  padding-right: 30px;
+  flex: none;
+}
+.pad-admin{
+  padding: 3px 5px;
+}
+
+#admin-select .mat-select-arrow,
+#admin-select-1 .mat-select-arrow {
+  color: #7ab800;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid;
+  position: relative;
+  left: 21px;
+}
+
+#admin-select .mat-select-value-text,
+#admin-select .placeholder,
+#admin-select-1 .mat-select-value-text,
+#admin-select-1 .placeholder {
+  position: relative;
+  left: 6px;
+  color: #4a4a4a;
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: 500;
+  top: -2px;
+  left: 13px;
+}
+
+.superselect .mat-option {
+  color: #4a4a4a;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.mat-select-panel-wrap .superselect {
+  position: relative;
+  left: 16px;
+  top: 20px;
+}
+
+#main-head {
+  background-color: cornflowerblue;
+  text-align: center;
+}
+.mat-form-field-underline {
+  display: none;
+}
+.adminmenu.mat-menu-panel {
+  min-width: 217px;
+}
+
+.adminmenu button {
+  background: none;
+}
+.pos-icon {
+  position: absolute;
+  right: 21px;
+  top: 1px;
+}
+
+@-moz-document url-prefix() {
+  .pos-icon {
+    position: absolute;
+    right: 21px;
+    top: 17px;
+  }
+}

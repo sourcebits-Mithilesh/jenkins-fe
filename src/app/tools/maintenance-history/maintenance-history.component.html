@@ -1,0 +1,72 @@
+<div>
+  <div>
+
+  </div>
+  <div class="row">
+<div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+
+      <div class="setting-blue-zone margin-top-12" id="temperature">
+        <div class="row  responsiveside">
+            <div class="col s12 m12 l12 x12">
+                <article class="temp-heading pad-tp-15">
+                  <h4 class="zone-heading font-responsive" style="padding-left:13px"><a routerLink="/tools/maintenance" style="color: #ffffff;">Maintenance Schedule</a> › View Maintenance History</h4>
+                </article>
+                <div class="row">
+                    <div class="col s12 m12 l12 xl12">
+                        <div class="card-applicator">
+                          <div class="row">
+                              <div class="col s12 m12 l12 xl12">
+                                  <div class="table-row table-head">
+                                    <div class="row">
+                                        <div class="col s4 m4 l5 xl5 text-transform">
+                                            List
+                                          </div>
+                                          <div class="col s5 m5 l5 xl5 text-transform">
+                                            Status
+                                          </div>
+                                          <div class="col s3 m3 l2 xl2 text-transform">
+                                            Time
+                                          </div>
+                                    </div>
+                                  </div>
+                                  <div *ngIf="dataExists">
+                                    <div class="maintenance-history"  *ngFor = "let maintenanceHistory of maintenanceHistorys let i= index">
+                                      <div class="row" >
+                                        <div class="col s4 m4 l5 xl5">
+                                          {{maintenanceHistory[1] | titlecase}} - {{maintenanceHistory[2]}}
+                                        </div>
+                                        <div class="col s5 m5 l5 xl5">
+                                          {{maintenanceHistory[0] | titlecase}} on {{maintenanceHistory[3]}}
+                                        </div>
+                                        <div class="col s3 m3 l2 xl2">
+                                          {{maintenanceHistory[4].slice(0,-3)}}
+                                        </div>
+                                      </div>
+                                  </div>
+                                  </div>
+                                  <div *ngIf="!dataExists">
+                                    <div class="maintenance-history">
+                                      <div class="row">
+                                        <div class="col s4 m4 l4 xl4">
+                                          {{noRecordsMsg}}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                </div>
+                
+            </div>
+        </div>
+          
+
+      </div>
+      <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </div>
+</div>

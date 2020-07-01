@@ -1,0 +1,61 @@
+<div class="set-light-blue" *ngIf="modalLoaded">
+  <div class=" row dark-gray fs-15">
+    <div style="float:left"><b>Configuration Code</b></div>
+    <div style="float: right">
+      <svg
+        class="cursor-pointer"
+        xmlns="http:-www.w3.org/2000/svg"
+        (click)="closeViewConfig()"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </svg>
+    </div>
+  </div>
+  <div class="row color-green fs-15 padding-12-0">{{CODE}}</div>
+  <div class="bg-gray-div" style="padding-top:10px" >
+    <div class="row padding-12-0">
+      <div class="col s6 m6 l6 xl6">Melter Series</div>
+      
+      <div class="col s6 m6 l6 xl6">{{toSelect1.name}}</div>
+    </div>
+    <div class="row padding-12-0">
+      <div class="col s6 m6 l6 xl6">Melt Section</div>
+      <div class="col s6 m6 l6 xl6">{{toSelect2.name}}</div>
+    </div>
+    <div class="row padding-12-0">
+      <div class="col s6 m6 l6 xl6">Pump</div>
+      <div class="col s6 m6 l6 xl6">{{toSelect3.name}}</div>
+    </div>
+    <div class="row padding-12-0">
+      <div class="col s6 m6 l6 xl6">Warm up Performance</div>
+      <div class="col s6 m6 l6 xl6">{{toSelect4.name}}</div>
+    </div>
+    <div class="row padding-12-0">
+      <div class="col s6 m6 l6 xl6">Number of Hose/Applicator</div>
+      <div class="col s6 m6 l6 xl6">{{toSelect5.name}}</div>
+    </div>
+    <div class="row padding-12-0">
+      <div class="col s6 m6 l6 xl6">Pressure Management</div>
+      <div class="col s6 m6 l6 xl6">{{toSelect6.name}}</div>
+    </div>
+    <div class="row padding-12-0">
+      <div class="col s6 m6 l6 xl6">Product Performance Upgrades</div>
+      <div class="col s6 m6 l6 xl6">{{toSelect7.name}}</div>
+    </div>
+    <div class="row padding-12-0">
+      <div class="col s6 m6 l6 xl6">UI (Melter Mounted User Interface)</div>
+      <div class="col s6 m6 l6 xl6">{{toSelect8.name}}</div>
+    </div>
+    <div class="row padding-12-0">
+      <div class="col s6 m6 l6 xl6">Pressure Switch</div>
+      <div class="col s6 m6 l6 xl6">{{toSelect9.name}}</div>
+    </div>
+  </div>
+</div>
+

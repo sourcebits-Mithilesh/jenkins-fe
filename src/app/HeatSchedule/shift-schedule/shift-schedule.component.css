@@ -1,0 +1,11 @@
+@media only screen and (max-width: 500px){
+ ::ng-deep #cancle-heat{
+     bottom: 30px !important;
+ }
+ ::ng-deep .cancle-heat{
+    bottom: 30px !important;
+}
+.cancle-heat{
+    bottom: 30px !important;
+}
+    }

@@ -1,0 +1,533 @@
+<div
+  class="col s3 m3 l3 xl3 sidenav-shadow height-vh responsive"
+  style="padding: 0px !important"
+>
+  <aside class="white">
+    <section>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-light"
+            (click)="modal.close('Close click')"
+          >
+            Close
+          </button>
+        </div>
+      </ng-template>
+    </section>
+    <section>
+      <ul>
+        <li class="navhover" *ngIf="userRole === 2">
+          <a
+            class="uppercase"
+            routerLink="/Admin/admin-dashboard"
+            routerLinkActive="text-success"
+            #admindashboard="routerLinkActive"
+            (click)="closeModal()"
+          >
+            <div class="row display-flex-align-center">
+              <div class="col s2 m2 l2 xl2 t-right p-0 ">
+                <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                ngClass="{{
+                  admindashboard.isActive ? 'svg-active' : 'svg-non-active'
+                }}">
+                  <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+                  <title>Group 15</title>
+                  <desc>Created with Sketch.</desc>
+                  <g id="Setup-screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Setup_Temperature-Settings--" transform="translate(-30.000000, -82.000000)">
+                          <g id="Group-6" transform="translate(27.000000, 79.000000)">
+                              <g id="Group-15">
+                                  <polygon id="Path-Copy-3" points="0 0 24 0 24 24 0 24"></polygon>
+                                  <path d="M20,3 C20.5522847,3 21,3.44771525 21,4 L21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 L20,3 Z M10,6 L6,6 L6,18 L10,18 L10,6 Z M17,16 L14,16 C13.4477153,16 13,16.4477153 13,17 C13,17.5522847 13.4477153,18 14,18 L14,18 L17,18 C17.5522847,18 18,17.5522847 18,17 C18,16.4477153 17.5522847,16 17,16 L17,16 Z M17,11 L14,11 C13.4477153,11 13,11.4477153 13,12 C13,12.5522847 13.4477153,13 14,13 L14,13 L17,13 C17.5522847,13 18,12.5522847 18,12 C18,11.4477153 17.5522847,11 17,11 L17,11 Z M17,6 L14,6 C13.4477153,6 13,6.44771525 13,7 C13,7.55228475 13.4477153,8 14,8 L14,8 L17,8 C17.5522847,8 18,7.55228475 18,7 C18,6.44771525 17.5522847,6 17,6 L17,6 Z" id="Combined-Shape" fill="#6F6F6F"></path>
+                              </g>
+                          </g>
+                      </g>
+                  </g>
+              </svg>
+              </div>
+              <div class="col s10 m10 l10 xl10 p-left-24">
+                DASHBOARD
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" *ngIf="userRole === 3">
+          <a
+            class="uppercase"
+            routerLink="/tech/tech-support"
+            routerLinkActive="text-success"
+            #techsupport="routerLinkActive"
+            (click)="closeModal()"
+          >
+            <div class="row display-flex-align-center">
+              <div class="col s2 m2 l2 xl2 t-right p-0 ">
+                <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                ngClass="{{
+                  techsupport.isActive ? 'svg-active' : 'svg-non-active'
+                }}">
+                  <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+                  <title>Group 15</title>
+                  <desc>Created with Sketch.</desc>
+                  <g id="Setup-screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Setup_Temperature-Settings--" transform="translate(-30.000000, -82.000000)">
+                          <g id="Group-6" transform="translate(27.000000, 79.000000)">
+                              <g id="Group-15">
+                                  <polygon id="Path-Copy-3" points="0 0 24 0 24 24 0 24"></polygon>
+                                  <path d="M20,3 C20.5522847,3 21,3.44771525 21,4 L21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 L20,3 Z M10,6 L6,6 L6,18 L10,18 L10,6 Z M17,16 L14,16 C13.4477153,16 13,16.4477153 13,17 C13,17.5522847 13.4477153,18 14,18 L14,18 L17,18 C17.5522847,18 18,17.5522847 18,17 C18,16.4477153 17.5522847,16 17,16 L17,16 Z M17,11 L14,11 C13.4477153,11 13,11.4477153 13,12 C13,12.5522847 13.4477153,13 14,13 L14,13 L17,13 C17.5522847,13 18,12.5522847 18,12 C18,11.4477153 17.5522847,11 17,11 L17,11 Z M17,6 L14,6 C13.4477153,6 13,6.44771525 13,7 C13,7.55228475 13.4477153,8 14,8 L14,8 L17,8 C17.5522847,8 18,7.55228475 18,7 C18,6.44771525 17.5522847,6 17,6 L17,6 Z" id="Combined-Shape" fill="#6F6F6F"></path>
+                              </g>
+                          </g>
+                      </g>
+                  </g>
+              </svg>
+              </div>
+              <div class="col s10 m10 l10 xl10 p-left-24">
+                DASHBOARD
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" *ngIf="userRole === 1">
+          <a
+            class="uppercase"
+            routerLink="/superadmin/superadmin-dashboard"
+            routerLinkActive="text-success"
+            #superadmindashboard="routerLinkActive"
+            (click)="closeModal()"
+
+          >
+            <div class="row display-flex-align-center">
+              <div class="col s2 m2 l2 xl2 t-right p-0 ">
+                <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                ngClass="{{
+                  superadmindashboard.isActive? 'svg-active': 'svg-non-active'
+                }}">
+                  <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+                  <title>Group 15</title>
+                  <desc>Created with Sketch.</desc>
+                  <g id="Setup-screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Setup_Temperature-Settings--" transform="translate(-30.000000, -82.000000)">
+                          <g id="Group-6" transform="translate(27.000000, 79.000000)">
+                              <g id="Group-15">
+                                  <polygon id="Path-Copy-3" points="0 0 24 0 24 24 0 24"></polygon>
+                                  <path d="M20,3 C20.5522847,3 21,3.44771525 21,4 L21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 L20,3 Z M10,6 L6,6 L6,18 L10,18 L10,6 Z M17,16 L14,16 C13.4477153,16 13,16.4477153 13,17 C13,17.5522847 13.4477153,18 14,18 L14,18 L17,18 C17.5522847,18 18,17.5522847 18,17 C18,16.4477153 17.5522847,16 17,16 L17,16 Z M17,11 L14,11 C13.4477153,11 13,11.4477153 13,12 C13,12.5522847 13.4477153,13 14,13 L14,13 L17,13 C17.5522847,13 18,12.5522847 18,12 C18,11.4477153 17.5522847,11 17,11 L17,11 Z M17,6 L14,6 C13.4477153,6 13,6.44771525 13,7 C13,7.55228475 13.4477153,8 14,8 L14,8 L17,8 C17.5522847,8 18,7.55228475 18,7 C18,6.44771525 17.5522847,6 17,6 L17,6 Z" id="Combined-Shape" fill="#6F6F6F"></path>
+                              </g>
+                          </g>
+                      </g>
+                  </g>
+              </svg>
+              </div>
+              <div class="col s10 m10 l10 xl10 p-left-24">
+                DASHBOARD
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" *ngIf="userRole === 2">
+          <a
+            class="uppercase"
+            routerLink="/Admin/admin-users"
+            routerLinkActive="text-success"
+            #adminusers="routerLinkActive"
+            (click)="closeModal()"
+
+          >
+            <div class="row display-flex-align-center">
+              <div class="col s2 m2 l2 xl2 t-right p-0 ">
+                <svg
+                  width="22px"
+                  height="14px"
+                  viewBox="0 0 22 14"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  ngClass="{{
+                    adminusers.isActive ? 'svg-active' : 'svg-non-active'
+                  }}"
+                >
+                  <title>icons8-user_group_man_man</title>
+                  <desc>Created with Sketch.</desc>
+                  <g
+                    id="Admin--flow"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <g
+                      id="SuperAdmin_dashboard"
+                      transform="translate(-29.000000, -175.000000)"
+                      fill="#111111"
+                      fill-rule="nonzero"
+                    >
+                      <g
+                        id="Group-7"
+                        transform="translate(29.000000, 175.000000)"
+                      >
+                        <g id="icons8-user_group_man_man">
+                          <path
+                            d="M7,0 C5.34314575,0 4,1.34314575 4,3 C4,4.65685425 5.34314575,6 7,6 C8.65685425,6 10,4.65685425 10,3 C10,1.34314575 8.65685425,0 7,0 Z M15,0 C13.3431458,0 12,1.34314575 12,3 C12,4.65685425 13.3431458,6 15,6 C16.6568542,6 18,4.65685425 18,3 C18,1.34314575 16.6568542,0 15,0 Z M7,8 C4,8 0,9.464 0,11.5 L0,14 L14,14 L14,11.5 C14,9.464 10,8 7,8 Z M15,8 C14.683,8 14.353,8.02 14.021,8.05 C15.203,8.917 16,10.06 16,11.5 L16,14 L22,14 L22,11.5 C22,9.464 18,8 15,8 Z"
+                            id="Shape"
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="col s10 m10 l10 xl10 p-left-24">
+                USERS
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" *ngIf="userRole === 3">
+          <a
+            class="uppercase"
+            routerLink="/tech/tech-user"
+            routerLinkActive="text-success"
+            #techusers="routerLinkActive"
+            (click)="closeModal()"
+          >
+            <div class="row display-flex-align-center">
+              <div class="col s2 m2 l2 xl2 t-right p-0 ">
+                <svg
+                  width="22px"
+                  height="14px"
+                  viewBox="0 0 22 14"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  ngClass="{{
+                    techusers.isActive ? 'svg-active' : 'svg-non-active'
+                  }}"
+                >
+                  <title>icons8-user_group_man_man</title>
+                  <desc>Created with Sketch.</desc>
+                  <g
+                    id="Admin--flow"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <g
+                      id="SuperAdmin_dashboard"
+                      transform="translate(-29.000000, -175.000000)"
+                      fill="#111111"
+                      fill-rule="nonzero"
+                    >
+                      <g
+                        id="Group-7"
+                        transform="translate(29.000000, 175.000000)"
+                      >
+                        <g id="icons8-user_group_man_man">
+                          <path
+                            d="M7,0 C5.34314575,0 4,1.34314575 4,3 C4,4.65685425 5.34314575,6 7,6 C8.65685425,6 10,4.65685425 10,3 C10,1.34314575 8.65685425,0 7,0 Z M15,0 C13.3431458,0 12,1.34314575 12,3 C12,4.65685425 13.3431458,6 15,6 C16.6568542,6 18,4.65685425 18,3 C18,1.34314575 16.6568542,0 15,0 Z M7,8 C4,8 0,9.464 0,11.5 L0,14 L14,14 L14,11.5 C14,9.464 10,8 7,8 Z M15,8 C14.683,8 14.353,8.02 14.021,8.05 C15.203,8.917 16,10.06 16,11.5 L16,14 L22,14 L22,11.5 C22,9.464 18,8 15,8 Z"
+                            id="Shape"
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="col s10 m10 l10 xl10 p-left-24">
+                USERS
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" *ngIf="userRole === 2 || userRole === 3">
+          <a
+            class="uppercase"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="text-success"
+          >
+            <div class="row pad-top-3 display-flex-align-center uppercase">
+              <div class="col s2 m2 l2 xl2 t-right p-0 ">
+                <img
+                  src="../../../assets/img/svg/Setup tool.svg"
+                  alt="image error"
+                  height="20px"
+                  width="20px"
+                />
+              </div>
+              <div
+                class="col s10 m10 l10 xl10 p-left-24"
+                (click)="toggleShow()"
+                id="bt"
+                style="cursor: pointer;"
+              >
+                SETUP TOOL
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" *ngIf="userRole === 1">
+          <a class="uppercase" routerLinkActive="text-success" 
+          (click)="closeModal()"
+          >
+            <div class="row pad-top-3 display-flex-align-center">
+              <div class="col s2 m2 l2 xl2 t-right p-0 ">
+                <img
+                  src="../../../assets/img/icon/Add_New_Admin.svg"
+                  alt="image error"
+                  height="20px"
+                  width="20px"
+                />
+              </div>
+              <div
+                class="col s10 m10 l10 xl10 p-left-24"
+                (click)="addAdmin()"
+                id="bt"
+                style="cursor: pointer;"
+              >
+                ADD NEW ADMIN
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" *ngIf="userRole === 2">
+          <a class="uppercase" routerLinkActive="text-success">
+            <div
+              class="row display-flex-align-center"
+              (click)="openTechInviteModal()"
+            >
+              <div class="col s2 m2 l2 xl2 t-right p-0 ">
+                <img
+                  src="../../../assets/img/icon/Add_New_Admin.svg"
+                  alt="image error"
+                  height="20px"
+                  width="20px"
+                />
+              </div>
+
+              <div
+                class="col s10 m10 l10 xl10 p-left-24"
+                style="cursor: pointer;"
+              >
+                ADD TECH SUPPORT USER
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" *ngIf="userRole === 2 || userRole === 3">
+          <a class="uppercase" 
+          routerLinkActive="text-success"
+          routerLink="/nor-files"
+          #norfiles="routerLinkActive"
+          (click)="closeModal()"
+          >
+            <div
+              class="row display-flex-align-center"
+            >
+              <div class="col s2 m2 l2 xl2 t-right p-0 ">
+                <svg
+                width="22px"
+                height="14px"
+                viewBox="0 0 22 14"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                ngClass="{{
+                  norfiles.isActive ? 'svg-active' : 'svg-non-active'
+                }}"
+              >
+                <title>icons8-user_group_man_man</title>
+                <desc>Created with Sketch.</desc>
+                <g
+                  id="Admin--flow"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <g
+                    id="SuperAdmin_dashboard"
+                    transform="translate(-29.000000, -175.000000)"
+                    fill="#111111"
+                    fill-rule="nonzero"
+                  >
+                    <g
+                      id="Group-7"
+                      transform="translate(29.000000, 175.000000)"
+                    >
+                      <g id="icons8-user_group_man_man">
+                        <path
+                          d="M7,0 C5.34314575,0 4,1.34314575 4,3 C4,4.65685425 5.34314575,6 7,6 C8.65685425,6 10,4.65685425 10,3 C10,1.34314575 8.65685425,0 7,0 Z M15,0 C13.3431458,0 12,1.34314575 12,3 C12,4.65685425 13.3431458,6 15,6 C16.6568542,6 18,4.65685425 18,3 C18,1.34314575 16.6568542,0 15,0 Z M7,8 C4,8 0,9.464 0,11.5 L0,14 L14,14 L14,11.5 C14,9.464 10,8 7,8 Z M15,8 C14.683,8 14.353,8.02 14.021,8.05 C15.203,8.917 16,10.06 16,11.5 L16,14 L22,14 L22,11.5 C22,9.464 18,8 15,8 Z"
+                          id="Shape"
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+              </div>
+              <div
+                class="col s10 m10 l10 xl10 p-left-24"
+                style="cursor: pointer;"
+              >
+                NOR FILES
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <div></div>
+  </aside>
+</div>
+<div
+  *ngIf="isShown"
+  class="row container-fluid"
+  id="divshow"
+  width="100%"
+  height="100%"
+  style="position: absolute"
+>
+  <div class="pop-up-setup-tools" (click)="hide()"></div>
+  <div class="hide-1" (click)="hide()"></div>
+  <div class="inner-pop-div inner-pop-div-admin" style="position:absolute" id="pop-up-setup-tools">
+    <div *ngIf="!isDescriptionOnAdmin && !isDescriptionOnLoadAdmin">
+      <div class="select-load-text">
+        Please select how to load
+      </div>
+      <div class="select-load-text">
+        a configuration file
+      </div>
+      <div>
+        <div class="button-div t-center">
+          <label for="files" class="text-div" style="cursor:pointer">
+            Load from USB/Computer</label
+          >
+          <input
+          autocomplete="off"
+            #fileInput
+            (click)="fileInput.value = null"
+            value=""
+            id="files"
+            style="visibility:hidden;"
+            (change)="onFileChange($event)"
+            type="file"
+          />
+        </div>
+        <div class="button-div-prev-norfile" *ngIf="userRole === 3">
+          <div class="text-div">Use previous file</div>
+        </div>
+        <div *ngIf="norFilesCount == true">
+          <div class="button-div" *ngIf="userRole === 2">
+            <div
+              class="text-div"
+              (click)="previousNorFile()"
+              style="cursor:pointer"
+            >
+              Use previous file
+            </div>
+          </div>
+        </div>
+        <div *ngIf="norFilesCount == false">
+          <div class="button-div-prev-norfile" *ngIf="userRole === 2">
+            <div class="text-div" style="cursor:pointer">Use previous file</div>
+          </div>
+        </div>
+        <div class="button-div" *ngIf="userRole === 2">
+          <div
+            class="text-div"
+            (click)="addAdminDescriptionCreate()"
+            style="cursor:pointer"
+          >
+            CREATE NEW
+          </div>
+        </div>
+        <div class="button-div-prev-norfile" *ngIf="userRole === 3">
+          <div class="text-div">CREATE NEW</div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isDescriptionOnAdmin">
+        <div class="select-load-text">
+          Create New Nor file Description
+        </div>
+        <div style="text-align: center;padding: 20px 90px 0px">
+          <textarea
+            type="text"
+            class="set-up-description-input pad-tp-15"
+            [(ngModel)]="descriptionAdmin"
+            placeholder="Write Description here..."
+            maxlength="120"
+          ></textarea>
+        </div>
+        <div style="padding: 20px 90px 0px" *ngIf="!loadsidenavAdmin else loading">
+          <div style="float: left;">
+            <button
+              class="btn-set-up cancel-btn-color"
+              (click)="removeAdminDescriptionCreate()"
+            >
+              CANCEL
+            </button>
+          </div>
+          <div style="float: right;">
+            <button
+              class="btn-set-up submit-btn-color"
+              (click)="createNorFileAdmin();  loadsidenavAdmin = true"
+            >
+              SUBMIT
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-template #loading>
+         <div class="t-center loading-sidenav">Please Wait ....</div> 
+      </ng-template>
+      <div *ngIf="isDescriptionOnLoadAdmin">
+        <div class="select-load-text">
+          Load from USB Nor file Description
+        </div>
+        <div style="text-align: center;padding: 20px 90px 0px" >
+          <textarea
+            type="text"
+            class="set-up-description-input pad-tp-15"
+            [(ngModel)]="descriptionAdmin"
+            placeholder="Write Description here..."
+            maxlength="120"
+          ></textarea>
+        </div>
+        <div style="padding: 20px 90px 0px" *ngIf="!loadsidenav else loading">
+          <div style="float: left;">
+            <button
+              class="btn-set-up cancel-btn-color"
+              (click)="removeAdminDescriptionNor()"
+            >
+              CANCEL
+            </button>
+          </div>
+          <div style="float: right;">
+            <button
+              class="btn-set-up submit-btn-color"
+              (click)="CreteNorFromUsbAdmin(); loadsidenav = true"
+            >
+              SUBMIT
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

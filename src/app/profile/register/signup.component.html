@@ -1,0 +1,200 @@
+<div class="backgroundImg">
+  <div class="signin comm-height">
+    <nordson-header></nordson-header>
+    <form name="form" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+      <div class="row margin-null pad-responsive-signup">
+        <div class="login-section">
+          <div class="main-section" style="padding: 14px 19px !important;">
+            <div>
+              <a routerLink="{{backButtonLink}}">
+                <img
+                  src="../../../assets/img/svg/Back Icon.svg"
+                  alt="not working"
+                  style="width: 18px;height:17px"
+              /></a>
+            </div>
+            <section class="center">
+              <h6>Welcome to Nordson</h6>
+              <span>We just need a few details to get you up and running.</span>
+            </section>
+            <div class="sub-section">
+              <div class="margin-t-4">
+                <label class="text-above"
+                  >Model
+                  <sup>*</sup>
+                </label>
+                <mat-form-field
+                  id="pro-blue-flex"
+                  style="width: 310px !important;"
+                  [floatLabel]="'never'"
+                >
+                  <mat-label value="PROBLUE FLEX" class="mat-label"
+                    >PROBLUE FLEX</mat-label
+                  >
+                  <mat-select
+                    name="equipment"
+                    #equipment2="ngModel"
+                    type="text"
+                    id="equipment"
+                    class="browser-default"
+                    [(ngModel)]="equipment"
+                    required=""
+                    panelClass="Problueflex"
+                    disableOptionCentering
+                  >
+                  </mat-select>
+                </mat-form-field>
+                <div
+                  class="invalid"
+                  *ngIf="equipment2.invalid && equipment2.touched"
+                >
+                  Equipment name is required!
+                </div>
+                <div class="">
+                  <label class="text-above"
+                    >Serial Number
+                    <sup>*</sup>
+                  </label>
+                  <input
+                  autocomplete="off"
+                    name="sno"
+                    #sno2="ngModel"
+                    type="text"
+                    id="sno"
+                    class="form-control border-blue"
+                    required=""
+                    [(ngModel)]="sno"
+                    SerialConfiguration
+                    maxlength="10"
+                    [disabled]="disabled"
+                    (keyup)="validateSerialNo()"
+                  />
+                  <div
+                    class="invalid"
+                    *ngIf="sno2.invalid && sno2.touched && sno2.errors?.required"
+                  >
+                    Serial number is required!
+                  </div>
+                  <div
+                    class="invalid"
+                    *ngIf="sno2.invalid && sno2.touched && sno2.errors?.notSerial"
+                  >
+                    Serial Number is not valid
+                  </div>
+                </div>
+                <div class="">
+                  <label class="text-above"
+                    >Unique Number
+                    <sup>*</sup>
+                  </label>
+                  <input
+                  autocomplete="off"
+                    name="uid"
+                    #uid2="ngModel"
+                    type="text"
+                    [(ngModel)]="uid"
+                    id=""
+                    class="form-control border-blue"
+                    required=""
+                    [(ngModel)]="uid"
+                    [disabled]="disabled"
+                    UIDConfiguration
+                    maxlength="7"
+                    (keyup)="validateSerialNo()"
+                    (keypress)="preventalpha($event)"
+                  />
+                  <div
+                  class="invalid"
+                  *ngIf="uid2.invalid && uid2.touched && uid2.errors?.required"
+                >
+                  Unique Number is required!
+                </div>
+                  <div
+                    class="invalid"
+                    *ngIf="uid2.invalid && uid2.touched && uid2.errors?.notUID"
+                  >
+                    Unique Number  is not valid
+                  </div>
+                  <div class="invalid" *ngIf="serialNoUidVal != ''">
+                    {{ serialNoUidVal }}
+                  </div>
+                </div>
+                <div class="">
+                  <label class="text-above"
+                    >Description
+                    <sup>*</sup>
+                  </label>
+                  <textarea
+                    name="description"
+                    type="text"
+                    #description2="ngModel"
+                    class="form-control border-blue text-area pad-tp-15"
+                    [disabled]="disabled"
+                    [(ngModel)]="description"
+                    maxlength="120"
+                    pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$"
+                    required=""
+                  ></textarea>
+                </div>
+                <div
+                  class="invalid"
+                  *ngIf="description2.invalid && description2.touched && description2.errors?.required"
+                >
+                Description is required!
+                </div>
+                <div class="invalid" *ngIf="description2.errors?.pattern">
+                  Please enter valid description
+                </div>
+                <div class="">
+                  <label class="text-above"
+                    >Configuration code
+                    <sup>*</sup>
+                  </label>
+                  <input
+                  autocomplete="off"
+                    name="ccode"
+                    #ccode2="ngModel"
+                    [(ngModel)]="ccode"
+                    type="text"
+                    id="ccode"
+                    class="form-control border-blue"
+                    required=""
+                    [disabled]="disabled"
+                    style="width: 276px !important;"
+                  readonly/>
+                  <!-- <i
+                    tooltip="PBF240/T04-STD-LW-2H-P1-APP-O-XX"
+                    placement="right"
+                    delay="100"
+                    class="fa fa-info-circle font-icon i"
+                    style="font-size:20px"
+                  ></i> -->
+                </div>
+                <div class="continue margin-t-13">
+                  <button
+                    [disabled]="!form.valid || serialNoUidVal != ''"
+                    type="submit"
+                    class="btn submit-bt right submit-bt"
+                  >
+                    Continue
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <div class="margin-minus" style="border: none">
+                <p style="clear: both">
+                  Next Step:
+                  <span class="cancel">
+                    Sign Up
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- <nordson-footer></nordson-footer> -->

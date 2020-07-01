@@ -1,0 +1,357 @@
+<div class="row dash-board">
+<div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+    <div class="setting-blue margin-top-12">
+      <div class="pad-cor">
+        <div class="mnt" id="mnt-mat">
+          <div class="left">
+            <span class="white-c soft-pad-left font-responsive" style="padding-bottom:21px">Event Log</span>
+          </div>
+          <div class="multi-select right">
+            <toastr-notification></toastr-notification>
+            <span  class="eventdate" style="display: inline-block;margin-right: 12px ;">
+              <mat-form-field id="select-0" [floatLabel]="'never'">
+                <mat-select id="select-0" panelClass="mnt-select-1" placeholder="Sort by" [(ngModel)]="selectSort" disableOptionCentering>
+                  <mat-option class="check-style" (onSelectionChange)="setValue($event)" *ngFor="let item of sortBy" [value]="item">{{ item }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </span>
+            <span class="mat-app-background basic-container">
+              <button mat-icon-button [matMenuTriggerFor]="menu" class="filterpopup" style="height: 36px;	width: 175px;	border: 1px solid rgba(25,25,25,0.32);	border-radius: 4px;	background-color: #FFFFFF;text-align: left;
+  padding-left: 10px;">Filter</button>
+              <mat-menu #menu="matMenu">
+                <form name="form" #form="ngForm" class="fill-mat" [formGroup]="eventForm" (submit)="onSubmit()">
+                  <span (click)="$event.stopPropagation()">
+                    <div class="pad-btm-15">
+                      <mat-checkbox formControlName="checkedEvent" (change)="onChangeCheckbox($event)">
+                       <span id="capitalize">
+                        {{'Event type' | titlecase}}
+                       </span>
+                      </mat-checkbox>
+                    </div>
+                    <div *ngIf="checkedEventTrigger">
+                      <mat-select id="select-2" placeholder="All" disableOptionCentering panelClass="mutli-class-sel" formControlName="selectEvent">
+                        <mat-option class="check-style" *ngFor="let item of eventType" [value]="item">{{ item }}</mat-option>
+                      </mat-select>
+                    </div>
+                    <div class="">
+                      <mat-checkbox formControlName="checkeddate" (change)="onChangeCheckbox($event)">Date Range</mat-checkbox>
+                    </div>
+                    <div *ngIf="checkedDateTrigger">
+                      <mat-form-field>
+                        <input autocomplete="off" matInput [matDatepicker]="dp3" placeholder="From" formControlName="startDate" [max]="today" readonly disabled/>
+                        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input autocomplete="off" matInput [matDatepicker]="dp4" placeholder="To" formControlName="endDate" [max]="today" readonly disabled/>
+                        <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                        <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <div class="pad-btm-15" style="padding-top: 12px">
+                      <mat-checkbox formControlName="checkedzone" (change)="onChangeCheckbox($event)">Zone/Device</mat-checkbox>
+                    </div>
+                    <div *ngIf="checkedZoneTrigger">
+                      <mat-select id="select-two" placeholder="All" disableOptionCentering panelClass="mutli-class-sel" formControlName="selectZone">
+                        <mat-option class="check-style" *ngFor="let item of eventLogZones" [value]="item">{{ item }}</mat-option>
+                      </mat-select>
+                    </div>
+                  </span>
+                  <div class="row" style="padding-top: 20px">
+                    <div class="col s1 m1 l1 xl1" (click)="$event.stopPropagation()"></div>
+                    <div class="col s4 m4 l4 xl4 close-btn-eventlog display-flex-align-justify-center" style="text-align: center">CLOSE</div>
+                    <div class="col s2 m2 l2 xl2" (click)="$event.stopPropagation()">&nbsp; &nbsp;</div>
+                    <div class="col s4 m4 l4 xl4" style="text-align: center">
+                      <button class="apply-btn-eventlog btn submit-bt" type="submit" [disabled]="!eventForm.dirty">APPLY</button>
+                    </div>
+                    <div class="col s1 m1 l1 xl1" (click)="$event.stopPropagation()">&nbsp; &nbsp;</div>
+                  </div>
+                </form>
+              </mat-menu>
+            </span>
+          </div>
+          <div [class.loader]="loader">
+            <div [ngSwitch]="choice">
+              <div class="mnt-tab col-bg" style="clear:both;min-height: 539px" *ngSwitchCase="'Date'">
+                <div class="row date">
+                  <div class="col s12 m12 l12 xl12 mnt-bg-color mnt-pad-left" style="padding:0 24px">
+                    <div class="cards mnt-pad-left">
+                      <div class="col s12 m4 l4 xl3 soft-pad-left">
+                        <div class="card-content">
+                          <article class="mnt-fonts">DATE</article>
+                        </div>
+                      </div>
+                      <div class="col s12 m2 l2 xl2 soft-pad-left">
+                        <div class="card-content">
+                          <article class="mnt-fonts">ALERTS</article>
+                        </div>
+                      </div>
+                      <div class="col s12 m2 l2 xl2 soft-pad-left" style="margin-right: -7px;">
+                        <div class="card-content">
+                          <article class="mnt-fonts">FAULT</article>
+                        </div>
+                      </div>
+                      <div class="col s12 m2 l2 xl3 soft-pad-left" style="margin-right: -10px;">
+                        <div class="card-content">
+                          <article class="mnt-fonts">SETTING CHANGE</article>
+                        </div>
+                      </div>
+                      <div class="col s12 m2 l2 xl2 soft-pad-left">
+                        <div class="card-content">
+                          <article class="mnt-fonts">SYSTEM EVENT</article>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="!loader else loading1">
+                    <div *ngIf="!eventLog" style="    padding: 73px 0px 15px 10px;
+                    background: #9fbcc9;">{{ noEventMsg }}</div>
+                    <div class="col s12 m12 l12 xl12" style="padding: 0">
+                      <mat-accordion *ngFor="let datewisedata of eventLog | keyvalue; let i=index; let idOdd=odd; let isEven=even">
+                        <mat-expansion-panel hideToggle="true" #example [class.bg-odd]="isOdd" [class.bg-even]="isEven">
+                          <mat-expansion-panel-header class="soft-bg">
+                            <div class="col s4 m4 l4 xl3 soft-pad-left">
+                              <div class="card-content">
+                                <article class="mnt-mt-fonts">
+                                  {{ datewisedata.key }}
+                                </article>
+                              </div>
+                            </div>
+                            <div class="col s2 m2 l2 xl2">
+                              <div class="card-content">
+                                <article class="mnt-mt-fonts">
+                                  {{ count[i].ALERT?count[i].ALERT:'0' }}
+                                </article>
+                              </div>
+                            </div>
+                            <div class="col s2 m2 l2 xl2">
+                              <div class="card-content">
+                                <article class="mnt-mt-fonts">
+                                  {{ count[i].FAULT?count[i].FAULT:'0' }}
+                                </article>
+                              </div>
+                            </div>
+                            <div class="col s2 m2 l2 xl3">
+                              <div class="card-content">
+                                <article class="mnt-mt-fonts">
+                                  {{ count[i].SETTING_CHANGE?count[i].SETTING_CHANGE:'0' }}
+                                </article>
+                              </div>
+                            </div>
+                            <div class="col s2 m2 l2 xl2 soft-pad-left">
+                              <div class="card-content">
+                                <article class="mnt-mt-fonts">
+                                  {{ count[i].SYSTEM_EVENT?count[i].SYSTEM_EVENT:'0' }}
+                                </article>
+                              </div>
+                            </div>
+                            <span *ngIf="!example.expanded">
+                              <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" d="M0 0h24v24H0V0z" />
+                                <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                              </svg>
+                            </span>
+                            <span *ngIf="example.expanded">
+                              <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" d="M0 0h24v24H0V0z" />
+                                <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                              </svg>
+                            </span>
+                          </mat-expansion-panel-header>
+                          <div class="col s12 m12 l12 xl12 soft-pad-left expand-pd-bt" *ngFor="let datewisedatas of datewisedata.value | keyvalue">
+                            <div *ngFor="let datas of datewisedatas.value | keyvalue">
+                              <div class="zone-name">{{ datas.key }}</div><br>
+                              <article *ngFor="let datewise of datas.value">
+                                <div class="short-time">{{ datewise.TimeStamp|date:'shortTime' }}</div>
+                                <div class="event-name-img">
+                                  <img src="assets/img/icon/alert.svg" *ngIf="datewise.EventName=='ALERT'" />
+                                  <img src="assets/img/icon/fault.svg" *ngIf="datewise.EventName=='FAULT'" />
+                                </div>
+                                <div class="event-name">{{ datewise.EventName }}</div>
+                                <div class="event-name" *ngIf="(datewise.EventType=='SETTING_CHANGE' || datewise.EventType=='SYSTEM_EVENT') && datewise.OldValue!=datewise.NewValue">
+                                  <span *ngIf="datewise.OldValue==0 && datewise.NewValue==1; else elseIf">Off to On</span>
+                                  <ng-template #elseIf>
+                                    <span *ngIf="datewise.OldValue==1 && datewise.NewValue==0; else printValue">On to Off</span>
+                                    <ng-template #printValue>{{datewise.OldValue}} to {{datewise.NewValue}}</ng-template>
+                                  </ng-template>
+                                </div>
+                                <div class="short-desc">{{ datewise.ShortDesc }}</div>
+                                <br>
+                                <div class="long-desc">{{ datewise.LongDesc }}</div>
+                              </article>
+                              <hr>
+                            </div>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+                  </div>
+                  <ng-template #loading1>
+                      <div class="col s12 m12 l12 xl12 config-loader pt-25">
+                          <img src="../../../assets/Spinner.gif" alt="not working">
+                      </div>
+                    </ng-template>
+                </div>
+              </div>
+              <div class="mnt-tab col-bg" style="clear:both;min-height: 539px" *ngSwitchCase="'Event'">
+                <div class="row event-type">
+                  <div class="col s12 m12 l12 xl12 mnt-bg-color mnt-pad-left" style="padding:0 24px">
+                    <div class="cards mnt-pad-left">
+                      <div class="col s12 m12 l12 x12 soft-pad-left">
+                        <div class="card-content">
+                          <article class="mnt-fonts">Event Type</article>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="!loader else loading">
+                    <div class="col s12 m12 l12 xl12" style="padding: 0">
+                      <mat-accordion *ngFor="let events of eventLog | keyvalue; let i=index; let idOdd=odd; let isEven=even">
+                        <div>
+                          <article class="mnt-mt-fonts" style="display: inline-block;display: flex;flex-direction: row;align-items: center;border-radius: inherit;height: 48px;font-weight: 500;padding:0 24px">
+                            <div class="event-name-img" style="padding-right: 0.25em;">
+                              <img src="assets/img/icon/alert.svg" *ngIf="events.key=='ALERT'" style="padding-right:10px" />
+                              <img src="assets/img/icon/fault.svg" *ngIf="events.key=='FAULT'" style="padding-right:10px" />
+                            </div>
+                            {{events.key}}
+                          </article>
+                          <mat-expansion-panel hideToggle="true" style="background-color: #9fbcc9 !important;border-bottom: 1px solid rgba(0,0,0,.12);box-shadow:none" *ngFor="let events2 of events.value | keyvalue" #example>
+                            <mat-expansion-panel-header class="soft-bg">
+                              <div class="col s12 m12 l12 xl12 soft-pad-left">
+                                <div class="card-content">
+                                  <article class="mnt-mt-fonts">
+                                    {{ events2.key }}
+                                  </article>
+                                </div>
+                              </div>
+                              <span *ngIf="!example.expanded" >
+                                <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                  <path fill="none" d="M0 0h24v24H0V0z" />
+                                  <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                </svg>
+                              </span>
+                              <span *ngIf="example.expanded">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                  <path fill="none" d="M0 0h24v24H0V0z" />
+                                  <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                </svg>
+                              </span>
+                            </mat-expansion-panel-header>
+                            <div class="col s12 m12 l12 xl12 soft-pad-left expand-pd-bt">
+                              <div *ngFor="let events3 of events2.value | keyvalue">
+                                <div class="zone-name">{{ events3.key }}</div><br>
+                                <article *ngFor="let event of events3.value">
+                                  <div class="short-time">{{ event.TimeStamp|date:'shortTime' }}</div>
+                                  <div class="event-name-img">
+                                    <img src="assets/img/icon/alert.svg" *ngIf="event.EventName=='ALERT'" />
+                                    <img src="assets/img/icon/fault.svg" *ngIf="event.EventName=='FAULT'" />
+                                  </div>
+                                  <div class="event-name">{{ event.EventName }}</div>
+                                  <div class="event-name" *ngIf="(events.key=='SETTING_CHANGE' || events.key=='SYSTEM_EVENT') && event.OldValue!=event.NewValue">
+                                    <span *ngIf="event.OldValue==0 && event.NewValue==1; else elseIf">Off to On</span>
+                                    <ng-template #elseIf>
+                                      <span *ngIf="event.OldValue==1 && event.NewValue==0; else printValue">On to Off</span>
+                                      <ng-template #printValue>{{event.OldValue}} to {{event.NewValue}}</ng-template>
+                                    </ng-template>
+                                  </div>
+                                  <div class="short-desc">{{ event.ShortDesc }}</div>
+                                  <div class="short-desc">{{ event.TimeStamp|date:'shortDate' }}</div>
+                                  <br>
+                                  <div class="long-desc">{{ event.LongDesc }}</div>
+                                </article>
+                                <hr>
+                              </div>
+                            </div>
+                          </mat-expansion-panel>
+                        </div>
+                      </mat-accordion>
+                    </div>
+                  </div>
+                  <ng-template #loading>
+                      <div class="col s12 m12 l12 xl12 config-loader pt-25">
+                          <img src="../../../assets/Spinner.gif" alt="not working">
+                      </div>
+                    </ng-template>
+                </div>
+              </div>
+              <div class="mnt-tab col-bg" style="clear:both;min-height: 539px" *ngSwitchCase="'Zone'">
+                <div class="row zone">
+                  <div class="col s12 m12 l12 xl12 mnt-bg-color mnt-pad-left" style="padding:0 24px">
+                    <div class="cards mnt-pad-left">
+                      <div class="col s12 m12 l12 xl12 soft-pad-left">
+                        <div class="card-content">
+                          <article class="mnt-fonts">ZONE/DEVICES</article>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="!loader else loading2">
+                    <div class="col s12 m12 l12 xl12" style="padding: 0">
+                      <mat-accordion *ngFor="let zones of eventLog | keyvalue; let i=index; let idOdd=odd; let isEven=even">
+                        <mat-expansion-panel hideToggle="true" [class.bg-odd]="isOdd" [class.bg-even]="isEven" #example>
+                          <mat-expansion-panel-header class="soft-bg">
+                            <div class="col s12 m12 l12 xl12 soft-pad-left">
+                              <div class="card-content">
+                                <article class="mnt-mt-fonts">
+                                  {{ zones.key }}
+                                </article>
+                              </div>
+                            </div>
+                            <span *ngIf="!example.expanded">
+                              <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" d="M0 0h24v24H0V0z" />
+                                <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+                                />
+                              </svg>
+                            </span>
+                            <span *ngIf="example.expanded">
+                              <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="none" d="M0 0h24v24H0V0z" />
+                                <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                              </svg>
+                            </span>
+                          </mat-expansion-panel-header>
+                          <div class="col s12 m12 l12 xl12 soft-pad-left expand-pd-bt" *ngFor="let zones2 of zones.value | keyvalue">
+                            <div *ngFor="let zones3 of zones2.value | keyvalue">
+                              <div class="zone-name">{{ zones3.key }}</div><br>
+                              <article *ngFor="let zoneData of zones3.value">
+                                <div class="short-time">{{ zoneData.TimeStamp|date:'shortTime' }}</div>
+                                <div class="event-name-img">
+                                  <img src="assets/img/icon/alert.svg" *ngIf="zoneData.EventName=='ALERT'" />
+                                  <img src="assets/img/icon/fault.svg" *ngIf="zoneData.EventName=='FAULT'" />
+                                </div>
+                                <div class="event-name">{{ zoneData.EventName }}</div>
+                                <div class="event-name" *ngIf="(zoneData.EventType=='SETTING_CHANGE' || zoneData.EventType=='SYSTEM_EVENT') && zoneData.OldValue!=zoneData.NewValue">
+                                  <span *ngIf="zoneData.OldValue==0 && zoneData.NewValue==1; else elseIf">Off to On</span>
+                                  <ng-template #elseIf>
+                                    <span *ngIf="zoneData.OldValue==1 && zoneData.NewValue==0; else printValue">On to Off</span>
+                                    <ng-template #printValue>{{zoneData.OldValue}} to {{zoneData.NewValue}}</ng-template>
+                                  </ng-template>
+                                </div>
+                                <div class="short-desc">{{ zoneData.ShortDesc }}</div>
+                                <div class="short-desc">{{ zoneData.TimeStamp|date:'shortDate' }}</div>
+                                <br>
+                                <div class="long-desc">{{ zoneData.LongDesc }}</div>
+                              </article>
+                              <hr>
+                            </div>
+                          </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
+                    </div>
+                  </div>
+                  <ng-template #loading2>
+                      <div class="col s12 m12 l12 xl12 config-loader pt-25">
+                          <img src="../../../assets/Spinner.gif" alt="not working">
+                      </div>
+                    </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </div>

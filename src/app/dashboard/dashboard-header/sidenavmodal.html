@@ -1,0 +1,7 @@
+<div class="sidenavenable">
+<nordson-sidenav *ngIf="sideNavDashboardModal"></nordson-sidenav>
+<nordson-settings-sidenav *ngIf="sideNaveSettingsModal" (loadsettings)="loaderScreen($event)"></nordson-settings-sidenav>
+<nordson-admin-sidenav *ngIf="sideNavAdminModal"></nordson-admin-sidenav>
+</div>
+
+

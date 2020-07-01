@@ -1,0 +1,574 @@
+<div
+  class="col s4 m3 l3 xl3 sidenav-shadow height-vh-sidenav responsive"
+  style="padding: 0px !important;position: relative;"
+>
+  <aside class="white" style="margin-top: 12px">
+    <section>
+      <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title">Modal title</h4>
+          <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-light"
+            (click)="modal.close('Close click')"
+          >
+            Close
+          </button>
+        </div>
+      </ng-template>
+    </section>
+    <section class="color-section">
+      <ul class="outline">
+        <li class="navhover">
+          <a
+            class="uppercase"
+            routerLink="/dashboard"
+            routerLinkActive="text-success"
+            #dashboard="routerLinkActive"
+            (click)="closeModal()"
+          >
+            <div class="row pad-top-3">
+              <div class="col s2 m2 l2 xl2 t-end t-right pad-0">
+                <!-- <img src="../../../assets/img/svg/Home.svg" alt="image error" height="20px" width="20px" ngClass="{{dashboard.isActive ?  'svg-active' : 'svg-non-active'}}"> -->
+                <!-- <svg
+                  width="20px"
+                  height="17px"
+                  viewBox="0 0 20 17"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  ngClass="{{
+                    dashboard.isActive ? 'svg-active' : 'svg-non-active'
+                  }}"
+                >
+                   Generator: Sketch 55.2 (78181) - https://sketchapp.com 
+                  <title>Path</title>
+                  <desc>Created with Sketch.</desc>
+                  <g
+                    id="Symbols"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <g
+                      id="Main-Sidebar"
+                      transform="translate(-29.000000, -70.000000)"
+                      fill="#0181C5"
+                      fill-rule="nonzero"
+                    >
+                      <g
+                        id="Group-8"
+                        transform="translate(27.000000, 67.000000)"
+                      >
+                        <g id="round-home-24px">
+                          <path
+                            d="M10,19 L10,14 L14,14 L14,19 C14,19.55 14.45,20 15,20 L18,20 C18.55,20 19,19.55 19,19 L19,12 L20.7,12 C21.16,12 21.38,11.43 21.03,11.13 L12.67,3.6 C12.29,3.26 11.71,3.26 11.33,3.6 L2.97,11.13 C2.63,11.43 2.84,12 3.3,12 L5,12 L5,19 C5,19.55 5.45,20 6,20 L9,20 C9.55,20 10,19.55 10,19 Z"
+                            id="Path"
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg> -->
+                <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                ngClass="{{
+                  dashboard.isActive ? 'svg-active' : 'svg-non-active'
+                }}">
+                  <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+                  <title>Group 15</title>
+                  <desc>Created with Sketch.</desc>
+                  <g id="Setup-screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Setup_Temperature-Settings--" transform="translate(-30.000000, -82.000000)">
+                          <g id="Group-6" transform="translate(27.000000, 79.000000)">
+                              <g id="Group-15">
+                                  <polygon id="Path-Copy-3" points="0 0 24 0 24 24 0 24"></polygon>
+                                  <path d="M20,3 C20.5522847,3 21,3.44771525 21,4 L21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 L20,3 Z M10,6 L6,6 L6,18 L10,18 L10,6 Z M17,16 L14,16 C13.4477153,16 13,16.4477153 13,17 C13,17.5522847 13.4477153,18 14,18 L14,18 L17,18 C17.5522847,18 18,17.5522847 18,17 C18,16.4477153 17.5522847,16 17,16 L17,16 Z M17,11 L14,11 C13.4477153,11 13,11.4477153 13,12 C13,12.5522847 13.4477153,13 14,13 L14,13 L17,13 C17.5522847,13 18,12.5522847 18,12 C18,11.4477153 17.5522847,11 17,11 L17,11 Z M17,6 L14,6 C13.4477153,6 13,6.44771525 13,7 C13,7.55228475 13.4477153,8 14,8 L14,8 L17,8 C17.5522847,8 18,7.55228475 18,7 C18,6.44771525 17.5522847,6 17,6 L17,6 Z" id="Combined-Shape" fill="#6F6F6F"></path>
+                              </g>
+                          </g>
+                      </g>
+                  </g>
+              </svg>
+              </div>
+              <div class="col s10 m10 l10 xl10 pad-20">
+                Dashboard
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover">
+          <a
+            routerLink="/equipment-registration"
+            class="uppercase"
+            routerLinkActive="text-success"
+            #equipment="routerLinkActive"
+            (click)="closeModal()"
+
+          >
+            <div class="row pad-top-3">
+              <div class="col s2 m2 l2 xl2 t-end t-right pad-0">
+                <!-- <img  src="{{rla.isActive ? '../../../assets/img/svg/Equipment Registration.svg' : '../../../assets/img/svg/Home.svg'}}" alt="image error" height="20px" width="20px"> -->
+                <svg
+                  width="20px"
+                  height="20px"
+                  viewBox="0 0 20 20"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  ngClass="{{
+                    equipment.isActive ? 'svg-active' : 'svg-non-active'
+                  }}"
+                >
+                  <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+                  <title>Shape</title>
+                  <desc>Created with Sketch.</desc>
+                  <g
+                    id="Symbols"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <g
+                      id="Main-Sidebar"
+                      transform="translate(-29.000000, -125.000000)"
+                      fill="#000000"
+                      fill-rule="nonzero"
+                    >
+                      <g
+                        id="Group-7"
+                        transform="translate(29.000000, 125.000000)"
+                      >
+                        <g id="round-library_add-24px">
+                          <path
+                            d="M1,4 C0.45,4 0,4.45 0,5 L0,18 C0,19.1 0.9,20 2,20 L15,20 C15.55,20 16,19.55 16,19 C16,18.45 15.55,18 15,18 L3,18 C2.45,18 2,17.55 2,17 L2,5 C2,4.45 1.55,4 1,4 Z M18,0 L6,0 C4.9,0 4,0.9 4,2 L4,14 C4,15.1 4.9,16 6,16 L18,16 C19.1,16 20,15.1 20,14 L20,2 C20,0.9 19.1,0 18,0 Z M16,9 L13,9 L13,12 C13,12.55 12.55,13 12,13 C11.45,13 11,12.55 11,12 L11,9 L8,9 C7.45,9 7,8.55 7,8 C7,7.45 7.45,7 8,7 L11,7 L11,4 C11,3.45 11.45,3 12,3 C12.55,3 13,3.45 13,4 L13,7 L16,7 C16.55,7 17,7.45 17,8 C17,8.55 16.55,9 16,9 Z"
+                            id="Shape"
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div class="col s10 m10 l10 xl10 pad-20">
+                Model Registration
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" *ngIf="userRole === 0">
+          <a
+            routerLink="/subuser"
+            class="uppercase"
+            routerLinkActive="text-success"
+            #subuser="routerLinkActive"
+            (click)="closeModal()"
+          >
+            <div class="row pad-top-3">
+              <div class="col s2 m2 l2 xl2 t-end t-right pad-0">
+                <!-- <img src="../../../assets/img/svg/Sub user account.svg" alt="image error" height="20px" width="20px"> -->
+                <svg
+                  width="22px"
+                  height="16px"
+                  viewBox="0 0 22 16"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  ngClass="{{
+                    subuser.isActive ? 'svg-active' : 'svg-non-active'
+                  }}"
+                >
+                  <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+                  <title>Shape</title>
+                  <desc>Created with Sketch.</desc>
+                  <g
+                    id="Symbols"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <g
+                      id="Main-Sidebar"
+                      transform="translate(-28.000000, -184.000000)"
+                      fill="#000000"
+                      fill-rule="nonzero"
+                    >
+                      <g
+                        id="Group-6"
+                        transform="translate(27.000000, 180.000000)"
+                      >
+                        <g id="round-person_add-24px">
+                          <path
+                            d="M15,12 C17.21,12 19,10.21 19,8 C19,5.79 17.21,4 15,4 C12.79,4 11,5.79 11,8 C11,10.21 12.79,12 15,12 Z M6,10 L6,8 C6,7.45 5.55,7 5,7 C4.45,7 4,7.45 4,8 L4,10 L2,10 C1.45,10 1,10.45 1,11 C1,11.55 1.45,12 2,12 L4,12 L4,14 C4,14.55 4.45,15 5,15 C5.55,15 6,14.55 6,14 L6,12 L8,12 C8.55,12 9,11.55 9,11 C9,10.45 8.55,10 8,10 L6,10 Z M15,14 C12.33,14 7,15.34 7,18 L7,19 C7,19.55 7.45,20 8,20 L22,20 C22.55,20 23,19.55 23,19 L23,18 C23,15.34 17.67,14 15,14 Z"
+                            id="Shape"
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div class="col s10 m10 l10 xl10 pad-20">
+                Sub User Account
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="navhover" (click)="toggleShow()"  
+           id="bt"  >
+           
+            
+            <a class="uppercase " [routerLink]="disable" routerLinkActive="text-success" >
+            <div class="row pad-top-3 uppercase">
+              <div class="col s2 m2 l2 xl2 t-end t-right pad-0">
+                <img
+                  src="../../../assets/img/svg/Setup tool.svg"
+                  alt="image error"
+                  height="20px"
+                  width="20px"
+                />
+              </div>
+              <div
+                class="col s10 m10 l10 xl10 pad-20 cursor-pointer"
+             
+                style="cursor: pointer"
+              >
+                SETUP TOOL
+              </div>
+              <!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)">Modal with window custom class</button> -->
+            </div>
+          </a>
+        </li>
+        <li class="navhover">
+          <a routerLink="/media-center"
+          class="uppercase"
+          routerLinkActive="text-success"
+          #mediacenter="routerLinkActive"
+          (click)="closeModal()"
+          >
+          <div class="row pad-top-3 cursor-pointer">
+            <div class="col s2 m2 l2 xl2 t-end t-right pad-0">
+              
+              <svg width="22px" height="20px" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            ngClass="{{
+              mediacenter.isActive ? 'svg-active' : 'svg-non-active'
+            }}">
+              <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+              <title>live_tv-24px copy</title>
+              <desc>Created with Sketch.</desc>
+              <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="User-Nav" transform="translate(-28.000000, -256.000000)">
+                      <g id="Media-Center" transform="translate(27.000000, 254.000000)">
+                          <g id="live_tv-24px-copy">
+                              <polygon id="Path-Copy-3" points="0 0 24 0 24 24 0 24"></polygon>
+                              <path d="M21,6 L13.41,6 L16.7,2.71 L16,2 L12,6 L8,2 L7.29,2.71 L10.59,6 L3,6 C1.9,6 1,6.89 1,8 L1,20 C1,21.1 1.9,22 3,22 L21,22 C22.1,22 23,21.1 23,20 L23,8 C23,6.89 22.1,6 21,6 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+                              <polygon id="Path" fill="#FFFFFF" fill-rule="nonzero" points="9 10 9 18 16 14"></polygon>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+          </svg>
+            </div>
+            <div class="col s10 m10 l10 xl10 pad-20">
+              Media Center
+            </div>
+          </div>
+        </a>
+        </li>
+        <li class="navhover"> 
+          <a class="media-licnece" href="https://bbconn-license.nordson.com/" target="_blank" (click)="closeModal()">
+          <div class="row pad-top-3 cursor-pointer">
+            <div class="col s2 m2 l2 xl2 t-end t-right pad-0">
+              <img
+                src="../../../assets/img/svg/Manage Licence.svg"
+                alt="image error"
+                height="20px"
+                width="20px"
+              />
+            </div>
+            <div class="col s10 m10 l10 xl10 pad-20 uppercase" (click)="closeModal()">
+                Manage Licenses
+            </div>
+          </div>
+          </a>  
+        </li>
+        <li class="navhover">
+          <a href="../../../assets/information.pdf" target="_blank">
+          <div class="row pad-top-3 cursor-pointer">
+            <div class="col s2 m2 l2 xl2 t-end t-right pad-0">
+              <img
+                src="../../../assets/img/svg/Help center.svg"
+                alt="image error"
+                height="20px"
+                width="20px"
+              />
+            </div>
+            <div class="col s10 m10 l10 xl10 pad-20 uppercase">
+              Help Center
+            </div>
+          </div>
+        </a>
+        </li>
+      </ul>
+    </section>
+  </aside>
+</div>
+<div>
+  <div
+    *ngIf="isShown"
+    class="row container-fluid"
+    id="divshow"
+    width="100%"
+    height="100%"
+    style="position: absolute"
+  >
+  <style>
+    #divshow{
+      display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+  </style>
+
+
+    <div class="pop-up-setup-tools" (click)="hide()" ></div>
+    <div class="hide-1" (click)="hide()"></div>
+    <div class="inner-pop-div" id="pop-up-setup-tools">
+      <div *ngIf="!isDescriptionOn && !isDescriptionOnLoad && !loadPrevious">
+        <div class="select-load-text">
+          Please select how to load
+        </div>
+        <div class="select-load-text">
+          a configuration file
+        </div>
+        <div>
+          <div class="button-div">
+            <label for="files" class="text-div" style="cursor: pointer">
+              Load from USB/Computer</label
+            >
+            <input
+            autocomplete="off"
+              #fileInput
+              (click)="fileInput.value = null"
+              value=""
+              type="file"
+              id="files"
+              style="visibility:hidden;"
+              (change)="onFileChange($event)"
+            />
+          </div>
+          <div *ngIf="norFilesCount == true">
+            <div class="button-div display-flex-al-center" style="justify-content:center">
+              <div
+                class="text-div"
+                (click)="showPreviousNorFilePopup()"
+                style="cursor: pointer"
+              >
+                Use previous file
+              </div>
+            </div>
+          </div>
+          <div *ngIf="norFilesCount == false">
+            <div class="button-div-prev-norfile display-flex-al-center" style="justify-content:center">
+              <div class="text-div" style="cursor: pointer">
+                Use previous file
+              </div>
+            </div>
+          </div>
+          <div class="button-div display-flex-al-center" style="justify-content:center">
+            <div
+              class="text-div"
+              style="cursor: pointer"
+              (click)="addDescriptionCreate()"
+            >
+              <div>
+                CREATE NEW
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isDescriptionOn">
+        <div *ngIf="!loadercreatenew else loaderforcreatenew">
+        <div class="select-load-text">
+          Create Nor File
+        </div>
+        <div *ngIf="selected" class="createnorfile" id="createselect">
+          <mat-form-field [floatLabel]="'never'">
+            <mat-select
+            [(ngModel)]="selected"
+            [placeholder]="selected.selectData"
+            panelClass="equipment-panel-select"
+            (selectionChange)="selectEquipment(selected)"
+            disableOptionCentering
+              >
+              <mat-option 
+              *ngFor="let equipmentData of equipmentData.equRes"
+              [value]="equipmentData"
+              >{{equipmentData.selectData}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div style="text-align: center;padding: 0px 0px 25px;position: relative;">
+          <label class="text-above-setup"
+                    >Equipment Description
+                  </label>
+        <input
+            type="text"
+            class="descriptionInput"
+            [(ngModel)]="editDescription"
+            readonly
+          />
+        </div> 
+        <div style="text-align: center;position: relative;" class="padding-create">
+          <label class="text-above-setup"
+                    >Nor File Description
+                  </label>
+          <textarea
+            type="text"
+            class="set-up-description-input pad-tp-15"
+            [(ngModel)]="description"
+            placeholder="Write Description here..."
+            maxlength="120"
+            style="max-height: 90px !important;max-width: 315px !important;min-width:315px !important;height: 90px !important;"
+          ></textarea>
+        </div>
+        <div class="padding-load" *ngIf="!loadsidenav else loading" style="margin-bottom:55px">
+          <div style="float: left;">
+            <button
+              class="btn-set-up cancel-btn-color"
+              (click)="removeDescriptionCreate()"
+            >
+              CANCEL
+            </button>
+          </div>
+          <div style="float: right;">
+            <button
+              class="btn-set-up submit-btn-color"
+              (click)="createNorFile();  loadsidenav = true"
+            >
+              SUBMIT
+            </button>
+          </div>
+        </div>
+        </div>
+      </div>
+      <ng-template #loading>
+         <div class="t-center loading-sidenav">Please Wait ....</div> 
+      </ng-template>
+      <ng-template #loaderforcreatenew>
+        <div style="display:flex; align-items:center;justify-content:center;height: 30vh;">
+         <img src="../../assets/Spinner.gif"alt="">
+        </div>
+      </ng-template>
+
+      <div *ngIf="isDescriptionOnLoad">
+        <div class="select-load-text">
+          Load from USB Nor file Description
+        </div>
+        <div style="text-align: center;" class="padding-load">
+          <textarea
+            type="text"
+            class="set-up-description-input pad-tp-15"
+            [(ngModel)]="description"
+            placeholder="Write Description here..."
+            maxlength="120"
+          ></textarea>
+        </div>
+        <div class="padding-load" *ngIf="!loadsidenav else loading" style="margin-bottom: 55px;">
+          <div style="float: left;">
+            <button
+              class="btn-set-up cancel-btn-color"
+              (click)="removeDescriptionNor()"
+            >
+              CANCEL
+            </button>
+          </div>
+          <div style="float: right;">
+            <button
+              class="btn-set-up submit-btn-color"
+              (click)="CreteNorFromUsb(); loadsidenav = true"
+            >
+              SUBMIT
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--use previous file popup start-->
+      <div *ngIf="loadPrevious">
+        <div *ngIf="!loaderpreviousfile else loaderforpreviousfile">
+        <div class="select-load-text">
+          Use Previous File
+        </div>
+        <div *ngIf="selected" id="previousselect" style="padding-top: 10px;">
+          <mat-form-field [floatLabel]="'never'">
+            <mat-select
+            [(ngModel)]="selected"
+            [placeholder]="selected.selectData"
+            panelClass="equipment-panel-select"
+            (selectionChange)="selectEquipment(selected)"
+            disableOptionCentering
+              >
+              <mat-option 
+              *ngFor="let equipmentData of equipmentData.equRes"
+              [value]="equipmentData"
+              >{{equipmentData.selectData}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div style="text-align: center;padding: 0px 0px 25px;position: relative;">
+          <label class="text-above-setup"
+          >Equipment Description
+          <sup>*</sup>
+        </label>
+          <input
+            type="text"
+            class="descriptionInput"
+            [(ngModel)]="editDescription"
+            readonly
+          />
+        </div>
+        <div class="padding-previous-file" style="padding: 20px 90px 0px" *ngIf="!loadsidenav else loading">
+          <div style="float: left;">
+            <button
+              class="btn-set-up cancel-btn-color"
+              (click)="removeDescriptionCreate()"
+            >
+              CANCEL
+            </button>
+          </div>
+          <div style="float: right;">
+            <button
+              class="btn-set-up submit-btn-color"
+              (click)="submitPreviousFile();  loadsidenav = true"
+            >
+              SUBMIT
+            </button>
+          </div>
+        </div>
+        </div>
+      </div>
+      <ng-template #loaderforpreviousfile>
+        <div style="display:flex; align-items:center;justify-content:center;height: 30vh;">
+         <img src="../../assets/Spinner.gif"alt="">
+        </div>
+      </ng-template>
+      <!--use previous file popup ends-->
+    </div>
+  </div>
+</div>
+

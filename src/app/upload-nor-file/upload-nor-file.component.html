@@ -1,0 +1,28 @@
+<div class="dash-board">
+  <form name="form" class="form-left" #form="ngForm" [formGroup]="uploadForm">
+    <nordson-dashboard-header></nordson-dashboard-header>
+    <div class="row row-pd-zero ">
+      <nordson-settings-sidenav></nordson-settings-sidenav>
+      <div class="col m12 s12 l12 xl9 setting-blue margin-top-12" id="temperature">
+        <div class="col s12 m12 l12 xl12">
+          <article class="temp-heading">
+            <h4 class="">Temperature Zone</h4>
+            <input
+              autocomplete="off"
+              type="file"
+              name="norfile"
+              class="form-control"
+              (change)="onFileChange($event)"
+            />
+          </article>
+          <!-- three column section-->
+        </div>
+        <!-- col 12 close-->
+      </div>
+    </div>
+    <div class="row">
+      <!-- <nordson-footer></nordson-footer> -->
+    </div>
+  </form>
+</div>
+<!--main close tag--->

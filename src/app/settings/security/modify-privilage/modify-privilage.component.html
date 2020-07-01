@@ -1,0 +1,1264 @@
+<div>
+  
+  <div>
+    
+    <form
+      *ngIf="securityForm"
+      name="form"
+      #form="ngForm"
+      [formGroup]="securityForm"
+      (submit)="onSubmit()"
+    >
+      <div class="dash-board">
+        <div class="row" style="padding: 0px">
+          <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+          <div
+            class="setting-blue-zone margin-top-12 pad-right-left-20"
+            id="temperature"
+          >
+            <div class="col s12 m12 l12 x12" style="padding-left: 0px">
+              <article class="temp-heading">
+                <h4 class="zone-heading" style="padding-left: 0px">
+                  {{ valueLanguage | languageFilter : 'User Management Settings' : 'USER_MANAGEMENT_SETTINGS'}}
+                </h4>
+                <p class="right-align">
+                  <button
+                    class="apply btn submit-bt"
+                    type="submit"
+                    [disabled]="
+                      !form.valid || accessType === 1 || !securityForm.dirty
+                    "
+                  >
+                  {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE'}}
+                  </button>
+                </p>
+              </article>
+            </div>
+            <div class="row pad-btm-80">
+              <div
+                class="col s12 m12 l12 x12 security-settings-div"
+                style="padding: 27px 22px"
+              >
+                <div>
+                  <div
+                    class="col s12 m12 l12 x12 settings-caption"
+                    style="padding-top: 25px;padding-bottom: 25px"
+                  >
+                    {{ valueLanguage | languageFilter : 'Modify User Management Privileges' : 'MODIFY_USER_MANAGEMENT_PRIVILEGES'}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s5 m5 l5 x5"></div>
+                  <div class="col s2 m2 l2 x2 privilage-user">{{ valueLanguage | languageFilter : 'Unsecured' : 'UNSECURED'}}</div>
+                  <div class="col s2 m2 l2 x2 privilage-user">{{ valueLanguage | languageFilter : 'Operator' : 'OPERATOR'}}</div>
+                  <div class="col s2 m2 l2 x2 privilage-user">{{ valueLanguage | languageFilter : 'Technician' : 'TECHNICIAN'}}</div>
+                  <div class="col s1 m1 l1 x1 privilage-user"></div>
+                </div>
+                  <div *ngIf="isNuml">
+                    <div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                      <div>
+                        <div class="col s12 m12 l12 x12 settings-caption">
+                          {{ valueLanguage | languageFilter : 'Runtime settings' : 'RUNTIME_SETTINGS'}}
+                        </div>
+                      </div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                      <div class="row margin-top">
+                        <div class="col s5 m5 l5 x5">
+                          {{ valueLanguage | languageFilter : 'Temperature SetPoint / Enable' : 'TEMP_SETPOINT_ENABLE'}}
+                        </div>
+                        <mat-radio-group
+                          aria-label="Select an option"
+                          formControlName="TEMPERATURE_R"
+                        >
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="0"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr ">
+                              <mat-radio-button value="1"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="2"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s1 m1 l1 x1"></div>
+                        </mat-radio-group>
+                      </div>
+                      <div class="row margin-top">
+                        <div class="col s5 m5 l5 x5">
+                          Pressure Setpoint/Runup
+                        </div>
+                        <mat-radio-group
+                          aria-label="Select an option"
+                          formControlName="PRESSURE_ADJUST_R"
+                        >
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="0"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr ">
+                              <mat-radio-button value="1"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="2"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s1 m1 l1 x1"></div>
+                        </mat-radio-group>
+                      </div>
+                      <div class="row margin-top">
+                        <div class="col s5 m5 l5 x5">
+                          {{ valueLanguage | languageFilter : 'Pressure Settings' : 'PRESSURE_SETTINGS'}}
+                        </div>
+                        <mat-radio-group
+                          aria-label="Select an option"
+                          formControlName="PRESSURE_SETTINGS_R"
+                        >
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="0"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="1"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="2"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s1 m1 l1 x1"></div>
+                        </mat-radio-group>
+                      </div>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Flow Target / Learn' : 'FLOW_TARGET_LEARN'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="FLOW_R"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr ">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Load Recipe' : 'LOAD_RECIPE'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="RECIPE_LOAD_R"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr ">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Manage Recipe' : 'MANAGE_RECIPE'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="RECIPE_MANAGEMENT_R"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr ">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                      <div class="col s12 m12 l12 x12 settings-caption">
+                        {{ valueLanguage | languageFilter : 'System Settings' : 'SYSTEM_SETTINGS'}}
+                      </div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Temperature Settings' : 'TEMPERATURE_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="TEMPERATURE_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Flow Settings' : 'FLOW_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="FLOW_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Pump Settings' : 'PUMP_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="PUMP_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Fill/Level Settings' : 'FILL_LEVEL_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="FILL_AND_LEVEL_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'System Preferences' : 'SYSTEM_PREFERENCES'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="PREFERENCES_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        HMI Options
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="HMI_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Schedules' : 'SCHEDULES'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="SCHEDULES_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'System I/O' : 'SYSTEM_IO'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="IO_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Names' : 'NAMES'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="NAMES_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        Shifts & Jobs (Production Management)
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="SHIFT_JOB_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Communication Settings' : 'COMMUNICATION_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="COMMUNICATION_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        User Management
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="USER_CONTROL_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        Networking
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="NETWORK_S"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                      <div class="col s12 m12 l12 x12 settings-caption">
+                        {{ valueLanguage | languageFilter : 'Tools' : 'TOOLS'}}
+                      </div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        Accessory Management
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="ACCESSORY_MANAGEMENT_T"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Backup/Restore/Reset' : 'BACKUP_RESTORE_RESET'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="BACKUP_RESTORE_RESET_T"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        Configuration Management
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="CONFIGURATION_MANAGEMENT_T"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        Licensing
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="LICENSING_T"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        Maintenance Schedule
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="MAINTENANCE_SCHEDULES_T"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        Reports
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="REPORTS_T"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        Software Upgrade
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="SOFTWARE_UPGRADE_T"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+
+                   <div *ngIf="!isNuml">
+                    <div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                      <div>
+                        <div class="col s12 m12 l12 x12 settings-caption">
+                          {{ valueLanguage | languageFilter : 'Runtime settings' : 'RUNTIME_SETTINGS'}}
+                        </div>
+                      </div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                      <div class="row margin-top">
+                        <div class="col s5 m5 l5 x5">
+                          {{ valueLanguage | languageFilter : 'Temperature SetPoint / Enable' : 'TEMP_SETPOINT_ENABLE'}}
+                        </div>
+                        <mat-radio-group
+                          aria-label="Select an option"
+                          formControlName="TempSetpoint"
+                        >
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="0"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr ">
+                              <mat-radio-button value="1"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="2"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s1 m1 l1 x1"></div>
+                        </mat-radio-group>
+                      </div>
+                      <div class="row margin-top">
+                        <div class="col s5 m5 l5 x5">
+                          {{ valueLanguage | languageFilter : 'Pressure Set Point' : 'PRESSURE_SET_POINT'}}
+                        </div>
+                        <mat-radio-group
+                          aria-label="Select an option"
+                          formControlName="PressureSetpoint"
+                        >
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="0"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr ">
+                              <mat-radio-button value="1"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s2 m2 l2 x2">
+                            <div class="text-cntr">
+                              <mat-radio-button value="2"></mat-radio-button>
+                            </div>
+                          </div>
+                          <div class="col s1 m1 l1 x1"></div>
+                        </mat-radio-group>
+                      </div>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Flow Target / Learn' : 'FLOW_TARGET_LEARN'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="FlowTarget"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr ">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Load Recipe' : 'LOAD_RECIPE'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="RecipeLoad"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr ">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Manage Recipe' : 'MANAGE_RECIPE'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="RecipeManage"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr ">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                      <div class="col s12 m12 l12 x12 settings-caption">
+                        {{ valueLanguage | languageFilter : 'System Settings' : 'SYSTEM_SETTINGS'}}
+                      </div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Temperature Settings' : 'TEMPERATURE_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="TempSettings"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Pressure Settings' : 'PRESSURE_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="PressureSettings"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Flow Settings' : 'FLOW_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="FlowSettings"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Pump Settings' : 'PUMP_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="PumpSettings"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Fill/Level Settings' : 'FILL_LEVEL_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="FillSettings"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'System Preferences' : 'SYSTEM_PREFERENCES'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="SystemPreferences"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Schedules' : 'SCHEDULES'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="Scheduler"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'System I/O' : 'SYSTEM_IO'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="IO"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Names' : 'NAMES'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="Names"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Communication Settings' : 'COMMUNICATION_SETTINGS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="ComSettings"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                      <div class="col s12 m12 l12 x12 settings-caption">
+                        {{ valueLanguage | languageFilter : 'Tools' : 'TOOLS'}}
+                      </div>
+                      <div class="col s12 m12 l12 x12 divider"></div>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'System Configuration' : 'SYSTEM_CONFIGURATION'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="SystemConfig"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Backup/Restore/Reset' : 'BACKUP_RESTORE_RESET'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="Reset"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                    <div class="row margin-top">
+                      <div class="col s5 m5 l5 x5">
+                        {{ valueLanguage | languageFilter : 'Maintenance & Diagnostics' : 'MAINTENANCE_DIAGNOSTICS'}}
+                      </div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="Maintenance"
+                      >
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="0"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="1"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s2 m2 l2 x2">
+                          <div class="text-cntr">
+                            <mat-radio-button value="2"></mat-radio-button>
+                          </div>
+                        </div>
+                        <div class="col s1 m1 l1 x1"></div>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- <nordson-footer></nordson-footer> -->
+</div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!--main close tag--->
+</div>

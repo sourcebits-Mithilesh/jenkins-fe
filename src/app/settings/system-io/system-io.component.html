@@ -1,0 +1,32 @@
+<div class="dash-board">
+  <div class="row" style="padding: 0px">
+    <div class="col m12 s12 l9 xl9 p-0 bg-color-blue height-vh responsive-pad-color">
+    <div class="setting-blue-zone margin-top-12 pad-right-left-0" id="systemio">
+      <div class="col s12 m12 l12 x12">
+        <article class="temp-heading">
+          <h4 class="zone-heading">{{ valueLanguage | languageFilter : 'System I/O' : 'SYSTEM_IO'}}</h4>
+          <p class="right-align"></p>
+        </article>
+        <div class="col s12 m12 l6 xl6 ">
+          <div class="col s6 m6 l6 xl6 ">
+            <p class="left-align" style="padding-bottom: 11px;">
+              <button class="apply button-m" (click)="systeminput()">
+                {{ valueLanguage | languageFilter : 'INPUT' : 'INPUT'}}
+              </button>
+            </p>
+            <p class="left-align">
+              <button class="apply button-m" (click)="systemoutput()">
+                {{ valueLanguage | languageFilter : 'OUTPUT' : 'OUTPUT'}}
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+
+    <!-- col 12 close-->
+  </div>
+</div>
+<!--main close tag--->

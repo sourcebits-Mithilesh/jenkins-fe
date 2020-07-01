@@ -1,0 +1,118 @@
+/* selct box  customiztion  */
+
+::ng-deep .mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+
+::ng-deep .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+::ng-deep .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+::ng-deep .mat-slide-toggle-thumb-container{
+  z-index: 0 !important;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+
+#temperature table tr input {
+  height: 35px;
+  width: 86px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #fff;
+  left: 10px;
+  padding-left: 10px;
+  color: rgba(0,0,0,0.87);
+}
+input:not([type]):disabled, input:not([type])[readonly="readonly"], input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default)[readonly="readonly"], input[type=password]:not(.browser-default):disabled, input[type=password]:not(.browser-default)[readonly="readonly"], input[type=email]:not(.browser-default):disabled, input[type=email]:not(.browser-default)[readonly="readonly"], input[type=url]:not(.browser-default):disabled, input[type=url]:not(.browser-default)[readonly="readonly"], input[type=time]:not(.browser-default):disabled, input[type=time]:not(.browser-default)[readonly="readonly"], input[type=date]:not(.browser-default):disabled, input[type=date]:not(.browser-default)[readonly="readonly"], input[type=datetime]:not(.browser-default):disabled, input[type=datetime]:not(.browser-default)[readonly="readonly"], input[type=datetime-local]:not(.browser-default):disabled, input[type=datetime-local]:not(.browser-default)[readonly="readonly"], input[type=tel]:not(.browser-default):disabled, input[type=tel]:not(.browser-default)[readonly="readonly"], input[type=number]:not(.browser-default):disabled, input[type=number]:not(.browser-default)[readonly="readonly"], input[type=search]:not(.browser-default):disabled, input[type=search]:not(.browser-default)[readonly="readonly"], textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly="readonly"] {
+  opacity: 0.8;
+}
+
+.auto-heat td {
+  /* border: 1px solid red; */
+  padding-bottom: 18px;
+}
+
+.set-sel {
+  height: 35px;
+  font-size: 15px;
+
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #ffffff;
+  display: inline-block;
+  width: 100%;
+}
+.global-set {
+  width: 100%;
+  display: inline-block;
+  margin-top: 15%;
+  margin-left: 7%;
+  margin-bottom: 4%;
+  white-space: nowrap;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+}
+.hose-one tr + tr td {
+  padding-right: 7%;
+}
+.padding-tp {
+  padding-top: 0px !important;
+}
+.hose-one td {
+  padding: 15px 6% 15px 4%;
+}
+table.set-light-blue.hose-one {
+  margin-bottom: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-left {
+    padding-left: 0;
+  }
+  .form-right {
+    padding-right: 0;
+  }
+}
+.table-one {
+  margin-bottom: 16px;
+}
+div#temperature {
+  overflow-y: scroll;
+}
+::ng-deep #header-section .mat-form-field-infix {
+  width: auto;
+}
+input[type='text']:disabled {
+  opacity: 0.8;
+}
+
+.pd-bt-11 {
+  padding-bottom: 10px;
+}

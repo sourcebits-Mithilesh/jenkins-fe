@@ -1,0 +1,72 @@
+<div class="row dash-board">
+  <div
+    *ngIf="profile"
+    class="col m12 s12 l12 xl9"
+    style="padding: 50px !important;background: rgb(249,253,255)"
+  >
+    <article>
+      <h4 class="profile">Profile</h4>
+    </article>
+    <article>
+      <div class="pad-top">
+        <p class="caption">Full name</p>
+        <p class="sub-heading">{{ profile.full_name }}</p>
+      </div>
+    </article>
+    <article>
+      <div class="row pad-top">
+        <div class="col m6 s12 l5 xl5" style="padding: 0px !important">
+          <div>
+            <p class="caption">Email</p>
+            <p class="sub-heading">{{ profile.email }}</p>
+          </div>
+        </div>
+        <div class="col m6 s12 l7 xl7" style="padding: 0px !important">
+          <div>
+            <p class="caption">Phone Number</p>
+            <p class="sub-heading">{{ profile.mobile_number }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row pad-top">
+        <div class="col m6 s12 l5 xl5" style="padding: 0px !important">
+          <div>
+            <p class="caption">Country</p>
+            <p class="sub-heading">{{ profile.country }}</p>
+          </div>
+        </div>
+        <div class="col m6 s12 l7 xl7" style="padding: 0px !important">
+          <div>
+            <p class="caption">Plant Name</p>
+            <p class="sub-heading">{{ profile.plant }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row pad-top">
+        <div class="col m6 s12 l5 xl5" style="padding: 0px !important">
+          <div>
+            <p class="caption">Company</p>
+            <p class="sub-heading">{{ profile.company_name }}</p>
+          </div>
+        </div>
+        <div class="col m6 s12 l7 xl7" style="padding: 0px !important">
+          <div>
+            <p class="caption">Company Type</p>
+            <p class="sub-heading">{{ profile.company_type }}</p>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article>
+      <div class="pad-top">
+        <p class="caption">Address</p>
+        <p class="sub-heading">{{ profile.company_address }}</p>
+      </div>
+    </article>
+    <section>
+      <div class="change-pass pad-top">
+        <a routerLink="/change-password"> Change Password</a>
+      </div>
+    </section>
+  </div>
+</div>

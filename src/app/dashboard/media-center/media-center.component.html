@@ -1,0 +1,526 @@
+<div class="row dash-board">
+  <!-- for responsive class medium shud be col m12 -->
+  <div class="col m12 s12 l9 xl9 p-0 margin-top-12  bg-dashboard height-vh">
+  <div class="pad-50 pad-media">
+    <article>
+      <div class="row">
+        <div class="col s12 m12 l12 xl12 p-0">
+          <div class="main-heading" style="text-transform: capitalize">
+            Media Center
+          </div>
+        </div>
+      </div>
+    </article>
+    <div>
+      <div class="pt-25">
+        <p><b class="bold-color">ProBlue Flex Software Updates</b> </p>
+        <a style="padding-bottom: 70px;
+        word-break: break-all;" href="http://emanuals.nordson.com/adhesives/software/pbflex.html ">http://emanuals.nordson.com/adhesives/software/pbflex.html
+        </a>
+      </div>
+      <!-- MediaManual Accordion -->
+      <div>
+        <div>
+          <p class=""> <b class="bold-color" class="bold-color"> Manual</b> </p>
+        </div>
+        <div *ngFor="let item of MediaLinkData" id="media-accordion">
+          <mat-accordion>
+            <mat-expansion-panel style="margin-top:20px">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="text-captalize">
+                  {{item.type}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="col m8 s8 l4 xl4 margin-tp">
+                <div class="video-wrapper">
+                  <div class="download-img cursor-pointer" *ngIf="item.link != '' else NoImageManual" (click)="downloadPdf(item.link,item.isServer,1)">
+                    <img src="../../../assets/download svg.svg"  alt="">
+                  </div>
+                  <ng-template #NoImageManual>
+                    <div class="download-img">
+                      <img src="../../../assets/download svg.svg" alt="">
+                    </div>
+                  </ng-template>
+                  <div class="pdf-wrapper cursor-pointer" *ngIf="item.link != '' else NoPdfManual" (click)="downloadPdf(item.link,item.isServer,1)">
+                    <div class="pdf-inline">
+                      <img src="../../../assets/Pdf svg.svg" alt="">
+                    </div>
+                  </div>
+                  <ng-template #NoPdfManual>
+                      <div class="pdf-wrapper">
+                          <div class="pdf-inline">
+                            <img src="../../../assets/Pdf svg.svg" alt="">
+                          </div>
+                        </div>
+                  </ng-template>
+                  <div class="video-title">
+                    <div *ngIf="item.title != ''; else NoTitleManual">
+                      <div *ngIf="item.isServer">
+                        <a style="cursor: pointer;" (click)="downloadPdf(item.link,item.isServer,1)"> {{item.title}}</a>  
+                        </div>
+                        <div *ngIf="!item.isServer">
+                         <a href={{item.link}}> {{item.title}}</a>  
+                         </div> 
+                    </div>
+                    <ng-template #NoTitleManual>
+                      <div>
+                        Coming Soon
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+      <!-- MediaManual Accordion  END-->
+      <!-- MEDIAOEMMELTER ACCORDION -->
+      <div>
+        <div>
+          <p class="pt-25"><b class="bold-color"> OEM Melter</b></p>
+        </div>
+        <div *ngFor="let item of MediaMelterData" id="mediaMelter-accordion">
+          <mat-accordion>
+            <mat-expansion-panel style="margin-top:20px">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="text-captalize">
+                  {{item.type}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="col m8 s8 l4 xl4 margin-tp">
+                <div class="video-wrapper">
+                  <div class="download-img cursor-pointer" *ngIf="item.link != '' else NoImageMelter" (click)="downloadPdf(item.link,item.isServer,2)" alt="">
+                    <img src="../../../assets/download svg.svg" >
+                  </div>
+                  <ng-template #NoImageMelter>
+                    <div class="download-img">
+                      <img src="../../../assets/download svg.svg" alt="">
+                    </div>
+                  </ng-template>
+                  <div class="pdf-wrapper cursor-pointer" *ngIf="item.link != '' else NoPdfMelter"  (click)="downloadPdf(item.link,item.isServer,2)">
+                    <div class="pdf-inline">
+                      <img src="../../../assets/Pdf svg.svg" alt="">
+                    </div>
+                  </div>
+                  <ng-template #NoPdfMelter>
+                      <div class="pdf-wrapper">
+                          <div class="pdf-inline">
+                            <img src="../../../assets/Pdf svg.svg" alt="">
+                          </div>
+                        </div>
+                  </ng-template>
+                  <div class="video-title">
+                    <div class="pad-bottom-10" *ngIf="item.title != ''; else NoTitle">
+                  <div *ngIf="item.isServer">
+                   <a style="cursor: pointer;" (click)="downloadPdf(item.link,item.isServer,2)"> {{item.title}}</a>  
+                   </div>
+                   <div *ngIf="!item.isServer">
+                    <a href={{item.link}}> {{item.title}}</a>  
+                    </div>
+                    </div>
+                    <ng-template #NoTitle>
+                      <div>
+                        Coming Soon
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+      <!-- MEDIAOEMMELTER ACCORDION END -->
+
+      <!-- WebsiteLink ACCORDION  -->
+      <div>
+        <div id="mediaMelterwebsite-accordion">
+          <mat-accordion>
+            <mat-expansion-panel style="margin-top:20px">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Link to Manual Website
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div>
+                <a href="https://www.nordson.com/en/divisions/adhesive-dispensing-systems/products/melters/problue-flex-melter"
+                  target="_blank">https://www.nordson.com/en/divisions/adhesive-dispensing-systems/products/melters/problue-flex-melter</a>
+                <!-- window.location.href = link;    -->
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+      <!-- WebsiteLink ACCORDION END -->
+      <!-- PLC Starter Kits ACCORDION -->
+      <div>
+          <div>
+              <p class="pt-25"><b class="bold-color"> PLC Starter Kits</b></p>
+            </div>
+        <div id=" Plc-starter-kits-accordion">
+          <mat-accordion>
+            <mat-expansion-panel style="margin-top:20px">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Nordson PBFlex Siemens TIA Portal
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div>
+                <a href="{{apiUrl}}/download-siemenstia"> Download Kit</a>
+                <!-- window.location.href = link;    -->
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel style="margin-top:20px">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                      Nordson PBFlex Allen Bradley
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div>
+                  <a href="{{apiUrl}}/download-kit"
+                    >Download Kit</a>
+                  <!-- window.location.href = link;    -->
+                </div>
+              </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+
+      <!-- PLC Starter Kits ACCORDION END -->
+      <!-- manual pdf -->
+      <div style="padding-top: 30px;height: 80px;">
+        <div style="float: left; " class="p-left"> <b class="bold-color">Instruction Sheets</b> </div>
+        <div style="float: right;">
+          <div id="media-select">
+            <mat-form-field [floatLabel]="'never'">
+              <mat-select panelClass="media-panel-select"  disableOptionCentering
+                [(ngModel)]="selectedLang"> 
+                <mat-option *ngFor="let Language of MediaLanguage" value="{{ Language.value }}">{{ Language.value }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m8 s8 l4 xl4 margin-tp" *ngFor="let item of mediaData | pdfLanguageFilter :selectedLang">
+          <div class="video-wrapper">
+            <div class="download-img cursor-pointer" *ngIf="item.items.lang != undefined else NoImage" (click)="downloadPdf(item.items.link)">
+              <img src="../../../assets/download svg.svg"  alt="">
+            </div>
+            <ng-template #NoImage>
+              <div class="download-img">
+                <img src="../../../assets/download svg.svg" alt="">
+              </div>
+            </ng-template>
+            <div class="pdf-wrapper cursor-pointer"  *ngIf="item.items.lang != undefined else NoPdfImage" (click)="downloadPdf(item.items.link)">
+              <div class="pdf-inline">
+                <img src="../../../assets/Pdf svg.svg" alt="">
+              </div>
+            </div>
+            <ng-template #NoPdfImage>
+                <div class="pdf-wrapper" >
+                    <div class="pdf-inline">
+                      <img src="../../../assets/Pdf svg.svg" alt="">
+                    </div>
+                  </div>
+            </ng-template>
+            <div class="video-title">
+              <div class="pad-bottom-10">
+                <div *ngIf="item.items.lang != undefined else comingsoon">
+                <a href="{{item.items.link}}">{{item.title}}</a>  
+                </div>
+                <ng-template #comingsoon>
+                  <div class="coming-text"> Coming Soon</div>
+                </ng-template>
+              </div>
+              <div class="t-center position">
+                <b class="bold-color"> {{item.items.lang}}</b>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- manual pdf end -->
+      <!-- Brochure -->
+      <div>
+        <div>
+          <p class="p-left">
+            <b class="bold-color">Brochure</b>
+          </p>
+        </div>
+        <div class="row">
+          <div class="col m8 s8 l4 xl4 margin-tp">
+            <div class="video-wrapper">
+              <div class="download-img cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3952880&ft=1')">
+                <img src="../../../assets/download svg.svg"
+                   alt="">
+              </div>
+
+              <div class="pdf-wrapper cursor-pointer " (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3952880&ft=1')">
+                <div class="pdf-inline">
+                  <img src="../../../assets/Pdf svg.svg" alt="">
+                </div>
+              </div>
+              <div class="video-title">
+                <div class="pad-bottom-10">
+                <a href="https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3952880&ft=1"> ProBlue Flex with BBconn Controls Brochure</a> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Brochure end -->
+      <!-- Call-Out Graphic -->
+      <div>
+        <div>
+          <p class="p-left">
+            <b class="bold-color">Call-Out Graphic </b>
+          </p>
+        </div>
+        <div class="row">
+          <div class="col m8 s8 l4 xl4 margin-tp">
+            <div class="video-wrapper">
+              <div class="download-img cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3955637&ft=1')">
+                <img src="../../../assets/download svg.svg"
+                   alt="">
+              </div>
+
+              <div class="pdf-wrapper cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3955637&ft=1')">
+                <div class="pdf-inline">
+                  <img src="../../../assets/Pdf svg.svg" alt="">
+                </div>
+              </div>
+              <div class="video-title">
+                <div class="pad-bottom-10">
+               <a href="https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3955637&ft=1">ProBlue Flex with BBconn Controls Call-Out Graphic 1</a>   
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col m8 s8 l4 xl4 margin-tp">
+            <div class="video-wrapper">
+              <div class="download-img cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3954171&ft=1')">
+                <img src="../../../assets/download svg.svg"
+                   alt="">
+              </div>
+
+              <div class="pdf-wrapper cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3954171&ft=1')">
+                <div class="pdf-inline">
+                  <img src="../../../assets/Pdf svg.svg" alt="">
+                </div>
+              </div>
+              <div class="video-title">
+                <div class="pad-bottom-10">
+                <a href="https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3954171&ft=1">ProBlue Flex with BBconn Controls Call-Out Graphic 2</a>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Call-Out Graphic 1 end -->
+      <!-- Data Sheet -->
+      <div>
+        <div>
+          <p class="p-left">
+            <b class="bold-color">Data Sheet</b>
+          </p>
+        </div>
+        <div class="row">
+          <div class="col m8 s8 l4 xl4 margin-tp">
+            <div class="video-wrapper">
+              <div class="download-img cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3952882&ft=1')">
+                <img src="../../../assets/download svg.svg"
+                   alt="">
+              </div>
+
+              <div class="pdf-wrapper cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3952882&ft=1')">
+                <div class="pdf-inline">
+                  <img src="../../../assets/Pdf svg.svg" alt="">
+                </div>
+              </div>
+              <div class="video-title">
+                <div class="pad-bottom-10">
+              <a href="https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3952882&ft=1">ProBlue Flex with BBconn Controls Data Sheet</a>    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Data Sheet end -->
+      <!-- Press Release -->
+      <div>
+        <div>
+          <p class="p-left">
+            <b class="bold-color">Press Release</b>
+          </p>
+        </div>
+        <div class="row">
+          <div class="col m8 s8 l4 xl4 margin-tp">
+            <div class="video-wrapper">
+              <div class="download-img cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3954160&ft=1')">
+                <img src="../../../assets/download svg.svg"
+                   alt="">
+              </div>
+
+              <div class="pdf-wrapper cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3954160&ft=1')">
+                <div class="pdf-inline">
+                  <img src="../../../assets/Pdf svg.svg" alt="">
+                </div>
+              </div>
+              <div class="video-title">
+                <div class="pad-bottom-10">
+                 <a href="https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3954160&ft=1"> ProBlue Flex with BBconn Controls Press Release</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col m8 s8 l4 xl4 margin-tp">
+            <div class="video-wrapper">
+              <div class="download-img cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3954162&ft=1')">
+                <img src="../../../assets/download svg.svg"
+                   alt="">
+              </div>
+
+              <div class="pdf-wrapper cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3954162&ft=1')">
+                <div class="pdf-inline">
+                  <img src="../../../assets/Pdf svg.svg" alt="">
+                </div>
+              </div>
+              <div class="video-title">
+                <div class="pad-bottom-10">
+              <a href="https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=3954162&ft=1">ProBlue Flex with BBconn Controls Product Release</a>    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Press Release end -->
+      <!-- Product Manual -->
+      <div>
+        <div>
+          <p class="p-left">
+            <b class="bold-color">Product Manual</b>
+          </p>
+        </div>
+        <div class="row">
+          <div class="col m8 s8 l4 xl4 margin-tp">
+            <div class="video-wrapper">
+              <div class="download-img cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=4068694&ft=1')">
+                <img src="../../../assets/download svg.svg"
+                   alt="">
+              </div>
+
+              <div class="pdf-wrapper cursor-pointer" (click)="downloadPdf('https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=4068694&ft=1')">
+                <div class="pdf-inline">
+                  <img src="../../../assets/Pdf svg.svg" alt="">
+                </div>
+              </div>
+              <div class="video-title">
+                <div class="pad-bottom-10">
+               <a href="https://www.revbase.com/tt/sl.ashx?z=57eada32&DataID=4068694&ft=1"> ProBlue® Flex Adhesive Melter OEM User Interface Customer Product Manual</a>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Product Manual end -->
+      <!-- videos  -->
+      <div>
+        <p class="p-left">
+          <b class="bold-color"> ProBlue Flex Tutorials videos</b>
+        </p>
+        <div class="row">
+          <div class="col m8 s8 l4 xl4">
+            <div class="video-wrapper">
+              <iframe [src]="safeSrc" width="230" height="160" frameborder="0" webkitallowfullscreen mozallowfullscreen
+                allowfullscreen></iframe>
+              <div class="video-title">
+                ProBlue Flex Animation ( IT )
+              </div>
+            </div>
+          </div>
+          <div class="col m8 s8 l4 xl4">
+            <div class="video-wrapper">
+              <iframe [src]="safeSrc1" width="230" height="160" frameborder="0" webkitallowfullscreen mozallowfullscreen
+                allowfullscreen></iframe>
+              <div class="video-title">
+                ProBlue Flex Animation ( DE )
+              </div>
+            </div>
+          </div>
+          <div class="col m8 s8 l4 xl4">
+            <div class="video-wrapper">
+              <iframe [src]="safeSrc2" width="230" height="160" frameborder="0" webkitallowfullscreen mozallowfullscreen
+                allowfullscreen></iframe>
+              <div class="video-title">
+                ProBlue Flex Animation ( FR )
+              </div>
+            </div>
+          </div>
+          <div id="dots">
+          </div>
+          <div id="more">
+            <div class="row">
+              <div class="more-wrapper">
+                <div class="col m8 s8 l4 xl4 more-wrapper">
+                  <div class="video-wrapper">
+                    <iframe [src]="safeSrc3" width="230" height="160" frameborder="0" webkitallowfullscreen
+                      mozallowfullscreen allowfullscreen></iframe>
+                    <div class="video-title">
+                      ProBlue Flex Animation ( ES )
+                    </div>
+                  </div>
+                </div>
+                <div class="col m8 s8 l4 xl4 more-wrapper">
+                  <div class="video-wrapper">
+                    <iframe [src]="safeSrc4" width="230" height="160" frameborder="0" webkitallowfullscreen
+                      mozallowfullscreen allowfullscreen></iframe>
+                    <div class="video-title">
+                      ProBlue Flex Animation ( US )
+                    </div>
+                  </div>
+                </div>
+                <div class="col m8 s8 l4 xl4 more-wrapper">
+                  <div class="video-wrapper">
+                    <iframe [src]="safeSrc5" width="230" height="160" frameborder="0" webkitallowfullscreen
+                      mozallowfullscreen allowfullscreen></iframe>
+                    <div class="video-title">
+                      ProBlue Flex Animation ( PT )
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row more-wrapper">
+              <div class="col m8 s8 l4 xl4">
+                <div class="video-wrapper">
+                  <iframe [src]="safeSrc6" width="230" height="160" frameborder="0" webkitallowfullscreen
+                    mozallowfullscreen allowfullscreen></iframe>
+                  <div class="video-title">
+                    ProBlue Flex Teaser Video (with Greg Merk)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div id="show-more" class="pt-25 show-more-text p-left cursor-pointer" (click)="showMore()" style="padding-bottom: 70px;">Show more</div>
+        </div>
+      </div>
+      <!-- videos End -->
+    </div>
+    <div>
+    </div>
+  </div>
+  <!-- <nordson-footer></nordson-footer> -->
+</div>
+</div>

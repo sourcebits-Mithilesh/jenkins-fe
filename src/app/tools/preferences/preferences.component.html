@@ -1,0 +1,494 @@
+<div>
+  <div>
+    <nordson-spinner></nordson-spinner>
+    <form
+      name="form"
+      *ngIf="preferences"
+      #form="ngForm"
+      [formGroup]="preferences"
+      (submit)="onSubmit()"
+    >
+      <div class="row dash-board" id="preference">
+        <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+        <div class="setting-blue margin-top-12 ">
+          <div class="pad-cor pad-right-left-10">
+            <div class="prefer">
+              <div class="left">
+                <span class="white-c font-responsive">Preferences</span>
+              </div>
+              <div class="right">
+                <button
+                  [disabled]="
+                    !form.valid || accessType === 1 || !preferences.dirty
+                  "
+                  type="submit"
+                  class="btn apply"
+                >
+                  Save
+                </button>
+              </div>
+              <div class="sys-tab col-bg" style="clear:both;min-height: 539px" id="preference-radio">
+                <div class="row prefer-pd-bt prefer-1">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m6 l6 xl6">
+                      <article class="pref-f middle">Language</article>
+                    </div>
+                    <div class="col s12 m6 l6 xl6 pad-tp-15-responsive">
+                      <div class="select-wrapper">
+                        <mat-form-field
+                          [floatLabel]="'never'"
+                          id="preference-id-0"
+                        >
+                          <mat-select
+                            formControlName="eLanguage"
+                            panelClass="preferences-1"
+                            disableOptionCentering
+                          >
+                            <mat-option
+                              *ngFor="let lang of eLanguage"
+                              [value]="lang"
+                              >{{ lang.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f middle">Temperature Unit</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <mat-radio-group formControlName="TempUnits">
+                        <mat-radio-button value="0" active>
+                          <sup>o</sup>C
+                        </mat-radio-button>
+                        <mat-radio-button value="1" active
+                          ><sup>o</sup>F
+                        </mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                </div>
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f">Pressure Unit</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <mat-radio-group formControlName="PressureUnits">
+                        <mat-radio-button value="1">kPa</mat-radio-button>
+                        <mat-radio-button value="2">BAR</mat-radio-button>
+                        <mat-radio-button value="0" class="psi"
+                          >PSI</mat-radio-button
+                        >
+                      </mat-radio-group>
+                    </div>
+                    <div class="col s12 m3 l3 xl1">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f">Mass Unit</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <mat-radio-group formControlName="eMassFormat">
+                        <mat-radio-button value="1">kg</mat-radio-button>
+                        <mat-radio-button value="0">lb</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f">Line Speed</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <mat-radio-group formControlName="LinespeedUnits">
+                        <mat-radio-button value="0">ft/min</mat-radio-button>
+                        <mat-radio-button value="1">m/min</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f">Line Speed Source</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <mat-radio-group formControlName="eLineSpeedSource">
+                        <mat-radio-button value="0">0-10V</mat-radio-button>
+                        <mat-radio-button value="1">4-20mA</mat-radio-button>
+                        <mat-radio-button value="3">Fieldbus</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row prefer-pd-bt prefer-1">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f">Pressure Scaling</article>
+                    </div>
+                    <div class="col s12 m2 l3 xl6">
+                      <article></article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <div class="select-wrapper">
+                        <mat-form-field
+                          [floatLabel]="'never'"
+                          id="preference-id-4"
+                        >
+                          <mat-select
+                            formControlName="ePressureScaling"
+                            panelClass="preferences-1"
+                            disableOptionCentering
+                          >
+                            <mat-option
+                              *ngFor="let scaling of ePressureScaling"
+                              [value]="scaling"
+                              >{{ scaling.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col s12 m1 l3 xl6">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+                <div class="row prefer-pd-bt prefer-1">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f middle">Date Format</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <mat-form-field
+                        [floatLabel]="'never'"
+                        id="preference-id-1"
+                      >
+                        <mat-select
+                          panelClass="preferences-1"
+                          (selectionChange)="dateFormatChange()"
+                          disableOptionCentering
+                          formControlName="eDateFmt"
+                        >
+                          <mat-option
+                            *ngFor="let date of eDateFmtRange"
+                            [value]="date"
+                          >
+                            {{ date.value }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="row prefer-pd-bt prefer-1" style="display: none;">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f middle">Set Date</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <div>
+                        <input
+                        autocomplete="off"
+                          type="text"
+                          class="prefInput"
+                          [value]="preferences.get('setdate').value"
+                          maxlength="10"
+                          formControlName="setdate"
+                          (keypress)="preventCharacter($event)"
+                          (keyup)="getMostUpdated($event)"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f">Time Format</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <mat-radio-group
+                        formControlName="eTimeFmt"
+                        (change)="setHoursClkFormat()"
+                      >
+                        <mat-radio-button value="0">12H</mat-radio-button>
+                        <mat-radio-button value="1">24H</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                    <div class="col s12 m3 l3 xl1">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+                <div class="row prefer-pd-bt" style="display: none;">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f middle">Set Clock</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive" style="padding-right:0px">
+                      <div>
+                        <mat-form-field class="hr-style" [floatLabel]="'never'">
+                          <mat-label>HH</mat-label>
+                          <mat-select
+                            formControlName="setHours"
+                            panelClass="hour"
+                            disableOptionCentering
+                          >
+                            <mat-option
+                              *ngFor="let hour of hours"
+                              [value]="hour.value"
+                            >
+                              {{ hour.value }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field
+                          class="min-style"
+                          [floatLabel]="'never'"
+                        >
+                          <mat-label>mi</mat-label>
+                          <mat-select
+                            formControlName="setMinutes"
+                            panelClass="minute"
+                            disableOptionCentering
+                          >
+                            <mat-option
+                              *ngFor="let minute of minutes"
+                              [value]="minute.value"
+                            >
+                              {{ minute.value }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field
+                          class="meridian-style"
+                          [floatLabel]="'never'"
+                          *ngIf="checkTimeForm == false"
+                        >
+                          <mat-label>AM</mat-label>
+                          <mat-select
+                            formControlName="antemeredianFormat"
+                            panelClass="meredian"
+                            disableOptionCentering
+                          >
+                            <mat-option
+                              *ngFor="let format of anteMeridianFormats"
+                              [value]="format.value"
+                            >
+                              {{ format.value }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row prefer-pd-bt prefer-1">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f middle">Time Zone</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <div class="select-wrapper">
+                        <mat-form-field
+                          [floatLabel]="'never'"
+                          id="preference-id-2"
+                        >
+                          <mat-select
+                            formControlName="TimeZone"
+                            panelClass="preferences-12"
+                            disableOptionCentering
+                          >
+                            <mat-option
+                              *ngFor="let list of timeZoneList"
+                              [value]="list"
+                            >
+                              {{ list.name }}</mat-option
+                            >
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="col s12 m3 l3 xl2">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s12 m4 l6 xl6">
+                      <article class="pref-f middle">Melter Name</article>
+                    </div>
+                    <div class="col s12 m8 l6 xl6 pad-tp-15-responsive">
+                      <div>
+                        <input
+                        autocomplete="off"
+                          type="text"
+                          formControlName="UNP_name"
+                          class="prefInput"
+                          maxlength="15"
+                        />
+                      </div>
+                    </div>
+                    <div class="col s12 m3 l3 xl2">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s6 m4 l6 xl6">
+                      <article class="pref-f">Recipes</article>
+                    </div>
+                    <div class="col m2 l3 xl6">
+                      <article></article>
+                    </div>
+                    <div class="col s6 m2 l6 xl6 text-align-right-responsive">
+                      <mat-slide-toggle (change)="recipeEnableChange()" formControlName="RecipeEnable">
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col m1 l3 xl6">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row prefer-pd-bt" *ngIf="remoteRecipe">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s6 m5 l5 xl6">
+                      <article class="pref-f">
+                        Remote Recipe Management
+                      </article>
+                    </div>
+                    <div class="col  m1 l2 xl1">
+                      <article></article>
+                    </div>
+                    <div class="col s6 m4 l3 xl6 text-align-right-responsive">
+                      <mat-slide-toggle
+                        formControlName="RemoteRecipeManagement"
+                      >
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col  m3 l2 xl6">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s6 m4 l6 xl6">
+                      <article class="pref-f">Heat Schedule</article>
+                    </div>
+                    <div class="col  m2 l3 xl6">
+                      <article></article>
+                    </div>
+                    <div class="col s6 m2 l6 xl6 text-align-right-responsive">
+                      <mat-slide-toggle formControlName="blSchedulerEnable">
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col m1 l3 xl6">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+                <!-- new tag-->
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s6 m4 l6 xl6">
+                      <article class="pref-f">Shift Schedule</article>
+                    </div>
+                    <div class="col  m2 l3 xl6">
+                      <article></article>
+                    </div>
+                    <div class="col s6 m2 l6 xl6 text-align-right-responsive">
+                      <mat-slide-toggle formControlName="blShiftEnable">
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col  m1 l3 xl6">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s6 m4 l6 xl6">
+                      <article class="pref-f">Jobs</article>
+                    </div>
+                    <div class="col  m2 l3 xl6">
+                      <article></article>
+                    </div>
+                    <div class="col s6 m2 l6 xl6 text-align-right-responsive">
+                      <mat-slide-toggle formControlName="blJobsEnable">
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col m1 l3 xl6">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s6 m4 l6 xl6">
+                      <article class="pref-f">Autostart Jobs</article>
+                    </div>
+                    <div class="col  m2 l3 xl6">
+                      <article></article>
+                    </div>
+                    <div class="col s6 m2 l6 xl6 text-align-right-responsive">
+                      <mat-slide-toggle formControlName="blJobsAutoStart">
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col  m1 l3 xl6">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row prefer-pd-bt">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="col s6 m4 l6 xl6">
+                      <article class="pref-f">Maintenance System</article>
+                    </div>
+                    <div class="col m2 l3 xl6">
+                      <article></article>
+                    </div>
+                    <div class="col s6 m2 l6 xl6 text-align-right-responsive">
+                      <mat-slide-toggle formControlName="MaintenanceEnable">
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col m1 l3 xl6">
+                      <article></article>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col s12 m3 l3 xl2">
+                <article></article>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <nordson-footer></nordson-footer> -->
+</div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,173 @@
+#temperature table tr input {
+  height: 35px;
+  width: 75px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #fff;
+  left: 10px;
+  padding-left: 11px;
+}
+
+.auto-heat td {
+  /* border: 1px solid red; */
+  padding-bottom: 18px;
+}
+
+.set-sel {
+  height: 35px;
+  font-size: 15px;
+  margin-top: -20px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #ffffff;
+  display: inline-block;
+  width: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+  table.responsive-table tbody tr {
+    display: block;
+    vertical-align: top;
+  }
+}
+
+#temperature [type='checkbox']:not(:checked),
+[type='checkbox']:checked {
+  opacity: 0;
+}
+.table {
+  min-height: 369px;
+}
+/* media query for smatphone */
+
+@media only screen and (max-width: 600px) {
+  .s12 .table-three {
+    margin-top: 7%;
+  }
+  .s12 .table-four {
+    margin-bottom: 8%;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1119px) {
+  .s12 .table {
+    min-height: 447px;
+  }
+}
+/* selct box  customiztion  */
+
+::ng-deep .mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+
+::ng-deep .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+::ng-deep .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+
+/** text box **/
+::ng-deep
+  #temperature
+  .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+  animation-name: cdk-text-field-autofill-end;
+  background: #fff;
+  height: 35px;
+  width: 96px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  opacity: 0;
+}
+::ng-deep .textarea.mat-input-element {
+  padding: 8px 0;
+  margin: -2px 0;
+}
+::ng-deep
+  #temp-setting-mat-select
+  .mat-form-field-wrapper
+  .mat-form-field-infix {
+  width: auto;
+  padding-right: 30px;
+}
+::ng-deep #temp-setting-mat-select .mat-form-field-infix {
+  border-top: 0;
+}
+/* select css */
+::ng-deep #temp-setting-mat-select {
+  height: 35px;
+  min-width: 114px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+::ng-deep #temp-setting-mat-select .ng-star-inserted {
+  position: relative;
+  left: 4px;
+  line-height: 18px;
+}
+::ng-deep #temp-setting-mat-select .mat-select-arrow {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid;
+  margin: 0 4px;
+  position: relative;
+  left: 21px;
+  top: 0px;
+  color: #d8d8d8;
+}
+::ng-deep .mat-select-panel-wrap .temp-setting-mat-select.mat-select-panel {
+  background-color: #ffffff;
+
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  position: relative;
+  left: 12px;
+  top: 26px;
+}
+::ng-deep .btn:hover {
+  background-color: #0181c5;
+}
+::ng-deep .btn:focus {
+  background-color: #0181c5;
+}
+.temp-css{
+  min-height: 474px;
+  margin-bottom: 90px;
+}
+@media only screen and (max-width: 600px) {
+  .temp-css{
+    min-height: auto !important;
+    margin-bottom: 0px !important;
+  }
+}

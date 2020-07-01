@@ -1,0 +1,66 @@
+
+::ng-deep #settings-sidenav .mat-expansion-panel-body {
+  padding: 0px;
+}
+
+::ng-deep #settings-sidenav .mat-expansion-panel-header-description {
+  flex-grow: 23;
+  color: #828082;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.37px;
+  line-height: 16px;
+  padding-top: 4px;
+}
+::ng-deep #settings-sidenav .mat-expansion-panel-body :hover {
+  background-color: #e2f5ff;
+}
+::ng-deep #settings-sidenav .mat-expansion-panel {
+  background: #ffffff;
+  box-shadow: 0px 0px;
+}
+
+::ng-deep
+  #settings-sidenav
+  .mat-expansion-panel:not([class*='mat-elevation-z']) {
+  box-shadow: none;
+}
+/* ::ng-deep .mat-expansion-panel-header.mat-expanded .pad-btm{
+    color: blue !important;
+  } */
+/* .example-headers-align1 .mat-expansion-panel-header-title,
+.example-headers-align1 .mat-expansion-panel-header-description {
+  padding: 0 24px 24px;
+  background: red;
+} */
+::ng-deep #settings-sidenav .mat-expansion-panel-header {
+  padding: 0 1px;
+}
+.text-success {
+  text-transform: uppercase;
+  color: #0181c5 !important;
+  font-size: 14px;
+  letter-spacing: 0.47px;
+}
+::ng-deep
+  #settings-sidenav
+  .mat-expansion-panel
+  .mat-expanded
+  .mat-expansion-panel-header-description {
+  color: #0181c5;
+}
+::ng-deep #settings-sidenav .mat-expansion-panel .mat-expanded svg path {
+  fill: #0181c5;
+}
+
+::ng-deep
+  .mat-expansion-panel:not(.mat-expanded)
+  .mat-expansion-panel-header:not([aria-disabled='true']).cdk-keyboard-focused,
+.mat-expansion-panel:not(.mat-expanded)
+  .mat-expansion-panel-header:not([aria-disabled='true']).cdk-program-focused,
+.mat-expansion-panel:not(.mat-expanded)
+  .mat-expansion-panel-header:not([aria-disabled='true']):hover {
+  background: none;
+}
+

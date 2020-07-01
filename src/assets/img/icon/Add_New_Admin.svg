@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="14px" viewBox="0 0 22 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>icons8-user_group_man_man</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Admin--flow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="SuperAdmin_dashboard" transform="translate(-29.000000, -175.000000)" fill="#111111" fill-rule="nonzero">
+            <g id="Group-7" transform="translate(29.000000, 175.000000)">
+                <g id="icons8-user_group_man_man">
+                    <path d="M7,0 C5.34314575,0 4,1.34314575 4,3 C4,4.65685425 5.34314575,6 7,6 C8.65685425,6 10,4.65685425 10,3 C10,1.34314575 8.65685425,0 7,0 Z M15,0 C13.3431458,0 12,1.34314575 12,3 C12,4.65685425 13.3431458,6 15,6 C16.6568542,6 18,4.65685425 18,3 C18,1.34314575 16.6568542,0 15,0 Z M7,8 C4,8 0,9.464 0,11.5 L0,14 L14,14 L14,11.5 C14,9.464 10,8 7,8 Z M15,8 C14.683,8 14.353,8.02 14.021,8.05 C15.203,8.917 16,10.06 16,11.5 L16,14 L22,14 L22,11.5 C22,9.464 18,8 15,8 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

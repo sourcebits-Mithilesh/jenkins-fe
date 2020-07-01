@@ -1,0 +1,9 @@
+<nordson-dashboard-header *ngIf="headerStatus"></nordson-dashboard-header>
+<div class="dummy">
+    <nordson-sidenav *ngIf="sideNavDashboard"></nordson-sidenav>
+    <nordson-settings-sidenav *ngIf="sideNaveSettings" (loadsettings)="loaderScreen($event)"></nordson-settings-sidenav>
+    <nordson-admin-sidenav *ngIf="sideNavAdmin"></nordson-admin-sidenav>
+</div>
+
+
+

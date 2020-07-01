@@ -1,0 +1,160 @@
+<div class="row">
+  <form
+    name="form"
+    *ngIf="addEventForm"
+    #form="ngForm"
+    [formGroup]="addEventForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="col s12 m12 l12 xl12 fs-26 gray select-text">Select days</div>
+    <div class="col s6 m6 l6 xl6 mt-15">
+      <mat-checkbox
+        (change)="checkboxDayChange($event,'Sunday')"
+        formControlName="Sunday"
+      >
+        <span class="fs-16  dark-gray">Sunday</span></mat-checkbox
+      >
+    </div>
+    <div class="col s6 m6 l6 xl6 mt-15">
+      <mat-checkbox
+        (change)="checkboxDayChange($event,'Monday')"
+        formControlName="Monday"
+      >
+        <span class="fs-16 dark-gray">Monday</span></mat-checkbox
+      >
+    </div>
+    <div class="col s6 m6 l6 xl6 mt-15">
+      <mat-checkbox
+        (change)="checkboxDayChange($event,'Tuesday')"
+        formControlName="Tuesday"
+      >
+        <span class="fs-16 dark-gray">Tuesday</span></mat-checkbox
+      >
+    </div>
+    <div class="col s6 m6 l6 xl6 mt-15">
+      <mat-checkbox
+        (change)="checkboxDayChange($event,'Wednesday')"
+        formControlName="Wednesday"
+      >
+        <span class="fs-16 dark-gray">Wednesday</span></mat-checkbox
+      >
+    </div>
+    <div class="col s6 m6 l6 xl6 mt-15">
+      <mat-checkbox
+        (change)="checkboxDayChange($event,'Thursday')"
+        formControlName="Thursday"
+      >
+        <span class="fs-16 dark-gray">Thursday</span></mat-checkbox
+      >
+    </div>
+    <div class="col s6 m6 l6 xl6 mt-15">
+      <mat-checkbox
+        (change)="checkboxDayChange($event,'Friday')"
+        formControlName="Friday"
+      >
+        <span class="fs-16 dark-gray">Friday</span></mat-checkbox
+      >
+    </div>
+    <div class="col s6 m6 l6 xl6 mt-15">
+      <mat-checkbox
+        (change)="checkboxDayChange($event,'Saturday')"
+        formControlName="Saturday"
+      >
+        <span class="fs-16 dark-gray">Saturday</span></mat-checkbox
+      >
+    </div>
+    <div class="col s6 m6 l6 xl6 mt-15">
+      <mat-checkbox
+        (change)="checkAllDays($event,'AllDays')"
+        formControlName="allDays"
+      >
+        <span class="fs-16 dark-gray">All Days</span></mat-checkbox
+      >
+    </div>
+    <div class="col s6 m6 l6 xl6 mt-15" style="padding-top: 30px">
+      <div class="set-back-text">{{enterSetBackText}}</div>
+      <div class="heat-event" style="padding-top: 10px;">
+        <span>
+        <mat-form-field id="heat-width" class="hr-style" [floatLabel]="'never'">
+          <mat-label>HH</mat-label>
+          <mat-select formControlName="setHoursStart" panelClass="hour" disableOptionCentering>
+            <mat-option *ngFor="let hour of hours" [value]="hour.value">
+              {{ hour.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </span>
+      <span>
+        <mat-form-field class="min-style" [floatLabel]="'never'">
+          <mat-label>mi</mat-label>
+          <mat-select formControlName="setMinutesStart" panelClass="minute" disableOptionCentering>
+            <mat-option *ngFor="let minute of minutes" [value]="minute.value">
+              {{ minute.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field></span>
+        <span>
+        <mat-form-field class="meridian-style" [floatLabel]="'never'" *ngIf="checkTimeForm == false">
+          <!-- <mat-label>AM</mat-label> -->
+          <mat-select formControlName="antemeredianFormatStart" panelClass="meredian" disableOptionCentering>
+            <mat-option *ngFor="let format of anteMeridianFormats" [value]="format.value">
+              {{ format.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field></span>
+      </div>
+    </div>
+
+    <div class="col s6 m6 l6 xl6 mt-15"  style="padding-top: 30px">
+        <div class="set-back-text">{{exitSetBackText}}</div>
+      <div  class="heat-event" style="padding-top: 10px;">
+        <mat-form-field class="hr-style" [floatLabel]="'never'">
+          <mat-label>HH</mat-label>
+          <mat-select formControlName="setHoursEnd" panelClass="hour" disableOptionCentering>
+            <mat-option *ngFor="let hour of hours" [value]="hour.value">
+              {{ hour.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="min-style" [floatLabel]="'never'">
+          <mat-label>mi</mat-label>
+          <mat-select formControlName="setMinutesEnd" panelClass="minute" disableOptionCentering>
+            <mat-option *ngFor="let minute of minutes" [value]="minute.value">
+              {{ minute.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="meridian-style" [floatLabel]="'never'" *ngIf="checkTimeForm == false">
+          <!-- <mat-label>AM</mat-label> -->
+          <mat-select formControlName="antemeredianFormatEnd" panelClass="meredian" disableOptionCentering>
+            <mat-option *ngFor="let format of anteMeridianFormats" [value]="format.value">
+              {{ format.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      
+      <div
+        class="col s6 m6 l6 xl6 left-align"
+        style="position:absolute;bottom:60px"
+      >
+      
+      <button mat-button class="bg-gray btn-cancel-heat" (click)="delEvent()">{{buttonText}}</button>
+      </div>
+      <div
+        class="col s6 m6 l6 xl6 right-align"
+        style="position:absolute;bottom:60px;right:73px"
+      >
+        <div>
+          <button
+            type="submit"
+            class="bg-light-blue color-white btn-add-event-heat">
+            {{addText}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

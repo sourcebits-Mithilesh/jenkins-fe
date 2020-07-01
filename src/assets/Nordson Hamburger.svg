@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="18px" viewBox="0 0 24 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Setup-screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Tablet" transform="translate(-40.000000, -19.000000)" fill="#0181C5">
+            <g id="Group">
+                <path d="M62,33 C63.1045695,33 64,33.8954305 64,35 C64,36.1045695 63.1045695,37 62,37 L42,37 C40.8954305,37 40,36.1045695 40,35 C40,33.8954305 40.8954305,33 42,33 L62,33 Z M62,26 C63.1045695,26 64,26.8954305 64,28 C64,29.1045695 63.1045695,30 62,30 L42,30 C40.8954305,30 40,29.1045695 40,28 C40,26.8954305 40.8954305,26 42,26 L62,26 Z M62,19 C63.1045695,19 64,19.8954305 64,21 C64,22.1045695 63.1045695,23 62,23 L42,23 C40.8954305,23 40,22.1045695 40,21 C40,19.8954305 40.8954305,19 42,19 L62,19 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

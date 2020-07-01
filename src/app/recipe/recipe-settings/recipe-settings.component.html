@@ -1,0 +1,590 @@
+<div class="dash-board pump">
+  <div class="row" style="padding: 0px">
+<div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+    <div class="setting-blue-zone margin-top-12 pad-btm-40" id="recipe">
+      <div class="row">
+        <div class="col s12 m12 l12 x12">
+          <div class="recipe-head font-responsive" style="float: left">
+            <a routerLink="/recipe" class="color-white ">Recipe</a> › Settings
+          </div>
+          <div class="" style="padding-top: 30px">
+            <div *ngIf="pageType == 'update'; else createRecipe">
+              <button class="save-btn btn" type="submit" (click)="saveRecipeSettings()"
+                [disabled]="accessType === 1 || !updateStatus">
+                SAVE
+              </button>
+            </div>
+            <ng-template #createRecipe>
+              <button class="save-btn btn" type="submit" (click)="createRecipeSettings()" [disabled]="accessType === 1">
+                SAVE
+              </button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="pad-btm-50">
+        <mat-accordion id="recipe-settings" class="recipe-settings">
+          <form name="recipeSettingUnitForm" [formGroup]="recipeSettingUnitForm">
+        
+            <mat-expansion-panel class="recipe-settings">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Units
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col m12 s12 l12 xl12 wrapper-pressure" style="margin-bottom: -40px;">
+                  <div id="" class="row" style="padding-top: 10px;">
+                    <div class="alignleft pressure-head col m6 s12 l5 xl5">
+                      Temperature Units
+                    </div>
+                    <div class="alignleft pressure-head col m6 s12 l7 xl7">
+                      <mat-radio-group formControlName="TempUnits">
+                        <mat-radio-button value="0" active  (change)="convertTempUnit('0')">
+                          <sup>o</sup>C
+                        </mat-radio-button>
+                        <mat-radio-button value="1" active (change)="convertTempUnit('1')"><sup>o</sup>F
+                        </mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+
+                  </div>
+                  <div id="" class="row" style="padding-top: 14px;">
+                    <div class="alignleft pressure-head col m6 s12 l5 xl5">
+                      Pressure Units
+                    </div>
+                    <div class="alignleft pressure-head col m6 s12 l7 xl7">
+                      <mat-radio-group formControlName="PressureUnits">
+                        <mat-radio-button value="0" class="text-transform" (change)="convertPressureUnit('0')">PSI
+                        </mat-radio-button>
+                        <mat-radio-button value="1" class="" (change)="convertPressureUnit('1')">kPa
+                        </mat-radio-button>
+                        <mat-radio-button value="2" class="text-transform" (change)="convertPressureUnit('2')">BAR
+                        </mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+
+                  </div>
+                  <div id="" class="row" style="padding-top: 14px;">
+                    <div class="alignleft pressure-head col m6 s12 l5 xl5">
+                      Line Speed Units
+                    </div>
+                    <div class="alignleft pressure-head col m6 s12 l7 xl7">
+                      <mat-radio-group formControlName="lineSpeedUnits">
+                        <mat-radio-button (change)="convertSpeedUnit('0')" value="0">ft/min</mat-radio-button>
+                        <mat-radio-button (change)="convertSpeedUnit('1')" value="1">m/min</mat-radio-button>
+                      </mat-radio-group>
+                   </div>
+                  </div>
+                  <div id="" class="row" style="padding-top: 20px">
+                    <div class="alignleft pressure-head col m6 s12 l5 xl5">
+                      Pressure Scaling
+                    </div>
+                    <div class="alignleft pressure-head col m6 s12 l7 xl7">
+                      <div class="select-wrapper">
+                        <mat-form-field [floatLabel]="'never'" id="recipe-field" (click)="updateChangeStatus()">
+                          <mat-select panelClass="recipe-select" disableOptionCentering
+                            formControlName="ePressureScaling" (selectionChange)="convertPressureScaling($event.value)">
+                            <mat-option value="0">Pneumatic
+                            </mat-option>
+                            <mat-option value="1">Hydraulic
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          <mat-expansion-panel class="recipe-settings">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Flow
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div  class="dash-board pump">
+            <div class="col s12 m6 l6 x6">
+              <div class="outer-card">
+              <div class="row display-flex-al-center">
+                <div class="col s12 m7 l7 x7 pad-left-0">
+                  Target Add-On
+                </div>
+                <div class="col s12 m5 l5 x5 t-right">
+                  <input
+                  formControlName="ATSTargetAddon"
+                  class="flow-input"
+                  (keypress)="preventalpha($event)"
+                  pattern="^[0-9]+$"
+                  min="25"
+                  max="1000000"
+                  />
+                  <span style="padding-left: 10px;">mg</span>
+                </div>
+              </div>
+              
+              </div>
+            </div>
+          </div>
+          </mat-expansion-panel>
+          </form>
+          
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Temperature Zones
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col m6 s12 l6 xl6">
+                <div class="row" *ngFor="let temp of tempData; let i = index">
+                  <div class="wrapper-temp-pressure" *ngIf="i <= valueZone && i >1 == true else tank">
+                    <div id="textbox" class="row">
+                      <div class="alignleft">{{ temp.name }}</div>
+                      <div class="alignright">
+                        <mat-slide-toggle [(ngModel)]="temp.zone" (change)="zoneToggle($event,i)"></mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div class="row" style="padding-top: 14px;padding-right: 20px">
+                      <div class="alignleft font-15 pad-top-8">Set Point</div>
+                      <div class="alignright">
+                        <input autocomplete="off" class="input-temp remove-arrows" type="text" [(ngModel)]="temp.setpoint" required
+                          maxlength="3"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          (keypress)="preventalphaSpecialChar($event)" [readonly]="checkDisable(i)" id="Hose{{i-1}}" />&nbsp;&nbsp;
+                        <span><sup>o</sup>{{ tempUnit }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #tank>
+                    <div class="wrapper-temp-pressure" *ngIf="i == 0 == true ">
+                      <div id="textbox" class="row">
+                        <div class="alignleft" *ngIf="i==0 else hose">Tank</div>
+                      </div>
+                      <div class="row" style="padding-top: 14px;padding-right: 20px">
+                        <div class="alignleft font-15 pad-top-8">Set Point</div>
+                        <div class="alignright">
+                          <input autocomplete="off" class="input-temp remove-arrows" type="text" [(ngModel)]="tankManifold.tank" required
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            (input)="preventalpha($event)" [readonly]="checkDisable(i)" (keyup)="onKey($event, 'grid')"
+                            (keypress)="preventalpha($event)" />&nbsp;&nbsp;
+                          <span><sup>o</sup>{{ tempUnit }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="col m6 s12 l6 xl6">
+                <div class="row" *ngFor="let temp of tempData; let i = index">
+                  <div class="wrapper-temp-pressure" *ngIf="i<=valueZone == false else manifold">
+                    <div id="textbox" class="row">
+                      <div class="alignleft">{{ temp.name }}</div>
+                      <div class="alignright">
+                        <mat-slide-toggle [(ngModel)]="temp.zone" (change)="zoneToggle($event,i)"></mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div class="row" style="padding-top: 14px;padding-right: 20px">
+                      <div class="alignleft font-15 pad-top-8">Set Point</div>
+                      <div class="alignright">
+                        <input autocomplete="off" class="input-temp remove-arrows" type="text" [(ngModel)]="temp.setpoint" required
+                          maxlength="3"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          (keypress)="preventalphaSpecialChar($event)" [readonly]="checkDisable(i)" id="Applicator{{i-9}}" />&nbsp;&nbsp;
+                        <span><sup>o</sup>{{ tempUnit }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-template #manifold>
+                    <div class="wrapper-temp-pressure" *ngIf="i == 1 == true">
+                      <div id="textbox" class="row">
+                        <div class="alignleft">Manifold</div>
+                      </div>
+                      <div class="row" style="padding-top: 14px;padding-right: 20px">
+                        <div class="alignleft font-15 pad-top-8">Set Point</div>
+                        <div class="alignright">
+                          <input autocomplete="off" class="input-temp remove-arrows" type="text" [(ngModel)]="tankManifold.manifold"
+                            required maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            (input)="preventalpha($event)" [readonly]="checkDisable(i)"
+                            (keyup)="onKey($event, 'manifold')" (keypress)="preventalpha($event)" />&nbsp;&nbsp;
+                          <span><sup>o</sup>{{ tempUnit }}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+          <form name="recipeSettingForm"  [formGroup]="recipeSettingForm" #aForm>
+            <mat-expansion-panel class="recipe-settings">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Pressure
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+          <div class="col s12 m12 l12 x12" [ngSwitch]="choice">      
+              <div class="card-applicator col s12 m10 l10 xl10 " >
+                <div class=" row row-margin m-t-10" style="margin-top: 0px">
+                  <div class="col s12 m5 l5 xl5" style="padding-left:0px">
+                   Main Pressure Mode Selection
+                  </div>
+                  <div class="col s12 m7 l7 xl7 text-right">
+                    <form name="form" #form="ngForm" [formGroup]="selectPressureMode" >
+                      <mat-form-field [floatLabel]="'never'" id="pressure-select" floatPlaceholder="never">
+                        <mat-select class="pressure-mat-select" name="selectPressure" formControlName="selectPressure"
+                          required panelClass="pressure-mat-set-0" disableOptionCentering>
+                          <mat-option (onSelectionChange)="setValue($event)" *ngFor="let item of pressuredata"
+                            [value]="item">{{ item }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </form>
+                  </div>
+                 </div>
+
+              <!-- Pressure -->
+              <div class="" *ngSwitchCase="'Manual Adjust'">
+                <!-- <div class="row"> -->
+                  <div class=" m8 s12 l8 xl8 ">
+                    <div id="" class="row" style="padding-right: 20px">
+                      <!-- <div class="alignleft pressure-head">
+                        <b>Pressure Setting Range Alert</b>
+                      </div> -->
+                      <!-- <div class="alignright">
+                        <mat-slide-toggle [checked]="isAlertEnable" (change)="tooglePressure($event)"
+                          name="isPressureAlert" formControlName="isPressureAlert"></mat-slide-toggle>
+                      </div> -->
+                      <!-- <div class="alignright">
+                        <mat-slide-toggle [checked]="isManualEnable" (change)="updateChangeStatus()" formControlName="isManualPressureAlert"></mat-slide-toggle>
+                      </div> -->
+                    </div>
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div id="" class="row" style="padding-top: 14px;padding-right: 20px">
+                      <div class="alignleft pressure-head">
+                        Minimum Pressure Alert
+                      </div>
+                      <div class="alignright">
+                        <input autocomplete="off" class="input-temp" formControlName="lowPressureThreshold" type="text"
+                          name="lowPressureThreshold" (keypress)="preventalpha($event)"
+                          (keyup)="onKeyUp($event)" />&nbsp;&nbsp;
+                        <span>{{ pressureUnit }}</span>
+                      </div>
+                    </div>
+                    <div id="" class="row" style="padding-top: 14px;padding-right: 20px">
+                      <div class="alignleft pressure-head">
+                        Maximum Pressure Alert
+                      </div>
+                      <div class="alignright">
+                        <input autocomplete="off" class="input-temp" formControlName="highPressureThreshold" type="text"
+                          name="highPressureThreshold" (keypress)="preventalpha($event)"
+                          (keyup)="onKeyUp($event)" />&nbsp;&nbsp;
+                        <span>{{ pressureUnit }}</span>
+                      </div>
+                    </div>
+                  </div>
+                <!-- </div> -->
+                </div>
+                <!-- Pressure -->
+                <div *ngSwitchCase="'Electronic Pressure Adjust'">
+                  <div class="row">
+                    <div class=" m8 s12 l8 xl8 ">
+                      <div id="" class="row" style="padding-top: 14px;padding-right: 20px">
+                        <div class="alignleft pressure-head">
+                          Pressure Set Point
+                        </div>
+                        <div class="alignright">
+                          <input autocomplete="off" class="input-temp" formControlName="ulPressureSetPoint" type="text"
+                            name="ulPressureSetPoint" (keypress)="preventalpha($event)"
+                            (keyup)="onKeyUp($event)" />&nbsp;&nbsp; <span>{{ pressureUnit }}</span>
+                        </div>
+                      </div>
+                      <!-- <div id="" class="row" style="padding-right: 20px">
+                        <div class="alignleft pressure-head">
+                          Pressure Alert Enable/Disable
+                        </div>
+                        <div class="alignright">
+                          <mat-slide-toggle [checked]="isAlertEnable" (change)="tooglePressure($event)"
+                            name="isPressureAlert" formControlName="isPressureAlert"></mat-slide-toggle>
+                        </div>
+                      </div> -->
+                      <div>
+                        <div class="hr"></div>
+                      </div>
+                      <div id="" class="row"  style="padding-top: 14px;padding-right: 20px">
+                        <div class="alignleft pressure-head">
+                          Low Pressure Alert Threshold
+                        </div>
+                        <div class="alignright">
+    
+                          <input autocomplete="off" class="input-temp" formControlName="LowPressureAlertDelta" type="text"
+                            name="LowPressureAlertDelta" (keypress)="preventalpha($event)" [attr.disabled]="isLowPressure"
+                            (keyup)="onKeyUp($event)" />&nbsp;&nbsp;
+                          <span>{{ pressureUnit }}</span>
+                        </div>
+                      </div>
+                      <div id="" class="row"  style="padding-top: 14px;padding-right: 20px">
+                        <div class="alignleft pressure-head">
+                          High Pressure Alert Threshold
+                        </div>
+                        <div class="alignright">
+    
+                          <input autocomplete="off" class="input-temp" formControlName="HighPressureAlertDelta" type="text"
+                            name="HighPressureAlertDelta" (keypress)="preventalpha($event)" [attr.disabled]="isHighPressure"
+                            (keyup)="onKeyUp($event)" />&nbsp;&nbsp;
+                          <span>{{ pressureUnit }}</span>
+                        </div>
+                      </div>
+                      <div id="" class="row" style="padding-top: 14px;padding-right: 20px">
+                        <div class="alignleft pressure-head">
+                          Minimum Pressure Set Point Range
+                        </div>
+                        <div class="alignright">
+                          <input autocomplete="off" class="input-temp" formControlName="minPressureSetpoint" type="text"
+                            name="minPressureSetpoint" (keypress)="preventalpha($event)"
+                            (keyup)="onKeyUp($event)" />&nbsp;&nbsp; <span>{{ pressureUnit }}</span>
+                        </div>
+                      </div>
+                      <div id="" class="row" style="padding-top: 14px;padding-right: 20px">
+                        <div class="alignleft pressure-head">
+                          Maximum Pressure Set Point Range
+                        </div>
+                        <div class="alignright">
+                          <input autocomplete="off" class="input-temp" formControlName="maxPressureSetpoint" type="text"
+                            name="maxPressureSetpoint" (keypress)="preventalpha($event)"
+                            (keyup)="onKeyUp($event)" />&nbsp;&nbsp; <span>{{ pressureUnit }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div *ngSwitchCase="'Runup'">
+                <div class="row">
+                  <div class=" m8 s12 l8 xl8 ">
+                    <div id="" class="row" style="padding-right: 20px">
+                      <!-- <div class="alignleft pressure-head">
+                        <b>Pressure Setting Range Alert</b>
+                      </div> -->
+                      <!-- <div class="alignright">
+                        <mat-slide-toggle [checked]="isAlertEnable" (change)="tooglePressure($event)"
+                          name="isPressureAlert" formControlName="isPressureAlert"></mat-slide-toggle>
+                      </div> -->
+                      <!-- <div class="alignright">
+                        <mat-slide-toggle [checked]="isManualEnable" (change)="updateChangeStatus()" formControlName="isManualPressureAlert"></mat-slide-toggle>
+                      </div> -->
+                    </div>
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div id="" class="row"  style="padding-top: 14px;padding-right: 20px">
+                      <div class="alignleft pressure-head">
+                        Low Pressure Alert Threshold
+                      </div>
+                      <div class="alignright">
+  
+                        <input autocomplete="off" class="input-temp" formControlName="LowPressureAlertDelta" type="text"
+                          name="LowPressureAlertDelta" (keypress)="preventalpha($event)" [attr.disabled]="isLowPressure"
+                          (keyup)="onKeyUp($event)" />&nbsp;&nbsp;
+                        <span>{{ pressureUnit }}</span>
+                      </div>
+                    </div>
+                    <div id="" class="row"  style="padding-top: 14px;padding-right: 20px">
+                      <div class="alignleft pressure-head">
+                        High Pressure Alert Threshold
+                      </div>
+                      <div class="alignright">
+  
+                        <input autocomplete="off" class="input-temp" formControlName="HighPressureAlertDelta" type="text"
+                          name="HighPressureAlertDelta" (keypress)="preventalpha($event)" [attr.disabled]="isHighPressure"
+                          (keyup)="onKeyUp($event)" />&nbsp;&nbsp;
+                        <span>{{ pressureUnit }}</span>
+                      </div>
+                    </div>
+                    <div class="row row-margin" style="margin-bottom: 0px ;margin-top: 1vh;">
+                      <!-- <div class="col s8 m8 l8 xl8 alignleft pressure-head" style="font-weight: bold;padding: 0px;">
+                       Temporary Pressure Adjust
+                      </div> -->
+                      <!-- <div class="col s4 m4 l4 xl4 p-t-5  text-right" style="margin-left: -10px;">
+                        <mat-slide-toggle [checked]="airPressureTemporaryStatus" (change)="togglePressureTemperature($event)"
+                          name="airPressureTemporaryStatus" formControlName="airPressureTemporaryStatus"></mat-slide-toggle>
+                      </div> -->
+                    </div>  
+                  </div>
+                </div>
+                </div>
+
+                  <div *ngSwitchCase="'Runup'" class="col s12 m12 l9 xl12" style="padding-top: 20px;padding-left: 0px;">
+                <a class="display-flex-align-justify-center cursor-pointer" (click)="outputSetting=!outputSetting">
+                  <div class="output-settings-btn ">
+                   <span style="padding-right: 15px;">
+                    OUTPUT SETTINGS
+                   </span>
+                  <span class="mat-expansion-indicator exp " [style.transform]="outputSetting?'rotate(180deg)':'rotate(0deg)'" style="margin-top:-10px;display: inline-block;" ></span>
+                  </div>
+                </a>
+
+                <div *ngIf="outputSetting" class=" s12 m8 l8 x8 mt-15 ">
+                  <div class="">
+                    <div class="pressure-point padding-15 color-white">
+                      Pressure Point 1
+                    </div>
+                    <div>
+                      <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                        <div class="col s6 m6 l6 x16">
+                          Low Speed Pressure Setting
+                        </div>
+                        <div class="col s6 m6 l6 x16 t-right">
+                          <span>P1</span>
+                          <span>
+                            <input formControlName="lowSpeedPresSett" name="lowSpeedPresSett"  (keyup)="pressrOutputKey($event)" (keypress)="preventalpha($event)" class="pressure-input" style="margin-left: 10px !important;margin-right: 10px !important"/>
+                          </span>
+                          <span class="padding-right">{{pressureUnit}}</span>
+                        </div>
+                      </div>
+                      <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                        <div class="col s6 m6 l6 x16">
+                          Low Line Speed Setting
+                        </div>
+                        <div class="col s6 m6 l6 x16 t-right">
+                          <span>L1</span>
+                          <span>
+                            <input class="pressure-input" (keyup)="pressrOutputKey($event)" (keypress)="preventalpha($event)" formControlName="lowLineSpeedSett" name="lowLineSpeedSett" style="margin-left: 10px !important;margin-right: 10px !important"/>
+                          </span>
+                          <span class="padding-right">{{lineSpeedUnit}}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="pressure-point padding-15 color-white">
+                      Pressure Point 2
+                    </div>
+                    <div>
+                      <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                        <div class="col s6 m6 l6 x16">
+                          High Speed Pressure Setting
+                        </div>
+                        <div class="col s6 m6 l6 x16 t-right">
+                          <span>P2</span>
+                          <span>
+                            <input class="pressure-input" (keyup)="pressrOutputKey($event)" (keypress)="preventalpha($event)" name="highSpeedPresSett" formControlName="highSpeedPresSett"  style="margin-left: 10px !important;margin-right: 10px !important"/>
+                          </span>
+                          <span class="padding-right">{{pressureUnit}}</span>
+                        </div>
+                      </div>
+                      <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                        <div class="col s6 m6 l6 x16">
+                          High Line Speed Setting
+                        </div>
+                        <div class="col s6 m6 l6 x16 t-right">
+                          <span>L2</span>
+                          <span>
+                            <input class="pressure-input" (keyup)="pressrOutputKey($event)" (keypress)="preventalpha($event)" formControlName="highLineSpeedSett" name="highLineSpeedSett" style="margin-left: 10px !important;margin-right: 10px !important"/>
+                          </span>
+                          <span class="padding-right">{{lineSpeedUnit}}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="pressure-point padding-15 color-white">
+                      Pressure Limit
+                    </div>
+                    <div>
+                      <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                        <div class="col s6 m6 l6 x16">
+                          Set Maximum Pressure Limit
+                        </div>
+                        <div class="col s6 m6 l6 x16 t-right">
+                          <span>P max</span>
+                          <span>
+                            <input class="pressure-input" (keyup)="pressrOutputKey($event)" (keypress)="preventalpha($event)" formControlName="maxPressureLimit" name="maxPressureLimit" style="margin-left: 10px !important;margin-right: 10px !important"/>
+                          </span>
+                          <span class="padding-right">{{pressureUnit}}</span>
+                        </div>
+                      </div>
+                      <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                        <div class="col s6 m6 l6 x16">
+                          Set Minimum Pressure Limit
+                        </div>
+                        <div class="col s6 m6 l6 x16 t-right">
+                          <span>P min</span>
+                          <span>
+                            <input class="pressure-input" (keyup)="pressrOutputKey($event)" (keypress)="preventalpha($event)" formControlName="minPressureLimit" name="minPressureLimit"   style="margin-left: 10px !important;margin-right: 10px !important"/>
+                          </span>
+                          <span class="padding-right">{{pressureUnit}} </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <!-- <div class="pressure-point padding-15 color-white">
+                      Idle Speed Pressure Cutoff Settings
+                    </div> -->
+                    <!-- <div>
+                      <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                        <div class="col s6 m6 l6 x16">
+                          Zero Linespeed Pressure
+                        </div>
+                        <div class="col s6 m6 l6 x16 t-right">
+                          <span>P0</span>
+                          <span>
+                            <mat-form-field
+                            id="pressure-out-recipe-mat-select"
+                            [floatLabel]="'never'"
+                            style="margin-left: 10px !important"
+                          >
+                            <mat-select
+                              panelClass="pressure-out-recipe-mat-select"
+                              disableOptionCentering
+                              (click)="updateChangeStatus()"
+                              formControlName="zeroLineSpeedPress"
+                              (selectionChange)="convertMeterTofeet($event.value)"
+                            >
+                            <mat-option value="0"
+                          >
+                            Pmin
+                          </mat-option>
+                          <mat-option value="1"
+                          >
+                            Pmax
+                          </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          </span>
+                          <span class="padding-right" style="width: 36px;"></span>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                  
+                </div>
+
+              </div>
+
+                </div> 
+
+   
+              <!-- Pressure -->
+      
+
+          </div>
+
+            </mat-expansion-panel>
+          </form>
+        </mat-accordion>
+      </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </div>
+</div>

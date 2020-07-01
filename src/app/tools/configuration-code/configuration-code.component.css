@@ -1,0 +1,203 @@
+.content-p {
+  padding: 28px 22px;
+}
+
+.content-p .row:nth-child(even) {
+  background-color: #9fbcc9;
+}
+
+.header-p {
+  padding: 13px;
+}
+
+.content-m {
+  margin: 0px 39px 50px 41px;
+}
+
+#config-head {
+  padding: 30px 39px 0 39px;
+  display: flex;
+  padding-bottom: 26px;
+  display: table;
+  width: 100%;
+}
+
+.padding-12-0 {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.editConfig .mat-dialog-container {
+  background: #aac9d6;
+  height: 75%;
+  margin-top: 16%;
+}
+::ng-deep .editConfig.cdk-overlay-pane{
+  z-index: 0;
+}
+.viewConfigcode .mat-dialog-container {
+  background: #aac9d6;
+  height: 75%;
+  margin-top: 16%;
+}
+.viewConfigcode {
+ margin-left: 20rem;
+}
+.editConfig {
+  margin-left: 20rem;
+ }
+
+.closeView {
+  position: relative;
+  left: 10px;
+  bottom: 10px;
+}
+
+.editConfig .mat-form-field-infix {
+  border: 1px solid gray;
+  background: #ffffff;
+  border-radius: 4px;
+  color: #000;
+  height: 36px;
+  line-height: 1.5rem;
+}
+
+.pt-7 {
+  padding-top: 7px;
+}
+
+.transparent-btn:focus {
+  background-color: transparent;
+}
+.blue-btn:focus {
+  background-color: #0181c5;
+}
+
+.viewConfig .mat-dialog-container {
+  background: #aac9d6;
+  height: 70%;
+  margin-top: 16%;
+}
+
+.config-margin-bottom {
+  margin-bottom: -18px;
+}
+
+.closeView {
+  position: relative;
+  left: 10px;
+  bottom: 10px;
+}
+
+.editConfig .mat-select {
+  padding-left: 10px !important;
+}
+.row-padd {
+  padding: 0px 3px 18px 0px;
+}
+.editConfig .mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0px;
+}
+
+.editConfig .mat-select {
+  padding-left: 10px;
+  padding-right: 18px;
+}
+
+.editConfig .mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0px;
+}
+
+.editConfig .cdk-overlay-pane {
+  margin-left: 25%;
+}
+
+#mat-config-code .mat-select-arrow {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  color: #d8d8d8;
+}
+
+.classtest .mat-option {
+  white-space: normal;
+  line-height: 14px;
+}
+
+#mat-config-code mat-form-field {
+  min-width: 350px;
+}
+.classtest {
+  position: relative;
+  top: 29px;
+  left: 7px;
+}
+::ng-deep .btn:hover {
+  background-color: #0181c5;
+}
+.config-loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paging{
+  text-align: center;
+}
+
+.error-msg.ng-star-inserted {
+  margin-top: 10px;
+  text-align: center;
+}
+@media only screen and (max-width: 1025px) {
+  #mat-config-code mat-form-field {
+    min-width: 280px !important;
+  }
+}
+
+
+@media only screen and (max-width: 500px){
+  .content-m{
+    margin: 0px 0px 50px 0px !important;
+  }
+ 
+  .bg-gray-div {
+    background-color: #9fbcc9;
+    padding-left: -18px !important;
+    /* margin-right: -40px !important; */
+}
+.viewConfigcode {
+  margin-left: 0rem !important;
+}
+.editConfig {
+  margin-left: 0rem !important;
+ }
+ .viewConfigcode .mat-dialog-container {
+  height: 80% !important;
+  margin-top: 20% !important;
+ 
+}
+.editConfig .mat-dialog-container{
+height: 80% !important;
+margin-top: 20% !important;
+}
+#mat-config-code mat-form-field {
+  min-width: 300px !important;
+}
+::ng-deep .viewConfigcode{
+  max-width: 90vw !important;
+}
+::ng-deep .editConfig{
+  max-width: 90vw !important;
+}
+  }
+  @media only screen and (max-width: 375px){
+    #mat-config-code mat-form-field {
+      min-width: 260px !important;
+  }
+  }
+  

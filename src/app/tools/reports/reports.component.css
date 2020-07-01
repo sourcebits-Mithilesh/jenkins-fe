@@ -1,0 +1,257 @@
+.loader {
+    /* background: url('../../../assets/img/icon/loader.gif') no-repeat; */
+    opacity:0.8
+  }
+  .white-c {
+      color: #fff;
+      font-family: 'Roboto';
+      font-size: 26px;
+      font-weight: 400;
+      padding-left: 11px;
+      display: inline-block;
+    }
+  
+    .pad-cor {
+      padding: 27px 38px 66px 41px;
+    }
+  
+    .col-bg {
+      background: #aac9d6;
+      position: relative;
+      top: 0px;
+      padding: 24px;
+      border-radius: 4px;
+      padding-top: 25px;
+    }
+  
+    .multi-select {
+      clear: both;
+    }
+  
+    .mnt-bg-color {
+      background-color: #0b446d;
+    }
+  
+    .mnt-bg {
+      background-color: #9fbcc9;
+    }
+  
+    .mnt-fonts {
+      color: #ffffff;
+      font-family: 'Roboto';
+      font-size: 11px;
+      letter-spacing: 0.92px;
+      padding: 15px 0 15px 0;
+    }
+    .card-applicator {
+        /* width: 390px !important;	 */
+        border-radius: 4px;
+        /* margin-right: 10px; */
+        background-color: #aac9d6;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+          0 1px 3px 0 rgba(0, 0, 0, 0.2);
+        padding: 0px 15px;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: Roboto;
+        font-size: 15px;
+        line-height: 16px;
+        margin-bottom: 10px;
+      }
+      
+      .card-applicator-top {
+        /* width: 390px !important;	 */
+        border-radius: 4px;
+        /* margin-right: 10px; */
+        background-color: #aac9d6;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+          0 1px 3px 0 rgba(0, 0, 0, 0.2);
+        padding: 1px 17px;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: Roboto;
+        font-size: 15px;
+        line-height: 16px;
+        margin-bottom: 15px;
+        /* height: 38rem; */
+      }
+
+      #selion{
+        height: 35px;
+        min-width: 175px;
+        border: 1px solid rgba(25, 25, 25, 0.32);
+        border-radius: 4px;
+        background-color: #ffffff;
+        width: 25rem;
+        margin-top: 20px;
+    }
+    .mat-select{
+            background: white;
+            margin-top: 20px;
+            border-radius: 4px;
+            height: 40px;
+            padding: 13px 10px 10px 10px;
+            
+    }
+    .valuefield{
+        padding-left: 10px !important;
+    }
+    .graphsize{
+        height: 8rem;
+        background-color: green;
+    }
+    .leftbtn{
+        text-align: end;
+    }
+    .rightbtn{
+        text-align: start;
+    }
+    .selectdate{
+        text-align: center;
+    }
+    .dateslider{
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+    .Productionbtn{
+        background-color: #0181c5;
+        margin-top: 40px;
+        color: #ffffff;
+        letter-spacing:1.25px
+    }
+    .square{
+        text-align: end;
+    }
+    /* .basecolor{
+        padding-left: 3rem;
+        padding-right: 3rem;
+    } */
+  ::ng-deep  .mat-tab-header, .mat-tab-nav-bar {
+      border-bottom: 0px !important;
+  }
+  .padding-left-right-16{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 6000px;
+    height: 220px;
+  }
+
+  .carousel-wrapper {
+    overflow: hidden;
+  }
+
+  .carousel-inner {
+    display: flex;
+  }
+
+  #production-carousel .canvas-carousel{
+    width: 714px !important;
+    height: 222px !important;
+  }
+  .carousel-arrow{
+    color: #0D436D;
+    font-size: 10px;
+  }
+  .pb-10{
+    padding-bottom: 1.5rem;
+  }
+  .title-color{
+    color: #5C5C5C;
+  }
+  #fill-mat-sel{
+    display:block;
+  }
+  .square{
+    height: 1rem;
+    width: 1rem;
+  }
+  .run{
+    background-color:#00940A;
+  }
+  .idle{
+    background-color:#0066CC;
+  }
+  .alert{
+    background-color:#F1C713;
+  }
+  .fault-stop{
+    background-color:#FE0000;
+  }
+  .offline{
+    background-color:#808080;
+  }
+  .pad-color-labels{
+    padding: 0px 32px 0 8px;
+  }
+  ::ng-deep.t-left{
+    text-align: left;
+  }
+  ::ng-deep .pb{
+    padding-bottom: 10px;
+  }
+  /* ::ng-deep .reports-mat-select{
+    min-width: calc(100% + 20px) !important;
+    left: 6px;
+    top: 27px;
+    position: absolute;
+  } */
+  ::ng-deep .mat-select-panel-wrap .reports-mat-select.mat-select-panel {
+    min-width: calc(100% + 20px) !important;
+    left: 6px;
+    top: 27px;
+    position: absolute;
+  }
+  ::ng-deep #reports .mat-tab-label{
+    font-weight: bold;
+    opacity: 1 !important;
+  }
+
+  /* production yield pop up CSS */
+  
+  .production-yield-header{
+    font-weight: bold;
+    color: rgba(0,0,0,0.87);
+  }
+  .product-yield-wrapper{
+    background-color: #AAC9D6;
+  }
+  .production-yield-left-colum{
+    background-color: #AAC9D6;
+    width: 539px !important;
+    padding: 18px;
+  }
+  .production-yield-right-colum{
+    background-color:rgba(191, 214, 224, 255);
+    width: 251px !important;
+    padding:18px;
+  }
+  .production-yield-update-btn{
+    padding: 5px 20px;
+    /* min-width: 100px; */
+    color: #FFFFFF;
+    background-color: #0181c5;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    margin-bottom:40px
+}
+ ::ng-deep .matProductionYieldModal .mat-dialog-container{
+   padding:0px !important
+ }
+ ::ng-deep
+  .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle,
+.mat-radio-outer-circle {
+  border-color: rgb(13, 67, 108) !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: rgb(13, 67, 108) !important;
+}
+::ng-deep .mat-ripple-element {
+  opacity: 0 !important;
+}
+  

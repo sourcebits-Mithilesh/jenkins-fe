@@ -1,0 +1,120 @@
+.zone-heading {
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.setting-blue-zone {
+  padding: 13px 50px;
+}
+.security-settings-div {
+  border-radius: 4px;
+  background-color: #aac9d6;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.divider {
+  box-sizing: border-box;
+  height: 1px;
+  border: 0.8px solid #979797;
+  opacity: 0.49;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.caption {
+  width: 56px;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 16px;
+}
+.sub-caption {
+  color: rgba(0, 0, 0, 0.87) !important;
+  font-family: Roboto;
+  font-size: 15px;
+  line-height: 16px;
+  padding: 18px 22px;
+}
+
+::ng-deep .mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+::ng-deep .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+::ng-deep .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+.input-div {
+  height: 35px;
+  width: 76px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+.privilage-user {
+  color: rgba(58, 58, 58, 0.87);
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+  text-align: center;
+}
+.settings-caption {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+.text-cntr {
+  text-align: center;
+}
+.margin-top {
+  margin-top: 25px;
+}
+.privilage-names {
+  color: rgba(62, 62, 62, 0.87);
+  font-family: Roboto;
+  font-size: 15px;
+}
+::ng-deep
+  .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle,
+.mat-radio-outer-circle {
+  border-color: rgb(13, 67, 108) !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: rgb(13, 67, 108) !important;
+}
+::ng-deep .mat-ripple-element {
+  opacity: 0 !important;
+}

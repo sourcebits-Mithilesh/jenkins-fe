@@ -1,0 +1,71 @@
+<div>
+  
+  <div>
+    <div class="dash-board pump">
+      <div class="row" style="padding: 0px">
+<div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+
+        <div
+          class=" setting-blue-zone margin-top-12"
+          id="temperature"
+        >
+          <div class="col s12 m12 l12 x12">
+            <form
+              *ngIf="maintenanceForm"
+              name="form"
+              #form="ngForm"
+              [formGroup]="maintenanceForm"
+              (submit)="onSubmit()"
+            >
+              <article class="temp-heading pad-tp-15 font-responsive" >
+                <h4 class="zone-heading font-responsive" style="padding-left:13px">Maintenance Schedule</h4>
+                <p class="right-align" *ngIf="isMaintenanceTagExists">
+                    <button
+                      [disabled]="accessType === 1 || !maintenanceForm.dirty"
+                      type="submit"
+                      class="apply btn"
+                    >
+                    SAVE
+                    </button>
+                  </p>
+              </article>
+              <div class="col s12 m12 l8 xl8 " *ngIf="isMaintenanceTagExists">
+                <div class="card-applicator top-right-border-radius top-left-border-radius display-flex-align-center">
+                    <div class="col s6 m6 l6 xl6 pad-0 font-bold">
+                      Maintenance System
+                    </div>
+                    <div class="col s6 m6 l6 xl6 right-align pad-0">
+                      <mat-slide-toggle
+                        [checked]="maintenanceStatus"
+                        (change)="toogleMaintenance($event)"
+                        formControlName="toogleMaintenance"
+                      >
+                      </mat-slide-toggle>
+                    </div>
+                </div>
+                <div [className]=" maintenanceStatus ? '': 'disabled-status'">
+                    <div class="card-applicator display-flex-align-center" style="border-radius:0px !important">
+                        <a class="cursor-pointer" routerLink="maintenance-status">View Maintenance Status</a>
+                    </div>
+                  <div class="card-applicator bottom-right-border-radius bottom-left-border-radius display-flex-align-center">
+                        <a class="cursor-pointer" routerLink="maintenance-history">View Maintenance History</a>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="col s12 m12 l12 xl12" *ngIf="!isMaintenanceTagExists">
+                  <div class="white-color">
+                    Maintenance tags does not exist in this Nor file. Please select a different Nor file.
+                  </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- <nordson-footer></nordson-footer> -->
+</div>
+        <!-- col 12 close-->
+      </div>
+    </div>
+  </div>
+  <!--main close tag--->
+</div>

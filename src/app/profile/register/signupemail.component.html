@@ -1,0 +1,212 @@
+<div class="signin comm-height" [ngClass]="['backgroundImg']">
+  <nordson-header></nordson-header>
+  <form name="form" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+    <div class="row margin-null pad-responsive-signup">
+      <!-- <div class=" col s2 m2 l2"></div> -->
+      <div class="login-section">
+        <div class="main-section" style="padding: 14px 19px !important;">
+          <div>
+            <a routerLink="{{backButtonLink}}">
+              <img
+                src="../../../assets/img/svg/Back Icon.svg"
+                alt="not working"
+                style="width: 18px;height:17px"
+            /></a>
+          </div>
+          <section class="center">
+            <p>{{ message }}</p>
+            <h6>Welcome to Nordson</h6>
+            <span>We just need a few details to get you up and running.</span>
+          </section>
+          <div class="sub-section">
+            <div class="margin-t-4">
+              <label class="text-above"
+                >Email Address
+                <sup>*</sup>
+              </label>
+              <input
+              autocomplete="off"
+                name="email"
+                #email2="ngModel"
+                [(ngModel)]="email"
+                type="text"
+                id="email"
+                required=""
+                class="form-control border-blue text-lower-case"
+                uniqueEmail
+                ngvemail
+                (ngModelChange)="email = $event.toLowerCase()"
+                [maxlength]="90"
+                [disabled]="disabled"
+                (input)="ccemail2.control.updateValueAndValidity()"
+                [userId] = 0
+                onPaste="return false"
+              />
+              <div
+                class="invalid"
+                *ngIf="
+                  email2.invalid && email2.touched && email2.errors.required
+                "
+              >
+                Email is required
+              </div>
+              <div class="invalid" *ngIf="email2.errors?.uniqueEmail">
+                Email must be unique
+              </div>
+              <div class="invalid" *ngIf="email2.errors?.email">
+                Email is Invalid
+              </div>
+            </div>
+            <div class="margin-t-4">
+              <label class="text-above"
+                > Confirm Email Address
+                <sup>*</sup>
+              </label>
+              <input
+              autocomplete="off"
+                name="cemail"
+                #ccemail2="ngModel"
+                [(ngModel)]="cemail"
+                type="text"
+                id="email"
+                required=""
+                class="form-control border-blue text-lower-case"
+                appConfirmEqualValidator="email"
+                ngvemail
+                (ngModelChange)="cemail = $event.toLowerCase()"
+                onPaste="return false"
+              />
+              <div
+              class="invalid"
+              *ngIf="ccemail2.touched && ccemail2.errors?.required"
+            >
+              Confirm Email is required!
+            </div>
+            <div class="invalid" *ngIf="ccemail2.errors?.email">
+             Confirm Email is Invalid
+            </div>
+            
+            <div
+            class="invalid"
+            *ngIf="
+              ccemail2.touched &&
+              ccemail2.errors?.notEqual &&
+              !ccemail2.errors?.required &&
+              !ccemail2.errors?.email
+            "
+          >
+            Email and Confirm Email does not match!
+          </div>
+            </div>
+            <div class="">
+              <label class="text-above"
+                >Password
+                <sup>*</sup>
+              </label>
+              <input
+              autocomplete="off"
+                name="password"
+                #password2="ngModel"
+                [(ngModel)]="password"
+                type="password"
+                id="pwd"
+                required=""
+                [type]="show_button ? 'text' : 'password'"
+                class="form-control border-blue"
+                [minlength]="8"
+                [maxlength]="64"
+                (input)="ccpwd2.control.updateValueAndValidity()"
+                onPaste="return false"
+              /><i
+                behaviour="click"
+                id="font-icon"
+                class="fa fa-eye"
+                [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                style="font-size:20px"
+                (click)="showPassword('font-icon1')"
+              ></i>
+              <div
+                class="invalid"
+                *ngIf="
+                  password2.invalid &&
+                  password2.touched &&
+                  password2.errors.required
+                "
+              >
+                Password is required!
+              </div>
+              <div class="invalid" *ngIf="password2.errors?.minlength">
+                Your Password must be atleast 8 characters long
+              </div>
+              <div class="invalid" *ngIf="password2.errors?.maxlength">
+                Your Password should not be more than 64 characters long
+              </div>
+            </div>
+            <div class="">
+              <label class="text-above"
+                >Confirm Password
+                <sup>*</sup>
+              </label>
+              <input
+              autocomplete="off"
+                name="ccpwd"
+                #ccpwd2="ngModel"
+                [(ngModel)]="ccpwd"
+                type="password"
+                id="ccpwd"
+                required=""
+                [type]="show_button_reset ? 'text' : 'password'"
+                class="form-control border-blue"
+                appConfirmEqualValidator="password"
+                [minlength]="8"
+                [maxlength]="64"
+                onPaste="return false"
+              />
+              <i
+                behaviour="click"
+                id="font-icon"
+                class="fa fa-eye"
+                [class]="show_eye_reset ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                style="font-size:20px"
+                (click)="showPassword('font-icon2')"
+              ></i>
+              <div
+                class="invalid"
+                *ngIf="ccpwd2.touched && ccpwd2.errors?.required"
+              >
+                Confirm Password is required!
+              </div>
+              <div
+                class="invalid"
+                *ngIf="
+                  ccpwd2.touched &&
+                  ccpwd2.errors?.notEqual &&
+                  !ccpwd2.errors?.required
+                "
+              >
+                Password and Confirm Password does not match!
+              </div>
+            </div>
+            <div class="pad-top-8" style="font-size: 14px !important">
+             <div id="termsCheckbox">
+               <mat-checkbox [checked]="terms" (change)="termsChecked($event)">Agree to Nordson <a class="n-green" routerLink="/termsofservice" target="_blank">Terms of Service</a> and  <a href="https://www.nordson.com/en/our-company/ethics-and-compliance/privacy-statement" target="_blank" class="n-green">Privacy Policy.</a> </mat-checkbox>
+             </div>
+            </div>
+            <div class="button-section-center">
+              <div class="continue">
+                <button
+                  [disabled]="!form.valid || validateTerms == false"
+                  type="submit"
+                  class="btn right submit-bt"
+                >
+                  Accept and Sign Up
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- <nordson-footer></nordson-footer> -->

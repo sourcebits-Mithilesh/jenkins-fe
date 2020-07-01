@@ -1,0 +1,262 @@
+<div class="row">
+  <div
+    class="col s12 m12 l12 xl9 margin-top-12"
+    id="admin-user-dash"
+    style="background-color: rgb(249, 253, 255);"
+  >
+    <div class="super-head">
+      <div class="super-left left">
+        <article class="super-font">Recent Signups</article>
+      </div>
+      <div class="super-right" class="right">
+        <div class="super-input left">
+          <svg
+            (click)="searchUsers()"
+            width="12px"
+            height="13px"
+            class="search"
+            viewBox="0 0 12 13"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+            <title>Search</title>
+            <desc>Created with Sketch.</desc>
+            <g
+              id="Admin--flow"
+              stroke="none"
+              stroke-width="1"
+              fill="none"
+              fill-rule="evenodd"
+            >
+              <g
+                id="SuperAdmin_dashboard"
+                transform="translate(-842.000000, -122.000000)"
+                fill="#111111"
+                fill-rule="nonzero"
+              >
+                <g
+                  id="16px_search"
+                  transform="translate(842.000000, 122.000000)"
+                >
+                  <path
+                    d="M5.25,10.7058824 C2.355,10.7058824 0,8.30470588 0,5.35294118 C0,2.40117647 2.355,0 5.25,0 C8.145,0 10.5,2.40117647 10.5,5.35294118 C10.5,8.30470588 8.145,10.7058824 5.25,10.7058824 Z M5.25,1.52941176 C3.18225,1.52941176 1.5,3.24464706 1.5,5.35294118 C1.5,7.46123529 3.18225,9.17647059 5.25,9.17647059 C7.31775,9.17647059 9,7.46123529 9,5.35294118 C9,3.24464706 7.31775,1.52941176 5.25,1.52941176 Z"
+                    id="Shape"
+                  ></path>
+                  <path
+                    d="M11.78025,10.9299412 L9.9855,9.1 C9.67763349,9.50413595 9.3213641,9.86739101 8.925,10.1812941 L10.71975,12.0112353 C10.8601013,12.15516 11.0509428,12.2360855 11.25,12.2360855 C11.4490572,12.2360855 11.6398987,12.15516 11.78025,12.0112353 C11.9210373,11.8679314 12.0001509,11.6734231 12.0001509,11.4705882 C12.0001509,11.2677534 11.9210373,11.0732451 11.78025,10.9299412 L11.78025,10.9299412 Z"
+                    id="Path"
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+          <input
+          autocomplete="off"
+            (input)="searchText = $event.target.value"
+            type="text"
+            id="admin-user-input-style"
+            placeholder="Search users"
+            onfocus="this.placeholder=''"
+            (keyup.enter)="searchUsers()"
+            onblur="this.placeholder='Search users'"
+          />
+        </div>
+        <div id="admin-user-select" class="right">
+          <mat-form-field [floatLabel]="'never'">
+            <mat-select
+              disableOptionCentering
+              [(value)]="selectedSortOptions"
+              panelClass="superselect"
+              (selectionChange)="onOptionsChange($event)"
+              style="padding-left: 3px;
+            /* padding-bottom: 0px; */
+            padding-top: 2px;"
+            >
+              <mat-option
+                *ngFor="let options of sortOptions"
+                value="{{ options.value }}"
+                >{{ options.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="adminuser-cards-3">
+      <!--viewmore-->
+      <div class="col s12 m12 l12 xl12" style="padding: 0">
+        <div class="card" style="text-align: right;">
+          <button class="export-btn-admin"
+          type="button" (click)="exportCsv()">EXPORT</button>
+          <p class="graph-p" style="margin-top:0px ;visibility: hidden;"></p>
+          <div id="adminuser-main-section" style="clear: both">
+            <div class="row admin-sub display-none-responsive">
+              <div class="col s12 m12 l12 xl12 center-align">
+                <div class="col s12 m3 l3 xl3 border-right display">
+                  <article class="admin-header-font font-size-11 font-500">
+                    FULL NAME
+                  </article>
+                </div>
+                <div
+                  class="col  s12 m2 l2 xl2 border-right display"
+                  *ngIf="selectedSortOptions != '4'"
+                >
+                  <article class="admin-header-font font-size-11 font-500">
+                    COMPANY TYPE
+                  </article>
+                </div>
+                <div
+                  class="col  s12 m2 l2 xl2 border-right display"
+                  *ngIf="selectedSortOptions == '4'"
+                >
+                  <article class="admin-header-font font-size-11 font-500">
+                    USER TYPE
+                  </article>
+                </div>
+                <div class="col s12 m2 l2 xl2 border-right display">
+                  <article class="admin-header-font font-size-11 font-500">
+                    COUNTRY
+                  </article>
+                  <div class=""></div>
+                </div>
+                <div class="col s12 m2 l2 xl2 border-right display">
+                  <article class="admin-header-font font-size-11 font-500">
+                    DATE
+                  </article>
+                </div>
+                <div class="col s12 m3 l3 xl3 display">
+                  <article class="admin-header-font font-500 font-size-11">
+                    STATUS
+                  </article>
+                </div>
+              </div>
+            </div>
+            <div
+              class="row"
+              *ngFor="
+                let rs of recentSignups
+                  | paginate
+                    : {
+                        id: 'server',
+                        itemsPerPage:50,
+                        currentPage: p,
+                        totalItems: total
+                      };
+                let i = index
+              "
+            >
+              <div
+                class="col s12 m12 l12 xl12 center-align hover-list"
+                id="admin-user-padding-1"
+                (click)="recentUser(rs)"
+              >
+                <div class="col s12 m3 l3 xl3">
+                  <article class="display-responsive">
+                    Full Name
+                  </article>
+                  <article class="admin-header-font font-size-14">
+                    {{ rs.full_name }}
+                  </article>
+                </div>
+                <div class="col s12 m2 l2 xl2" *ngIf="selectedSortOptions != 4">
+                  <article class="display-responsive">
+                    Company Type
+                  </article>
+                  <article class="admin-header-font font-size-14">
+                    {{ rs.company_type }}
+                  </article>
+                </div>
+                <div class="col s12 m2 l2 xl2" *ngIf="selectedSortOptions == 4">
+                  <article class="admin-header-font font-size-14">
+                    Tech Support
+                  </article>
+                </div>
+                <div class="col  s12 m2 l2 xl2">
+                  <article class="display-responsive">
+                   Country
+                  </article>
+                  <article class="admin-header-font font-size-14">
+                    {{ rs.country }}
+                  </article>
+                </div>
+                <div
+                  class="col s12 m2 l2 xl2"
+                >
+                <article class="display-responsive">
+                  Date
+                </article>
+                  <article class="admin-header-font font-size-14">
+                    {{ rs.Date.substr(0, 10) }}
+                  </article>
+                </div>
+                <div
+                  class="col s12 m3 l3 xl3 pad-responsive"
+                  style="position: relative;padding-left: 30px;"
+                >
+                <article class="display-responsive ">
+                  Status
+                </article>
+                  <article class="admin-header-font font-size-14">
+                    {{ user_status[rs.status] }}
+                  </article>
+                </div>
+              </div>
+              <span style="position: relative" *ngIf="!(rs.status==3 && !rs.email)">
+                <span
+                  class=""
+                  style="position: absolute;
+                right: 21px;
+                top: 12px;"
+                >
+                  <article
+                    class="admin-header-font"
+                    style="text-align: right"
+                    style="cursor: pointer"
+                    [matMenuTriggerFor]="menu"
+                  >
+                    <img src="../../../assets/img/icon/3dots.svg" />
+                  </article>
+                  <mat-menu
+                    #menu="matMenu"
+                    panelClass="adminmenu"
+                    class="adminmenu"
+                    [overlapTrigger]="false"
+                    xPosition="before"
+                  >
+                    <button
+                      *ngIf="rs.status == 1"
+                      (click)="blockUser(rs.id, i, rs.status)"
+                      mat-menu-item
+                    >
+                      Block User
+                    </button>
+                    <button
+                      *ngIf="rs.status == 2"
+                      (click)="unBlockUser(rs.id, i, rs.status)"
+                      mat-menu-item
+                    >
+                      Unblock User
+                    </button>
+                    <button *ngIf="(rs.status==0||rs.status==3) && rs.email" (click)="activateUser(rs.id, i)" mat-menu-item>
+                      Activate User
+                    </button>
+                    <button (click)="deleteUser(rs.id, i)" mat-menu-item *ngIf="rs.status!==3">
+                      Remove User
+                    </button>
+                  </mat-menu>
+                </span>
+              </span>
+            </div>
+            <pagination-controls
+              (pageChange)="getPage($event)"
+              id="server"
+              style="display:flex;justify-content:center;"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="dash-board">
+  <div class="row">
+    <div class="row">
+  <!-- for responsive class medium shud be col m12 -->
+  <div class="col m12 s12 l9 xl9 p-0 margin-top-12-dashboard height-vh">
+      <div
+        class="pad-main margin-top-12-dashboard"
+        style="background: rgb(249,253,255)"
+      >
+        <div class="subuser-section grid-col-responsive">
+          <div class="subuser-heading">
+            <div class="main-heading font-responsive">Manage Sub-User Account</div>
+            <div style="padding-top: 21px" *ngIf="noSubUser==''">
+              Currently registered sub-user accounts
+            </div>
+            <div style="padding-top: 21px">
+              {{ noSubUser }}
+            </div>
+          </div>
+          <div class="sub-user-bt" style="flex: 1;">
+            <button (click)="openDialog()">
+              <span class="add-svg" style="fill: #0181C5 ">
+                <svg
+                  style="top: 6px;
+                position: relative;left:-6px"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                  <path d="M0 0h24v24H0z" fill="none" /></svg>
+                  ADD SUB-USER
+                </span>
+            </button>
+          </div>
+        </div>
+        <div class="sub-user-cards" *ngIf="usersLength">
+          <div class="sub-detail display-none-responsive row">
+            <div class="col s12 m3 l3 xl3">
+              Full Name
+            </div>
+            <div class="col s12 m5 l5 xl5">
+              Email Address
+            </div>
+            <div class="col s12 m3 l3 xl3" >
+              Access Type
+            </div>
+            <div class="col s12 m1 l1 xl1"></div>
+          </div>
+          <div class="pad-btm-80 row">
+          <mat-card
+            class="grid-col grid-col-responsive"
+            *ngFor="let user of users"
+            (click)="openDialog1(user.id)"
+          >
+          <div class="display-responsive padding-responsive">
+            Full Name
+          </div>
+            <div class="fname col s12 m3 l3 xl3" >{{ user.full_name }}</div>
+            <div class="display-responsive padding-responsive">
+              Email Address
+            </div>
+            <div class="email-sub col s12 m5 l5 xl5">{{ user.email }}</div>
+            <div class="display-responsive padding-responsive">
+              Access Type
+            </div>
+            <div class="read text-align-left-responsive col s12 m3 l3 xl3">
+              {{ user.access_type === 0 ? 'Read/Write' : 'Read Only' }}
+            </div>
+            <div class="text-right col s12 m1 l1 xl1">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                  />
+                  <path d="M0 0h24v24H0z" fill="none" /></svg></span>
+            </div>
+          </mat-card>
+        </div>
+        </div>
+      </div>
+      <!-- <nordson-footer></nordson-footer> -->
+</div>
+    </div>
+    <div class="row"></div>
+  </div>
+</div>

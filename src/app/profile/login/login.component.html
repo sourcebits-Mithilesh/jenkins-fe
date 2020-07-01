@@ -1,0 +1,124 @@
+<div [ngClass]="['backgroundImg']">
+  <div class="signin  login comm-height">
+    <nordson-header></nordson-header>
+    <form name="form" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+      <div class="row margin-null section pad-responsive-signup">
+        <div class="login-section">
+          <div class="main-section pad-right-left-20">
+            <section class="center">
+              <h6>Welcome to Nordson</h6>
+              <span class="span-inline-login"
+                >We just need a few details to get you up and running.</span
+              >
+              <div class="error">{{ error }}</div>
+            </section>
+            <div class="sub-section">
+              <div>
+                <label class="text-above text-firefox"
+                  >Email Address
+                  <sup></sup>
+                </label>
+                <input
+                 autocomplete="off"
+                  type="text"
+                  id="email"
+                  [(ngModel)]="email"
+                  class="form-control border-blue text-lower-case input-firefox"
+                  required
+                  name="email"
+                  #email2="ngModel"
+                  ngvemail
+                  (ngModelChange)="email = $event.toLowerCase()"
+                />
+                <div
+                  class="invalid"
+                  *ngIf="
+                    email2.invalid && email2.touched && email2.errors.required
+                  "
+                >
+                  Email is required!
+                </div>
+                <div class="invalid" *ngIf="email2.errors?.email">
+                  Email is Invalid
+                </div>
+              </div>
+              <div class="">
+                <label class="text-above text-firefox"
+                  >Password
+                  <sup></sup>
+                </label>
+                <input
+                autocomplete="off"
+                  type="password"
+                  id="pwd"
+                  [type]="show_button ? 'text' : 'password'"
+                  class="form-control border-blue input-firefox"
+                  name="password"
+                  #password2="ngModel"
+                  [(ngModel)]="password"
+                  minlength="8"
+                  required
+                />
+                <i
+                  behaviour="click"
+                  id="font-icon"
+                  class="fa fa-eye"
+                  [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                  style="font-size:20px"
+                  (click)="showPassword()"
+                ></i>
+                <div
+                  class="invalid"
+                  *ngIf="
+                    password2.invalid &&
+                    password2.touched &&
+                    password2.errors.required
+                  "
+                >
+                  Password is required!
+                </div>
+              </div>
+              <div class="signin-check">
+                <label class="sigin-checkbox cont">
+                  <input
+                  autocomplete="off"
+                    type="checkbox"
+                    [(ngModel)]="checked"
+                    (change)="checkValue(form.value, $event)"
+                    class=""
+                    name="checkbox"
+                    value="remember"
+                    name="remember"
+                  />
+                  <span class="checkmark"></span>
+                  <span class="">Remember me?</span>
+                </label>
+                <a class="right n-green margin-right-10" routerLink="/forgotpassword"
+                  >Forgot Password?</a
+                >
+              </div>
+              <div class="button-section-center">
+                <button
+                  [disabled]="!form.valid"
+                  type="submit"
+                  class="btn submit-bt right submit-bt"
+                >
+                  Sign In
+                </button>
+              </div>
+            </div>
+            <div class="margin-minus">
+              <p>
+                <span>
+                  Not registered yet?
+                </span>
+                <a href="#" class="n-green" routerLink="/register">Sign Up</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- <nordson-footer></nordson-footer> -->

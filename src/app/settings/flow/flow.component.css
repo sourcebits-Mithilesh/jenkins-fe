@@ -1,0 +1,129 @@
+.zone-heading {
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+  .setting-blue-zone {
+    padding: 9px 50px 110px 28px;
+  }
+  .card-applicator {
+    border-radius: 4px;
+    background-color: #aac9d6;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+      0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    padding: 18px 17px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: bold;
+  }
+ 
+  .m-t-15 {
+    margin-top: 15px;
+  }
+  .m-t-5 {
+    margin-top: 5px;
+  }
+  ::ng-deep .btn:hover {
+    background-color: #0181c5;
+  }
+  ::ng-deep .btn:focus {
+    background-color: #0181c5;
+  }
+  .outer-card{
+      padding: 20px 18px;
+      background-color:#AAC9D6;
+      border-radius: 4px;
+  }
+  .flow-input{
+      height: 35px;
+      width:68px;
+      border: 1px solid rgba(25,25,25,0.32);
+      background-color: #FFFFFF;
+      border-radius:4px;
+      padding-left: 8px;
+  }
+  .settings-head{
+      font-size:18px;
+  }
+  ::ng-deep .mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+
+::ng-deep .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+::ng-deep .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+::ng-deep .mat-select-panel-wrap .trigger-mat-select.mat-select-panel {
+  background-color: #ffffff;
+
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  position: relative;
+  left: 12px;
+  top: 26px;
+}
+::ng-deep #trigger-mat-select .mat-select-arrow {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid;
+  margin: 0 4px;
+  position: relative;
+  left: 21px;
+  top: 0px;
+  color: #d8d8d8;
+}
+::ng-deep #trigger-mat-select {
+  height: 35px;
+  min-width: 151px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+::ng-deep #trigger-mat-select .ng-star-inserted {
+  position: relative;
+  left: 4px;
+  line-height: 18px;
+}
+::ng-deep
+  #trigger-mat-select
+  .mat-form-field-wrapper
+  .mat-form-field-infix {
+  width: auto;
+  padding-right: 30px;
+}
+::ng-deep #trigger-mat-select .mat-form-field-infix {
+  border-top: 0;
+}

@@ -1,0 +1,161 @@
+<div class="dash-board pump">
+  <div class="row" style="padding: 0px">
+<div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+    <div class="setting-blue-zone margin-top-12" id="recipe">
+      <div class="col s12 m12 l12 x12 recipe-head font-responsive" style="padding: 0px">
+        Recipe
+      </div>
+      <div class="row">
+        <br />
+        <div class="col s12 m12 l12 x12 t-center" style="padding:18px 0px 26px">
+          <div class="margin-left-recipe">
+            <span class="wrapper-div" id="Open" (click)="openRecipe()">
+              <div>
+                <img src="../../assets/img/svg/Recipe Open.svg" alt="" height="25px" width="30px" />
+              </div>
+              <div class="recipe-file-text text text-transform">open</div>
+            </span>
+            <span class="wrapper-div" id="export" (click)="exportRecipe()">
+              <div>
+                <img src="../../assets/img/svg/Recipe Export.svg" alt="" height="25px" width="30px" />
+              </div>
+              <div class="recipe-file-text text-transform">export</div>
+            </span>
+
+            <span class="wrapper-div disable text-transform" style="padding-top: 9px;display: inline-block"
+              [class.disabled]="accessType === 1"><label class="recipe-file-text" for="files">
+                <div>
+                  <img src="../../assets/img/svg/Recipe Import.svg" alt="" height="25px" width="30px" />
+                </div>
+                import
+              </label>
+              <form name="form" class="form-left" #form="ngForm" [formGroup]="importXmlForm">
+                <input 
+                autocomplete="off" 
+                #fileInput
+                (click)="fileInput.value = null"
+                id="files" 
+                style="visibility:hidden;float:left" 
+                (change)="onFileChange2($event)" 
+                type="file"
+                name="recipefile" />
+              </form>
+            </span>
+
+            <span class="wrapper-div" id="saveas" (click)="openSaveAsModal()">
+              <div>
+                <img src="../../assets/img/svg/Recipe Save as.svg" alt="" height="25px" width="30px" />
+              </div>
+              <div class="recipe-file-text text-transform">save as</div>
+            </span>
+            <span class="wrapper-div" (click)="createNewRecipeModal()">
+              <div>
+                <img src="../../assets/img/svg/Recipe Create new.svg" alt="" height="25px" width="30px" />
+              </div>
+              <div class="recipe-file-text text-transform">create New</div>
+            </span>
+            <span  class="wrapper-div" id="delete" (click)="deleteRecipe()">
+              <div>
+                <img src="../../assets/img/DeleteIconRecipe.svg" alt="" height="25px" width="30px" />
+              </div>
+              <div class="recipe-file-text text-transform">Delete</div>
+            </span>
+          </div>
+          <div  class="recipe-select">
+            <mat-form-field [floatLabel]="'never'" id="mat-recipe">
+              <mat-label style="padding-left:15px">Name</mat-label>
+              <mat-select panelClass="recipe-mat" disableOptionCentering (selectionChange)="sortRecipeData($event)">
+                <mat-option *ngFor="let data of SortData" [value]="data.value">
+                  {{ data.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="selectSortType == 'name' && errMessage=='success'">
+        <div class="row background-light-blue" id="recipe-head1" style="padding: 27px">
+          <div class="row background-dark-blue" id="recipe-head">
+            <div class="col s1 m1 l1 x1 recipe-text">
+              <mat-checkbox [(ngModel)]="selectedAll" (change)="checkAll($event)"></mat-checkbox>
+            </div>
+            <div class="col s3 m3 l3 x3 recipe-text" style="text-align: left!important;padding-left: 3% !important">
+              <div class="recipe-text text-transform">NAME</div>
+            </div>
+            <div class="col s4 m4 l4 x4 recipe-text text-transform" style="text-align: left!important">DATE</div>
+            <div class="col s4 m4 l4 x4 recipe-text text-transform" style="text-align: left!important">NUMBER</div>
+          </div>
+          <!-- <form name="form" *ngIf="recipeForm" #form="ngForm" [formGroup]="recipeForm"> -->
+            <div class="row t-center recipe-content" *ngFor="let recipe of recipeList" id="recipe-body">
+              <div class="col s1 m1 l1 x1 recipe-data">
+                <mat-checkbox [(ngModel)]="recipe.selected" (change)="checkRecipe($event, recipe.name)"></mat-checkbox >
+              </div>
+              <div class="col s3 m3 l3 x3 recipe-data" style="text-align: left!important;padding-left: 3%!important">
+                {{ recipe.name }}
+              </div>
+              <div class="col s4 m4 l4 x4 recipe-data" style="text-align: left!important">
+                {{ recipe.date }}
+              </div>
+              <div class="col s4 m4 l4 x4 recipe-data" style="text-align: left!important">
+                {{ recipe.number }}
+              </div>
+            </div>
+          <!-- </form> -->
+        </div>
+      </div>
+      <div *ngIf="selectSortType == 'date' && errMessage=='success'">
+        <div class="row background-light-blue" style="padding: 27px">
+          <div class="row background-dark-blue" id="recipe-head">
+            <div class="col s1 m1 l1 x1 recipe-text">
+              <mat-checkbox [(ngModel)]="selectedAll" (change)="checkAll($event)"></mat-checkbox>
+            </div>
+            <div
+              class="col s4 m4 l4 x4 recipe-text"
+              style="text-align: left!important;padding-left: 3% !important"
+            >
+
+              <div class="recipe-text" style="text-align: left!important">DATE</div>
+            </div>
+            <div class="col s3 m3 l3 x3 recipe-text" style="text-align: left!important">NAME</div>
+            <div class="col s3 m3 l3 x3 recipe-text" style="text-align: left!important">NUMBER</div>
+          </div>
+          <!-- <form name="form" *ngIf="recipeForm" #form="ngForm" [formGroup]="recipeForm"> -->
+            <div class="row t-center recipe-content" *ngFor="let recipe of recipeList" id="recipe-body">
+              <div class="col s1 m1 l1 x1 recipe-data">
+                <mat-checkbox [(ngModel)]="recipe.selected" (change)="checkRecipe($event, recipe.name)"></mat-checkbox>
+              </div>
+              <div
+                class="col s4 m4 l4 x4 recipe-data"
+                style="text-align: left!important;padding-left: 3%!important"
+              >
+
+                {{ recipe.date }}
+              </div>
+              <div class="col s3 m3 l3 x3recipe-data" style="text-align: left!important">
+                {{ recipe.name }}
+              </div>
+              <div class="col s3 m3 l3 x3recipe-data" style="text-align: left!important">
+                {{ recipe.number }}
+              </div>
+            </div>
+          <!-- </form> -->
+        </div>
+      </div>
+      <div *ngIf="errMessage=='fail'">
+        <div class="row background-light-blue" id="recipe-head1" style="padding: 27px">
+          <div class="row background-dark-blue" id="recipe-head">
+            <div class="col s1 m1 l1 x1 recipe-text"></div>
+            <div class="col s3 m3 l3 x3 recipe-text" style="text-align: left!important;padding-left: 3% !important">
+              <div class="recipe-text">NAME</div>
+            </div>
+            <div class="col s4 m4 l4 x4 recipe-text" style="text-align: left!important">DATE</div>
+            <div class="col s4 m4 l4 x4 recipe-text" style="text-align: left!important">NUMBER</div>
+          </div>
+            <div style="padding:15px 0px 15px 10px;background:#9fbcc9">No Recipe Found</div>
+        </div>
+      </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </div>
+</div>

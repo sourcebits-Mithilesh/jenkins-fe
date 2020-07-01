@@ -1,0 +1,35 @@
+.descriptionInput{
+    border: 1px solid #0181c5 !important;
+    height: 5vh !important;
+    text-align: center !important;
+   }
+   mat-form-field{
+     margin-bottom: -10px !important;
+   }
+@media only screen and (max-width: 500px){
+
+    .createnorfile {
+        margin-left: -46px !important;
+        margin-bottom: 10px !important;
+    }
+    .padding-create {
+        padding: 4px 0px 0px !important;
+    
+    }
+    .previousselect{
+        margin-left: -46px !important;
+      }
+}
+.text-above-setup{
+    z-index: 1;
+    position: absolute;
+    background-color: #fff;
+    left: 16px;
+    top: -9px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: 'Roboto';
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+  }
+

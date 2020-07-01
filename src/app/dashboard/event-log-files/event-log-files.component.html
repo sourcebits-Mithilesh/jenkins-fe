@@ -1,0 +1,82 @@
+<div class="dash-board">
+  <div class="row">
+    <div class="row">
+      <div class="col m12 s12 l9 xl9 p-0 margin-top-12 height-vh" style="background: rgb(249,253,255)">
+      <div
+        class="pad-main "
+      >
+        <div>
+          <div>
+            <div class="event-log-head font-responsive">Recently Viewed Event Log Files</div>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div class="" style="padding-top :21px;">{{ noRecord }}</div>
+          </div>
+        </div>
+        <div class="row display-none-responsive" style="padding-top :21px;" *ngIf="!noRecord">
+          <div
+            class="col m3 s2 l3 xl3 settings-files-properties"
+            style="padding-left: 25px"
+          >
+            File Name
+          </div>
+          <div class="col m2 s2 l3 xl3 settings-files-properties t-center text-lower-case text-captalize-1st-letter">
+            Date
+          </div>
+          <div
+            class="col m2 s2 l3 xl3 settings-files-properties t-center text-lower-case text-captalize-1st-letter"
+            style="padding-left: 1px"
+          >
+            Time
+          </div>
+        </div>
+          <mat-card
+            style="margin-top: 10px;"
+            *ngFor="let eventLogFile of eventlogfiles"
+            class="event-log"
+          >
+        <div class="row">
+          <div class="display-responsive padding-responsive col s12">
+            File Name
+          </div>
+            <div class="col m3 s12 l3 xl3 datatext">
+              {{ eventLogFile.fileName }}
+            </div>
+            <div class="display-responsive padding-responsive col s12 text-lower-case text-captalize-1st-letter">
+              Date
+            </div>
+            <div class="col m2 s12 l3 xl3 datatext t-center text-align-left-responsive">
+              {{ eventLogFile.date }}
+            </div>
+            <div class="display-responsive padding-responsive col s12 text-lower-case text-captalize-1st-letter">
+              Time
+            </div>
+            <div class="col m2 s12 l3 xl3 datatext t-center text-align-left-responsive">
+              {{ eventLogFile.time | slice: 11:16 }}
+            </div>
+            <div
+              class="col m2 s12 l1 xl1 viewtext padding-responsive"
+              style="cursor:pointer;"
+              (click)="goToEventLog(eventLogFile.nor_id)"
+            >
+              VIEW
+            </div>
+            <div class="col m2 s12 l2 xl2 t-center viewtext padding-responsive text-align-left-responsive">
+              <a
+                class="download disable"
+                style="cursor:pointer;"
+                (click)="onDown(eventLogFile.fileName, eventLogFile.user_id,eventLogFile.nor_id)"
+                >DOWNLOAD</a
+              >
+            </div>
+        </div>
+
+          </mat-card>
+      </div>
+      <!-- <nordson-footer></nordson-footer> -->
+</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+.card-applicator{
+    background-color:#aac9d6;
+    padding: 18px 17px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Roboto;
+    font-size: 15px;
+    line-height: 21px;
+    border-radius: 8px;
+}
+.setting-blue-zone{
+  padding: 15px 49px 48px 10px;
+}
+.zone-heading{
+  color: #ffffff;
+    font-family: Roboto;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 30px;
+    padding-left: 0px;
+}
+.network-input{
+    height: 35px !important;
+    min-width: 161px;
+    border: 1px solid rgba(25, 25, 25, 0.32);
+    border-radius: 4px !important;
+    background-color: #fff;
+    left: 10px;
+    padding-left: 12px !important;
+    font-family: Roboto;
+    font-size: 15px !important;
+    color: rgba(0, 0, 0, 0.87);
+    padding-right: 12px !important;
+}
+.pad-t-10{
+    padding-top: 10px;
+}
+.hr {
+    box-sizing: border-box;
+    height: 1px;
+    opacity: 0.5;
+    margin-left: -15px;
+    margin-right: -15px;
+    border: 0.8px solid #979797;
+    margin-top: 14px;
+  }
+  .edit-icon {
+    height: 19px;
+    width: 18px;
+  }
+  ::ng-deep #wifi-mat-sel {
+    height: 35px;
+    min-width: 175px;
+    border: 1px solid rgba(25, 25, 25, 0.32);
+    border-radius: 4px;
+    background-color: #ffffff;
+  }
+  
+  ::ng-deep #wifi-mat-sel {
+    min-width: 222px;
+  }
+  ::ng-deep
+  #wifi-mat-sel
+  .mat-form-field-appearance-legacy
+  .mat-form-field-underline {
+  height: 0;
+}
+
+::ng-deep #wifi-mat-sel .mat-expansion-panel-header {
+  padding: 0 1px;
+}
+
+::ng-deep #wifi-mat-sel .mat-select-value-text {
+  padding-left: 11px;
+  padding-top: 3px;
+  display: inline-block;
+}
+::ng-deep #wifi-mat-sel .mat-form-field-infix {
+  border-top: 0;
+}
+
+::ng-deep #wifi-mat-sel .mat-select-arrow {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid;
+    margin: 0 4px;
+    top: 0px;
+    color: #d8d8d8;
+  }
+
+::ng-deep .mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+
+::ng-deep .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+::ng-deep .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+.setting-blue-zone{
+  padding: 0px 20px 80px 35px;
+}
+
+@media only screen and (max-width: 500px) {
+  .password-text{
+margin-left: -24px !important;
+  }
+  };

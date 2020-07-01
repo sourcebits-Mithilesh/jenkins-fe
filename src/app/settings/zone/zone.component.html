@@ -1,0 +1,103 @@
+<div>
+  
+  <div>
+    <div class="dash-board">
+      <form
+        *ngIf="zonenameForm"
+        name="form"
+        #form="ngForm"
+        [formGroup]="zonenameForm"
+        (submit)="onSubmit()"
+        nordsonForm
+      >
+        <div class="row" style="padding: 0px">
+          <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+          <div
+            class=" setting-blue-zone pad-right-left-0 margin-top-12"
+            id="temperature"
+          >
+            <div class="col s12 m12 l12 x12">
+              <article class="temp-heading">
+                <h4 class="zone-heading" style="padding-left: 13px">
+                  Zone Names
+                </h4>
+                <!-- <ng-flash-message></ng-flash-message> -->
+                <p class="right-align">
+                  <button
+                    [disabled]="accessType === 1 || !zonenameForm.dirty"
+                    class="apply btn"
+                    type="submit"
+                  >
+                    SAVE
+                  </button>
+                </p>
+              </article>
+              <div class="row pad-bottom-80-edge-firefox">
+                <div class="col s12 m6 l6 xl6">
+                  <div 
+                    [ngClass]="{'card-hose':hose}"
+                    *ngFor="let hose of hoses; let i = index"
+                    
+                  >
+                    <div  class="col s6" id="#zone-input">
+                      <input
+                        autocomplete="off"
+                        class="editableText"
+                        type="text"
+                        formControlName="hose{{ i + 1 }}"
+                        style="width: auto !important"
+                        maxlength="15"
+                        id="{{ i }}"
+                        style="border-bottom: 0px;background-color: transparent!important;"
+                      />
+                    </div>
+                    <div [ngClass]="{'hiddenCass':!hose }" class="col s6">
+                      <img
+                        [id]="'show_' + i"
+                        (click)="editHose($event.target.id)"
+                        class="edit-icon"
+                        src="../../../assets/pencil-edit-button.svg"
+                        alt="not working"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6 l6 xl6">
+                  <div
+                    [ngClass]="{'card-hose':app }"
+                    *ngFor="let app of applicators; let i = index"
+                  >
+                    <div  class="col s6">
+                      <input
+                        autocomplete="off"
+                        class="editableText"
+                        type="text"
+                        formControlName="app{{ i + 1 }}"
+                        maxlength="15"
+                        id="app{{ i }}"
+                        style="border-bottom: 0px;background-color: transparent!important;"
+                      />
+                    </div>
+                    <div [ngClass]="{'hiddenCass':!app }" class="col s6">
+                      <img
+                        [id]="'showapp_' + i"
+                        (click)="editAppl($event.target.id)"
+                        class="edit-icon"
+                        src="../../../assets/pencil-edit-button.svg"
+                        alt="not working"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- col 12 close-->
+          </div>
+          <!-- <nordson-footer></nordson-footer> -->
+</div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--main close tag--->
+</div>

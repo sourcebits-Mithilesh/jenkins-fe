@@ -1,0 +1,203 @@
+<div>
+  <div>
+    <div class="dash-board comm-height">
+      <form
+        *ngIf="tempzoneForm"
+        name="form"
+        #form="ngForm"
+        [formGroup]="tempzoneForm"
+        (submit)="onSubmit()"
+      >
+        <div class="row row-pd-zero ">
+          <div class="col m12 s12 l9 xl9 p-0 margin-top-12 height-vh responsive-pad-color">
+          <div
+            class="setting-blue pad-right-left-0"
+            id="temperature"
+            style="padding-top: 15px;"
+          >
+            <div class="col s12 m12 l12 xl12">
+              <article class="temp-heading">
+                <h4 class="font-responsive" style="padding-left: 10px">{{ valueLanguage | languageFilter : 'Temperature Zones' : 'TEMPERATURE_ZONES' }}</h4>
+                <p class="right-align">
+                  <button
+                    type="submit"
+                    class="apply btn submit-bt"
+                    [disabled]="accessType === 1 || !tempzoneForm.dirty"
+                  >
+                    {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE' }}
+                  </button>
+                </p>
+              </article>
+              <div class="row">
+                <div class="col s12 m4 l4 xl4">
+                  <table class="set-light-blue table-one">
+                    <tr>
+                      <td colspan="2" class="temp-style padding-bt pd-bt-11">
+                        {{ valueLanguage | languageFilter : 'Global Set Point' : 'GLOBAL_SET_POINT' }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="padding-tp" width="50%">
+                        {{ valueLanguage | languageFilter : 'Set Point' : 'SET_POINT' }}
+                      </td>
+                      <td class="right-align padding-tp pd-bt-11">
+                        <label class="">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            name="full_name"
+                            (keypress)="preventalpha($event)"
+                            class="remove-arrows"
+                            formControlName="globalSetPoint"
+                            style="width: 66%;"
+                          />
+                        </label>
+                        <span class="min"><sup>o</sup>{{ TempUnits }}</span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col s12 m4 l4 xl4">
+                  <table class="set-light-blue table-one">
+                    <tr>
+                      <td colspan="2" class="temp-style padding-bt pd-bt-11">
+                        {{ valueLanguage | languageFilter : 'Tank' : 'TANK' }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="padding-tp" width="50%">{{ valueLanguage | languageFilter : 'Set Point' : 'SET_POINT' }}</td>
+                      <td class="right-align padding-tp pd-bt-11">
+                        <label class="">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            (keyup)="onKey($event, 'grid')"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            (keypress)="preventalpha($event)"
+                            class="remove-arrows"
+                            name="grid"
+                            formControlName="grid"
+                            style="width: 66%;"
+                          />
+                          <!-- <input maxlength="3" type="number" class="remove-arrows" name="grid" formControlName="grid" /> -->
+                          <span class="min"><sup>o</sup>{{ TempUnits }}</span>
+                        </label>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col s12 m4 l4 xl4">
+                  <table class="set-light-blue table-one">
+                    <tr>
+                      <td colspan="2" class="temp-style padding-bt pd-bt-11">
+                        {{ valueLanguage | languageFilter : 'Manifold' : 'MANIFOLD' }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="padding-tp" width="50%">{{ valueLanguage | languageFilter : 'Set Point' : 'SET_POINT' }}</td>
+                      <td class="right-align padding-tp pd-bt-11">
+                        <label class="">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            (keyup)="onKey($event, 'manifold')"
+                            formControlName="manifold"
+                            (keypress)="preventalpha($event)"
+                            class="remove-arrows"
+                            style="width: 66%;"
+                          />
+                          <span class="min"><sup>o</sup>{{ TempUnits }}</span>
+                        </label>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="row pad-btm-80">
+                <div class="col s12 m6 l6 xl6">
+                  <table
+                    class="set-light-blue hose-one"
+                    *ngFor="let hose of hoses; let i = index"
+                    
+                  >
+                    <tr *ngIf="hose">
+                      <td class="temp-style padding-bt">{{ valueLanguage | languageFilter : hose : hose }}</td>
+                      <td class="right-align padding-bt">
+                        <mat-slide-toggle
+                          name="heat"
+                          (change)="toogleHose($event, i + 1)"
+                          formControlName="toogle{{ i + 1 }}"
+                        ></mat-slide-toggle>
+                      </td>
+                    </tr>
+                    <tr *ngIf="hose" >
+                      <td class="padding-tp">{{ valueLanguage | languageFilter : 'Set Point' : 'SET_POINT' }}</td>
+                      <td class="right-align padding-tp">
+                        <label>
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            name="hose{{ i + 1 }}"
+                            formControlName="hose{{ i + 1 }}"
+                            (keypress)="preventalpha($event)"
+                          />
+                          <span class="min"><sup>o</sup>{{ TempUnits }}</span>
+                        </label>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col s12 m6 l6 xl6">
+                  <table
+                    class="set-light-blue hose-one"
+                    *ngFor="let applicator of applicators; let i = index"
+                  >
+                    <tr *ngIf="applicator">
+                      <td class="temp-style padding-bt">{{ valueLanguage | languageFilter : applicator : applicator }}</td>
+                      <td class="right-align padding-bt">
+                        <mat-slide-toggle
+                          name="heat"
+                          (change)="toogleApplicator($event, i + 1)"
+                          formControlName="app{{ i + 1 }}"
+                        ></mat-slide-toggle>
+                      </td>
+                    </tr>
+                    <tr *ngIf="applicator">
+                      <td class="padding-tp">
+                        {{ valueLanguage | languageFilter : 'Set Point' : 'SET_POINT' }}
+                      </td>
+                      <td class="right-align padding-tp">
+                        <label>
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            name="applicator{{ i + 1 }}"
+                            formControlName="applicator{{ i + 1 }}"
+                            (keypress)="preventalpha($event)"
+                            class="remove-arrows"
+                          />
+                        </label>
+                        <span class="min"><sup>o</sup>{{ TempUnits }}</span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <nordson-footer></nordson-footer> -->
+</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

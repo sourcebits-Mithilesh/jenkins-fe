@@ -1,0 +1,457 @@
+<div>
+  <div>
+    <div class="dash-board">
+      <form
+        *ngIf="tempSettingForm"
+        name="form"
+        #form="ngForm"
+        #aForm
+        [formGroup]="tempSettingForm"
+        (submit)="onSubmit()"
+      >
+        <div class="row row-pd-zero ">
+          <div class="col m12 s12 l9 xl9 p-0 bg-color-blue height-vh responsive-pad-color">
+          <div
+            class="margin-top-12 pad-right-left-0"
+            id="temperature"
+          >
+            <div class="col s12 m12 l12 xl12">
+              <article class="temp-heading" style="padding-top: 13px;">
+                <h4 class="font-responsive">{{ valueLanguage | languageFilter : 'Temperature Settings' : 'TEMPERATURE_SETTINGS' }}</h4>
+                <p class="right-align">
+                  <button
+                    class="apply btn submit-bt"
+                    type="submit"
+                    [disabled]="accessType === 1 || !tempSettingForm.dirty"
+                  >
+                    {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE' }}
+                  </button>
+                </p>
+                <toastr-notification></toastr-notification>
+              </article>
+              <div *ngIf="init">
+                <toastr-notification></toastr-notification>
+              </div>
+              <!--- left section-->
+              <div class="col s12 m6 l6 xl6">
+                <table class="set-light-blue table-one">
+                  <tr>
+                    <td class="temp-style padding-bt">{{ valueLanguage | languageFilter : 'SmartMelt' : 'SMARTMELT' }}</td>
+                    <td class="right-align padding-bt">
+                      <mat-slide-toggle
+                        [checked]="SmartMeltEnable"
+                        (change)="toogleSmartMeltEnable($event)"
+                        formControlName="SmartMeltEnable"
+                      ></mat-slide-toggle>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="">
+                      {{ valueLanguage | languageFilter : 'Time Delay' : 'TIME_DELAY' }}
+                    </td>
+                    <td class="right-align">
+                      <label class="">
+                        <input
+                        autocomplete="off"
+                          maxlength="3"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          class="remove-arrows"
+                          type="text"
+                          name="SmartMeltTime"
+                          pattern="\d*"
+                          formControlName="SmartMeltTime"
+                          (keypress)="preventalpha($event)"
+                        />
+                      </label>
+                      <span class="min">{{ valueLanguage | languageFilter : 'min' : 'MIN' }}</span>
+                      <div
+                        class="invalid"
+                        *ngIf="f.SmartMeltTime.errors?.max"
+                      ></div>
+                      <div
+                        class="invalid"
+                        *ngIf="f.SmartMeltTime.errors?.min"
+                      ></div>
+                      <div
+                        class="invalid"
+                        *ngIf="f.SmartMeltTime.errors?.maxlength"
+                      ></div>
+                      <div
+                        class="invalid"
+                        *ngIf="f.SmartMeltTime.errors?.required"
+                      ></div>
+                    </td>
+                  </tr>
+                </table>
+
+                <div
+                  class="table set-light-blue temp-css"
+                >
+                  <table class="table-two">
+                    <tr>
+                      <td class="temp-style">{{ valueLanguage | languageFilter : 'Global Temperature' : 'GLOBAL_TEMPERATURE' }}</td>
+                    </tr>
+                    <tr>
+                      <td class="pd-tp-bt">{{ valueLanguage | languageFilter : 'Heaters On Upon Startup' : 'HEATERS_ON_UPON_STARTUP' }}</td>
+                      <td class="right-align pd-tp-bt">
+                        <mat-slide-toggle
+                          name="heaterOnStartup"
+                          formControlName="heaterOnStartup"
+                          (change)="toogleHose($event)"
+                        ></mat-slide-toggle>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="pd-tp-bt">
+                        {{ valueLanguage | languageFilter : 'Over Temperature Threshold' : 'OVER_TEMPERATURE_THRESHOLD' }}
+                      </td>
+                      <td
+                        class="pd-tp-bt"
+                        style="padding-right: 0px;padding-left: 15px"
+                      >
+                        <label class="input">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            class="remove-arrows"
+                            type="text"
+                            name="otDelta"
+                            formControlName="OTDelta"
+                            (keypress)="preventalpha($event)"
+                          /><span class="min">°{{ TempUnits }}</span>
+                          <div
+                            class="invalid"
+                            *ngIf="f.OTDelta.errors?.max"
+                          ></div>
+                          <div
+                            class="invalid"
+                            *ngIf="f.OTDelta.errors?.min"
+                          ></div>
+                          <div
+                            class="invalid"
+                            *ngIf="f.OTDelta.errors?.maxlength"
+                          ></div>
+                          <div
+                            class="invalid"
+                            *ngIf="f.OTDelta.errors?.required"
+                          ></div>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="pd-tp-bt">
+                        {{ valueLanguage | languageFilter : 'Under Temperature Threshold' : 'UNDER_TEMPERATURE_THRESHOLD' }}
+                      </td>
+                      <td
+                        class="pd-tp-bt"
+                        style="padding-right: 0px;padding-left: 15px"
+                      >
+                        <label class="input">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            class="input remove-arrows"
+                            type="text"
+                            name="utDelta"
+                            formControlName="UTDelta"
+                            (keypress)="preventalpha($event)"
+                          />
+                          <span class="min">°{{ TempUnits }}</span>
+                          <div
+                            class="invalid"
+                            *ngIf="f.UTDelta.errors?.max"
+                          ></div>
+                          <div
+                            class="invalid"
+                            *ngIf="f.UTDelta.errors?.min"
+                          ></div>
+                          <div
+                            class="invalid"
+                            *ngIf="f.UTDelta.errors?.maxlength"
+                          ></div>
+                          <div
+                            class="invalid"
+                            *ngIf="f.UTDelta.errors?.required"
+                          ></div>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="pd-tp-bt">
+                        {{ valueLanguage | languageFilter : 'Temperature Setback' : 'TEMPERATURE_SETBACK' }}
+                      </td>
+                      <td
+                        class="pd-tp-bt"
+                        style="padding-right: 0px;padding-left: 15px"
+                      >
+                        <label>
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            class="input remove-arrows"
+                            type="text"
+                            name="StandbyDelta"
+                            formControlName="StandbyDelta"
+                            (keypress)="preventalpha($event)"
+                          /><span class="min">°{{ TempUnits }}</span>
+                          <div
+                            class="invalid"
+                            *ngIf="f.StandbyDelta.errors?.max"
+                          ></div>
+                          <div
+                            class="invalid"
+                            *ngIf="f.StandbyDelta.errors?.min"
+                          ></div>
+                          <div
+                            class="invalid"
+                            *ngIf="f.StandbyDelta.errors?.maxlength"
+                          ></div>
+                          <div
+                            class="invalid"
+                            *ngIf="f.StandbyDelta.errors?.required"
+                          ></div>
+                        </label>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!--- right section-->
+              <div class="col s12 m6 l6 xl6">
+                <table class="set-light-blue table-three">
+                  <tr>
+                    <td class="temp-style padding-bt">{{ valueLanguage | languageFilter : 'Setback Settings' : 'SETBACK_SETTINGS' }}</td>
+                  </tr>
+                  <tr>
+                    <td class="">{{ valueLanguage | languageFilter : 'Automatic System Setback' : 'AUTOMATIC_SYSTEM_SETBACK' }}</td>
+                    <td class="right-align ">
+                      <mat-slide-toggle
+                        name="autoStandbyEnable"
+                        formControlName="AutoStandbyEnable"
+                        (change)="toogleAuto($event)"
+                      ></mat-slide-toggle>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="">
+                      {{ valueLanguage | languageFilter : 'Automatic System Setback Source' : 'AUTOMATIC_SYSTEM_SETBACK_SOURCE' }}
+                    </td>
+                    <td class="" style="padding-left: 0px !important">
+                      <mat-form-field
+                        id="temp-setting-mat-select"
+                        [floatLabel]="'never'"
+                      >
+                        <mat-select
+                          panelClass="temp-setting-mat-select"
+                          disableOptionCentering
+                          formControlName="AutoStandbySource"
+                        >
+                          <mat-option [value]="1">{{ valueLanguage | languageFilter : 'I/O' : 'I_O' }}</mat-option>
+                          <mat-option [value]="2">{{ valueLanguage | languageFilter : 'FILL' : 'FILL' }}</mat-option>
+                          <mat-option [value]="3">{{ valueLanguage | languageFilter : 'FLOW' : 'FLOW' }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="">
+                      {{ valueLanguage | languageFilter : 'System Setback Delay' : 'SYATEM_SETBACK_DELAY' }}
+                    </td>
+                    <td
+                      class=""
+                      style="padding-left: 0px !important;padding-right: 0px"
+                    >
+                      <label>
+                        <input
+                        autocomplete="off"
+                          maxlength="4"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          class="remove-arrows input"
+                          type="text"
+                          name="AutoStandbyTime"
+                          formControlName="AutoStandbyTime"
+                          (keypress)="preventalpha($event)"
+                        /><span class="min">{{ valueLanguage | languageFilter : 'min' : 'MIN' }}</span>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoStandbyTime.errors?.max"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoStandbyTime.errors?.min"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoStandbyTime.errors?.maxlength"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoStandbyTime.errors?.required"
+                        ></div>
+                      </label>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="">{{ valueLanguage | languageFilter : 'Auto Heaters Off' : 'AUTO_HEATERS_OFF' }}</td>
+                    <td class="right-align ">
+                      <mat-slide-toggle
+                        name="AutoHeatersOffEnable"
+                        formControlName="AutoHeatersOffEnable"
+                        (change)="toogleHeater($event)"
+                      ></mat-slide-toggle>
+                    </td>
+                  </tr>
+                  <tr class="auto-heat">
+                    <td class="pd-tp-bt">
+                      {{ valueLanguage | languageFilter : 'Auto Heaters Off Time' : 'AUTO_HEATERS_OFF_TIME' }}
+                    </td>
+                    <td
+                      class=""
+                      style="padding-left: 0px !important;padding-right: 0px"
+                    >
+                      <label>
+                        <input
+                        autocomplete="off"
+                          maxlength="4"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          class="remove-arrows input"
+                          type="text"
+                          name="AutoHeatersOffTime"
+                          formControlName="AutoHeatersOffTime"
+                          (keypress)="preventalpha($event)"
+                        /><span class="min">{{ valueLanguage | languageFilter : 'min' : 'MIN' }}</span>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoHeatersOffTime.errors?.max"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoHeatersOffTime.errors?.min"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoHeatersOffTime.errors?.maxlength"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoHeatersOffTime.errors?.required"
+                        ></div>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr
+                    class=""
+                    style="border-top:1px solid rgba(13,67,109,0.3);"
+                  >
+                    <td class="padding-bt">{{ valueLanguage | languageFilter : 'Manual Setback - Auto Exit Time' : 'MANUAL_SETBACK_AUTO_EXIT_TIME' }}</td>
+                    <td class="right-align padding-bt">
+                      <mat-slide-toggle
+                        name="autoExitStandbyEnable"
+                        formControlName="AutoExitStandbyEnable"
+                        (change)="toogleAutoExit($event)"
+                      ></mat-slide-toggle>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="padding-tp">
+                      {{ valueLanguage | languageFilter : 'Auto Exit Time Delay' : 'AUTO_EXIT_TIME_DELAY' }}
+                    </td>
+                    <td
+                      class="padding-tp"
+                      style="padding-left: 0px !important;padding-right: 0px"
+                    >
+                      <label class="">
+                        <input
+                        autocomplete="off"
+                          maxlength="3"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          class="remove-arrows input"
+                          type="text"
+                          name="AutoExitStandbyTime"
+                          formControlName="AutoExitStandbyTime"
+                          (keypress)="preventalpha($event)"
+                        /><span class="min">{{ valueLanguage | languageFilter : 'min' : 'MIN' }}</span>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoExitStandbyTime.errors?.max"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoExitStandbyTime.errors?.min"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoExitStandbyTime.errors?.maxlength"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.AutoExitStandbyTime.errors?.required"
+                        ></div>
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+
+                <table class="set-light-blue table-four" style="margin-bottom: 70px;">
+                  <tr>
+                    <td class="temp-style">{{ valueLanguage | languageFilter : 'Ready Delay' : 'READY_DELAY' }}</td>
+                    <td class="right-align">
+                      <mat-slide-toggle
+                        name="blReadyDelayEnable"
+                        formControlName="blReadyDelayEnable"
+                        (change)="toogleReady($event)"
+                      ></mat-slide-toggle>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="padding-tp">
+                      {{ valueLanguage | languageFilter : 'Time Delay' : 'TIME_DELAY' }}
+                    </td>
+                    <td class="right-align padding-tp">
+                      <label>
+                        <input
+                        autocomplete="off"
+                          maxlength="3"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          class="remove-arrows"
+                          type="text"
+                          name="ReadyInterlockDelay"
+                          formControlName="ReadyInterlockDelay"
+                          (keypress)="preventalpha($event)"
+                        /><span class="min">{{ valueLanguage | languageFilter : 'min' : 'MIN' }}</span>
+                        <div
+                          class="invalid"
+                          *ngIf="f.ReadyInterlockDelay.errors?.max"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.ReadyInterlockDelay.errors?.min"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.ReadyInterlockDelay.errors?.maxlength"
+                        ></div>
+                        <div
+                          class="invalid"
+                          *ngIf="f.ReadyInterlockDelay.errors?.required"
+                        ></div>
+                      </label>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- col 12 close-->
+          </div>
+          <!-- <nordson-footer></nordson-footer> -->
+</div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--main close tag--->
+</div>

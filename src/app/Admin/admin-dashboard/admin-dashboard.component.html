@@ -1,0 +1,253 @@
+<div class="row">
+  <div
+    class="col s12 m12 l12 xl9 margin-top-12"
+    id="admin-dash"
+    style="background-color: rgb(249, 253, 255);"
+  >
+    <div class="admin-head">
+      <div class="admin-left left">
+        <article
+          class="admin-font"
+          style="padding-left: 9px;text-transform: capitalize"
+        >
+          Welcome {{ full_name }}
+        </article>
+      </div>
+      <p class="admin-p" style="padding-left: 9px;">
+        Thanks for using our offline utility, your dashboard is ready to use.
+      </p>
+      <div class="admin-right" class="right">
+        <div id="admin-select" class="right">
+          <mat-form-field [floatLabel]="'never'">
+            <mat-select
+              panelClass="superselect supersel"
+              [(value)]="selectedEquipment"
+              disableOptionCentering
+            >
+              <mat-option
+                *ngFor="let equipment of equipments"
+                value="{{ equipment.value }}"
+                >{{ equipment.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="admin-cards-1">
+      <!--cards-->
+      <div class="col s12 m12 l12 xl12 white-c ">
+        <div class="col s6 m3 l3 xl3 cursor-pointer">
+          <div class="card" (click)="activePendingUsers(6)">
+            <div class="card-content">
+              <p class="number">{{ usersCount }}</p>
+              <p class="count-text">Active Users</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s6 m3 l3 xl3">
+          <div class="card">
+            <div class="card-content">
+              <p class="number">{{ logCount }}</p>
+              <p class="count-text">Log Files</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s6 m3 l3 xl3">
+          <div class="card">
+            <div class="card-content">
+              <p class="number">{{ norfileCount }}</p>
+              <p class="count-text">Setting Files</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s6 m3 l3 xl3 cursor-pointer">
+          <div class="card" (click)="activePendingUsers(7)">
+            <div class="card-content">
+              <p class="number">{{ pendingUsers }}</p>
+              <p class="count-text">Pending Users</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end-->
+    <div class="row" id="admin-cards-2">
+      <!--graph-->
+      <div class="col s12 m12 l12 xl12">
+        <div class="card">
+          <div class="graph-head">
+            <div class="admin-left left"></div>
+            <p class="graph-p">Registration Stats</p>
+            <div class="admin-right" class="right">
+              <div id="admin-select-1" class="right">
+                <mat-form-field [floatLabel]="'never'">
+                  <mat-select
+                    [(value)]="selectedMonth"
+                    disableOptionCentering
+                    panelClass="superselect"
+                    (selectionChange)="onMonthChange($event)"
+                  >
+                    <mat-option
+                      *ngFor="let dateMonth of monthList"
+                      value="{{ dateMonth.value }}"
+                      >{{ dateMonth.Text }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div id="graph-container"></div>
+        </div>
+      </div>
+    </div>
+    <!--end-->
+    <div class="row" id="admin-cards-3">
+      <!--viewmore-->
+      <div class="col s12 m12 l12 xl12">
+        <div class="card">
+          <p class="graph-p" style="margin-top:23px;padding-bottom: 3px">
+            Recent Signups
+          </p>
+          <div>
+            <!-- <button class="export-btn-admin" style="float:right;margin-top: 23px;" (click)="exportCsv()">
+                Export Csv
+            </button> -->
+          </div>
+          <div id="admin-main-section" style="clear: both">
+            <div class="row admin-sub display-none-responsive">
+              <div class="col s12 m12 l12 xl12 center-align">
+                <div class="col s12 m3 l3 xl3 border-right">
+                  <article class="admin-header-font t-center">
+                    Full name
+                  </article>
+                </div>
+                <div class="col s12 m2 l2 xl2 border-right pad-0-responsive">
+                  <article class="admin-header-font t-center">
+                    COMPANY TYPE
+                  </article>
+                </div>
+                <div class="col s12 m3 l3 xl3 border-right">
+                  <article class="admin-header-font t-center">COUNTRY</article>
+                  <div class=""></div>
+                </div>
+                <div class="col s12 m2 l2 xl2 border-right">
+                  <article class="admin-header-font t-center">DATE</article>
+                </div>
+                <div class="col s12 m2 l2 xl2">
+                  <article class="admin-header-font t-center">STATUS</article>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div
+                class="col s12 m12 l12 xl12 center-align cursor-pointer hover-list"
+                id="admin-user-padding"
+                *ngFor="let rs of recentSignups; let i = index"
+              >
+                <div
+                  class="col s12 m12 l12 xl12 center-align"
+                  (click)="recentUser(rs)"
+                >
+                  <div class="col s12 m3 l3 xl3">
+                    <article class="display-responsive">
+                      Full Name
+                    </article>
+                    <article class="admin-header-font-2">
+                      {{ rs.full_name }}
+                    </article>
+                  </div>
+                  <div class="col s12 m2 l2 xl2">
+                    <article class="display-responsive">
+                      Company Type
+                    </article>
+                    <article class="admin-header-font-2">
+                      {{ rs.company_type }}
+                    </article>
+                  </div>
+                  <div class="col s12 m3 l3 xl3">
+                    <article class="display-responsive">
+                      Country
+                    </article>
+                    <article class="admin-header-font-2">
+                      {{ rs.country }}
+                    </article>
+                  </div>
+                  <div class="col s12 m2 l2 xl2">
+                    <article class="display-responsive">
+                      Date
+                    </article>
+                    <article class="admin-header-font-2">
+                      {{ rs.Date.substr(0, 10) }}
+                    </article>
+                  </div>
+                  <div class="col s12 m2 l2 xl2" style="position: relative">
+                    <article class="display-responsive">
+                      Status
+                    </article>
+                    <article class="admin-header-font-2">
+                      {{ user_status[rs.status] }}
+                    </article>
+                  </div>
+                </div>
+                <span style="position: relative">
+                  <span class="pos-icon">
+                    <article
+                      class="admin-header-font-2 pad-admin"
+                      style="text-align: right"
+                      style="cursor: pointer"
+                      [matMenuTriggerFor]="menu"
+                    >
+                      <img src="../../../assets/img/icon/3dots.svg" />
+                    </article>
+                    <mat-menu
+                      #menu="matMenu"
+                      panelClass="adminmenu"
+                      class="adminmenu"
+                      [overlapTrigger]="false"
+                      xPosition="before"
+                    >
+                      <button
+                        *ngIf="rs.status == 1"
+                        (click)="blockUser(rs.id, i, rs.status)"
+                        mat-menu-item
+                      >
+                        Block User
+                      </button>
+                      <button
+                        *ngIf="rs.status == 2"
+                        (click)="unblockUser(rs.id, i, rs.status)"
+                        mat-menu-item
+                      >
+                        Unblock User
+                      </button>
+                      <div *ngIf="(rs.status==0||rs.status==3) && rs.email"
+                        (click)="activateUser(rs.id, i, rs.status)"
+                        mat-menu-item
+                      >
+                        Activate user
+                      </div>
+                      <div
+                        *ngIf="rs.status!==3"
+                        (click)="deleteUser(rs.id, i, rs.status)"
+                        mat-menu-item
+                      >
+                        Remove user
+                      </div>
+                    </mat-menu>
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            <div class="admin-user-view">
+              <a routerLink="/Admin/admin-users">VIEW MORE</a>
+            </div>
+          </div>
+        </div>
+        <!--end-->
+      </div>
+    </div>
+  </div>
+</div>

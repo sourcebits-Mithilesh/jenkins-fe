@@ -1,0 +1,75 @@
+.cont {
+  display: inline-block;
+  position: relative;
+  padding-left: 10px;
+  top: -4px;
+  cursor: pointer;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.cont input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+}
+.checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 18px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 2px solid rgba(0, 0, 0, 0.54);
+  transform: scale(0.8);
+}
+.cont input:checked ~ .checkmark {
+  background-color: #ffffff;
+  transform: scale(0.8);
+}
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.cont input:checked ~ .checkmark:after {
+  display: block;
+}
+.cont .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid #000000;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+#font-icon {
+  color: rgb(122, 122, 122);
+  position: relative;
+  float: right;
+  top: -41px;
+}
+.error,
+.invalid {
+  color: red;
+}
+.margin-right-10{
+  margin-right:-10px;
+}
+@-moz-document url-prefix() {
+  .input-firefox {
+      background-color:none !important;
+  }
+}
+@media only screen and (max-width: 500px) {
+  #font-icon {
+    left: -15px;
+  }
+}

@@ -1,0 +1,179 @@
+.continue p {
+  color: #000000;
+  font-family: Roboto;
+  font-size: 14px;
+  float: left;
+  margin: 0px;
+  text-align: right;
+  padding-right: 23px;
+}
+.continue p span {
+  color: #000000;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+}
+.cancel {
+  color: #000000;
+  font-family: 'Roboto';
+  font-size: 13px;
+  background: none;
+}
+.invalid {
+  color: red;
+}
+.brand-logo img {
+  width: 250px;
+}
+::ng-deep .section {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+  display: block;
+  float: right;
+  padding: 16px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #ffffff;
+  background-image: none;
+  word-break: normal;
+  height: 62px;
+  width: 312px;
+  border-radius: 5px !important;
+  border: 1px solid #0081c6;
+  margin-right: -10px;
+  font-family: Roboto;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+  font-weight: normal !important;
+}
+
+.tooltip-example {
+  text-align: center;
+  padding: 0 50px;
+}
+.tooltip-example [tooltip] {
+  display: inline-block;
+  margin: 50px 20px;
+  width: 180px;
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  line-height: 50px;
+  text-align: center;
+}
+.ng-tooltip {
+  position: absolute;
+  max-width: 150px;
+  font-size: 14px;
+  text-align: center;
+  color: #f8f8f2;
+  padding: 3px 8px;
+  background: #282a36;
+  border-radius: 4px;
+  z-index: 1000;
+  opacity: 0;
+}
+.ng-tooltip:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+}
+.ng-tooltip-top:after {
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-color: black transparent transparent transparent;
+}
+.ng-tooltip-bottom:after {
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-color: transparent transparent black transparent;
+}
+.ng-tooltip-left:after {
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-color: transparent transparent transparent black;
+}
+.ng-tooltip-right:after {
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-color: transparent black transparent transparent;
+}
+.ng-tooltip-show {
+  opacity: 1;
+}
+::ng-deep #pro-blue-flex .mat-form-field-infix {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 16px;
+  letter-spacing: 0.15px;
+  line-height: 39px;
+  /* padding: 16px; */
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  font-weight: normal;
+  height: 53px !important;
+}
+
+.text-above {
+  z-index: 1;
+  position: relative;
+  background: #fff;
+  top: 9px;
+  left: 10px;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: 'Roboto';
+  font-size: 12px;
+  line-height: 16px;
+  padding-left: 6px;
+  letter-spacing: 0.4px;
+  display: inline-block;
+  z-index: 9;
+}
+
+::ng-deep #pro-blue-flex .mat-form-field-label .mat-label {
+  position: relative;
+  left: 14px;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  visibility: hidden;
+  height: 0;
+}
+::ng-deep #equipment .mat-select-arrow-wrapper {
+  position: relative;
+  left: -12px;
+}
+::ng-deep .mat-placeholder-required {
+  visibility: hidden;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: rgba(0, 0, 0, 0.54);
+}
+.text-area {
+  width: 314px !important;
+  height: 60px !important;
+  font-size: 16px !important;
+  padding-top: 14px !important;
+}
+.text-area:focus {
+  outline: none;
+}

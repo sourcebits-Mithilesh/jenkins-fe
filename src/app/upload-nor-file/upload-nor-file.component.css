@@ -1,0 +1,100 @@
+/* selct box  customiztion  */
+
+::ng-deep .mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+
+::ng-deep .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+::ng-deep .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+
+#temperature table tr input {
+  height: 35px;
+  width: 96px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #fff;
+  left: 10px;
+}
+
+.auto-heat td {
+  /* border: 1px solid red; */
+  padding-bottom: 18px;
+}
+
+.set-sel {
+  height: 35px;
+  font-size: 15px;
+
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #ffffff;
+  display: inline-block;
+  width: 100%;
+}
+.global-set {
+  width: 100%;
+  display: inline-block;
+  margin-top: 15%;
+  margin-left: 7%;
+  margin-bottom: 4%;
+  white-space: nowrap;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+}
+.hose-one tr + tr td {
+  padding-right: 9%;
+}
+.padding-tp {
+  padding-top: 0px !important;
+}
+.hose-one td {
+  padding: 15px 6% 15px 4%;
+}
+table.set-light-blue.hose-one {
+  margin-bottom: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-left {
+    padding-left: 0;
+  }
+  .form-right {
+    padding-right: 0;
+  }
+}
+.table-one {
+  margin-bottom: 16px;
+}
+div#temperature {
+  overflow-y: scroll;
+}

@@ -1,0 +1,491 @@
+<div>
+  <div class="row">
+<div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+    <div class="setting-blue-zone margin-top-12">
+      <div class="row">
+        <div class="col m12 s12 l12\ xl12">
+          <article class="temp-heading pad-tp-15">
+            <h4 class="zone-heading font-responsive" style="padding-left:13px"><a routerLink="/tools/maintenance" style="color: #ffffff;">Maintenance Schedule</a> › Active Maintenance Reminder</h4>
+          </article>
+          <div class="row">
+            <div class="col s12 m12 l12 xl12">
+              <div class="card-applicator">
+                <div class="row">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="row table-row table-head">
+                      <div class="">
+                        <div class="col s4 m4 l4 xl4 text-transform">
+                          List
+                        </div>
+                        <div class="col s4 m4 l4 xl4 text-transform">
+                          Due
+                        </div>
+                        <div class="col s4 m4 l4 xl4">
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div *ngIf="!loader else loading">
+                      
+                        <mat-accordion id="maintenance-accordion" >
+                          <mat-expansion-panel hideToggle="true" class="maintenance-status" #example>
+                            <mat-expansion-panel-header>
+                              <div class="col s4 m4 l4 xl4 autoheight">
+                                {{pumpTimerName}}
+                              </div>
+                              <div class="col s4 m4 l4 xl4 autoheight">
+                                {{pumpTimerSet[5]/60 | number:'1.0-0'}}Hr
+                              </div>
+                              <div class="col s4 m4 l4 xl4 autoheight">
+                                {{pumpTimerActivity}}
+                              </div>
+                              <span *ngIf="!example.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="example.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                            </mat-expansion-panel-header>
+                              <div >
+                                {{pumpTimerNotes}}
+                              </div>
+                              <div class="btn-align-right pad-bottom-10 autoheight">
+                                <button mat-raised-button color="primary" (click)="editMaintenanceItem(pumpTitle,pumpTimerName,pumpTimerSet,pumpTimerActivity,pumpTimerNotes,pumpIntervalMin,pumpIntervalMax)">Edit Settings</button>
+                              </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel class="maintenance-status" hideToggle="true" #hydraulic>
+                              <mat-expansion-panel-header>
+                                <div class="col s12 m4 l4 xl4 autoheight">
+                                  {{hydraulicFilterTimerName}}
+                                </div>
+                                <div class="col s12 m4 l4 xl4 autoheight">
+                                  {{hydraulicFilterTimerSet[5]/60  | number:'1.0-0'}}Hr
+                                </div>
+                                <div class="col s12 m4 l4 xl4 autoheight">
+                                  {{hydraulicFilterTimerActivity}}
+                                </div>
+                                <span *ngIf="!hydraulic.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="hydraulic.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                              </mat-expansion-panel-header>
+                                <div >
+                                  {{hydraulicFilterTimerNotes}}
+                                </div>
+                                <div class="btn-align-right pad-bottom-10 autoheight">
+                                  <button mat-raised-button color="primary" (click)="editMaintenanceItem(hydraulicFilterTitle,hydraulicFilterTimerName,hydraulicFilterTimerSet,hydraulicFilterTimerActivity,hydraulicFilterTimerNotes,hydraulicFilterIntervalMin,hydraulicFilterIntervalMax)">Edit Settings</button>
+                                </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel class="maintenance-status" hideToggle="true" #tank>
+                              <mat-expansion-panel-header>
+                                <div class="col s4 m4 l4 xl4 autoheight">
+                                  {{tankTimerName}}
+                                </div>
+                                <div class="col s4 m4 l4 xl4 autoheight">
+                                  {{tankTimerSet[5]/60  | number:'1.0-0'}}Hr
+                                </div>
+                                <div class="col s4 m4 l4 xl4 autoheight">
+                                  {{tankTimerActivity}}
+                                </div>
+                                <span *ngIf="!tank.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="tank.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                              </mat-expansion-panel-header>
+                                <div >
+                                  {{tankTimerNotes}} 
+                                </div>
+                                <div class="btn-align-right pad-bottom-10">
+                                  <button mat-raised-button color="primary" (click)="editMaintenanceItem(tankTitle,tankTimerName,tankTimerSet,tankTimerActivity,tankTimerNotes,tankIntervalMin,tankIntervalMax)">Edit Settings</button>
+                                </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel class="maintenance-status" hideToggle="true" #fill>
+                              <mat-expansion-panel-header>
+                                <div class="col s4 m4 l4 xl4">
+                                  {{fillSystemTimerName}}
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                  {{fillSystemTimerSet[5]/60  | number:'1.0-0'}}Hr
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                  {{fillSystemTimerActivity}}
+                                </div>
+                                <span *ngIf="!fill.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="fill.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                              </mat-expansion-panel-header>
+                                <div >
+                                  {{fillSystemTimerNotes}}
+                                </div>
+                                <div class="btn-align-right pad-bottom-10">
+                                  <button mat-raised-button color="primary" (click)="editMaintenanceItem(fillSystemTitle,fillSystemTimerName,fillSystemTimerSet,fillSystemTimerActivity,fillSystemTimerNotes,fillSystemIntervalMin,fillSystemIntervalMax)">Edit Settings</button>
+                                </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel class="maintenance-status" hideToggle="true" #service>
+                            <mat-expansion-panel-header>
+                              <div class="col s4 m4 l4 xl4">
+                                {{serviceAlertTimerName}}
+                              </div>
+                              <div class="col s4 m4 l4 xl4">
+                                {{serviceAlertTimerSet[5]/60 | number:'1.0-0'}}Hr
+                              </div>
+                              <div class="col s4 m4 l4 xl4">
+                                {{serviceAlertTimerActivity}}
+                              </div>
+                              <span *ngIf="!service.expanded" >
+                                <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                  <path fill="none" d="M0 0h24v24H0V0z" />
+                                  <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                </svg>
+                              </span>
+                              <span *ngIf="service.expanded">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                  <path fill="none" d="M0 0h24v24H0V0z" />
+                                  <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                </svg>
+                              </span>
+                            </mat-expansion-panel-header>
+                              <div >
+                                {{serviceAlertTimerNotes}}
+                              </div>
+                              <div class="btn-align-right pad-bottom-10">
+                                <button mat-raised-button color="primary" (click)="editMaintenanceItem(serviceAlertTitle,serviceAlertTimerName,serviceAlertTimerSet,serviceAlertTimerActivity,serviceAlertTimerNotes,serviceAlertIntervalMin,serviceAlertIntervalMax)">Edit Settings</button>
+                              </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel class="maintenance-status" hideToggle="true" #hose>
+                              <mat-expansion-panel-header>
+                                <div class="col s4 m4 l4 xl4">
+                                  Hose
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <span *ngIf="!hose.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="hose.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                              </mat-expansion-panel-header>
+                              <div *ngFor="let hose of hoseArray let i=index">
+                                <div class="row">
+                                  <div class="col s4 m4 l4 xl4">
+                                      {{hose.Name}}
+                                  </div>
+                                  <div class="col s4 m4 l4 xl4">
+                                      {{hose.TimerSet[5]/60  | number:'1.0-0'}}Hr
+                                  </div>
+                                  <div class="col s4 m4 l4 xl4">
+                                      {{hose.Activity}}
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col s12 m12 l12 xl12">
+                                      {{hose.Notes}}
+                                  </div> 
+                                </div>
+                                <div class="btn-align-right pad-bottom-10">
+                                  <button mat-raised-button color="primary" (click)="editMaintenanceItem(hose.title,hose.Name,hose.TimerSet,hose.Activity,hose.Notes,hose.intervalMin,hose.intervalMax)">Edit Settings</button>
+                                  </div>
+                                  <div *ngIf="i < hoseArray.length-1"><hr></div>
+                              </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel class="maintenance-status" hideToggle="true" #module>
+                              <mat-expansion-panel-header>
+                                <div class="col s4 m4 l4 xl4">
+                                  Module
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <span *ngIf="!module.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="module.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                              </mat-expansion-panel-header>
+                              <div *ngFor="let module of moduleArray let i=index">
+                                  <div class="row">
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{module.Name}}
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{module.TimerSet[5]/60  | number:'1.0-0'}}Hr
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{module.Activity}}
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col s12 m12 l12 xl12">
+                                        {{module.Notes}}
+                                    </div> 
+                                  </div>
+                                  <div class="btn-align-right pad-bottom-10">
+                                    <button mat-raised-button color="primary" (click)="editMaintenanceItem(module.title,module.Name,module.TimerSet,module.Activity,module.Notes,module.intervalMin,module.intervalMax)">Edit Settings</button>
+                                    </div>
+                                    <div *ngIf="i < moduleArray.length-1"><hr></div>
+                                </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel class="maintenance-status" hideToggle="true" #solenoid>
+                              <mat-expansion-panel-header>
+                                <div class="col s4 m4 l4 xl4">
+                                  Solenoid
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <span *ngIf="!solenoid.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="solenoid.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                              </mat-expansion-panel-header>
+                              <div *ngFor="let solenoid of solenoidArray let i=index">
+                                  <div class="row">
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{solenoid.Name}}
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{solenoid.TimerSet[5]/60  | number:'1.0-0'}}Hr
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{solenoid.Activity}}
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col s12 m12 l12 xl12">
+                                        {{solenoid.Notes}}
+                                    </div> 
+                                  </div>
+                                  <div class="btn-align-right pad-bottom-10">
+                                    <button mat-raised-button color="primary" (click)="editMaintenanceItem(solenoid.title,solenoid.Name,solenoid.TimerSet,solenoid.Activity,solenoid.Notes,solenoid.intervalMin,solenoid.intervalMax)">Edit Settings</button>
+                                    </div>
+                                    <div *ngIf="i < solenoidArray.length-1"><hr></div>
+                                </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel class="maintenance-status" hideToggle="true" #nozzle>
+                              <mat-expansion-panel-header>
+                                <div class="col s4 m4 l4 xl4">
+                                  Nozzle
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <span *ngIf="!nozzle.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="nozzle.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                              </mat-expansion-panel-header>
+                              <div *ngFor="let nozzle of nozzleArray let i=index">
+                                  <div class="row">
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{nozzle.Name}}
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{nozzle.TimerSet[5]/60  | number:'1.0-0'}}Hr
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{nozzle.Activity}}
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col s12 m12 l12 xl12">
+                                        {{nozzle.Notes}}
+                                    </div> 
+                                  </div>
+                                  <div class="btn-align-right pad-bottom-10">
+                                    <button mat-raised-button color="primary" (click)="editMaintenanceItem(nozzle.title,nozzle.Name,nozzle.TimerSet,nozzle.Activity,nozzle.Notes,nozzle.intervalMin,nozzle.intervalMax)">Edit Settings</button>
+                                    </div>
+                                    <div *ngIf="i < nozzleArray.length-1"><hr></div>
+                                </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel class="maintenance-status" hideToggle="true" #filter>
+                              <mat-expansion-panel-header>
+                                <div class="col s4 m4 l4 xl4">
+                                  Inline Filter
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <span *ngIf="!filter.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="filter.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                              </mat-expansion-panel-header>
+                              <div *ngFor="let inlineFilter of inlineFilterArray let i=index">
+                                  <div class="row">
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{inlineFilter.Name}}
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{inlineFilter.TimerSet[5]/60  | number:'1.0-0'}}Hr
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{inlineFilter.Activity}}
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col s12 m12 l12 xl12">
+                                        {{inlineFilter.Notes}}
+                                    </div> 
+                                  </div>
+                                  <div class="btn-align-right pad-bottom-10">
+                                    <button mat-raised-button color="primary" (click)="editMaintenanceItem(inlineFilter.title,inlineFilter.Name,inlineFilter.TimerSet,inlineFilter.Activity,inlineFilter.Notes,inlineFilter.intervalMin,inlineFilter.intervalMax)">Edit Settings</button>
+                                    </div>
+                                    <div *ngIf="i < inlineFilterArray.length-1"><hr></div>
+                                </div>
+                          </mat-expansion-panel>
+                          <mat-expansion-panel hideToggle="true" class="maintenance-status" #general>
+                              <mat-expansion-panel-header>
+                                <div class="col s4 m4 l4 xl4">
+                                  General
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <div class="col s4 m4 l4 xl4">
+                                </div>
+                                <span *ngIf="!general.expanded" >
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                                <span *ngIf="general.expanded">
+                                  <svg xmlns="http://www.w3.org/2000/svg" style="fill:#0081C5" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="none" d="M0 0h24v24H0V0z" />
+                                    <path d="M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                                  </svg>
+                                </span>
+                              </mat-expansion-panel-header>
+                              <div *ngFor="let general of generalArray let i=index">
+                                  <div class="row">
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{general.Name}}
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{general.TimerSet[5]/60  | number:'1.0-0'}}Hr
+                                    </div>
+                                    <div class="col s4 m4 l4 xl4">
+                                        {{general.Activity}}
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col s12 m12 l12 xl12">
+                                        {{general.Notes}}
+                                    </div> 
+                                  </div>
+                                  <div class="btn-align-right pad-bottom-10">
+                                    <button mat-raised-button color="primary" (click)="editMaintenanceItem(general.title,general.Name,general.TimerSet,general.Activity,general.Notes,general.intervalMin,general.intervalMax)">Edit Settings</button>
+                                  </div>
+                                  <div *ngIf="i < generalArray.length-1"><hr></div>
+                                </div>
+                          </mat-expansion-panel>
+                        </mat-accordion>
+                        <div class="btn-align-right mrg-btn s12">
+                            <a class="cursor-pointer btn-custom mrg-right" routerLink="/tools/maintenance-history">
+                          <!-- <button class="btn-custom mrg-right"> -->
+                            VIEW HISTORY
+                          <!-- </button> -->
+                          </a>
+                          <span *ngIf="generalArray.length < 10">
+                            <a class="cursor-pointer btn-custom s12" (click)="addMaintenanceItem()">
+                            <!-- <button class="btn-custom" > -->
+                              ADD ITEM 
+                            <!-- </button> -->
+                            </a>
+                          </span>
+                        </div>
+                      </div>
+                      <ng-template #loading>
+                          <div class="col s12 m12 l12 xl12 config-loader pt-25">
+                              <img src="../../../assets/Spinner.gif" alt="not working">
+                          </div>
+                        </ng-template>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- <nordson-footer></nordson-footer> -->
+</div>
+  </div>
+</div>

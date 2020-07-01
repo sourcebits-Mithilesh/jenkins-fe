@@ -1,0 +1,424 @@
+<form
+  name="form"
+  #form="ngForm"
+  (submit)="onSubmit()"
+  [formGroup]="edituserForm"
+>
+  <div class="dash-board">
+    <div>
+      <div class="col m12 s12 l12 xl12 profile-area"
+        *ngIf="profile"
+        style="padding: 50px 60px; position: relative"
+      >
+        <article>
+          <div class="row">
+            <div *ngIf="!inputIsOn" class="col m12 s12 l12 xl12 profile">
+              {{ valueLanguage | languageFilter : 'Profile' : 'PROFILE' }}
+            </div>
+            <div *ngIf="inputIsOn" class="col m12 s12 l12 xl12 profile">
+              {{ valueLanguage | languageFilter : 'Edit Profile' : 'EDIT_PROFILE' }}
+            </div>
+          </div>
+        <div class="row">
+          <div *ngIf="!inputIsOn" class="col m12 s12 l12 xl12 pad-top">
+            <div class="caption">{{ valueLanguage | languageFilter : 'Full Name' : 'FULL_NAME' }}</div>
+            <div
+              class="sub-caption pad-top-8"
+              style="text-transform: capitalize"
+            >
+              {{profile.full_name}}
+            </div>
+          </div>
+          <div
+            *ngIf="inputIsOn"
+            class="col m12 s12 l12 xl12 pad-top-30"
+            style="position: relative"
+          >
+            <label
+              class="text-above"
+              style="position: absolute;top: 21px;left: 16px"
+              >{{ valueLanguage | languageFilter : 'Full Name' : 'FULL_NAME' }}
+              <sup></sup>
+            </label>
+            <input
+            autocomplete="off"
+              type="text"
+              formControlName="full_name"
+              id="full-name"
+              class="form-control border-blue"
+              name="full-name"
+              required
+              style="height: 56px;width: 265px;"
+            />
+          <div
+            class="invalid"
+            *ngIf="f.full_name.invalid &&
+                f.full_name.touched && f.full_name.errors.required"
+          >
+            {{ valueLanguage | languageFilter : 'Full name is required!' : 'FULL_NAME_REQUIRED' }}
+          </div>
+          <div class="invalid" *ngIf="f.full_name.errors?.pattern">
+            {{ valueLanguage | languageFilter : 'Please enter a valid full name' : 'ENTER_FULL_NAME' }}
+          </div>
+        </div>
+      </div>
+
+      </article>
+
+        <article>
+          <div class="row pad-top">
+            <div *ngIf="!inputIsOn" class="col m12 s12 l6 xl6">
+              <div>
+                <div class="caption">{{ valueLanguage | languageFilter : 'Email' : 'EMAIL' }}</div>
+                <div class="sub-caption pad-top-8">{{profile.email}}</div>
+              </div>
+            </div>
+            <div *ngIf="inputIsOn" class="col m12 s12 l6 xl6">
+              <div>
+                <div class="caption">{{ valueLanguage | languageFilter : 'Email' : 'EMAIL' }}</div>
+                <div class="sub-caption pad-top-8">{{profile.email}}</div>
+              </div>
+            </div>
+            <div class="col m12 s12 l6 xl6 responsive-pad-top">
+              <div *ngIf="!inputIsOn">
+                <div class="caption">{{ valueLanguage | languageFilter : 'Country' : 'COUNTRY' }}</div>
+                <div class="sub-caption pad-top-8">{{profile.country}}</div>
+              </div>
+
+              <div
+                *ngIf="inputIsOn"
+                class="selectdiv"
+                style="position:relative"
+              >
+                <label
+                  class="text-above"
+                  style="position:absolute;top: -8px;left: 8px;z-index:1"
+                  >{{ valueLanguage | languageFilter : 'Country' : 'COUNTRY' }}
+                  <sup></sup>
+                </label>
+                <mat-form-field id="mat-user-profile" [floatLabel]="'never'">
+                  <mat-label value="" style="padding-left: 15px;color: rgba(0,0,0,.42);">{{ valueLanguage | languageFilter : 'Select Country' : 'SELECT_COUNTRY' }}</mat-label>
+                  <mat-select
+                    panelClass="matuserprofile"
+                    class="browser-default"
+                    formControlName="country"
+                    disableOptionCentering
+                    (selectionChange)="setCountryCode($event.value)"
+                  >
+                    <mat-option
+                      *ngFor="let country of countries.country"
+                      [value]="country.name"
+                    >
+                      {{ country.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div
+                  class="invalid"
+                  *ngIf="f.country.invalid &&
+                                f.country.touched && f.country.errors?.required"
+                >
+                  {{ valueLanguage | languageFilter : 'Country name is required!' : 'COUNTRY_REQUIRED' }}
+                </div>
+              </div> 
+            </div>
+          </div>
+          <div class="row pad-top" *ngIf="role!=1">
+            <div class="col m12 s12 l6 xl6">
+              <div *ngIf="!inputIsOn">
+                <div class="caption">{{ valueLanguage | languageFilter : 'Phone Number' : 'PHONE_NUMBER' }}</div>
+                <div class="sub-caption pad-top-8">
+                  <span *ngIf="profile.mobile_number">
+                    {{countryCode}}
+                    <span>{{profile.mobile_number.slice(0,3)}}</span
+                    >-<span>{{profile.mobile_number.slice(3,6)}}</span>-<span
+                      >{{profile.mobile_number.slice(6)}}</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div *ngIf="inputIsOn" class="" style="position:relative">
+                <label
+                  class="text-above"
+                  style="position: absolute;top: -8px;left: 8px"
+                  >{{ valueLanguage | languageFilter : 'Phone Number' : 'PHONE_NUMBER' }}
+                  <sup></sup>
+                </label>
+                <input
+                autocomplete="off"
+                  type="text"
+                  formControlName="mobile_number"
+                  id="phone"
+                  class="form-control border-blue phone-disabled"
+                  name="phone"
+                  required
+                  style="    height: 56px;
+                  width: 207px;
+                  padding-left: 70px !important;font-size: 15px !important;"
+                 [attr.disabled]="disablePhone ? true : null"
+                />
+                <div style="position: relative;
+                 left: 5%;
+                 top: -47px;font-size: 15px;width: 50px;">{{countryCode}} </div>
+                <div
+                  class="invalid mar-top-25"
+                  *ngIf="f.mobile_number.invalid &&
+                                f.mobile_number.touched && f.mobile_number.errors?.required"
+                >
+                  {{ valueLanguage | languageFilter : 'Phone is required!' : 'PHONE_REQUIRED' }}
+                </div>
+                <div class="invalid mar-top-25" *ngIf="f.mobile_number.errors?.pattern">
+                  {{ valueLanguage | languageFilter : 'Phone is not valid' : 'PHONE_NOT_VALID' }}
+                </div>
+              </div>
+            </div>
+            <div
+              class="col m12 s12 l6 xl6 responsive-pad-top"
+              *ngIf="role!=2 && role!=1 && role!=3"
+            >
+              <div *ngIf="!inputIsOn">
+                <div class="caption">{{ valueLanguage | languageFilter : 'Plant Name' : 'PLANT_NAME' }}</div>
+                <div class="sub-caption pad-top-8">{{profile.plant}}</div>
+              </div>
+              <div *ngIf="inputIsOn" class="" style="position:relative">
+                <label
+                  class="text-above"
+                  style="position:absolute;top: -8px;left: 8px"
+                  >{{ valueLanguage | languageFilter : 'Plant Name' : 'PLANT_NAME' }}
+                  <sup></sup>
+                </label>
+                <input
+                autocomplete="off"
+                  type="text"
+                  formControlName="plant"
+                  id="plant-name"
+                  class="form-control border-blue"
+                  style="height: 56px;width: 265px;"
+                />
+                <div class="invalid" *ngIf="f.plant.errors?.pattern">
+                  {{ valueLanguage | languageFilter : 'Please enter a valid Plant' : 'ENTER_PLANT_NAME' }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pad-top" *ngIf="role!=1">
+            <div class="col m12 s12 l6 xl6">
+              <div *ngIf="!inputIsOn">
+                <div class="caption">{{ valueLanguage | languageFilter : 'Company Name' : 'COMPANY_NAME' }}</div>
+                <div class="sub-caption pad-top-8">
+                  {{profile.company_name}}
+                </div>
+              </div>
+              <div *ngIf="inputIsOn" class="" style="position:relative">
+                <label
+                  class="text-above"
+                  style="position:absolute;top: -8px;left: 8px"
+                  >{{ valueLanguage | languageFilter : 'Company Name' : 'COMPANY_NAME' }}
+                  <sup></sup>
+                </label>
+                <input
+                  autocomplete="off"
+                  type="text"
+                  formControlName="company_name"
+                  id="company-name"
+                  class="form-control border-blue"
+                  required
+                  style="height: 56px;width: 265px;"
+                />
+                <div
+                  class="invalid"
+                  *ngIf="f.company_name.touched && f.company_name.invalid && f.company_name.errors?.required"
+                >
+                  {{ valueLanguage | languageFilter : 'Company Name is required!' : 'COMPANY_NAME_REQUIRED!' }}
+                </div>
+                <div class="invalid" *ngIf="f.company_name.errors?.pattern">
+                  {{ valueLanguage | languageFilter : 'Please enter a valid Company name' : 'ENTER_COMPANY_NAME' }}
+                </div>
+              </div>
+            </div>
+            <div
+              class="col m12 s12 l6 xl6 responsive-pad-top"
+              *ngIf="role!=2 && role!=1 && role!=3"
+            >
+              <div *ngIf="!inputIsOn">
+                <div class="caption">{{ valueLanguage | languageFilter : 'Company Type' : 'COMPANY_TYPE' }}</div>
+                <div class="sub-caption pad-top-8">
+                  {{profile.company_type}}
+                </div>
+              </div>
+
+              <div
+                *ngIf="inputIsOn"
+                class="selectdiv"
+                style="position:relative"
+              >
+                <label
+                  class="text-above"
+                  style="position:absolute;top: -8px;left: 8px;z-index: 1"
+                  >{{ valueLanguage | languageFilter : 'Company Type' : 'COMPANY_TYPE' }}
+                  <sup></sup>
+                </label>
+                <mat-form-field id="mat-user-profile-0" [floatLabel]="'never'">
+                  <mat-label value="select">{{ valueLanguage | languageFilter : 'Select company type' : 'SELECT_COMPANY_TYPE' }}</mat-label>
+
+                  <mat-select
+                    class="browser-default"
+                    panelClass="matuserprofile-0"
+                    disableOptionCentering
+                    formControlName="company_type"
+                  >
+                    <!-- <mat-option value="select">{{ valueLanguage | languageFilter : 'Select company type' : 'SELECT_COMPANY_TYPE' }}</mat-option> -->
+                    <mat-option value="OEM">{{ valueLanguage | languageFilter : 'OEM' : 'OEM' }}</mat-option>
+                    <mat-option value="End User">{{ valueLanguage | languageFilter : 'End User' : 'END_USER' }}</mat-option>
+                    <mat-option value="Nordson">{{ valueLanguage | languageFilter : 'Nordson' : 'NORDSON' }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="invalid" *ngIf="f.company_type.errors?.required">
+                  {{ valueLanguage | languageFilter : 'Company type is required!' : 'COMPANY_TYPE_REQUIRED' }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article>
+          <div class="row" *ngIf="role!=1">
+            <div *ngIf="!inputIsOn" class="col m12 s12 l6 xl6 pad-top">
+              <div class="caption">{{ valueLanguage | languageFilter : 'Address' : 'ADDRESS' }}</div>
+              <div class="sub-caption pad-top-8">
+                {{profile.address}}
+              </div>
+            </div>
+            <div
+              *ngIf="inputIsOn"
+              class="col m12 s12 l6 xl6 pad-top-30"
+              style="position:relative"
+            >
+              <label
+                class="text-above"
+                style="position:absolute;top: 21px;left: 16px"
+                >{{ valueLanguage | languageFilter : 'Address' : 'ADDRESS' }}
+                <sup></sup>
+              </label>
+              <input
+              autocomplete="off"
+                type="text"
+                formControlName="address"
+                id="address"
+                class="form-control border-blue"
+                required
+                style="height: 56px;width: 265px;"
+              />
+              <div
+                class="invalid"
+                *ngIf="f.address.invalid &&
+                        f.address.touched && f.address.errors.required"
+              >
+                {{ valueLanguage | languageFilter : 'Address is required!' : 'ADDRESS_REQUIRED' }}
+              </div>
+              <div class="invalid" *ngIf="f.address.errors?.pattern">
+                {{ valueLanguage | languageFilter : 'Please enter a valid Address' : 'ENTER_ADDRESS' }}
+              </div>
+            </div>
+            <div *ngIf="role==0 || role==4">
+              <div *ngIf="!inputIsOn" class="col m12 s12 l6 xl6 pad-top-30">
+                <div>
+                  <div class="caption">{{ valueLanguage | languageFilter : 'Nordson Account Number' : 'NORDSON_ACCOUNT_NUMBER' }}</div>
+                  <div class="sub-caption pad-top-8">{{profile.account_number}}</div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="role ==0 || role==4">
+              <div *ngIf="inputIsOn" class="col m12 s12 l6 xl6 pad-top-30">
+                <div>
+                  <div class="caption">{{ valueLanguage | languageFilter : 'Nordson Account Number' : 'NORDSON_ACCOUNT_NUMBER' }}</div>
+                  <div class="sub-caption pad-top-8">{{profile.account_number}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+       
+        
+        <section>
+          <div class="row" *ngIf="!inputIsOn">
+            <div
+              class="col m12 s12 l12 xl12 change-pass pad-top "
+              style="cursor: default;"
+            >
+              <span (click)="onNoClick()" *ngIf="role!=1" class="pointer"
+                >{{ valueLanguage | languageFilter : 'Change Password' : 'CHANGE_PASSWORD' }}
+              </span>
+              <span
+                (click)="editProfile()"
+                class="pointer"
+                [style.padding-left]="role!= 1 ? '60px': '0px'"
+                >{{ valueLanguage | languageFilter : 'Edit Profile' : 'EDIT_PROFILE' }}</span
+              >
+            </div>
+          </div>
+
+          <!-- <div *ngIf="inputIsOn">
+            <div style="position: absolute;left:68px;padding-top: 30px;">
+              <button
+                class="invite-canc comman-inactive-bt comman-inact-bg no-border"
+                (click)="cancel()"
+              >
+                {{ valueLanguage | languageFilter : 'CANCEL' : 'CANCEL' }}
+              </button>
+            </div>
+            <div style="position: absolute;right:68px;padding-top: 30px;">
+              <button
+                *ngIf="userType == 1;else adminUser"
+                type="submit"
+                class="apply btn submit-bt"
+                [disabled]="f.full_name.errors || f.mobile_number.errors || !edituserForm.dirty"
+                cdkFocusInitial
+              >
+                {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE' }}
+              </button>
+              <ng-template #adminUser>
+                <button
+                  type="submit"
+                  class="apply btn submit-bt"
+                  [disabled]="!form.valid || !edituserForm.dirty"
+                  cdkFocusInitial
+                >
+                  {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE' }}
+                </button>
+              </ng-template>
+            </div>
+          </div> -->
+          <div *ngIf="inputIsOn">
+            <div style="position: absolute;bottom:-30px" class="position-add">
+              <button class="invite-canc comman-inactive-bt comman-inact-bg no-border" (click)="cancel()">
+                {{ valueLanguage | languageFilter : 'CANCEL' : 'CANCEL' }}
+              </button>
+            </div>
+            <div style="position: absolute;right:80px;bottom:-30px" class="position-add">
+            
+              <button
+                *ngIf="userType == 1;else adminUser"
+                type="submit"
+                class="apply btn submit-bt"
+                [disabled]="f.full_name.errors || f.mobile_number.errors || !edituserForm.dirty"
+                cdkFocusInitial
+              >
+                {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE' }}
+              </button>
+              <ng-template #adminUser>
+                <button
+                  type="submit"
+                  class="apply btn submit-bt"
+                  [disabled]="!form.valid || !edituserForm.dirty"
+                  cdkFocusInitial
+                >
+                  {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE' }}
+                </button>
+              </ng-template>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</form>

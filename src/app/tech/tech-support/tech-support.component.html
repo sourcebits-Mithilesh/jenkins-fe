@@ -1,0 +1,73 @@
+<div class="row">
+  <div
+    class="col s12 m12 l12 xl9 margin-top-12"
+    id="tech-dash"
+    style="background-color: rgb(249, 253, 255);"
+  >
+    <div class="tech-head">
+      <div class="tech-left left">
+        <article class="tech-font" style="padding-left: 9px;">
+          Welcome {{ full_name }}
+        </article>
+      </div>
+      <p class="tech-p" style="padding-left: 9px;">
+        Thanks for using our offline utility, your dashboard is ready to use.
+      </p>
+      <div class="tech-right" class="right">
+        <div id="tech-select" class="right">
+          <mat-form-field [floatLabel]="'never'">
+            <mat-select
+              panelClass="superselect"
+              [(value)]="selectedEquipment"
+              disableOptionCentering
+            >
+              <mat-option
+                *ngFor="let equipment of equipments"
+                value="{{ equipment.value }}"
+                >{{ equipment.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="tech-cards-1">
+      <!--cards-->
+      <div class="col s12 m12 l12 xl12 white-c">
+        <div class="col s3 m3 l3 xl3">
+          <div class="card">
+            <div class="card-content">
+              <p class="number">{{ usersCount }}</p>
+              <p class="count-text">Active Users</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s3 m3 l3 xl3">
+          <div class="card">
+            <div class="card-content">
+              <p class="number">{{ logCount }}</p>
+              <p class="count-text">Log files</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s3 m3 l3 xl3">
+          <div class="card">
+            <div class="card-content">
+              <p class="number">{{ norfileCount }}</p>
+              <p class="count-text">Setting files</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s3 m3 l3 xl3">
+          <div class="card">
+            <div class="card-content">
+              <p class="number">{{ pendingUsers }}</p>
+              <p class="count-text">Pending Users</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end-->
+  </div>
+</div>

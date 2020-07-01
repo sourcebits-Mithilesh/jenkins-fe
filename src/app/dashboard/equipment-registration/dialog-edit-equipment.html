@@ -1,0 +1,76 @@
+<form name="form" *ngIf="editEquipmentForm" #form="ngForm" (ngSubmit)="onSubmit()" [formGroup]="editEquipmentForm">
+  <div id="dialog-sub">
+    <div id="dialog-edit-equipment" class="height-equip" style="position: relative">
+      <div class="add-equip">Edit Model Details</div>
+      <div>
+        <div>
+          <label class="label"> Model Name </label>
+          <mat-form-field class="equipinput" id="editequipinput" style="width:561px " [floatLabel]="'never'">
+            <mat-label class="mat-label">PROBLUE FLEX</mat-label>
+            <mat-select name="equipment" id="EquipProblueflex" panelClass="EquipProblueflex" disableOptionCentering
+              [value]="equiModel">
+              <mat-option value="">PROBLUE FLEX</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <label class="label"> Serial Number </label>
+          <input  autocomplete="off" class="equipinput" id="editequipinput" style="width:543px;" type="text" readonly formControlName="equipment_sn" (keyup)="validateSerialNo()"
+            maxlength="10" />
+          <div class="invalid" *ngIf="f.equipment_sn.touched && f.equipment_sn.errors?.required">
+            Serial Number is required
+          </div>
+          <div class="invalid" *ngIf="f.equipment_sn.errors?.notSerial">
+            Serial Number is invalid
+          </div>
+          <div class="invalid" *ngIf="f.equipment_sn.touched && f.equipment_sn.errors?.uniqueEquipment">
+            Serial Number must be Unique
+          </div>
+        </div>
+        <div>
+          <label class="label"> Unique Number </label>
+          <input  autocomplete="off" class="equipinput" id="editequipinput" style="width:543px;" type="text" readonly formControlName="uid" (keyup)="validateSerialNo()" (keypress)="preventalpha($event)" maxlength="7" />
+          <div class="invalid" *ngIf="f.uid.touched && f.uid.errors?.required">
+            Unique Number is required
+          </div>
+          <div class="invalid" *ngIf="f.uid.errors?.notUID">
+            Unique Number is invalid
+          </div>
+          <div class="invalid" *ngIf="serialNoUidVal != ''">
+            {{ serialNoUidVal }}
+          </div>
+        </div>
+        <div>
+          <label class="label"> &nbsp;Description&nbsp; </label>
+          <textarea type="text" formControlName="equipment_description"  id="editequipinput" style="width:561px;" class="equipinput text-area-equip pad-tp-15" 
+          maxlength="120"
+          ></textarea>
+        </div>
+        <div class="invalid" *ngIf="f.equipment_description.touched && f.equipment_description.errors?.required">
+          Description is required
+        </div>
+        <div class="invalid" *ngIf="f.equipment_description.touched && f.equipment_description.errors?.pattern">
+          Please enter valid description 
+        </div> 
+        <div>
+          <label class="label"> &nbsp; Configuration Code / Name &nbsp; </label>
+          <input  autocomplete="off" class="equipinput" id="editequipinput" style="width:543px;" type="text" formControlName="equipment_pn" readonly />
+        </div>
+      </div>
+      <div>
+        <div style="position: absolute;bottom:0" class="position-add">
+          <button class="cancel" (click)="onNoClick()">CANCEL</button>
+        </div>
+        <div style="position: absolute;right:32px;bottom:0" class="position-add" id="add-postion-css">
+          <button
+          class="apply btn submit-bt"
+          type="submit"
+          [disabled]="!form.valid || serialNoUidVal != '' || !editEquipmentForm.dirty"
+        >
+          SAVE
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

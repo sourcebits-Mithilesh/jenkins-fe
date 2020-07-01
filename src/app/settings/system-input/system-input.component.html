@@ -1,0 +1,253 @@
+<div class="row dash-board">
+  <form
+    name="form"
+    #form="ngForm"
+    [formGroup]="systemForm"
+    (submit)="onSubmit()"
+  >
+  <div class="col m12 s12 l9 xl9 p-0 bg-color-blue height-vh responsive-pad-color">
+    <div class="setting-blue margin-top-12">
+      <div class="pad-cor pad-right-left-10">
+        <div class="system-in">
+          <div class="left">
+              <span class="white-c"> <a routerLink="/settings/system-io" style="color: #ffffff;">{{ valueLanguage | languageFilter : 'System I/O' : 'SYSTEM_IO'}} </a> › {{ valueLanguage | languageFilter : 'Input' : 'INPUT'}}</span>
+          </div>
+          <div class="right">
+            <button
+              [disabled]="!form.valid || accessType === 1 || !systemForm.dirty"
+              type="submit"
+              class="apply btn submit-bt"
+            >
+              {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE'}}
+            </button>
+          </div>
+          <div class="sys-tab col-bg pad-10-responsive" style="clear:both" [@.disabled]="true">
+            <mat-tab-group>
+              <mat-tab label="STANDARD">
+                <div class="row">
+                  <div class="col s2 m2 l2 xl2">
+                    <article class="sys-first">{{ valueLanguage | languageFilter : 'Input' : 'INPUT'}}</article>
+                  </div>
+                  <div class="col s8 m8 l8 xl8"></div>
+                  <div class="col s2 m2 l2 xl2 text-right">
+                    <article class="sys-first pd-lef">{{ valueLanguage | languageFilter : 'Invert' : 'INVERT'}}</article>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">S1</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field
+                          id="input-box"
+                          [floatLabel]="'never'"
+                          class="system"
+                        >
+                          <mat-select
+                            formControlName="InputOptions0"
+                            panelClass="systemIO"
+                            disableOptionCentering
+                          >
+                            <mat-option
+                              *ngFor="let range of stdranges"
+                              [value]="range"
+                            >
+                              {{ range.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                        <!-- <select
+                          matNativeControl
+                          required
+                          formcontroName="s1">
+                          <option
+                            class="sel-opt"
+                            *ngFor="let range of ranges"
+                            [ngValue]="range.id"
+                            >{{range.name}}
+                          </option>
+                          </select> -->
+                      </div>
+
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox
+                          formControlName="InvertOutput0"
+                          (change)="checkValue1($event)"
+                        >
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="LEGACY">
+                <div class="row">
+                  <div class="col s2 m2 l2 xl2">
+                    <article class="sys-first">{{ valueLanguage | languageFilter : 'Input' : 'INPUT'}}</article>
+                  </div>
+
+                  <div class="col s8 m8 l8 xl8"></div>
+                  <div class="col s2 m2 l2 xl2 text-right">
+                    <article class="sys-first pd-lef">{{ valueLanguage | languageFilter : 'Invert' : 'INVERT'}}</article>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">L1</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field [floatLabel]="'never'" class="system">
+                          <mat-select
+                            formControlName="InputOptions1"
+                            panelClass="systemIO"
+                            disableOptionCentering
+                            (selectionChange) = "setRemoteRecipeOptions($event)"
+                          >
+                            <mat-option
+                              *ngFor="let range of toSelect8"
+                              [value]="range"
+                            >
+                              {{ range.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox
+                          formControlName="InvertOutput1"
+                          (change)="checkValue2($event)"
+                          [disabled]="isL1CheckboxDisabled"
+                        >
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">L2</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field [floatLabel]="'never'" class="system">
+                          <mat-select
+                            formControlName="InputOptions2"
+                            panelClass="systemIO"
+                            disableOptionCentering
+                            (selectionChange) = "setRemoteRecipeOptions($event)"
+                            [disabled]="isDisabled.InputOptions2"
+                          >
+                            <mat-option
+                              *ngFor="let range of toSelect7"
+                              [value]="range"
+                            >
+                              {{ range.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox
+                          formControlName="InvertOutput2"
+                          (change)="checkValue3($event)"
+                          [disabled]="isL2CheckboxDisabled"
+                        >
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">L3</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field [floatLabel]="'never'" class="system">
+                          <mat-select
+                            formControlName="InputOptions3"
+                            panelClass="systemIO"
+                            disableOptionCentering
+                            (selectionChange) = "setRemoteRecipeOptions($event)"
+                            [disabled]="isDisabled.InputOptions3"
+                          >
+                            <mat-option
+                              *ngFor="let range of toSelect6"
+                              [value]="range"
+                            >
+                              {{ range.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox
+                          formControlName="InvertOutput3"
+                          (change)="checkValue4($event)"
+                          [disabled]="isL3CheckboxDisabled"
+                        >
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">L4</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field [floatLabel]="'never'" class="system">
+                          <mat-select
+                            formControlName="InputOptions4"
+                            panelClass="systemIO"
+                            disableOptionCentering
+                            (selectionChange) = "setRemoteRecipeOptions($event)"
+                            [disabled]="isDisabled.InputOptions4"
+                          >
+                            <mat-option
+                              *ngFor="let range of toSelect5"
+                              [value]="range"
+                            >
+                              {{ range.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                       
+                      </div>
+
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox
+                          formControlName="InvertOutput4"
+                          (change)="checkValue5($event)"
+                          [disabled]="isDisabled.InputOptions4"
+                        >
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </form>
+</div>

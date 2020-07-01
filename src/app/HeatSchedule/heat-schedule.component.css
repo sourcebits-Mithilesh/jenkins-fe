@@ -1,0 +1,940 @@
+/* selct box  customiztion  */
+
+.mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+/* .sheduler-grid {
+  padding: 15px 12px 12px 10px !important;
+} */
+ #heat-schedule .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+ #heat-schedule .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+
+ #heat-schedule .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+ #heat-schedule .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+
+ #heat-schedule .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+ #heat-schedule .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+/* Heat SChedule */
+.font-color {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 15px;
+}
+/* Input field */
+::ng-deep .custom-input input:not([type]) {
+  height: 2rem;
+  border-bottom: none;
+  padding: 4px 0px 0px 16px;
+}
+::ng-deep .custom-input input:not([type]):focus:not([readonly]) {
+  border-bottom: none;
+}
+
+/* Heat Scheduler */
+#heatScheduler th,
+#heatScheduler td,
+#shiftScheduler th,
+#shiftScheduler td {
+  width: 100px;
+  /* padding: 4px; */
+  height: 33px;
+  font-weight: normal;
+}
+.shadow {
+  height: 48px;
+  width: 48.87px;
+  background: linear-gradient(0deg, #dae7ef 0%, #96abb9 98.22%);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.51),
+    0 1px 0 0 rgba(255, 255, 255, 0.27);
+  border-radius: 50%;
+}
+.shadow-io {
+  height: 38px;
+  width: 38.4px;
+  background: linear-gradient(0deg, #dae7ef 0%, #96abb9 98.22%);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.51),
+    0 1px 0 0 rgba(255, 255, 255, 0.27);
+  border-radius: 50%;
+}
+#heatScheduler table td:nth-child(1) {
+  border-bottom: none !important;
+}
+
+.td-bg-gray {
+  background: #a1beca !important;
+  /* padding: 0px; */
+}
+
+#heatScheduler table tbody tr:nth-child(odd) td {
+  border-bottom: 1px dashed;
+}
+#heatScheduler table tbody tr:nth-child(even) td {
+  border-bottom: 1px solid;
+}
+
+#heatScheduler table td,
+#heatScheduler table th {
+  text-align: center;
+  padding: 0px 7px;
+}
+#heatScheduler .add-event-label {
+  text-align: left;
+  padding-top: 11px;
+  font-size: 12px;
+  line-height: 16px;
+}
+#heatScheduler .add-event-icon {
+  text-align: right;
+  padding-left: 0px;
+  margin-top: 5px;
+  padding-right: 17px;
+}
+/* #shiftScheduler .add-event-icon {
+  text-align: right;
+  padding-left: 0px;
+  line-height: 0px;
+  padding-right: 17px;
+} */
+#schedule-time div {
+  padding-top: 49px;
+}
+/*Table ODD Columns Styles*/
+/* #shiftScheduler table td:nth-child(odd) {
+  background-color: #a1beca !important;
+} */
+#heatScheduler tr {
+  height: 31px;
+}
+/* overlay */
+
+*,
+input {
+  outline: none;
+}
+.subuser-heading h1 {
+  color: #4a4a4a;
+  font-family: 'Roboto';
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+}
+.subuser-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* justify-items: center;
+     */
+  align-items: center;
+}
+.sub-user-bt {
+  text-align: right;
+}
+.sub-user-bt button {
+  height: 36px;
+  width: 191px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  color: #0181c5;
+  font-family: 'Roboto';
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  font-weight: 400;
+}
+.subuser-heading p {
+  color: #8f8e8f;
+  font-family: Roboto;
+  font-size: 18px;
+  line-height: 21px;
+}
+.grid-col {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  padding: 21px 20px 9px 17px;
+}
+::ng-deep input:not([type]):focus:not([readonly]) {
+  border-bottom: 1px solid rgba(25, 25, 25, 0.32);
+  box-shadow: none;
+}
+.add-svg {
+  top: 5px;
+  position: relative;
+}
+button:focus {
+  background: none;
+}
+.sub-detail {
+  display: grid;
+  grid-template-columns: inherit;
+  grid-template-columns: repeat(4, 1fr);
+  color: rgba(111, 111, 111, 0.87);
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 21px 20px 9px 17px;
+}
+::ng-deep #edit-col {
+  /* width:50% !important;
+     */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 2rem;
+}
+.edit-p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+.fname {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+}
+.email-sub,
+.read {
+  width: 175px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Roboto;
+  font-size: 14px;
+}
+::ng-deep .cancel {
+  height: 36px;
+  width: 104px;
+  background-color: #ccc;
+  color: rgba(0, 0, 0, 0.38);
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 400;
+}
+::ng-deep .add {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  line-height: 16px;
+  text-align: center;
+  font-weight: 400;
+  background-color: #0181c5 !important;
+  height: 36px;
+  width: 104px;
+  right: 70px !important;
+}
+::ng-deep .mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
+  color: #000000;;
+}
+::ng-deep .my-form-field.mat-form-field-appearance-legacy .mat-form-field-label,
+.my-form-field.mat-form-field-appearance-legacy.mat-focused
+	.mat-form-field-label {
+	color: #000000 !important;
+}
+
+@-webkit-keyframes slide {
+  100% {
+    right: 0;
+  }
+}
+::ng-deep .add:focus {
+  background-color: #0181c5 !important;
+}
+::ng-deep .cdk-global-overlay-wrapper .cdk-overlay-pane.heateventclass,
+::ng-deep .cdk-global-overlay-wrapper .cdk-overlay-pane.heateventclass {
+  position: absolute !important;
+right: -1500px;
+-webkit-animation: slide 0.5s forwards !important;
+-webkit-animation-delay: 0.5s !important;
+animation: slide 0.2s forwards !important;
+animation-delay: 1s;
+}
+
+@-webkit-keyframes slide {
+  100% {
+    right: 0;
+  }
+}
+@keyframes slide {
+  100% {
+    right: 0;
+  }
+}
+/* ::ng-deep #mat-heat-shed .mat-dialog-container .mat-form-field {
+  width: 100%;
+}
+::ng-deep #mat-heat-shed .mat-dialog-container .mat-form-field-flex {
+  width: 100%;
+} */
+::ng-deep #mat-heat-shed .mat-form-field-infix input {
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  padding-left: 11px;
+}
+::ng-deep #mat-heat-shed .mat-dialog-container {
+  padding-left: 43px;
+}
+::ng-deep #mat-heat-shed .modle-bt {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  position: absolute !important;
+  bottom: 30px;
+}
+::ng-deep #mat-heat-shed .mat-form-field-label {
+  transform: none !important;
+}
+span:focus {
+  outline: none !important;
+  border: 0 !important;
+}
+/* ::ng-deep #mat-heat-shed .mat-form-field-empty.mat-form-field-label,
+::ng-deep #mat-heat-shed .mat-form-field-label {
+  display: block;
+  top: 15px;
+  left: 8px !important;
+  background: #fff;
+  width: auto !important;
+  font-size: 12px !important;
+  letter-spacing: 0.4px;
+  color: #9e9e9e;
+} */
+/* radio button */
+
+::ng-deep .mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+::ng-deep .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+::ng-deep .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+::ng-deep
+  .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle,
+.mat-radio-outer-circle {
+  border-color: rgb(13, 67, 108) !important;
+}
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: rgb(13, 67, 108) !important;
+}
+::ng-deep .mat-ripple-element {
+  opacity: 0 !important;
+}
+::ng-deep .mat-dialog-content {
+  overflow: unset !important;
+}
+::ng-deep .mat-radio-sub .mat-radio-label {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 16px;
+  letter-spacing: 0.15px;
+}
+::ng-deep .mat-radio-sub .mat-radio-outer-circle {
+  border-color: rgb(13, 67, 108);
+}
+::ng-deep .mat-radio-sub .mat-radio-button {
+  padding-right: 14%;
+}
+
+/* ::ng-deep .mat-dialog-container .mat-form-field {
+  width: 100%;
+}
+::ng-deep .mat-dialog-container .mat-form-field-flex {
+  width: 100%;
+} */
+::ng-deep #mat-heat-shed .mat-form-field-infix input {
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  padding-left: 11px;
+}
+
+::ng-deep .modle-bt {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  position: absolute !important;
+  bottom: 30px;
+}
+::ng-deep .mat-form-field-label {
+  transform: none !important;
+}
+span:focus {
+  outline: none !important;
+  border: 0 !important;
+}
+/* ::ng-deep .mat-form-field-empty.mat-form-field-label,
+::ng-deep .mat-form-field-label {
+  display: block;
+  top: 15px;
+  left: 8px !important;
+  background: #fff;
+  width: auto !important;
+  font-size: 12px !important;
+  letter-spacing: 0.4px;
+  color: #9e9e9e;
+} */
+/* radio button */
+
+::ng-deep .mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+::ng-deep .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+::ng-deep .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+::ng-deep
+  .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle,
+.mat-radio-outer-circle {
+  border-color: rgb(13, 67, 108) !important;
+}
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: rgb(13, 67, 108) !important;
+}
+::ng-deep .mat-ripple-element {
+  opacity: 0 !important;
+}
+::ng-deep .mat-dialog-content {
+  overflow: unset !important;
+}
+::ng-deep .mat-radio-sub .mat-radio-label {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 16px;
+  letter-spacing: 0.15px;
+}
+::ng-deep .mat-radio-sub .mat-radio-outer-circle {
+  border-color: rgb(13, 67, 108);
+}
+::ng-deep .mat-radio-sub .mat-radio-button {
+  padding-right: 14%;
+}
+/* EDIT user */
+::ng-deep #dialog-edit .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+/* END*/
+
+/* checkbox */
+/* ::ng-deep #eventMark [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: relative;
+} */
+::ng-deep #eventMark .mat-checkbox-background,
+.mat-checkbox-frame {
+  top: 6px;
+  left: 6px;
+}
+::ng-deep #eventMark .mat-checkbox-background,
+.mat-checkbox-frame {
+  top: 6px;
+  left: 6px;
+}
+::ng-deep #eventMark .mat-checkbox-inner-container .mat-checkbox-frame {
+  border-style: none;
+}
+::ng-deep .mat-checkbox-inner-container {
+  top: -2px;
+}
+::ng-deep #eventMark .mat-checkbox-checkmark {
+  position: unset;
+  width: 0%;
+}
+::ng-deep #blueBox .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #0271be;
+}
+::ng-deep #greenBox .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #66ff66;
+}
+::ng-deep .timepicker__header {
+  padding: 2px 30px;
+}
+::ng-deep #scheduleTime .timepicker {
+  position: relative;
+  left: -7%;
+}
+::ng-deep #heatTime .timepicker {
+  position: relative;
+  left: 16%;
+}
+::ng-deep #setbackTime .timepicker {
+  position: relative;
+  left: 35%;
+}
+::ng-deep .timepicker-dial__control {
+  padding: 6px;
+}
+::ng-deep .ngx-material-timepicker-toggle {
+  padding: 8px;
+}
+::ng-deep .mat-checkbox-frame {
+  border: 2px solid #0271be;
+  border-radius: 3px;
+}
+.padding-left-right-0 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+/* Time Selector */
+.custom-time-selector {
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+::ng-deep .time-selector .mat-form-field-infix {
+  width: 54px;
+  margin-top: -5px;
+  bottom: 3px;
+}
+
+::ng-deep .time-selector .mat-form-field-flex {
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.pl-8 {
+  padding-left: 8px;
+}
+
+.ml-11 {
+  margin-left: 11px;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: transparent;
+}
+::ng-deep .custom-input .mat-select-value-text {
+  padding-left: 10px;
+}
+td {
+  padding: 0px;
+}
+/* //Time Selector */
+::ng-deep #heatScheduler .green {
+  background-color: #05940a !important;
+}
+::ng-deep #heatScheduler .blue {
+  background-color: #0271be !important;
+}
+.input-time {
+  height: 2rem !important;
+  border-bottom: none !important;
+  padding: 4px 0px 0px 16px !important;
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #0071be;
+}
+.schedulerActive {
+  opacity: 0.4;
+}
+.schedulerEnable {
+  opacity: 1;
+}
+.schedulerDisable {
+  opacity: 0.4;
+}
+.alignClock {
+  position: relative;
+  top: 23px;
+}
+.color-white:focus {
+  background-color: #0071be;
+  border: none;
+}
+.heat-color{
+  height: 9px;
+  width: 9px;
+  border: 1px solid #AAC9D6;
+  background-color: #66FF66;
+  display: inline-block
+}
+.fShift-color{
+  height: 9px;
+  width: 9px;
+  border: 1px solid #AAC9D6;
+  background-color: #c6cbf5;
+  display: inline-block;
+}
+.sShift-color{
+  height: 9px;
+  width: 9px;
+  border: 1px solid #AAC9D6;
+  background-color: #EDA1F7;
+  display: inline-block;
+}.tShift-color{
+  height: 9px;
+  width: 9px;
+  border: 1px solid #AAC9D6;
+  background-color: #9B78F7;
+  display: inline-block;
+}.frShift-color{
+  height: 9px;
+  width: 9px;
+  border: 1px solid #AAC9D6;
+  background-color: #7543F4;
+  display: inline-block;
+}.fiShift-color{
+  height: 9px;
+  width: 9px;
+  border: 1px solid #AAC9D6;
+  background-color: #5527C8;
+  display: inline-block;
+}
+.setback-color{
+  height: 9px;
+  width: 9px;
+  border: 1px solid #AAC9D6;
+  background-color: #0271BE;
+  display: inline-block
+}
+.heat-text{
+  color: rgba(255,255,255,0.87);
+  font-family: Roboto;
+  font-size: 11px;
+  letter-spacing: 0.1px;
+  padding-left:8px;
+}
+.heat-schedule-head{
+  color: #FFFFFF;
+  font-size: 26px;
+  padding-top: 30px
+}
+.select-text{
+  color: #4A4A4A;
+  font-size: 26px;
+  padding-bottom: 42px;
+  padding-top: 30px
+}
+.btn-cancel-heat{
+  height:36px;width: 144px;border-radius: 4px
+}
+.btn-add-event-heat{
+ height:36px; width: 144px;background-color: #0181c5;border-radius: 4px
+}
+.set-back-text{
+  color: rgba(0,0,0,0.87);
+  font-family: Roboto;
+  font-size: 16px;
+  letter-spacing: 0.15px;
+}
+/* ::ng-deep td.k-nonwork-hour {
+  background-color: #AAC9D6;
+}
+::ng-deep .k-nonwork-hour {
+  background-color: #AAC9D6;
+
+} */
+.k-widget, .k-block, .k-panel {
+  background-color: #AAC9D5 ;
+}
+.k-scheduler-header-wrap {
+  background-color: #AAC9D5;
+}
+.k-nonwork-hour,.k-scheduler-footer {
+  background-color: #AAC9D5;
+}
+th.k-scheduler-times-all-day {
+  color:transparent;
+}
+.k-scheduler-header {
+  background-color: #AAC9D5;
+}
+/* .k-scheduler-table .k-middle-row td {
+  border-bottom-style: dashed;
+    border-top: 1px solid #979797;
+    border-bottom: 1px;
+    border-bottom-color: #979797;
+    border-bottom-width: 2px;
+}
+.k-scheduler-table td {
+  border-style:dashed;
+} */
+
+.hide-all-day .k-scheduler-table tr:nth-of-type(0), .k-scheduler-times-all-day, .k-scheduler-table.k-scheduler-header-all-day {
+  display: none;
+}
+.k-scheduler-table td:nth-child(odd) {
+  background-color: #A1BEC9;
+}
+.meridian-style {
+  width: 53px;
+  border: 1px solid black;
+    background-color: white !important;
+    height: 35px;
+    border-radius: 5px;
+    padding: 0px 1px 0px 6px;
+}
+.min-style {
+  width: 53px;
+  border: 1px solid black;
+  background-color: white !important;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0px 3px 0px 7px;
+  margin-right: 8px
+}
+.hr-style {
+  width: 53px;
+  border: 1px solid black;
+  height: 35px;
+  border-radius: 5px;
+  padding: 0px 3px 0px 6px;
+  margin-right: 8px;
+}
+#heat-width{
+  width: 53px !important;
+}
+::ng-deep .mat-select-panel-wrap .minute-heat {
+  position: relative;
+  left: 7px;
+  top: 27px;
+}
+::ng-deep .mat-select-panel-wrap .hour-heat {
+  position: relative;
+  left: 7px;
+  top: 27px;
+}
+::ng-deep .mat-select-panel-wrap .meredian-heat {
+  position: relative;
+  left: 7px;
+  top: 27px;
+}
+::ng-deep .mat-select-panel-wrap .minute-setback {
+  position: relative;
+  left: 7px;
+  top: 27px;
+}
+::ng-deep .mat-select-panel-wrap .hour-setback {
+  position: relative;
+  left: 7px;
+  top: 27px;
+}
+::ng-deep .mat-select-panel-wrap .meredian-setback {
+  position: relative;
+  left: 7px;
+  top: 27px;
+}
+::ng-deep #heatTime .mat-form-field-infix{
+  margin-top:-8px
+}
+
+::ng-deep #setBackTime .mat-form-field-infix{
+  margin-top:-8px
+}
+/*   */
+#heatScheduler table tbody tr:nth-child(1) td .k-event {
+  border:1px solid red;
+}
+#heatScheduler table tbody tr:nth-child(2) td .k-event {
+  border:1px solid red;
+}
+/* .setbgcolor{
+ 
+ 
+  left: 2px !important;
+}
+.setbgcolor1 {
+  left: 101px !important;
+}
+kendo-scheduler .k-event, .k-event {
+  width:60px !important;
+} */
+[data-tip] {
+	position:relative;
+
+}
+[data-tip]:before {
+	content:'';
+	/* hides the tooltip when not hovered */
+	display:none;
+	content:'';
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #0181c5;	
+	position:absolute;
+	top:30px;
+	left:35px;
+	z-index:8;
+	font-size:0;
+	line-height:0;
+	width:0;
+	height:0;
+}
+[data-tip]:after {
+	display:none;
+	content:attr(data-tip);
+	position:absolute;
+	top:35px;
+	left:0px;
+	padding:10px 8px;
+	background:#0181c5;
+	color:#fff;
+	z-index:9;
+	font-size: 14px;
+  height:35px;
+  width:100px;
+	line-height:18px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	white-space:nowrap;
+  word-wrap:normal;
+  border-radius: 4px;
+  text-align: center;
+  margin-left: 15px;
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+	display:block;
+}
+::ng-deep .heat-event .mat-form-field-wrapper{
+  margin-top: -9px;
+}
+
+/* kendoSchedulerEventTemplate kendo-scheduler .k-event, .k-event  {
+} */
+.s2.kendo-scheduler .k-event, .k-event{
+ min-height: 15px !important;
+}
+.s3.k-event{
+   z-index: 2;
+   background-color: #0071BE !important;
+   display: flex !important;
+   flex-direction: column;
+   transform: translateX(-3%);
+   width: 13.4% !important;
+}
+.s2.k-event{
+  background-color: #02940B !important;
+  width: 14% !important;  
+
+
+
+}
+kendo-scheduler .k-event::before, .k-event::before {
+ opacity: 0 !important;
+}
+
+/* .s2.k-event{
+  width: 14%!important;
+  background-color: #02940B !important;
+  z-index: 1;
+}
+
+.s3.k-event{
+  background-color: #0071BE !important;
+  overflow: hidden;
+  transform: scaleX(1.3);
+  z-index: 2;
+
+} */
+
+
+.k-middle-row{
+   border-top:1px solid #000000 !important;
+}
+@media only screen and (max-width: 1200px){
+.btn-cancel-heat{
+  margin-bottom: 125px;
+  }
+.btn-add-event-heat{
+  margin-bottom: 125px;
+}
+}
+
+@media only screen and (max-width: 500px){
+  .btn-cancel-heat{
+    margin-left: -20px !important;
+    margin-bottom: 0px !important;
+    }
+  .btn-add-event-heat{
+    margin-right: -70px !important;
+    margin-bottom: 0px !important;
+  }
+  ::ng-deep .heateventclass{
+    max-width: 90vw !important;
+    height: 80% !important;
+    margin-top: 65px !important;
+    margin-right: 20px !important;
+}
+::ng-deep #cancle-heat{
+  bottom: 30px !important;
+}
+  }

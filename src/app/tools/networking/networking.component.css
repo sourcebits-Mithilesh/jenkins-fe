@@ -1,0 +1,32 @@
+#config-head {
+  padding: 30px 39px 27px 39px;
+  display: flex;
+  padding-bottom: 26px;
+  display: table;
+  width: 100%;
+}
+.content-m {
+  margin: 0px 39px 50px 39px;
+}
+.config-menu-p {
+  padding: 10px 0px;
+  border-radius: 4px;
+}
+.mb-3 {
+  margin-bottom: 27px;
+}
+.setting-blue-zone{
+  padding: 15px 49px 48px 10px;
+}
+.network-font{
+  font-family: Roboto;
+  height: 30px;
+}
+.zone-heading{
+  color: #ffffff;
+    font-family: Roboto;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 30px;
+    padding-left: 0px;
+}

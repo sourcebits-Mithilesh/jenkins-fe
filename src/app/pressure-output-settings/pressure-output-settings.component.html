@@ -1,0 +1,209 @@
+<div>
+  <!-- loader spinner -->
+  <!-- <div class="col m12 s12 l12 xl9 setting-blue-zone pad-right-left-0" *ngIf="!load" >
+    <div class="loading"
+    >
+    <img src="../../../assets/Spinner.gif" alt="not working">
+    </div>
+  </div> -->
+  <form [formGroup]="pressureOutput" (ngSubmit)="onSubmit()" #aForm>
+
+  <div>
+    <div class="dash-board pump">
+      <div class="row" style="padding: 0px">
+        <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+        <div
+          class="setting-blue-zone pad-right-left-0 margin-top-12"
+          id="temperature"
+        >
+          <div class="col s12 m12 l12 x12"  style="padding-left:0px">
+              <article class="temp-heading">
+                <h4  class="zone-heading font-responsive" style="padding-left:0px"><a class="zone-heading font-responsive" routerLink="/settings/pressure">Pressure Settings</a> › Pressure Output</h4>
+                <div class="right-align">
+                  <button
+                    type="submit"
+                    class="apply btn"
+                    [disabled]="disableBtn"
+                  >
+                   SAVE
+                  </button>
+                </div>
+              </article>
+          </div>
+          <div class="col s12 m12 l12 x12 card-applicator">
+            <div class="">
+              <div class="pressure-point padding-15 color-white">
+                Pressure Point 1
+              </div>
+              <div>
+                <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                  <div class="col s6 m6 l6 x16">
+                    Low Speed Pressure Setting
+                  </div>
+                  <div class="col s6 m6 l6 x16 t-right">
+                    <span>P1</span>
+                    <span>
+                      <input 
+                      (keyup)="keyupFunc()"
+                      (keypress)="preventalpha($event)"
+                      class="pressure-input" name="lowSpeedPresSett" formControlName="lowSpeedPresSett" style="margin-left: 10px !important;margin-right: 10px !important"/>
+                    </span>
+                    <span class="padding-right">{{pressureUnit}}</span>
+                  </div>
+                </div>
+                <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                  <div class="col s6 m6 l6 x16">
+                    Low Line Speed Setting
+                  </div>
+                  <div class="col s6 m6 l6 x16 t-right">
+                    <span>L1</span>
+                    <span>
+                      <input 
+                      (keyup)="keyupFunc()"
+                      (keypress)="preventalpha($event)" class="pressure-input" name="lowLineSpeedSett" formControlName="lowLineSpeedSett"  style="margin-left: 10px !important;margin-right: 10px !important"/>
+                    </span>
+                    <span class="padding-right">{{lineSpeedUnit}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="pressure-point padding-15 color-white">
+                Pressure Point 2
+              </div>
+              <div>
+                <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                  <div class="col s6 m6 l6 x16">
+                    High Speed Pressure Setting
+                  </div>
+                  <div class="col s6 m6 l6 x16 t-right">
+                    <span>P2</span>
+                    <span>
+                      <input
+                      (keyup)="keyupFunc()"
+                      (keypress)="preventalpha($event)" class="pressure-input" name="highSpeedPresSett" formControlName="highSpeedPresSett"  style="margin-left: 10px !important;margin-right: 10px !important"/>
+                    </span>
+                    <span class="padding-right">{{pressureUnit}}</span>
+                  </div>
+                </div>
+                <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                  <div class="col s6 m6 l6 x16">
+                    High Line Speed Setting
+                  </div>
+                  <div class="col s6 m6 l6 x16 t-right">
+                    <span>L2</span>
+                    <span>
+                      <input 
+                      (keyup)="keyupFunc()"
+                      (keypress)="preventalpha($event)" class="pressure-input" name="highLineSpeedSett" formControlName="highLineSpeedSett"  style="margin-left: 10px !important;margin-right: 10px !important"/>
+                    </span>
+                    <span class="padding-right">{{lineSpeedUnit}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="pressure-point padding-15 color-white">
+                Pressure Limit
+              </div>
+              <div>
+                <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                  <div class="col s6 m6 l6 x16">
+                    Set Maximum Pressure Limit
+                  </div>
+                  <div class="col s6 m6 l6 x16 t-right">
+                    <span>P max</span>
+                    <span>
+                      <input 
+                      (keyup)="keyupFunc()"
+                      (keypress)="preventalpha($event)" class="pressure-input" name="maxPressureLimit" formControlName="maxPressureLimit"  style="margin-left: 10px !important;margin-right: 10px !important"/>
+                    </span>
+                    <span class="padding-right">{{pressureUnit}}</span>
+                  </div>
+                </div>
+                <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                  <div class="col s6 m6 l6 x16">
+                    Set Minimum Pressure Limit
+                  </div>
+                  <div class="col s6 m6 l6 x16 t-right">
+                    <span>P min</span>
+                    <span>
+                      <input  
+                      (keyup)="keyupFunc()"
+                      (keypress)="preventalpha($event)" class="pressure-input" name="minPressureLimit" formControlName="minPressureLimit"  style="margin-left: 10px !important;margin-right: 10px !important"/>
+                    </span>
+                    <span class="padding-right">{{pressureUnit}} </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="pressure-point padding-15 color-white">
+                Idle Speed Pressure Cutoff Settings
+              </div>
+              <div>
+                <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd">
+                  <div class="col s6 m6 l6 x16">
+                    Zero Line Speed Pressure
+                  </div>
+                  <div class="col s6 m6 l6 x16 t-right">
+                    <span>P0</span>
+                    <span>
+                    <mat-form-field
+                      id="pressure-out-mat-select"
+                      [floatLabel]="'never'"
+                      style="margin-left: 10px !important"
+                    >
+                      <mat-select
+                      (selectionChange)="changeSelect()"
+                        panelClass="pressure-out-mat-select"
+                        disableOptionCentering
+                        formControlName="zeroLineSpeedPress"
+                      >
+                      <mat-option
+                    value="0">
+                      Pmin
+                    </mat-option>
+                    <mat-option
+                     value="1"
+                    >
+                      Pmax
+                    </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    </span>
+                    <span class="padding-right" style="width: 36px;"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row display-flex-al-center pad-top-btm-10 bg-even-odd" style="background:#9FBCC9">
+
+                <div class="col s6 m6 l6 x16">
+                  Full Scale Line Speed
+                </div>
+                <div class="col s6 m6 l6 x16 t-right" >
+                    <span>
+                      <input 
+                      (keyup)="keyupFunc()"
+                      (keypress)="preventalpha($event)" class="pressure-input" name="fullScaleLineSpeed" formControlName="fullScaleLineSpeed"  style="margin-left: 10px !important;margin-right: 10px !important"/>
+                    </span>
+                    <span class="padding-right">{{lineSpeedUnit}}
+                    </span>
+              </div>
+              </div> 
+            </div>
+            
+          </div>
+        </div>
+        <!-- <nordson-footer></nordson-footer> -->
+</div>
+        <!-- col 12 close-->
+      </div>
+    </div>
+  </div>
+</form>
+  <!--main close tag--->
+</div>

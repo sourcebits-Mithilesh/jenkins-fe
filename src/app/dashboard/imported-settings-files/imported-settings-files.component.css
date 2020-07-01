@@ -1,0 +1,60 @@
+.event-log-head {
+  color: #4a4a4a;
+  font-size: 26px;
+  line-height: 30px;
+}
+.pad-50 {
+  padding: 0px 50px 50px 50px;
+}
+.datatext {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 14px;
+  line-height: 30px;
+}
+.viewtext {
+  color: #0181c5;
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  line-height: 30px;
+}
+.settings-files-properties {
+  color: rgba(111, 111, 111, 0.87);
+  font-family: Roboto;
+  font-size: 14px;
+}
+.desc-minimized {
+  white-space: nowrap; 
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  padding-top: 10px;
+}
+.desc-minimized:hover{
+  white-space: normal;
+}
+.mateditnorfilesettings .mat-dialog-container {
+  padding: 24px !important;
+  background: #aac9d6 !important;
+}
+::ng-deep .matnorfilemodal .mat-dialog-container{
+  padding:0px;
+}
+.padding-responsive{
+  padding-left: 2rem;
+}
+
+
+
+@media only screen and (max-width: 500px){
+  .display-responsive{
+    padding-left: 10px !important;
+  }
+  .padding-responsive {
+    padding-left: .8rem;
+}
+#deleteicon{
+  text-align: left !important;
+}
+ 
+}
+
+

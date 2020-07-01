@@ -1,0 +1,30 @@
+<div class="dash-board">
+  <div class="row" style="padding: 0px">
+    <div
+      class="col m12 s12 l12 xl9 setting-blue-zone margin-top-12"
+      id="temperature"
+      style="height: 708px"
+    >
+      <div class="col s12 m12 l12 x12">
+        <article class="temp-heading">
+          <h4 class="zone-heading">{{ valueLanguage | languageFilter : 'User Management Settings' : 'USER_MANAGEMENT_SETTINGS'}}</h4>
+        </article>
+      </div>
+      <div class="col s6 m6 l6 x6">
+        <div class="security-settings-div">
+          <div style="padding: 22px 22px ;height: 70px">
+            <div>
+              <div class="col s12 m12 l12 x12 caption">
+                <div (click)="navigate()">{{ valueLanguage | languageFilter : 'Modify Privileges' : 'MODIFY_PRIVILEGES'}}</div>
+              </div>
+              <!-- <div class="col s6 m6 l6 x6"  style="text-align: right">
+                      <mat-slide-toggle></mat-slide-toggle>
+                  </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--main close tag--->

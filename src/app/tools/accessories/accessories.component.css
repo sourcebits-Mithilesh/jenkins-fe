@@ -1,0 +1,241 @@
+.white-c {
+  color: #fff;
+  font-family: 'Roboto';
+  font-size: 26px;
+  font-weight: 400;
+  padding-left: 29px;
+  display: inline-block;
+}
+.pad-cor {
+  padding: 30px 39px 0 39px;
+}
+.col-bg {
+  background: #aac9d6;
+  position: relative;
+  top: 29px;
+  padding: 14px;
+  border-radius: 4px;
+  padding-top: 34px;
+}
+.acc-bg-color {
+  background-color: #9fbcc9;
+}
+.acc-fonts {
+  color: #203535;
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 20px;
+}
+.acc-active-height {
+  padding: 10px;
+  min-height: 80px;
+}
+.acc-inactive-height {
+  padding: 10px;
+  min-height: 40px;
+}
+.acc-pad-left {
+  padding-left: 0px;
+}
+.acc-add,
+.acc-edit {
+  height: 36px;
+  width: 130px;
+  border-radius: 4px;
+  background: transparent;
+}
+.acc-bt {
+  padding-top: 25px;
+}
+.acc-add {
+  margin-right: 10px;
+}
+/* add overlay */
+
+.opa {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 3; /* Specify a stack order in case you're using a different order for other elements */
+
+  opacity: 0.83;
+  background-color: #0c436c;
+}
+#acc-model-box {
+  z-index: 999;
+  height: auto;
+  width: 520px;
+  border-radius: 4px;
+  background-color: #aac9d6 !important;
+  box-shadow: 0 0 42px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  padding-left: 14px;
+  padding-bottom: 67px;
+  position: absolute;
+  top: 51%;
+  left: 59%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.add-fonts {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+.input-field > select {
+  opacity: 1;
+  width: auto;
+  height: auto;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 15px;
+  line-height: 16px;
+  font-weight: normal !important;
+  height: 35px;
+  border: 1px solid rgba(25, 25, 25, 0.32) !important;
+  border-radius: 4px !important;
+  background-color: #ffffff;
+  display: block;
+}
+/* .select-wrapper:after {
+  content: '';
+
+  position: absolute;
+  top: 13px;
+  right: 20px;
+
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #d8d8d8;
+  pointer-events: none;
+} */
+.select-wrapper {
+  position: relative;
+}
+.acc-pad-bb {
+  padding-bottom: 49px;
+}
+.acc--pop-font {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: normal;
+  padding-top: 5px;
+}
+.close-pd {
+  padding-right: 8px;
+  padding-top: 7px;
+  line-height: 0;
+}
+.white-c {
+  padding-left: 0px;
+}
+
+/* selct box  customiztion  */
+::ng-deep .soft-lic .mat-option {
+  background: #fff !important;
+}
+
+::ng-deep .soft-lic .mat-form-field-infix {
+  height: 35px;
+  width: 349px;
+  border: 1px solid #acb2b5;
+  border-radius: 3px;
+  background-color: #ffffff;
+  color: #767576;
+  padding-right: 30px;
+}
+
+::ng-deep .soft-lic .mat-select-arrow {
+  color: #d8d8d8;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #d8d8d8;
+  position: relative;
+  left: 18px;
+}
+
+::ng-deep #acc-cover .mat-select-value{
+  overflow: inherit;
+}
+
+::ng-deep .soft-lic .mat-select-value-text,
+::ng-deep .soft-lic .placeholder,
+::ng-deep .soft-lic .mat-select-value-text,
+::ng-deep .soft-lic .placeholder {
+  position: relative;
+  left: 11px;
+  color: #4a4a4a;
+  font-family: 'Roboto';
+  font-size: 15px;
+
+  top: 3px;
+}
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+::ng-deep .soft-lic.mat-option {
+  color: #4a4a4a;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 13px;
+}
+
+::ng-deep .mat-select-panel-wrap .softwarellc {
+  position: relative;
+  left: 16px;
+  top: 28px;
+}
+.disablebutton{
+
+    color: #0080c8;
+    height: 36px;
+    width: 130px;
+    background: transparent;
+}
+@media only screen and (max-width: 1025px) {
+
+  ::ng-deep .soft-lic .mat-form-field-infix {
+    width: 280px !important;
+  }
+  #acc-model-box {
+    left: 49%;
+  }
+}
+
+
+@media only screen and (max-width: 500px){
+  .col-bg {
+   
+    width: 355px !important;
+    left: -40px !important;
+  }
+
+  #acc-model-box {
+    
+    left: 50% !important;
+    width: 355px !important;
+   
+  }
+  ::ng-deep .soft-lic .mat-form-field-infix {
+    width: 216px !important;
+  }
+}
+

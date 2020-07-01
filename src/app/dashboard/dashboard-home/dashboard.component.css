@@ -1,0 +1,87 @@
+.cards {
+  padding: 17px 0px 0px 18px;
+  min-height: 251px;
+  border-radius: 4px;
+  background-color: #0081c6;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cards span {
+  font-family: Roboto;
+  font-size: 16px;
+}
+
+.cards .sprite-set img {
+  height: 39px;
+  width: 43px;
+  object-fit: none;
+  object-position: -96px 0px;
+  transition: all 0.2s ease;
+}
+
+.cards .sprite-creat img {
+  height: 39px;
+  width: 43px;
+  object-fit: none;
+  object-position: -133px 0px;
+  transition: all 0.2s ease;
+}
+
+.cards .sprite-import img {
+  height: 39px;
+  width: 43px;
+  object-fit: none;
+  object-position: -174px 0px;
+  transition: all 0.2s ease;
+}
+
+.cards .sprite-logs img {
+  height: 39px;
+  width: 43px;
+  object-fit: none;
+  object-position: -206px 0px;
+  transition: all 0.2s ease;
+}
+
+.cards .sprite-report img {
+  height: 39px;
+  width: 43px;
+  object-fit: none;
+  object-position: -242px 0px;
+  transition: all 0.2s ease;
+}
+
+.card-panel section {
+  padding-top: 10px;
+}
+.main-heading-dashboard {
+  color: #4a4a4a;
+  font-family: 'Roboto Medium';
+  font-size: 26px;
+  line-height: 30px;
+}
+.sub-heading-dashboard {
+  padding-bottom: 15px;
+  color: #6b6b6b;
+  font-family: Roboto;
+  font-size: 15px;
+  line-height: 18px;
+}
+.headline {
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 18px;
+  line-height: 21px;
+}
+.subheading {
+  opacity: 0.83;
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 16px;
+  padding-top: 16px;
+}
+.pad-0 {
+  padding: 0px !important;
+}

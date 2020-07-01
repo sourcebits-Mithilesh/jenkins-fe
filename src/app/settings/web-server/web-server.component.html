@@ -1,0 +1,44 @@
+
+  <div>
+      <div class="dash-board">
+        <form *ngIf="webServernetworkForm" #form="ngForm" [formGroup]="webServernetworkForm" (submit)="onSubmit()">
+          <div class="row" style="padding: 0px">
+            <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+            <div class="setting-blue-zone setting-blue margin-top-12" id="networking ">
+              <div class="col s12 m12 l12 x12">
+                <article class="temp-heading pad-tp-15">
+                  <h4 class="zone-heading white-c cursor-pointer" style="padding-left: 19px;
+                  font-size: 26px; outline: none;" routerLink="/settings/networking">Networking  ›  Web Server </h4>
+                  <p class="right-align">
+                    <button class="apply btn submit-bt" type="submit" [disabled]="accessType === 1 || !webServernetworkForm.dirty">
+                      SAVE
+                    </button>
+                  </p>
+                </article>
+                <div class="card-applicator col s12 m8 l8 xl8 " style="margin: 20px;">
+                  <div class="row row-margin display">
+                    <div class="col s10 m6 l6 xl6 pad-tp-15" style="font-weight: Roboto Regular;">
+                      External Web Access
+                    </div>
+                    <div class="col s2 m6 l6 xl6 p-t-5 text-right pad-tp-15">
+                      <mat-slide-toggle  formControlName="External_Web_Access">
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col s10 m6 l6 xl6 pad-tp-15" style="font-weight: Roboto Regular;">
+                        External Web Access Read Only
+                      </div>
+                      <div class="col s2 m6 l6 xl6 p-t-5 text-right pad-tp-15">
+                        <mat-slide-toggle  formControlName="External_Web_AccessRO">
+                        </mat-slide-toggle>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <nordson-footer></nordson-footer> -->
+</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  

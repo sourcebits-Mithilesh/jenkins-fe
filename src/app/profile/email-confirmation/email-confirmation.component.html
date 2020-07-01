@@ -1,0 +1,71 @@
+<div [ngClass]="['backgroundImg']" class="signin login">
+  <nordson-header></nordson-header>
+  <form>
+    <div class="row margin-null section pad-responsive-signup">
+      <!-- <div class=" col  m2 l2 xl2"></div> -->
+      <div class="login-section">
+        <div class="main-section pad-right-left-20">
+          <div class="sub-section t-center" *ngIf="isConfirmedEmail else confirmedEmail">
+            <div>
+              <img
+                class=""
+                src="../../../assets/Mail iicon.svg" width="50px" height="41px"
+                alt="check image"
+              />
+            </div>
+            <div>
+              <p class="t-center email-confirm">Confirm your Email address</p>
+            </div>
+            <!-- <div>
+              <p class="t-center sub-email-confirm">
+                Your email address has been confirmed!
+              </p>
+            </div> -->
+            <div
+            
+              class="button-section-center"
+              style="margin-top:48px !important"
+            >
+              <a  (click)="confirmEmail()">
+                <button type="submit" [disabled]="" class="btn submit-bt right">
+                  Confirm your Email
+                </button></a
+              >
+            </div>
+          </div>
+          <ng-template #confirmedEmail>
+            <div class="sub-section t-center">
+              <div>
+                <img
+                  class=""
+                  src="../../../assets/img/icon/check.svg"
+                  alt="check image"
+                />
+              </div>
+              <div>
+                <p class="t-center email-confirm"> Email address Confirmed</p>
+              </div>
+              <div>
+                <p class="t-center sub-email-confirm">
+                  Your email address has been confirmed!
+                </p>
+              </div>
+              <div
+                class="button-section-center"
+                style="margin-top:48px !important"
+              >
+                <a  routerLink="/login">
+                  <button type="submit" [disabled]="" class="btn submit-bt right">
+                   Log in to the system
+                  </button></a
+                >
+              </div>
+            </div>
+
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- <nordson-footer></nordson-footer> -->

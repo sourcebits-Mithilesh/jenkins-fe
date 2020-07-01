@@ -1,0 +1,52 @@
+.contactinput {
+    height: 80px !important;
+    width: 547px !important;
+    border: 1px solid rgba(25, 25, 25, 0.32) !important;
+    border-radius: 4px !important;
+    padding-left: 16px !important;
+  }
+  .text-area-contact {
+    width: 317px !important;
+    padding-right: 16px;
+  }
+  .text-area-contact:focus {
+    outline: none;
+  }
+
+  .checkbox-contact{
+      padding-top: 10px;
+  }
+  .contact-button{
+      padding-top: 20px;
+      padding-bottom: 40px;
+  }
+  .btn-contact{
+    background: #0181c5;
+    height: 42px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    width: 100%;
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 14px;
+    letter-spacing: 1.25px;
+    line-height: 16px;
+    text-align: center;
+    width: 315px;
+    border: none;
+  }
+  ::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color:rgb(144,144,144);
+    opacity: 0.8;
+  }
+  
+  ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: #0181c5 !important;
+  }
+  ::ng-deep label {
+    color: #000000;
+    font-size: 16px;
+  }
+  .signin{
+    margin-top: 0px;
+  }

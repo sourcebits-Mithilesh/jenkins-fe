@@ -1,0 +1,73 @@
+<div class="row" id="addadmin" style="position: relative" class="height-invite">
+  <form
+    name="form"
+    #form="ngForm"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="inviteAdminForm"
+  >
+    <div class="col s12 m12 l12xl12">
+      <p class="invite-text">Invite Admin</p>
+      <div class="">
+        <label class="invite-label">Full name</label>
+        <input
+        autocomplete="off"
+          class="input-dailog-border"
+          formControlName="full_name"
+          name="full_name"
+        />
+      </div>
+
+      <div
+        class="invalid"
+        *ngIf="f.full_name.touched && f.full_name.errors?.required"
+      >
+        Full Name is required
+      </div>
+      <div class="invalid" *ngIf="f.full_name.errors?.pattern">
+        Please enter a valid full name
+      </div>
+
+      <div class="">
+        <label class="invite-label">Email</label>
+        <input
+        autocomplete="off"
+          class="input-dailog-border text-lower-case"
+          name="email"
+          formControlName="email"
+          uniqueEmail
+          nordsonLowercase
+          [userId] = 0
+        />
+      </div>
+
+      <div class="invalid" *ngIf="f.email.touched &&  f.email.errors?.required">
+        Email is required
+      </div>
+      <div class="invalid" *ngIf="f.email.errors?.uniqueEmail">
+        Email must be unique
+      </div>
+      <div class="invalid" *ngIf="f.email.errors?.email">
+        Please enter a valid Email address
+      </div>
+    </div>
+    <div>
+      <div style="position: absolute;left:0;bottom:0">
+        <button
+          class="invite-canc comman-inactive-bt comman-inact-bg no-border"
+          (click)="onNoClick()"
+        >
+          CANCEL
+        </button>
+      </div>
+      <div style="position: absolute;right:0;bottom:0">
+        <button
+          type="submit"
+          class="invite comman-active-bt comman-act-bg no-border disabled-btn"
+          [disabled]="!form.valid"
+        >
+          INVITE
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

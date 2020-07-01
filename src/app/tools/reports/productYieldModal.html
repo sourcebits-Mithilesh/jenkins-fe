@@ -1,0 +1,37 @@
+<div class="product-yield-wrapper row">
+    <div class="production-yield-left-colum col s9 m9 l9 xl9">
+        <div class="production-yield-header">
+            Production Yield 
+        </div>
+    </div>
+    <div class="production-yield-right-colum col s3 m3 l3 xl3">
+        <div class="float-right">
+            <svg
+            class="cursor-pointer"
+            xmlns="http:-www.w3.org/2000/svg"
+            (click)="onNoClick()"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        </div>
+        <div style="padding: 100px 0px;">
+            <mat-radio-group>
+                <mat-radio-button class="paddin-btm-20" value="0">All Date Since Reset</mat-radio-button>
+                <mat-radio-button class="paddin-btm-20" value="1">Last 24 hrs</mat-radio-button><br>
+                <mat-radio-button class="paddin-btm-20" value="2"> Today</mat-radio-button><br>
+                <mat-radio-button value="3"> Yesterday</mat-radio-button>
+            </mat-radio-group>
+         </div>
+         <div class="t-center">
+             <button class="production-yield-update-btn">
+                 UPDATE
+             </button>
+         </div>
+    </div>
+</div>

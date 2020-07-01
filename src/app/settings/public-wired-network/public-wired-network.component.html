@@ -1,0 +1,87 @@
+
+<div >
+    <div class="dash-board">
+      <form *ngIf="networkForm" #form="ngForm" [formGroup]="networkForm" (submit)="onSubmit()"
+        (keydown.enter)="$event.preventDefault()" #aForm>
+        <div class="row" style="padding: 0px">
+          <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+          <div class="setting-blue-zone setting-blue margin-top-12" id="networking ">
+            <div class="col s12 m12 l12 x12">
+              <article class="temp-heading pad-tp-15">
+                <h4 class="zone-heading white-c cursor-pointer font-responsive pad-left-28 pad-right-left-0" style="
+                font-size: 26px; outline: none;" routerLink="/settings/networking">Networking  ›  Public Wired Network </h4>
+                <p class="right-align">
+                  <button class="apply btn submit-bt" type="submit" [disabled]="accessType === 1 || !networkForm.dirty">
+                    SAVE
+                  </button>
+                </p>
+              </article>
+              <div class="card-applicator col s12 m10 l10 xl8 margin-25">
+                <div class="row row-margin display">
+                  <div class="col s6 m6 l6 xl6 cursor-pointer" style="font-weight:Bold;">
+                    DHCP
+                  </div>
+                  <div class="col s6 m6 l6 xl6 p-t-5 text-right text-align-right-responsive">
+                    <mat-slide-toggle (change)="toogleNetwork($event)" formControlName="PublicDhpCli">
+                    </mat-slide-toggle>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="112">
+                    <div class="row row-margin pt-25 cursor-pointer pad-tp-5-responsive">
+                      <div class="col s12 m6 l6 xl7 m-t pad-t-10" style="font-weight: Roboto Regular;">
+                        Default Gateway IP
+                      </div>
+                      <div class="col s12 m6 l6 xl5 pressure text-right line-height-0 pad-tp-15-responsive text-align-left-responsive">
+                        <label class="input">
+                          <input autocomplete="off" type="text" class="input  remove-arrows network-input" formControlName="GatewayIP" name="GatewayIP" maxlength="64"
+                            (keypress)="isNumberKey($event)"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="112">
+                    <div class="row row-margin pt-25 cursor-pointer pad-tp-5-responsive">
+                      <div class="col s12 m6 l6 xl7 m-t pad-t-10" style="font-weight: Roboto Regular;">
+                        IP
+                      </div>
+                      <div class="col s12 m6 l6 xl5 pressure text-right line-height-0 pad-tp-15-responsive text-align-left-responsive">
+                        <label class="input">
+                          <input autocomplete="off" type="text" class="input remove-arrows network-input" formControlName="PublicIPAddress" name="PublicIPAddress"
+                            maxlength="64" (keypress)="isNumberKey($event)"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="sasa">
+                    <div class="row row-margin pt-25 cursor-pointer pad-tp-5-responsive">
+                      <div class="col s12 m6 l6 xl7 m-t pad-t-10" style="font-weight: Roboto Regular;">
+                        Subnet IP
+                      </div>
+                      <div class="col s12 m6 l6 xl5 pressure text-right line-height-0 pad-tp-15-responsive text-align-left-responsive">
+                        <label class="input">
+                          <input autocomplete="off" type="text" class="input remove-arrows network-input" formControlName="PublicSubnetMask"
+                            maxlength="64"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            (keypress)="isNumberKey($event)" name="someid" />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <nordson-footer></nordson-footer> -->
+</div>
+        </div>
+      </form>
+    </div>
+  </div>

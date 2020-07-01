@@ -1,0 +1,28 @@
+.terms-header{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1182d9;
+}
+.title{
+    text-align: center;
+    padding: 20px 0px;
+    font-family: Roboto;
+    font-size: 32px;
+    color: #1182d9;
+    font-weight: normal;
+}
+
+.lower-alpha{
+    list-style-type: lower-alpha !important;
+   
+}
+.lower-roman{
+    list-style-type: lower-roman !important;
+    padding-top: 15px;
+}
+p{
+    font-size: 16px;
+    text-align: justify;
+}

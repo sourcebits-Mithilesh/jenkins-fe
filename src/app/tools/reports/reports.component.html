@@ -1,0 +1,352 @@
+<form
+name="form"
+#form="ngForm"
+class="fill-mat"
+id="fill-mat"
+[formGroup]="reportsForm"
+(submit)="onSubmit()"
+>
+  <div class="row dash-board">
+<div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color" id="reports">
+    <div class="setting-blue margin-top-12">
+      <div class="pad-cor">
+        <div class="mnt" id="report-mat">
+          <div class="left">
+            <span class="white-c soft-pad-left font-responsive" style="padding-bottom:21px">Reports</span>
+          </div>
+          <div class="multi-select right">
+            <toastr-notification></toastr-notification>
+          </div>
+          <div class="col s12 m12 l12 xl12 ">
+            <div class="card-applicator-top">
+              <div class="row">
+                <div class="col s12 m9 l6 xl6">
+                  <mat-form-field id="fill-mat-sel" [floatLabel]="'never'">
+                    <mat-select
+                      name="selectfill"
+                      formControlName="reportTypes"
+                      matNativeControl
+                      required
+                      panelClass="reports-mat-set"
+                      disableOptionCentering
+                      (selectionChange)="selectionChange()"
+                    >
+                      <mat-option
+                        (onSelectionChange)="setValue($event)"
+                        *ngFor="let item of reports"
+                        [value]="item"
+                        >{{ item }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col s12 m9 l6 xl6 t-right" *ngIf="this.choice=='Production' || this.choice=='Production Yield'">
+
+                  <!-- <button mat-button class="Productionbtn" (click) = "getProductionYieldData()"> <i class="fa fa-pie-chart" aria-hidden="true" style="font-size:20px"></i>&nbsp;&nbsp; PRODUCTION
+                    YIELD</button> -->
+                    <button mat-button class="Productionbtn" (click)="OpenProductionYieldModal()"> <i class="fa fa-pie-chart" aria-hidden="true" style="font-size:20px"></i>&nbsp;&nbsp; PRODUCTION
+                      YIELD</button>
+                </div>
+              </div>
+
+              <div [ngSwitch]="choice">
+                <div *ngSwitchCase="'System Status'" id="production-carousel">
+                  <mat-tab-group [selectedIndex]="selectedIndex" #tabGroup (selectedTabChange)="onTabChanged($event)">
+                    <mat-tab label="DAY VIEW">
+                           <!-- carousel div -->
+                          <div class="">
+                            <ng-template matTabContent>
+                            <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph" [isSystemStatus] = true>
+                              <ng-container *ngFor="let item of reportDates;let i=index">
+                                <ng-container *carouselItem>
+                                  <!-- <div *ngIf="loading">Loading...</div> -->
+                                  <canvas  class="canvas-carousel" id="DAY_VIEW{{i+1}}"  ></canvas>
+                                </ng-container>
+                              </ng-container>
+                            </carousel>
+                          </ng-template>
+                          </div>
+                            <!-- carousel div end -->
+                    </mat-tab>
+                    <mat-tab label="WEEK VIEW">
+                      <!-- carousel div -->
+                      <div class="">
+                        <ng-template matTabContent>
+                          <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph" [isSystemStatus] = true>
+                            <ng-container *ngFor="let item of weekDates;let i=index">
+                              <ng-container *carouselItem>
+                                <canvas class="canvas-carousel" id="WEEK_VIEW{{i+1}}"  ></canvas>
+                              </ng-container>
+                            </ng-container>
+                          </carousel>
+                        </ng-template>
+                      </div>
+                      <!-- carousel div end -->
+                    </mat-tab>
+                    <mat-tab label="MONTH VIEW">
+                      <!-- carousel div -->
+                      <div class="">
+                        <ng-template matTabContent>
+                          <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph" [isSystemStatus] = true>
+                            <ng-container *ngFor="let item of monthDates;let i=index">
+                              <ng-container *carouselItem>
+                                <canvas class="canvas-carousel" id="MONTH_VIEW{{i+1}}"  ></canvas>
+                              </ng-container>
+                            </ng-container>
+                          </carousel>
+                        </ng-template>
+                      </div>
+                      <!-- carousel div end -->
+                    </mat-tab>
+                  </mat-tab-group>
+                  </div>
+                  <div *ngSwitchCase="'Production Yield'">
+                    <mat-tab-group [selectedIndex]="selectedIndex" #tabGroup (selectedTabChange)="onTabChanged($event)">
+                      <mat-tab label="DAY VIEW">
+                             <!-- carousel div -->
+                            <div class="">
+                              <ng-template matTabContent>
+                              <carousel id="yield" (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [graphType]="graphType" [currentGraph] = "currentGraph">
+                                <ng-container *ngFor="let item of reportDates;let i=index">
+                                  <ng-container *carouselItem>
+                                    <canvas class="canvas-carousel" id="DAY_VIEW{{i+1}}"  ></canvas>
+                                  </ng-container>
+                                </ng-container>
+                              </carousel>
+                            </ng-template>
+                            </div>
+                              <!-- carousel div end -->
+                      </mat-tab>
+                      <mat-tab label="WEEK VIEW">
+                        <!-- carousel div -->
+                        <div class="">
+                          <ng-template matTabContent>
+                            <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph">
+                              <ng-container *ngFor="let item of weekDates;let i=index">
+                                <ng-container *carouselItem>
+                                  <canvas class="canvas-carousel" id="WEEK_VIEW{{i+1}}"  ></canvas>
+                                </ng-container>
+                              </ng-container>
+                            </carousel>
+                          </ng-template>
+                        </div>
+                        <!-- carousel div end -->
+                      </mat-tab>
+                      <mat-tab label="MONTH VIEW">
+                        <!-- carousel div -->
+                        <div class="">
+                          <ng-template matTabContent>
+                            <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph">
+                              <ng-container *ngFor="let item of monthDates;let i=index">
+                                <ng-container *carouselItem>
+                                  <canvas class="canvas-carousel" id="MONTH_VIEW{{i+1}}"  ></canvas>
+                                </ng-container>
+                              </ng-container>
+                            </carousel>
+                          </ng-template>
+                        </div>
+                        <!-- carousel div end -->
+                      </mat-tab>
+                    </mat-tab-group>
+                    </div>
+
+                <div *ngSwitchCase="'Production'" id="production-carousel">
+                  <mat-tab-group [selectedIndex]="selectedIndex" #tabGroup (selectedTabChange)="onTabChanged($event)">
+                      <mat-tab label="DAY VIEW">
+                             <!-- carousel div -->
+                            <div class="">
+                              <ng-template matTabContent>
+                              <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph">
+                                <ng-container *ngFor="let item of reportDates;let i=index">
+                                  <ng-container *carouselItem>
+                                    <canvas class="canvas-carousel" id="DAY_VIEW{{i+1}}"  ></canvas>
+                                  </ng-container>
+                                </ng-container>
+                              </carousel>
+                            </ng-template>
+                            </div>
+                              <!-- carousel div end -->
+                      </mat-tab>
+                      <mat-tab label="WEEK VIEW">
+                        <!-- carousel div -->
+                        <div class="">
+                          <ng-template matTabContent>
+                            <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph">
+                              <ng-container *ngFor="let item of weekDates;let i=index">
+                                <ng-container *carouselItem>
+                                  <canvas class="canvas-carousel" id="WEEK_VIEW{{i+1}}"  ></canvas>
+                                </ng-container>
+                              </ng-container>
+                            </carousel>
+                          </ng-template>
+                        </div>
+                        <!-- carousel div end -->
+                      </mat-tab>
+                      <mat-tab label="MONTH VIEW">
+                        <!-- carousel div -->
+                        <div class="">
+                          <ng-template matTabContent>
+                            <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph">
+                              <ng-container *ngFor="let item of monthDates;let i=index">
+                                <ng-container *carouselItem>
+                                  <canvas class="canvas-carousel" id="MONTH_VIEW{{i+1}}"  ></canvas>
+                                </ng-container>
+                              </ng-container>
+                            </carousel>
+                          </ng-template>
+                        </div>
+                        <!-- carousel div end -->
+                      </mat-tab>
+                    </mat-tab-group>
+                </div>
+
+                <div *ngSwitchCase="'Total Adhesive Used(g)'" id="production-carousel">
+                    <mat-tab-group [selectedIndex]="selectedIndex" #tabGroup (selectedTabChange)="onTabChanged($event)">
+                        <mat-tab label="DAY VIEW">
+                               <!-- carousel div -->
+                              <div class="">
+                                <ng-template matTabContent>
+                                <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph">
+                                  <ng-container *ngFor="let item of reportDates;let i=index">
+                                    <ng-container *carouselItem>
+                                      <canvas class="canvas-carousel" id="DAY_VIEW{{i+1}}"  ></canvas>
+                                    </ng-container>
+                                  </ng-container>
+                                </carousel>
+                              </ng-template>
+                              </div>
+                                <!-- carousel div end -->
+                        </mat-tab>
+                        <mat-tab label="WEEK VIEW">
+                          <!-- carousel div -->
+                          <div class="">
+                            <ng-template matTabContent>
+                              <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph">
+                                <ng-container *ngFor="let item of weekDates;let i=index">
+                                  <ng-container *carouselItem>
+                                    <canvas class="canvas-carousel" id="WEEK_VIEW{{i+1}}"  ></canvas>
+                                  </ng-container>
+                                </ng-container>
+                              </carousel>
+                            </ng-template>
+                          </div>
+                          <!-- carousel div end -->
+                        </mat-tab>
+                        <mat-tab label="MONTH VIEW">
+                          <!-- carousel div -->
+                          <div class="">
+                            <ng-template matTabContent>
+                              <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [currentGraph] = "currentGraph">
+                                <ng-container *ngFor="let item of monthDates;let i=index">
+                                  <ng-container *carouselItem>
+                                    <canvas class="canvas-carousel" id="MONTH_VIEW{{i+1}}"  ></canvas>
+                                  </ng-container>
+                                </ng-container>
+                              </carousel>
+                            </ng-template>
+                          </div>
+                          <!-- carousel div end -->
+                        </mat-tab>
+                      </mat-tab-group>
+                  <!-- <mat-tab-group [selectedIndex]="selectedIndex" #tabGroup (selectedTabChange)="onTabChanged($event)">
+                    <mat-tab label="DAY VIEW">
+                          <div class="">
+                            <ng-template matTabContent>
+                            <carousel (nextEvent)="next($event)" (prevEvent)="prev($event)">
+                              <ng-container *ngFor="let item of items;let i=index">
+                                <ng-container *carouselItem>
+                                  <canvas class="canvas-carousel" id="DAY_VIEW{{i}}"  ></canvas>
+                                </ng-container>
+                              </ng-container>
+                            </carousel>
+                          </ng-template>
+                          </div>
+                    </mat-tab>
+                    <mat-tab label="WEEK VIEW">
+                      <div class="">
+                        <ng-template matTabContent>
+                          <carousel (nextEvent)="next($event)" (prevEvent)="prev($event)">
+                            <ng-container *ngFor="let item of items2;let i=index">
+                              <ng-container *carouselItem>
+                                {{item.id}}
+                                <canvas class="canvas-carousel" id="WEEK_VIEW{{i}}"  ></canvas>
+                              </ng-container>
+                            </ng-container>
+                          </carousel>
+                        </ng-template>
+                      </div>
+                    </mat-tab>
+                    <mat-tab label="MONTH VIEW">
+                      <div class="">
+                        <ng-template matTabContent>
+                          <carousel (nextEvent)="next($event)" (prevEvent)="prev($event)">
+                            <ng-container *ngFor="let item of items3;let i=index">
+                              <ng-container *carouselItem>
+                                <canvas class="canvas-carousel" id="MONTH_VIEW{{i}}"  ></canvas>
+                              </ng-container>
+                            </ng-container>
+                          </carousel>
+                        </ng-template>
+                      </div>
+                    </mat-tab>
+                  </mat-tab-group> -->
+                </div>
+                <div *ngSwitchCase="'Adhesive Add On'" id="production-carousel">
+                    <mat-tab-group [selectedIndex]="selectedIndex" #tabGroup (selectedTabChange)="onTabChanged($event)">
+                        <mat-tab label="DAY VIEW">
+                               <!-- carousel div -->
+                              <div class="">
+                                <ng-template matTabContent>
+                                <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [addon] ="generalAddon" [perProduct]="generalAverage" [totalProducts]="generalTotal" [outOfLimit]="generalLimit" [displayTargets]="displayTargets" [currentGraph] = "currentGraph">
+                                  <ng-container *ngFor="let item of reportDates;let i=index">
+                                    <ng-container *carouselItem>
+                                      <canvas class="canvas-carousel" id="DAY_VIEW{{i+1}}"  ></canvas>
+                                    </ng-container>
+                                  </ng-container>
+                                </carousel>
+                              </ng-template>
+                              </div>
+                                <!-- carousel div end -->
+                        </mat-tab>
+                        <mat-tab label="WEEK VIEW">
+                          <!-- carousel div -->
+                          <div class="">
+                            <ng-template matTabContent>
+                              <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [addon] ="generalWeekAddon" [perProduct]="generalWeekAverage" [totalProducts]="generalWeekTotal" [outOfLimit]="generalWeekLimit" [displayTargets]="displayTargets" [currentGraph] = "currentGraph">
+                                <ng-container *ngFor="let item of weekDates;let i=index">
+                                  <ng-container *carouselItem>
+                                    <canvas class="canvas-carousel" id="WEEK_VIEW{{i+1}}"  ></canvas>
+                                  </ng-container>
+                                </ng-container>
+                              </carousel>
+                            </ng-template>
+                          </div>
+                          <!-- carousel div end -->
+                        </mat-tab>
+                        <mat-tab label="MONTH VIEW">
+                          <!-- carousel div -->
+                          <div class="">
+                            <ng-template matTabContent>
+                              <carousel (nextEvent)="nextEvent($event)" (prevEvent)="prevEvent($event)" [addon] ="generalMonthAddon" [perProduct]="generalMonthAverage" [totalProducts]="generalMonthTotal" [outOfLimit]="generalMonthLimit" [displayTargets]="displayTargets" [currentGraph] = "currentGraph">
+                                <ng-container *ngFor="let item of monthDates;let i=index">
+                                  <ng-container *carouselItem>
+                                    <canvas class="canvas-carousel" id="MONTH_VIEW{{i+1}}"  ></canvas>
+                                  </ng-container>
+                                </ng-container>
+                              </carousel>
+                            </ng-template>
+                          </div>
+                          <!-- carousel div end -->
+                        </mat-tab>
+                      </mat-tab-group>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </div>
+</form>

@@ -1,0 +1,223 @@
+<div>
+  <div class="dash-board">
+    <form *ngIf="plcNetworkForm" #form="ngForm" [formGroup]="plcNetworkForm" (submit)="onSubmit()">
+      <div class="row" style="padding: 0px">
+        <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+        <div class=" setting-blue-zone setting-blue margin-top-12" id="networking ">
+          <div class="col s12 m12 l12 x12">
+            <article class="temp-heading pad-tp-15">
+              <h4 class="zone-heading white-c cursor-pointer" style="outline: none;" routerLink="/settings/networking">Networking › PLC</h4>
+              <p class="right-align">
+                <button class="apply btn submit-bt" type="submit" [disabled]="accessType === 1 || !plcNetworkForm.dirty">
+                  SAVE
+                </button>
+              </p>
+            </article>
+            <div class="card-applicator col s12 m8 l12 xl8">  
+              
+              <div class="row row-margin display-flex-al-center" style="padding-top: 10px;">
+                <div class="col s6 m4 l9 xl6">
+                  PLC Access
+                </div>
+                <div class="col s6 m4 l9 xl6 p-t-5 text-right">
+                  <mat-slide-toggle (change)="toogle($event,'plcAccess')" formControlName="plcAccess">
+                  </mat-slide-toggle>
+                </div>
+              </div>
+              <div class="row row-margin  pt-25 display-flex-al-center">
+                <div class="col s12 m4 l9 xl6">
+                  PLC Access Read Only
+                </div>
+                <div class="col s6 m4 l4 xl6 p-t-5 text-right">
+                  <mat-slide-toggle (change)="toogle($event,'plcAccessRead')" formControlName="plcAccessRead">
+                  </mat-slide-toggle>
+                </div>
+              </div>
+              <div>
+                <div class="112">
+                  <div class="row row-margin pt-25 display-flex-al-center">
+                    <div class="col s12 m4 l9 xl6 m-t">
+                      PLC IO Data
+                    </div>
+                    <div class="col s12 m4 l9 xl6 pressure text-right line-height-0">
+                      <mat-form-field id="wifi-mat-sel" [floatLabel]="'never'">
+                          <mat-select
+                            formControlName="PlcIO"
+                            matNativeControl
+                            required
+                            panelClass="wifi-mat-set"
+                            disableOptionCentering
+                          >
+                          <mat-option
+                          *ngFor="let range of plcIORange"
+                          [value]="range"
+                        >
+                          {{ range.name }}
+                        </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="row row-margin pt-25 display-flex-al-center">
+                  <div class="col s12 m4 l9 xl6 margin-text">
+                    Profibus Device Address
+                  </div>
+                  <div class="col s4 m4 l9 xl6 pressure text-right line-height-0">
+                    <label class="input">
+                      <input 
+                      formControlName="ProfibusAddr"  
+                      autocomplete="off" 
+                      type="text" 
+                      class="input remove-arrows network-input"
+                      min="0"
+                      max="125"
+                      pattern="^[0-9]+$"
+                      />
+                    </label>
+                  </div>
+                </div>
+                  <div class="row row-margin">
+                    <div class="col s12 m4 l9 xl6 m-t" style="font-weight: bold;padding-top: 28px;">
+                      Network Specific
+                    </div>
+                  </div>                  
+              </div>  
+              <div>
+                <div class="sasa">
+                  <div class="row row-margin pt-25 display-flex-al-center">
+                    <div class="col s7 m4 l9 xl6">
+                      Profinet Station Name
+                    </div>
+                    <div class="col s5 m4 l9 xl6 pressure text-right line-height-0">
+                      <div
+                      >
+                        <input
+                        autocomplete="off" 
+                        type="text"
+                        formControlName="ProfinetName"
+                        id="ProfinetName"
+                        class="blurInput"
+                        style="background-color: #aac9d6 !important;
+                        border-bottom: none;
+                        text-align: right;
+                        margin-bottom: 0px !important;width: 187px"
+                        maxlength="63"
+
+                        />
+                        <span style="padding-left:10px; margin-top: 10px !important;" *ngIf="editIcon"> <img
+                        (click)="editHose()"
+                        
+                        class="edit-icon"
+                        src="../../../assets/pencil-edit-button.svg"
+                      /></span> 
+                    </div>
+                    </div>
+                  </div>
+                  <div class="row row-margin pt-25">
+                    <div class="col s12 m4 l9 xl6 margin-text">
+                      CC-Link Station Number
+                    </div>
+                    <div class="col s12 m4 l12 xl6 pressure text-right line-height-0">
+                      <label class="input">
+                        <input 
+                        formControlName="CCLinkAddr"  
+                        autocomplete="off" 
+                        type="text" 
+                        class="input remove-arrows network-input"
+                        min="1"
+                        max="64"
+                        pattern="^[0-9]+$"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row row-margin pt-25 display-flex-al-center">
+                    <div class="col s12 m4 l9 xl6 margin-text ">
+                      CC-Link Baud Rate
+                    </div>
+                    <div class="col s12 m4 l9 xl6 pressure text-right line-height-0">
+                      <mat-form-field id="wifi-mat-sel" [floatLabel]="'never'">
+                          <mat-select
+                            formControlName="CCLinkBaud"
+                            matNativeControl
+                            required
+                            panelClass="wifi-mat-set"
+                            disableOptionCentering
+                          >
+                          <mat-option
+                          *ngFor="let CCLinkBaud of CCLinkBaudRange"
+                          [value]="CCLinkBaud"
+                        >
+                        {{ CCLinkBaud.name }}
+                      </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                  </div>
+                  </div>
+                  <div class="row row-margin pt-25">
+                    <div class="col s12 m4 l9 xl6 margin-text ">
+                      Powerlink Node ID
+                    </div>
+                    <div class="col s12 m4 l12 xl6 pressure text-right line-height-0">
+                      <label class="input">
+                        <input 
+                        formControlName="PwrLnkNdId"  
+                        autocomplete="off" 
+                        type="text" 
+                        class="input remove-arrows network-input"
+                        min="1"
+                        max="239"
+                        pattern="^[0-9]+$"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row row-margin pt-25 ">
+                    <div class="col s12 m4 l9 xl6 margin-text">
+                      SERCOS III Address
+                    </div>
+                    <div class="col s12 m4 l12 xl6 pressure text-right line-height-0">
+                      <label class="input">
+                        <input 
+                        formControlName="SercosIIIAddr"  
+                        autocomplete="off" 
+                        type="text" 
+                        class="input remove-arrows network-input"
+                        min="0"
+                        max="511"
+                        pattern="^[0-9]+$"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row row-margin pt-25 display-flex-al-center">
+                    <div class="col s12 m4 l9 xl6 margin-text">
+                      CC-Link IE Field Station Number
+                    </div>
+                    <div class="col s12 m4 l9 xl6 pressure text-right line-height-0">
+                      <label class="input">
+                        <input 
+                        autocomplete="off"
+                        formControlName="CCLinkIEFAddr" 
+                        type="text" 
+                        class="input remove-arrows network-input"
+                        min="1"
+                        max="120"
+                        pattern="^[0-9]+$"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <nordson-footer></nordson-footer> -->
+</div>
+    </div>
+    </form>
+  </div>
+</div>

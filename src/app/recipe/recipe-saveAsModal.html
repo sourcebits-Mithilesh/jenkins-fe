@@ -1,0 +1,42 @@
+<div>
+  <div>
+    <div style="float: left" class="saveas-text">
+      Save As
+    </div>
+    <div style="float: right;">
+      <img src="../../assets/img/svg/close.svg" alt="" (click)="onNoClick()" />
+    </div>
+  </div>
+
+  <div style="padding-top: 54px">
+    <input 
+    pattern="^[a-zA-Z0-9]+$"
+    autocomplete="off" 
+    type="text"
+    name="recipeName" 
+    [(ngModel)]="recipeName"
+    #recipeName2="ngModel" 
+    class="save-popup-input" 
+    maxlength="15"
+    (keypress)="preventSpecialChar($event)" (keydown)="allowBackSpace($event)"
+    required=""
+    />
+  </div>
+  <div
+      class="invalid"
+      *ngIf="recipeName2.touched && recipeName2.errors?.required"
+    >
+      Recipe name is required
+    </div>
+  <div class="invalid" *ngIf="!recipeName2.errors?.required && recipeName2.errors?.pattern">
+    Please enter a valid Recipe Name
+  </div>
+  <div class="invalid" *ngIf="!validateName && !recipeName2.errors?.required && !recipeName2.errors?.pattern && recipeErr != ''">
+    {{ recipeErr }}
+  </div>
+  <div style="padding-top: 20px">
+    <button class="apply btn submit-bt" (click)="renameRecipeName()" [disabled]="accessType === 1 || !saveStatus">
+      SAVE
+    </button>
+  </div>
+</div>

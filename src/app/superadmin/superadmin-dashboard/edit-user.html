@@ -1,0 +1,213 @@
+<div class="row height-invite" id="edituser-admin">
+  <form
+    name="form"
+    #form="ngForm"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="updateAdminForm"
+  >
+    <!-- <ng-flash-message></ng-flash-message> -->
+    <div class="col s12 m12 l12xl12">
+      <p class="invite-text">Profile</p>
+      <div class="">
+        <label
+          class="invite-label"
+          [className]="inputIsOn ? 'invite-label' : 'left-1'"
+          >Full name</label
+        >
+        <h6 *ngIf="!inputIsOn">{{user.full_name}}</h6>
+        <input
+        autocomplete="off"
+          *ngIf="inputIsOn"
+          class="input-dailog-border"
+          formControlName="full_name"
+          name="full_name"
+        />
+        <div
+          class="invalid"
+          *ngIf="f.full_name.touched && f.full_name.errors?.required"
+        >
+          Full Name is required
+        </div>
+        <div class="invalid" *ngIf="f.full_name.errors?.pattern">
+          Please enter a valid full name
+        </div>
+      </div>
+
+      <div class="pad-top-8">
+        <label
+          class="invite-label"
+          [className]="inputIsOn ? 'invite-label' : 'left-1'"
+          >Email</label
+        >
+        <h6 *ngIf="!inputIsOn">{{user.email}}</h6>
+        <input
+        autocomplete="off"
+        type="text"
+          *ngIf="inputIsOn"
+          class="input-dailog-border text-lower-case"
+          name="email"
+          formControlName="email"
+          uniqueEmail
+          nordsonLowercase
+          ngvemail
+          [userId] = "adminuser_id"
+        />
+        <div
+          class="invalid"
+          *ngIf="f.email.touched &&  f.email.errors?.required"
+        >
+          Email is required
+        </div>
+        <div class="invalid" *ngIf="f.email.errors?.uniqueEmail">
+          Email must be unique
+        </div>
+        <div class="invalid" *ngIf="f.email.errors?.email">
+          Please enter a valid Email address
+        </div>
+        <!-- <div class="invalid" *ngIf="f.email.errors?.uniqueEmail && f.email.touched && inputIsOn">
+            Email must be unique
+        </div> -->
+      </div>
+      <div class="pad-top-8" *ngIf="inputIsOn">
+        <label
+          class="invite-label"
+          > Confirm Email</label
+        >
+        <input
+        autocomplete="off"
+        type="text"
+          class="input-dailog-border text-lower-case"
+          name="confirmemail"
+          formControlName="confirmemail"
+          ngvemail
+          nordsonLowercase
+          onPaste="return false"
+        />
+        <div class="invalid" *ngIf="f.confirmemail.errors && f.confirmemail.touched">
+          <div class="invalid" *ngIf="f.confirmemail.errors.required">
+            Confirm Email is required
+          </div>
+          <div class="invalid" *ngIf="f.confirmemail.errors?.email">
+            Confirm Email is Invalid
+            </div>
+          <div class="invalid" *ngIf="f.confirmemail.errors?.mustMatch">
+            Confirm Email must match
+          </div>
+        
+        </div>
+      </div>
+      <div *ngIf="inputIsOn" class="pad-top-8 selectdiv" style="position:relative; ">
+        <label class="invite-label" style="z-index: 1;"> Country<sup>*</sup></label>
+        <mat-form-field id="register-mat-sel-1" [floatLabel]="'never'" style="height: 56px;
+        width: 543px;
+        border: 1px solid rgba(25, 25, 25, 0.32);
+        border-radius: 4px;
+        padding-right: 15px;">
+          <mat-label class="mat-label" style="padding-left: 15px;">Select country</mat-label>
+          <mat-select
+            class="input-dailog-border"
+            name="country"
+            formControlName="country"
+            panelClass="registermatsel"
+            disableOptionCentering
+            (selectionChange)="setCountryCode($event.value)"
+            style="border: none;"
+          >
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="invalid" *ngIf="f.country.touched && f.country.invalid && f.country.errors?.required">
+        Country name is required!
+      </div>
+
+      <div class="pad-top-8" style="padding-bottom: 65px">
+        <label
+          class="invite-label"
+          [className]="inputIsOn ? 'invite-label' : 'left-1'"
+          >Phone Number</label
+        >
+        <h6 *ngIf="!inputIsOn">{{ user.countryCode }} {{user.mobile_number}}</h6>
+        <input
+        autocomplete="off"
+          *ngIf="inputIsOn"
+          class="input-dailog-border"
+          name="mobile_number"
+          formControlName="mobile_number"
+          style=" width: 461px;
+                  padding-left: 80px !important;"
+          [attr.disabled]="disablePhone ? true : null"
+          [ngStyle]="disablePhone ? {'background-color':'whitesmoke'}:{'background-color':'#fff'}"
+        />
+        <span *ngIf="inputIsOn" style="position: relative;
+        left: 5%;
+        top: -47px;
+        font-size: 16px;
+    ">{{user.countryCode}} </span>
+        <div
+          class="invalid"
+          style="margin-top: -25px;"
+          *ngIf="f.mobile_number.touched && f.mobile_number.errors?.pattern"
+        >
+          Enter Valid Mobile Number
+        </div>
+      </div>
+      <div>
+        <div
+          *ngIf="!inputIsOn"
+          style="float: left;
+        padding-right: 23%;"
+        >
+          <mat-checkbox
+            formControlName="blockuser"
+            id="chekbox-superadmin"
+            disableRipple
+            (click)="blockUser(user)"
+          >
+            Block User</mat-checkbox
+          >
+        </div>
+        <span
+          *ngIf="!inputIsOn"
+          (click)="inputIsOn = true"
+          style="color: #0081C5;	font-family: Roboto;	font-size: 16px;	letter-spacing: 0.15px;"
+        >
+          Edit User</span
+        >
+      </div>
+      <!-- <div class="invite-bt">
+        <div class="invite-cancel left" >
+          <button class="invite-canc comman-inactive-bt comman-inact-bg" (click)="onNoClick()" style="border: none">CANCEL</button>
+        </div>
+        <div class="invite right" >
+          <button class="invite comman-active-bt comman-act-bg " [disabled]="!form.valid" style="border: none" >SAVE</button>
+        </div>
+      </div> -->
+      <div>
+        <div style="position: absolute;bottom:30px">
+          <button
+            *ngIf="inputIsOn"
+            class="invite-canc comman-inactive-bt comman-inact-bg no-border"
+            (click)="onNoClick()"
+          >
+            CANCEL
+          </button>
+        </div>
+        <div
+          *ngIf="inputIsOn"
+          style="position: absolute;right:44px;bottom:30px"
+        >
+          <button
+            type="submit"
+            class="invite comman-active-bt comman-act-bg no-border"
+            [disabled]="!form.valid"
+          >
+            SAVE
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,162 @@
+<div class="row">
+  <div
+    class="col s12 m12 l12 xl9 height-vh"
+    id="tech-user-dash"
+    style="background-color: rgb(249, 253, 255);"
+  >
+    <div class="super-head">
+      <div class="super-left left">
+        <article class="super-font">Recent Signups</article>
+      </div>
+      <div class="super-right" class="right">
+        <div class="super-input left">
+          <svg
+            (click)="searchUsers()"
+            width="12px"
+            height="13px"
+            class="search"
+            viewBox="0 0 12 13"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+            <title>Search</title>
+            <desc>Created with Sketch.</desc>
+            <g
+              id="tech--flow"
+              stroke="none"
+              stroke-width="1"
+              fill="none"
+              fill-rule="evenodd"
+            >
+              <g
+                id="Supertech_dashboard"
+                transform="translate(-842.000000, -122.000000)"
+                fill="#111111"
+                fill-rule="nonzero"
+              >
+                <g
+                  id="16px_search"
+                  transform="translate(842.000000, 122.000000)"
+                >
+                  <path
+                    d="M5.25,10.7058824 C2.355,10.7058824 0,8.30470588 0,5.35294118 C0,2.40117647 2.355,0 5.25,0 C8.145,0 10.5,2.40117647 10.5,5.35294118 C10.5,8.30470588 8.145,10.7058824 5.25,10.7058824 Z M5.25,1.52941176 C3.18225,1.52941176 1.5,3.24464706 1.5,5.35294118 C1.5,7.46123529 3.18225,9.17647059 5.25,9.17647059 C7.31775,9.17647059 9,7.46123529 9,5.35294118 C9,3.24464706 7.31775,1.52941176 5.25,1.52941176 Z"
+                    id="Shape"
+                  ></path>
+                  <path
+                    d="M11.78025,10.9299412 L9.9855,9.1 C9.67763349,9.50413595 9.3213641,9.86739101 8.925,10.1812941 L10.71975,12.0112353 C10.8601013,12.15516 11.0509428,12.2360855 11.25,12.2360855 C11.4490572,12.2360855 11.6398987,12.15516 11.78025,12.0112353 C11.9210373,11.8679314 12.0001509,11.6734231 12.0001509,11.4705882 C12.0001509,11.2677534 11.9210373,11.0732451 11.78025,10.9299412 L11.78025,10.9299412 Z"
+                    id="Path"
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+          <input
+          autocomplete="off"
+            (input)="searchText = $event.target.value"
+            type="text"
+            id="tech-user-input-style"
+            placeholder="Search users"
+            onfocus="this.placeholder=''"
+            (keyup.enter)="searchUsers()"
+            (click)="searchUsers()"
+            onblur="this.placeholder='Search users'"
+          />
+        </div>
+        <div id="tech-user-select" class="right">
+          <mat-form-field>
+            <mat-select
+              [(value)]="selectedSortOptions"
+              panelClass="superselect"
+              (selectionChange)="onOptionsChange($event)"
+              disableOptionCentering
+            >
+              <mat-option
+                *ngFor="let options of sortOptions"
+                value="{{ options.value }}"
+                >{{ options.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="techuser-cards-3" style="padding-bottom: 90px;">
+      <!--viewmore-->
+      <div class="col s12 m12 l12 xl12" style="padding: 0">
+        <div class="card">
+          <p class="graph-p" style="margin-top:0px ;visibility: hidden;"></p>
+          <div id="techuser-main-section" style="clear: both">
+            <div class="row tech-sub">
+              <div class="col s12 m12 l12 xl12 center-align">
+                <div class="col s3 m3 l3 xl3 border-right">
+                  <article class="tech-header-font">Full name</article>
+                </div>
+                <div class="col s2 m2 l2 xl2 border-right">
+                  <article class="tech-header-font">COMPANY TYPE</article>
+                </div>
+                <div class="col s3 m3 l3 xl3 border-right">
+                  <article class="tech-header-font">COUNTRY</article>
+                  <div class=""></div>
+                </div>
+                <div class="col s2 m2 l2 xl2 border-right">
+                  <article class="tech-header-font">DATE</article>
+                </div>
+                <div class="col s2 m2 l2 xl2">
+                  <article class="tech-header-font">STATUS</article>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div
+                class="col s12 m12 l12 xl12 center-align hover-list"
+                id="techuser-padding"
+                *ngFor="
+                  let rs of recentSignups
+                    | paginate
+                      : {
+                          id: 'server',
+                          itemsPerPage: 10,
+                          currentPage: p,
+                          totalItems: total
+                        }
+                "
+                (click)="recentUser(rs)"
+              >
+                <div class="col s3 m3 l3 xl3">
+                  <article class="tech-header-font-2">
+                    {{ rs.full_name }}
+                  </article>
+                </div>
+                <div class="col s2 m2 l2 xl2">
+                  <article class="tech-header-font-2">
+                    {{ rs.company_type }}
+                  </article>
+                </div>
+                <div class="col s3 m3 l3 xl3">
+                  <article class="tech-header-font-2">{{ rs.country }}</article>
+                </div>
+                <div class="col s2 m2 l2 xl2">
+                  <article class="tech-header-font-2">
+                    {{ rs.Date.substr(0, 10) }}
+                  </article>
+                </div>
+                <div class="col s2 m2 l2 xl2">
+                  <article class="tech-header-font-2">
+                    {{ user_status[rs.status] }}
+                  </article>
+                </div>
+              </div>
+            </div>
+            <pagination-controls
+              (pageChange)="getPage($event)"
+              id="server"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

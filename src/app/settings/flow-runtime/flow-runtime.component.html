@@ -1,0 +1,56 @@
+<div>
+  <form *ngIf="flowRuntimeForm" #form="ngForm" [formGroup]="flowRuntimeForm" (submit)="onSubmit()">
+  <div>
+    <div class="dash-board pump">
+      <div class="row" style="padding: 0px">
+        <div class="col m12 s12 l9 xl9 p-0 bg-color-blue height-vh responsive-pad-color">
+        <div
+          class="setting-blue-zone pad-right-left-0 margin-top-12"
+          id="temperature"
+        >
+          <div class="col s12 m12 l12 x12">
+              <article class="temp-heading">
+                <h4 class="zone-heading font-responsive" style="padding-left:0px">Flow</h4>
+                    <p class="right-align" style="padding-right:0px">
+                  <button
+                    type="submit"
+                    class="apply btn"
+                    [disabled]="accessType === 1 || !flowRuntimeForm.dirty"
+                  >
+                    SAVE
+                  </button>
+                </p>
+              </article>
+          </div>
+          <div class="col s12 m6 l6 x6">
+            <div class="outer-card">
+            <div class="row display-flex-al-center">
+              <div class="col s12 m7 l7 x7 pad-left-0">
+                Target Add-On
+              </div>
+              <div class="col s12 m5 l5 x5 t-right">
+                <input
+                formControlName="ATSTargetAddon"
+                class="flow-input"
+                (keypress)="preventalpha($event)"
+                pattern="^[0-9]+$"
+                min="25"
+                max="1000000"
+                />
+                <span style="padding-left: 10px;">mg</span>
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        <!-- <nordson-footer></nordson-footer> -->
+</div>
+        <!-- col 12 close-->
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+
+

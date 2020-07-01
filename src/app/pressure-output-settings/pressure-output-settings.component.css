@@ -1,0 +1,114 @@
+.zone-heading {
+    color: #ffffff;
+    font-family: Roboto;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+  .setting-blue-zone {
+    padding: 20px 50px 50px 50px;
+  }
+  .pump-input {
+    position: relative;
+    left: -27px;
+    opacity: 0;
+  }
+  .m-t-10 {
+    margin-top: 10px;
+  }
+  .m-t-5 {
+    margin-top: 5px;
+  }
+  ::ng-deep .btn:hover {
+    background-color: #0181c5;
+  }
+  ::ng-deep .btn:focus {
+    background-color: #0181c5;
+  }
+  .card-applicator {
+    border-radius: 4px;
+    background-color: #aac9d6;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+      0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    padding: 22px 17px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Roboto;
+    font-size: 15px;
+    line-height: 16px;
+    margin-bottom: 10px;
+  }
+  .pressure-point{
+      background-color: #0B446D;
+  }
+  .padding-15{
+      padding:15px;
+  }
+  .pad-top-btm-10{
+      padding-top: 7px;
+      padding-bottom: 7px;
+  }
+  .pressure-input{
+        box-sizing: border-box;
+        height: 35px;
+        width: 76px;
+        border: 1px solid rgba(25,25,25,0.32);
+        border-radius: 4px;
+        background-color: #FFFFFF;
+        padding: 0px 8px;
+        border-bottom:0px !important;
+  }
+  .padding-right{
+      width: 60px;
+      display: inline-block;
+      text-align:left;
+  }
+  .color-white{
+      color: white;
+  }
+  .bg-even-odd:nth-child(even) {
+    background:#9FBCC9;
+  }
+  ::ng-deep .mat-select-panel-wrap .pressure-out-mat-select.mat-select-panel {
+    background-color: #ffffff;
+  
+    border: 1px solid rgba(25, 25, 25, 0.32);
+    border-radius: 4px;
+    position: relative;
+    left: 12px;
+    top: 26px;
+  }
+  ::ng-deep #pressure-out-mat-select .mat-select-arrow {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid;
+    margin: 0 4px;
+    position: relative;
+    left: 21px;
+    top: 0px;
+    color: #d8d8d8;
+  }
+  ::ng-deep #pressure-out-mat-select {
+    height: 35px;
+    width: 114px;
+    border: 1px solid rgba(25, 25, 25, 0.32);
+    border-radius: 4px;
+    background-color: #ffffff;
+  }
+  ::ng-deep #pressure-out-mat-select .ng-star-inserted {
+    position: relative;
+    left: 4px;
+    line-height: 18px;
+  }
+  ::ng-deep
+    #pressure-out-mat-select
+    .mat-form-field-wrapper
+    .mat-form-field-infix {
+    width: auto;
+    padding-right: 30px;
+  }
+  ::ng-deep #pressure-out-mat-select .mat-form-field-infix {
+    border-top: 0;
+  }
+  

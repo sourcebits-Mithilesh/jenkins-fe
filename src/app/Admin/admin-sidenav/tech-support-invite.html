@@ -1,0 +1,81 @@
+<div style="padding: 56px 40px;position: relative;height: 89vh;" class="height-invite">
+  <div class="tech-head">
+    Invite Tech Support User
+  </div>
+  <form
+    name="form"
+    #form="ngForm"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="techSupportForm"
+  >
+    <!-- <ng-flash-message></ng-flash-message> -->
+    <div style="padding-top: 25px">
+      <label class="text-above"
+        >Full Name
+        <sup></sup>
+      </label>
+      <input
+      autocomplete="off"
+        type="text"
+        id=""
+        class="form-control border-blue"
+        name="full_name"
+        formControlName="full_name"
+        style="height: 56px;	width:95%;	border: 1px solid rgba(25,25,25,0.32);	border-radius: 4px;padding-right: 11px"
+      />
+      <div
+        class="invalid"
+        *ngIf="f.full_name.touched && f.full_name.errors?.required"
+      >
+        Full Name is required
+      </div>
+      <div class="invalid" *ngIf="f.full_name.errors?.pattern">
+        Enter valid Full Name
+      </div>
+    </div>
+    <div>
+      <label class="text-above"
+        >Email
+        <sup></sup>
+      </label>
+      <input
+      autocomplete="off"
+        type="text"
+        id=""
+        class="form-control border-blue text-lower-case"
+        name="email"
+        formControlName="email"
+        nordsonLowercase
+        style="height: 56px;	width: 95%;	border: 1px solid rgba(25,25,25,0.32);	border-radius: 4px;padding-right: 11px"
+      />
+      <div class="invalid" *ngIf="f.email.touched &&  f.email.errors?.required">
+        Email is required
+      </div>
+      <div class="invalid" *ngIf="f.email.errors?.uniqueEmail">
+        Email must be unique
+      </div>
+      <div class="invalid" *ngIf="f.email.errors?.email">
+        Please enter a valid Email address
+      </div>
+    </div>
+    <div>
+      <div style="position: absolute;bottom:0">
+        <button
+          class="invite-canc comman-inactive-bt comman-inact-bg no-border"
+          (click)="onNoClick()"
+        >
+          CANCEL
+        </button>
+      </div>
+      <div style="position: absolute;right:44px;bottom:0">
+        <button
+          type="submit"
+          class="invite comman-active-bt comman-act-bg no-border disabled-btn"
+          [disabled]="!form.valid"
+        >
+          INVITE
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

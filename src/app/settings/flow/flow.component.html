@@ -1,0 +1,311 @@
+<div>
+  <form *ngIf="flowForm" #form="ngForm" [formGroup]="flowForm" (submit)="onSubmit()" #aForm>
+  <!-- loader -->
+  <!-- <div class="col m12 s12 l12 xl9 setting-blue-zone pad-right-left-0" *ngIf="!load" >
+    <div class="loading"
+    >
+    <img src="../../../assets/Spinner.gif" alt="not working">
+    </div>
+  </div> -->
+  <div>
+    <div class="dash-board pump">
+      <div class="row" style="padding: 0px">
+        <div class="col m12 s12 l9 xl9 p-0 bg-color-blue height-vh responsive-pad-color">
+        <div
+          class="setting-blue-zone pad-right-left-0 margin-top-12"
+          id="temperature"
+        >
+          <div class="col s12 m12 l12 x12">
+              <article class="temp-heading">
+                <h4 class="zone-heading font-responsive" style="padding-left:0px">Flow Settings</h4>
+                    <p class="right-align" style="padding-right:0px">
+                  <button
+                    type="submit"
+                    class="apply btn"
+                    [disabled]="!flowForm.dirty"
+                  >
+                    SAVE
+                  </button>
+                </p>
+              </article>
+          </div>
+          <div class="col s12 m6 l6 x6">
+            <div class="outer-card">
+              <div class="settings-head">
+                Monitor Alarm Settings
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+              <div class="col s12 m7 l7 x7 pad-left-0 font-bold">
+              Alert
+              </div>
+              <div class="col s12 m5 l5 x5 t-right">
+                <mat-slide-toggle
+                formControlName="ATSAlertEnable"
+                (change)="toogleMat($event,'ATSAlertEnable')"
+              >
+              </mat-slide-toggle>
+              </div>
+            </div>
+            <div class="row display-flex-al-center pad-tp-15">
+              <div class="col s12 m7 l7 x7 pad-left-0">
+                Low Alert Threshold
+              </div>
+              <div class="col s12 m5 l5 x5">
+                <input
+                formControlName="ATSAlertLowerLimit"
+                name="ATSAlertLowerLimit"
+                class="flow-input"
+                (keypress)="preventalpha($event)"/>
+                <span style="padding-left: 10px;">mg</span>
+              </div>
+            </div>
+            <div class="row display-flex-al-center pad-tp-15">
+              <div class="col s12 m7 l7 x7 pad-left-0">
+                High Alert Threshold
+              </div>
+              <div class="col s12 m5 l5 x5">
+                <input
+                formControlName="ATSAlertUpperLimit"
+                name="ATSAlertUpperLimit"
+                class="flow-input"
+                (keypress)="preventalpha($event)"/>
+                <span style="padding-left: 10px;">mg</span>
+              </div>
+            </div>
+            <div class="row display-flex-al-center pad-tp-15">
+              <div class="col s12 m7 l7 x7 pad-left-0">
+                Alert Delay Count
+              </div>
+              <div class="col s12 m5 l5 x5">
+                <input
+                class="flow-input"
+                formControlName = "ATSAlertDelay"
+                name="ATSAlertDelay"
+                (keypress)="preventalpha($event)"/>
+              </div>
+            </div>
+            <div class="row display-flex-al-center pad-tp-15">
+              <div class="col s12 m7 l7 x7 pad-left-0 font-bold">
+                Stop Alarm
+              </div>
+              <div class="col s12 m5 l5 x5 t-right">
+                <mat-slide-toggle
+                formControlName = "ATSFaultEnable"
+                (change)="toogleMat($event,'ATSFaultEnable')"
+              >
+              </mat-slide-toggle>
+              </div>
+            </div>
+            <div class="row display-flex-al-center pad-tp-15">
+              <div class="col s12 m7 l7 x7 pad-left-0">
+                Low Stop Threshold
+              </div>
+              <div class="col s12 m5 l5 x5">
+                <input
+                class="flow-input"
+                formControlName = "ATSFaultLowerLimit"
+                name="ATSFaultLowerLimit"
+                (keypress)="preventalpha($event)"/>
+                <span style="padding-left: 10px;">mg</span>
+              </div>
+            </div>
+            <div class="row display-flex-al-center pad-tp-15">
+              <div class="col s12 m7 l7 x7 pad-left-0">
+                High Stop Threshold
+              </div>
+              <div class="col s12 m5 l5 x5">
+                <input
+                class="flow-input"
+                formControlName = "ATSFaultUpperLimit"
+                name="ATSFaultUpperLimit"
+                (keypress)="preventalpha($event)"/>
+                <span style="padding-left: 10px;">mg</span>
+              </div>
+            </div>
+            <div class="row display-flex-al-center pad-tp-15">
+              <div class="col s12 m7 l7 x7 pad-left-0">
+                Stop Delay Count
+              </div>
+              <div class="col s12 m5 l5 x5">
+                <input
+                class="flow-input"
+                formControlName = "ATSFaultDelay"
+                name="ATSFaultDelay"
+                (keypress)="preventalpha($event)"/>
+              </div>
+            </div>
+            </div>
+            <div class="outer-card m-t-15">
+              <div class="settings-head">
+                Adhesive Settings
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+                <div class="col s12 m7 l7 x7 pad-left-0">
+                  Specific Gravity
+                </div>
+                <div class="col s12 m5 l5 x5">
+                  <input
+                  formControlName="ATSSpecificGravity"
+                  name="ATSSpecificGravity"
+                  class="flow-input"
+                  (keypress)="preventalphaDecimal($event)"/>
+                </div>
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+                <div class="col s12 m7 l7 x7 pad-left-0">
+                  Calibration Constant Setting
+                </div>
+                <div class="col s12 m5 l5 x5">
+                  <input
+                  formControlName="ATSKFactor"
+                  name="ATSKFactor"
+                  class="flow-input"
+                  (keypress)="preventalphaDecimal($event)"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6 l6 x6">
+            <div class="outer-card">
+              <div class="settings-head">
+                Product Settings
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+                <div class="col s12 m7 l7 x7 pad-left-0">
+                  Product Skip Count
+                </div>
+                <div class="col s12 m5 l5 x5">
+                  <input
+                  formControlName="ATSNumProdToSkip"
+                  name="ATSNumProdToSkip"
+                  class="flow-input"
+                  (keypress)="preventalpha($event)"/>
+                </div>
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+                <div class="col s12 m7 l7 x7 pad-left-0">
+                  Products to Average
+                </div>
+                <div class="col s12 m5 l5 x5 ">
+                  <input
+                  formControlName="ATSNumProdToAverage"
+                  name="ATSNumProdToAverage"
+                  class="flow-input"
+                  (keypress)="preventalpha($event)"/>
+                </div>
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+                <div class="col s12 m7 l7 x7 pad-left-0">
+                  Idle Skip Time
+                </div>
+                <div class="col s12 m5 l5 x5 ">
+                  <input
+                  formControlName="ATSProdSkipTime"
+                  name="ATSProdSkipTime"
+                  class="flow-input"
+                  (keypress)="preventalpha($event)"/>
+                  <span style="padding-left: 10px;">sec</span>
+                </div>
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+                <div class="col s12 m7 l7 x7 pad-left-0">
+                  Start up Skip Count
+                </div>
+                <div class="col s12 m5 l5 x5 ">
+                  <input
+                  class="flow-input"
+                  formControlName="ATSStartupSkipCount"
+                  name="ATSStartupSkipCount"
+                  (keypress)="preventalpha($event)"/>
+                </div>
+              </div>
+            </div>
+            <div class="outer-card m-t-15 " style="height: 393px;">
+              <div class="settings-head">
+                Trigger Settings
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+                <div class="col s12 m6 l6 xl6 pad-left-0">
+                  Trigger Polarity
+                </div>
+                <div class="col s12 m6 l6 xl6 ">
+                  <mat-form-field
+                        id="trigger-mat-select"
+                        [floatLabel]="'never'"
+                      >
+                        <mat-select
+                          formControlName="ATSTriggerPol"
+                          panelClass="trigger-mat-select"
+                          disableOptionCentering
+                        >
+                        <mat-option
+                        *ngFor="let range of polarity"
+                        [value]="range"
+                      >
+                        {{ range.name }}
+                      </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+                <div class="col s12 m6 l6 xl6 pad-left-0">
+                  Trigger Sourcing
+                </div>
+                <div class="col s12 m6 l6 xl6 ">
+                  <mat-form-field
+                        id="trigger-mat-select"
+                        [floatLabel]="'never'"
+                      >
+                        <mat-select
+                        formControlName="source"
+                          panelClass="trigger-mat-select"
+                          disableOptionCentering
+                        >
+                        <mat-option
+                        *ngFor="let range of sourcing"
+                        [value]="range"
+                      >
+                        {{ range.name }}
+                      </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+              </div>
+              <div class="row display-flex-al-center pad-tp-15">
+                <div class="col s12 m6 l6 xl6 pad-left-0">
+                  Capture Mode
+                </div>
+                <div class="col s12 m6 l6 xl6 ">
+                  <mat-form-field
+                        id="trigger-mat-select"
+                        [floatLabel]="'never'"
+                      >
+                        <mat-select
+                          formControlName="capture"
+                          panelClass="trigger-mat-select"
+                          disableOptionCentering
+                        >
+                        <mat-option
+                        *ngFor="let range of mode"
+                        [value]="range"
+                      >
+                        {{ range.name }}
+                      </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <nordson-footer></nordson-footer> -->
+</div>
+        <!-- col 12 close-->
+      </div>
+    </div>
+  </div>
+  <!--main close tag--->
+</form>
+</div>
+

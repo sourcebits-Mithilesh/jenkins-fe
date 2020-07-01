@@ -1,0 +1,49 @@
+<div class="row dash-board">
+  <div class="col m12 s12 l9 xl9 p-0 margin-top-12">
+  <!-- for responsive class medium shud be col m12 -->
+  <div
+    class="pad-main margin-top-12-dashboard pad-right-left-10"
+    [ngStyle]="{ 'background-color': 'rgb(249,253,255)' }"
+  >
+    <article>
+      <div class="row">
+        <div class="col s12 m12 l12 xl12">
+          <div class="main-heading font-responsive" style="text-transform: capitalize">
+            {{ valueLanguage | languageFilter : 'Welcome' : 'WELCOME' }} {{ fullName }}
+          </div>
+          <p class="sub-heading" style="padding-top: 6px">
+            {{ valueLanguage | languageFilter : 'Thanks for using our BBconn Cloud, your dashboard is ready to use' : 'DASHBOARD_WELCOME_DESC' }}
+          </p>
+        </div>
+      </div>
+    </article>
+    <div class="row" style="padding-top: 7.5px">
+      <div class="col s12 m6 l6 xl6 ">
+        <a routerLink="/event-log-files" routerLinkActive="active-link">
+          <div class="card-panel cards">
+            <section class=""><img src="./assets/img/svg/Path.svg" /></section>
+            <div style="padding-top: 30px">
+              <div class="white-text headline">{{ valueLanguage | languageFilter : 'Recently Viewed' : 'RECENTLY_VIEWED' }}</div>
+              <div class="white-text headline">{{ valueLanguage | languageFilter : 'Event Log Files' : 'EVENT_LOG_FILES' }}</div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col s12 m6 l6 xl6">
+        <a routerLink="/imported-settings-files" routerLinkActive="active-link">
+          <div class="card-panel cards">
+            <section class="">
+              <img src="./assets/img/svg/round-receipt-24px.svg" />
+            </section>
+            <div style="padding-top: 30px">
+              <div class="white-text headline">{{ valueLanguage | languageFilter : 'Recently Created' : 'RECENTLY_CREATED' }}</div>
+              <div class="white-text headline">{{ valueLanguage | languageFilter : 'or Imported Setting Files' : 'IMPORTED_SETTING_FILES' }}</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- <nordson-footer></nordson-footer> -->
+</div>
+</div>

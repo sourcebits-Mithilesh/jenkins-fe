@@ -1,0 +1,142 @@
+body {
+  background: #f2f2f2;
+}
+.continue p {
+  color: #000000;
+  font-family: Roboto;
+  font-size: 14px;
+  float: left;
+  margin: 0px;
+  text-align: right;
+  padding-right: 23px;
+}
+.continue p span {
+  color: #000000;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+}
+.cancel-1 {
+  color: #000000;
+  /* color: #4a4a4a; */
+  font-family: Roboto;
+  font-size: 13px;
+  line-height: 69px;
+  text-align: center;
+}
+.selectdiv {
+  position: relative;
+  /*Don't really need this just for demo styling*/
+}
+.selectdiv:after {
+  content: '\f0d7';
+  font: normal normal normal 16px/1 FontAwesome;
+  color: #b5b5b5;
+  right: 11px;
+  top: 30px;
+  height: 34px;
+  padding: 15px 0px 0px 8px;
+  position: absolute;
+  pointer-events: none;
+}
+.selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+  display: block;
+  float: right;
+  padding: 16px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #ffffff;
+  background-image: none;
+  word-break: normal;
+  height: 62px;
+  width: 314px;
+  border-radius: 5px;
+  border: 1px solid #0081c6;
+  margin-right: -20px;
+  font-family: Roboto;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+  font-weight: normal !important;
+}
+.invalid {
+  color: red;
+}
+.brand-logo img {
+  width: 250px;
+}
+.text-above {
+  z-index: 1;
+  position: relative;
+  background-color: #fff;
+  top: 9px;
+  left: 10px;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: 'Roboto';
+  font-size: 12px;
+  line-height: 16px;
+  padding-left: 6px;
+  letter-spacing: 0.4px;
+  z-index: 1;
+}
+
+/*  select material */
+
+#register-mat-sel,
+#register-mat-sel-1 {
+  width: 313px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+::ng-deep .mat-select-panel-wrap .registermatsel.mat-select-panel {
+  position: relative;
+  top: 42px;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  visibility: hidden;
+}
+::ng-deep #register-mat-sel .mat-select-arrow,
+#register-mat-sel-1 .mat-select-arrow,
+::ng-deep #register-mat-sel-1 .mat-select-arrow,
+#register-mat-sel-1 .mat-select-arrow {
+  visibility: hidden;
+}
+::ng-deep
+  #register-mat-sel.mat-form-field-appearance-legacy
+  .mat-form-field-infix,
+::ng-deep
+  #register-mat-sel-1.mat-form-field-appearance-legacy
+  .mat-form-field-infix {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.mat-label {
+  margin-left: 15px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+::ng-deep .mat-placeholder-required.mat-form-field-required-marker {
+  visibility: hidden;
+}
+
+.disabled-input[disabled] {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+::ng-deep #register-mat-sel.mat-form-field-appearance-legacy
+.mat-form-field-wrapper,
+::ng-deep #register-mat-sel-1.mat-form-field-appearance-legacy
+.mat-form-field-wrapper{
+padding-bottom:12px !important;
+}
+@media only screen and (max-width: 500px) {
+  #register-mat-sel,
+  #register-mat-sel-1 {
+    width: 299px !important;
+  }
+
+}

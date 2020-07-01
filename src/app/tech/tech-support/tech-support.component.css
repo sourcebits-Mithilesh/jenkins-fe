@@ -1,0 +1,181 @@
+p {
+  margin-top: 0px;
+}
+
+.tech-font {
+  color: #0081c5;
+  font-family: 'Roboto';
+  font-size: 22px;
+  line-height: 25px;
+  font-weight: 500;
+  padding-bottom: 23px;
+}
+
+#tech-input-style {
+  height: 28px;
+  width: 120px;
+  border: 1px solid #acb2b5;
+  border-radius: 3px;
+  background-color: #ffffff;
+  line-height: 0;
+  padding-left: 27px;
+  color: #767576;
+  margin-top: 2px;
+  margin-right: 11px;
+}
+.home .sidenav-shadow {
+  min-height: 1450px !important;
+}
+
+#tech-dash {
+  padding-top: 40px;
+  padding-left: 53px;
+  margin-top: -10px;
+}
+
+.search {
+  position: relative;
+  left: 23px;
+  top: 4px;
+}
+
+#tech-select {
+  padding-right: 59px;
+}
+#tech-select-1 {
+  padding-right: 29px;
+}
+
+#tech-main-section {
+  background: #fff;
+}
+
+.tech-sub {
+  line-height: 48px;
+  background-color: #e2f5ff;
+}
+
+.tech-header-font {
+  color: #203535;
+  text-align: left;
+  font-family: 'Roboto';
+  font-size: 11px;
+  letter-spacing: 0.92px;
+  font-weight: 500;
+  text-transform: uppercase;
+  word-break: break-all;
+}
+
+.tech-p {
+  color: #0081c5;
+  font-family: Roboto;
+  font-size: 14px;
+  clear: both;
+  float: left;
+}
+
+#tech-dash #tech-cards-1 .card {
+  min-height: 140px;
+  max-width: 190px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+#tech-dash .card .card-content .number {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: 'Roboto';
+  font-size: 45px;
+  font-weight: 300;
+}
+
+#tech-cards-1 .card .card-content {
+  padding-top: 18px;
+}
+
+.count-text {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 18px;
+  padding-top: 8px;
+}
+
+#tech-dash .white-c {
+  padding-left: 0px;
+}
+
+#tech-cards-1 {
+  padding-bottom: 22px;
+}
+
+#tech-main-section {
+  padding: 0 24px 0 24px;
+}
+
+#tech-user-padding {
+  padding-top: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5ecf5;
+}
+
+/* material select */
+
+#tech-select .mat-form-field-infix,
+#tech-select-1 .mat-form-field-infix {
+  height: 28px;
+  width: 160px;
+  border: 1px solid #acb2b5;
+  border-radius: 3px;
+  background-color: #ffffff;
+  color: #767576;
+  padding-right: 30px;
+  flex: none;
+}
+
+#tech-select .mat-select-arrow,
+#tech-select-1 .mat-select-arrow {
+  color: #7ab800;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid;
+  position: relative;
+  left: 21px;
+}
+
+#tech-select .mat-select-value-text,
+#tech-select .placeholder,
+#tech-select-1 .mat-select-value-text,
+#tech-select-1 .placeholder {
+  position: relative;
+  left: 6px;
+  color: #4a4a4a;
+  font-family: 'Roboto';
+  font-size: 13px;
+  font-weight: 500;
+  top: -2px;
+}
+
+.superselect .mat-option {
+  color: #4a4a4a;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.mat-select-panel-wrap .superselect {
+  position: relative;
+  left: 16px;
+  top: 20px;
+}
+
+#main-head {
+  background-color: cornflowerblue;
+  text-align: center;
+}
+.mat-form-field-underline {
+  display: none;
+}
+.techmenu.mat-menu-panel {
+  min-width: 217px;
+}

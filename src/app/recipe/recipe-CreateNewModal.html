@@ -1,0 +1,56 @@
+<div>
+  <form
+    name="form"
+    *ngIf="recipeNewForm"
+    #form="ngForm"
+    [formGroup]="recipeNewForm"
+    (submit)="onSubmit()"
+  >
+    <div>
+      <div style="float: left" class="saveas-text">
+        Create New Recipe
+      </div>
+      <div style="float: right;">
+        <img
+          src="../../assets/img/svg/close.svg"
+          alt=""
+          (click)="onNoClick()"
+        />
+      </div>
+    </div>
+
+    <div style="padding-top: 54px">
+      <input
+      autocomplete="off"
+        type="text"
+        class="save-popup-input"
+        maxlength="15"
+        name="newRecipeName"
+        formControlName="newRecipeName"
+        placeholder="Enter Recipe Name"
+        (keypress)="preventSpecialChar($event)"
+      />
+    </div>
+    <div
+      class="invalid"
+      *ngIf="f.newRecipeName.touched && f.newRecipeName.errors?.required"
+    >
+      Recipe name is required
+    </div>
+    <div class="invalid" *ngIf="!f.newRecipeName.errors?.required && f.newRecipeName.errors?.pattern">
+      Please enter a valid Recipe Name
+    </div>
+    <div class="invalid" *ngIf="!f.newRecipeName.errors?.required && !f.newRecipeName.errors?.pattern && recipeErr != ''">
+      {{ recipeErr }}
+    </div>
+    <div style="padding-top: 20px">
+      <button
+        type="submit"
+        class="saveas-save-btn btn"
+        [disabled]="!form.valid || !recipeNewForm.dirty || accessType === 1"
+      >
+        SAVE
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,916 @@
+<div>
+  <nordson-dashboard-header></nordson-dashboard-header>
+  <form
+    name="form"
+    #form="ngForm"
+    class="fill-mat"
+    [formGroup]="plcForm"
+    (keydown.enter)="$event.preventDefault()"
+    (submit)="onSubmit()"
+  >
+    <div class="row bg-color plc-height responsive-pad-color">
+      <div class="col m6 s6 l6 xl6" style="padding-bottom:30px">
+        <span class="back-button-white">
+          <a (click)="navigate()">
+            <img
+              src="../../../assets/img/svg/Back Button.white.svg"
+              alt=""
+              width="18px"
+              height="17px"
+          /></a>
+        </span>
+        <span class="map-heading font-responsive">PLC Mapping and Interface Setup</span>
+      </div>
+      <!--File Import -->
+      <div class="col m6 s16 l6 xl4" style="text-align:right">
+        <div class="import-button-div cursor-pointer" style="float:right">
+          <label for="files" class="import-div">Import</label>
+          <input
+            autocomplete="off"
+            #fileInput
+            (click)="fileInput.value = null"
+            value=""
+            type="file"
+            id="files"
+            style="visibility:hidden;"
+            (change)="importXML($event)"
+          />
+        </div>
+      </div>
+      <!--File Import -->
+
+       <!--File Export -->
+       <div class="col m6 s16 l6 xl2">
+        <div style="margin-top: 10px;">
+          <button
+            type="button"
+            (click)="export()"
+            [disabled]="accessType === 1 || (readArr.length===0 && writeArr.length===0)"
+            class="save-btn-plc btn">
+            EXPORT 
+          </button>
+        </div>
+      </div>
+      <!--File Export -->
+      <div class="col m12 s12 l12 xl12">
+      </div>
+
+      <div class="row">
+        <div>
+          <div class="col m6 s12 l6 xl6">
+            <div class="system-settings-column pad-top-23">
+              <div class="row background-blue">
+                <div class="col m4 s4 l4 xl4 "></div>
+                <div class="col m2 s2 l2 xl2 title t-center ">
+                  WORDS
+                </div>
+                <div class="col m2 s2 l2 xl2 title t-center ">
+                  READ
+                </div>
+                <div class="col m2 s2 l2 xl2 title t-center ">
+                  WRITE
+                </div>
+                <div
+                  class="col m2 s2 l2 xl2 title t-center "
+                  style="padding: 0px !important"
+                >
+                  ADI NUMBER
+                </div>
+              </div>
+              <div style="height:460px;overflow-y:scroll">
+                <mat-accordion id="plc-mapping" class="plc-mapping">
+                  
+                  <mat-expansion-panel class="dark-bg" [expanded]="true">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Fill
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'FILL'"> 
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel class="light-bg">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Flow
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <b>Flow</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'flow'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngFor="let plc of plcObject; let i = index">
+                    <b *ngIf="plc.type!=='flow' && plc.parentkey === 'FLOW'">{{plc.type}}</b>
+                      <div class="row" *ngIf="plc.type!=='flow' && plc.parentkey === 'FLOW'">
+                        <div>
+                          <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                            {{ plc.name }}
+                          </div>
+                          <div
+                            class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                          >
+                            {{ plc.words }}
+                          </div>
+                          <div
+                            class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                          >
+                            {{ plc.read }}
+                          </div>
+                          <div
+                            class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                          >
+                            {{ plc.write }}
+                          </div>
+                          <div
+                            [draggable]
+                            [dragClass]="'active'"
+                            [dragData]="plc"
+                            [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                            [dragEnabled]="true"
+                            class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                          >
+                            {{ plc.number }}
+                          </div>
+                          <div class="row">
+                            <div
+                              class="col m12 s12 l12 xl12"
+                              style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel class="dark-bg">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        General
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'GENERAL'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel class="light-bg">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Motor/Pump
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'MOTERS'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel class="dark-bg">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Pressure
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'pressure' && plc.parentkey === 'Pressure'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngFor="let plc of plcObject; let i = index">
+                      <div *ngIf="plc.type !== 'pressure' && plc.parentkey === 'Pressure'">
+                        <b>{{plc.type}}</b>
+                        <div>
+                          <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                            {{ plc.name }}
+                          </div>
+                          <div
+                            class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                          >
+                            {{ plc.words }}
+                          </div>
+                          <div
+                            class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                          >
+                            {{ plc.read }}
+                          </div>
+                          <div
+                            class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                          >
+                            {{ plc.write }}
+                          </div>
+                          <div
+                            [draggable]
+                            [dragClass]="'active'"
+                            [dragData]="plc"
+                            [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                            [dragEnabled]="true"
+                            class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                          >
+                            {{ plc.number }}
+                          </div>
+                          <div class="row">
+                            <div
+                              class="col m12 s12 l12 xl12"
+                              style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel class="light-bg">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Temperature
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <b>Temp</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'temp'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <b>actualTemp</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'actualTemp'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <b>tempSetPoint</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'tempSetPoint'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <b>ActiveDeactiveTempChannel</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'activeDeactiveTempChannel'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <b>ActiveDeactiveControllGroup</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'activeDeactiveControllGroup'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <b>StatusTempChannel</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'statusTempChannel'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <b>heaterDutyCycle</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'heaterDutyCycle'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <b>autoTuneStatus</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'autoTuneStatus'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                    <b>autnTuneCommand</b>
+                    <div
+                      class="row"
+                      *ngFor="let plc of plcObject; let i = index"
+                    >
+                      <div *ngIf="plc.type === 'autnTuneCommand'">
+                        <div class="col m4 s4 l4 xl4 pad-top-5 pad-bottom-5 text-captalize">
+                          {{ plc.name }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5"
+                        >
+                          {{ plc.words }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.read }}
+                        </div>
+                        <div
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 uppercase"
+                        >
+                          {{ plc.write }}
+                        </div>
+                        <div
+                          [draggable]
+                          [dragClass]="'active'"
+                          [dragData]="plc"
+                          [dragScope]="plc.read === 'yes' ? 'plc' : 'others'"
+                          [dragEnabled]="true"
+                          class="col m2 s2 l2 xl2  t-center pad-top-5 pad-bottom-5 color"
+                        >
+                          {{ plc.number }}
+                        </div>
+                        <div class="row">
+                          <div
+                            class="col m12 s12 l12 xl12"
+                            style="box-sizing: border-box;	height: 1px;border: 0.8px solid #0B446D;	opacity: 0.16;"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+
+                </mat-accordion>
+              </div>
+            </div>
+          </div>
+          <div class="col m6 s12 l6 xl6 pad-top-30-responsive">
+            <div class="system-settings-column pad-top-23">
+              <div class="row background-blue" style="padding: 11px !important">
+                <div class="col m6 s6 l6 xl6 area-title t-center ">
+                  READ AREA CFG (TO PLC)
+                </div>
+                <div class="col m6 s6 l6 xl6 area-title t-center">
+                  WRITE AREA CFG (FROM PLC)
+                </div>
+              </div>
+              <div class="row" id="scroll">
+                <div class="col m6 s6 l6 xl6 t-center wrapper">
+                  <div class="outer-wrapper">
+                    <table>
+                      <tr>
+                        <th
+                          style="width: 108px;text-align: center;"
+                          class="text"
+                        >
+                          WORD
+                        </th>
+                        <th class="text">ADI NUMBER</th>
+                      </tr>
+                      <tr *ngFor="let plc of plcCount; let i = index">
+                        <td
+                          style="width: 108px;text-align: center;font-size: 14px"
+                        >
+                          {{ i }}
+                        </td>
+                        <td>
+                          <input
+                          autocomplete="off"
+                            (blur)="onBlurRead(i + 1, 'read')"
+                            type="text"
+                            formControlName="input{{ i + 1 }}"
+                            droppable
+                            [dragOverClass]="'drag-target-border'"
+                            [dropScope]="['plc', 'others']"
+                            [dragHintClass]="'drag-hint'"
+                            (onDrop)="onAnyDrop($event, i, 'read')"
+                            class="input-plc"
+                          />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="col m6 s6 l6 xl6 t-center wrapper">
+                  <div class="outer-wrapper">
+                    <table>
+                      <tr>
+                        <th
+                          style="width: 108px;text-align: center;"
+                          class="text"
+                        >
+                          WORD
+                        </th>
+                        <th class="text">ADI NUMBER</th>
+                      </tr>
+                      <tr *ngFor="let plc of plcCount; let i = index">
+                        <td
+                          style="width: 108px;text-align: center;font-size: 14px"
+                        >
+                          {{ i }}
+                        </td>
+                        <td>
+                          <input
+                          autocomplete="off"
+                            (blur)="onBlurWrite(i + 1, 'write')"
+                            type="text"
+                            formControlName="inputs{{ i + 1 }}"
+                            droppable
+                            [dragOverClass]="'drag-target-border'"
+                            [dropScope]="['plc', 'others']"
+                            [dragHintClass]="'drag-hint'"
+                            (onDrop)="onAnyDrop($event, i, 'write')"
+                            class="input-plc"
+                          />
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row"
+        style="padding-top: 20px;padding-bottom: 54px;
+      margin-bottom: 2px;
+  "
+      >
+        <div class="col m6 s6 l6 xl6" style="text-align:right">
+          <button type="button" (click)="cancel()" class="cancel-btn-plc">
+            CANCEL
+          </button>
+        </div>
+        <div class="col m6 s6 l6 xl6">
+          <button
+            type="submit"
+            [disabled]="accessType === 1 || !plcForm.dirty"
+            class="save-btn-plc btn"
+          >
+            SAVE 
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- <nordson-footer></nordson-footer> -->
+</div>

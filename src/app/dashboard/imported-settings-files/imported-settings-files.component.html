@@ -1,0 +1,126 @@
+<div class="dash-board">
+  <div class="row">
+    <div class="row">
+  <div class="col m12 s12 l9 xl9 p-0 margin-top-12 height-vh" style="background: rgb(249,253,255)">
+      <div
+        class="pad-main "
+      >
+        <div>
+          <div>
+            <div class="event-log-head font-responsive" *ngIf="userRole===0 || userRole===4">
+              Recently Created or Imported Setting Files
+            </div>
+            <div class="event-log-head" *ngIf="userRole===2 || userRole===3">
+              Nor Files
+            </div>
+          </div>
+          <div>
+            <div class="" style="padding-top: 21px">
+              {{ noRecord }}
+            </div>
+          </div>
+        </div>
+        <div class="row display-none-responsive" style="padding-top: 21px" *ngIf="isNoRecords">
+          <div
+            class="col m5 s5 l5 xl5 settings-files-properties"
+            style="padding-left: 25px"
+          >
+            File Name
+          </div>
+          <div class="col m2 s2 l2 xl2 settings-files-properties t-center text-lower-case text-captalize-1st-letter" style="margin-left: -20px !important">
+            Date
+          </div>
+          <div
+            class="col m1 s1 l1 xl1 settings-files-properties t-center"
+            style="padding-left: 1px; margin-left: 19px;"
+          >
+            Time
+          </div>
+          <div
+            class="col m1 s1 l1 xl1 settings-files-properties t-center"
+            style="padding-left: 1px"
+          ></div>
+          <div
+            class="col m2 s2 l2 xl2 settings-files-properties t-center"
+            style="padding-left: 1px"
+          ></div>
+        </div>
+        <div *ngIf="isNoRecords" class="pad-btm-80">
+          <mat-card
+            style="margin-top: 10px;box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);"
+            *ngFor="let importedsettingsfile of importednorfile | paginate
+            : {
+                id: 'server',
+                itemsPerPage: 10,
+                currentPage: p,
+                totalItems: total
+              }"
+          >
+          <div class="row">
+            <div class="display-responsive padding-responsive col s12">
+              File Name
+            </div>
+            <div class="col m5 s12 l5 xl5 datatext">
+              {{ importedsettingsfile.nor_file_name }}
+            </div>
+            <div class="display-responsive padding-responsive col s12">
+              Date
+            </div>
+            <div class="col m2 s12 l2 xl2 datatext t-center text-align-left-responsive">
+              {{ importedsettingsfile.Date }}
+            </div>
+            <div class="display-responsive padding-responsive col s12">
+              Time
+            </div>
+            <div class="col m1 s12 l1 xl1 datatext t-center text-align-left-responsive">
+              {{ importedsettingsfile.createdAt | slice: 11:16 }}
+            </div>
+            <div
+              class="col m1 s12 l1 xl1 t-center viewtext text-align-left-responsive padding-responsive"
+              style="cursor:pointer;"
+              (click)="goToSetupTools(importedsettingsfile.id)"
+            >
+              VIEW
+            </div>
+            <div class="col m2 s12 l2 xl2 t-center viewtext text-align-left-responsive padding-responsive">
+              <a
+                class="download"
+                style="cursor:pointer;"
+                (click)="
+                  onDown(
+                    importedsettingsfile.nor_file_name,
+                    importedsettingsfile.user_id, importedsettingsfile.id
+                  )
+                "
+                >DOWNLOAD</a
+              >
+            </div>
+            <div
+            class="col m1 s12 l1 xl1 t-center viewtext " id="deleteicon"
+            style="cursor:pointer;text-align: right;"
+            
+          >
+          <i class="fa fa-trash-o" style="font-size:20px;color:#000000" (click)="opendeleteModal(importedsettingsfile.id)"></i>
+          </div>
+          </div>
+          <div class="row" *ngIf="userRole!==0 && userRole!==4">
+            <div ngClass="{{userRole!==2 ? 'col m12 s12 l12 xl12 desc-minimized':'col m11 s11 l11 xl11 desc-minimized'}}" >
+              {{ importedsettingsfile.norfile_description }}
+            </div>
+            <div class="col m1 s1 l1 xl1" style="text-align: right;" *ngIf="userRole===2">
+              <img src="../../../assets/pencil-edit-button.svg" alt="" class="cursor-pointer" (click)="OpenNorFileEditModalSettings(importedsettingsfile.norfile_description,importedsettingsfile.id)" style="margin-top: 10px;height: 19px;">
+            </div>
+          </div>
+          </mat-card>
+          <pagination-controls
+              (pageChange)="getPage($event)"
+              *ngIf="loading && (!noRecord && userRole!==0 && userRole!==4)"
+              id="server"
+              style="display:flex;justify-content:center;position: relative;"
+            ></pagination-controls>
+      </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </div>
+</div>

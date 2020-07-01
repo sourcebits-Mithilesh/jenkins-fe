@@ -1,0 +1,58 @@
+.setting-blue-zone {
+    background: #0d436d;
+    padding: 9px 50px 50px 28px;
+}
+.card-applicator {
+    /* min-height: 100px; */
+    /*width: 390px !important;*/
+    /* border-radius: 4px; */
+    /* margin-right: 10px; */
+    background-color: #aac9d6;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+        0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    padding: 18px 17px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Roboto;
+    font-size: 15px;
+    line-height: 21px;
+    /* margin-bottom: 10px; */
+    display:block;
+}
+.table-head{
+    background-color: #0B446D;
+    color:#FFFFFF!important;
+}
+.table-row{
+    /* height: 48px; */
+    /* box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+        0 1px 3px 0 rgba(0, 0, 0, 0.2); */
+    padding: 18px 17px;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Roboto;
+    font-size: 15px;
+    line-height: 21px;
+}
+.table-row-odd{
+    background-color: #9FBCC9;
+}
+.table-row-even{
+    background-color: #AAC9D6;
+}
+.maintenance-history{
+    padding: 18px;
+}
+.maintenance-history:nth-child(even){
+    background: #AAC9D6;
+}
+.maintenance-history:nth-child(odd) {
+    background: #9FBCC9;
+}
+
+@media only screen and (max-width: 500px){
+
+    .responsiveside{
+        width: 27.5rem !important;
+        margin-left: -2.5rem !important;
+    }
+      }

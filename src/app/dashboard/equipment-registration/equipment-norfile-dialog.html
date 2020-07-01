@@ -1,0 +1,27 @@
+<div>
+    <div>
+      <div class="saveas-text" style="font-size: 20px !important;float: left">
+        Edit Norfile Description
+      </div>
+      <div style="float: right;">
+        <img class="cursor-pointer" src="../../assets/img/svg/close.svg" alt="" (click)="onNoClick()" />
+      </div>
+    </div>
+
+    <div style="padding-top: 54px">
+      <!-- <input type="text" [(ngModel)]="description" class="save-popup-input" maxlength="250"/> -->
+      <textarea
+      name="description"
+      type="text"
+      class="form-control border-blue text-area pad-tp-15"
+      [(ngModel)]="description"
+      maxlength="250"
+      style="height: 120px;"
+    ></textarea>
+    </div>
+    <div style="padding-top: 20px">
+      <button class="apply btn submit-bt" (click)="onSubmit()">
+        SAVE
+      </button>
+    </div>
+  </div>

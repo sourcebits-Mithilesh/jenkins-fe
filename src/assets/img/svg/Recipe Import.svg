@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="25px" viewBox="0 0 40 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Group 11</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Setup-screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Recipe" transform="translate(-703.000000, -152.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Import" transform="translate(689.000000, 142.000000)">
+                <g id="folder-copy" transform="translate(13.000000, 10.000000)">
+                    <g id="Group-11" transform="translate(0.777778, 0.000000)">
+                        <path d="M24.3525926,3.28721174 L22.1187556,0.196293501 L22.1182815,0.195823899 L21.9774815,0 L11.7777778,0 L11.7777778,24.8888889 L40.2222222,24.8888889 L40.2222222,3.28721174 L24.3525926,3.28721174 Z M39.2740741,4.22641509 L39.2740741,6.57442348 L26.7286519,6.57442348 L25.0319407,4.22641509 L39.2740741,4.22641509 Z M12.7259259,23.9496855 L12.7259259,0.939203354 L21.4891852,0.939203354 L23.8595556,4.22641509 L23.8652444,4.22641509 L26.0886519,7.30277568 C26.1810963,7.43050734 26.326637,7.49859958 26.4740741,7.49906918 L26.4740741,7.51362683 L39.2740741,7.51362683 L39.2740741,23.9496855 L12.7259259,23.9496855 Z" id="Shape"></path>
+                        <polygon id="Path" transform="translate(6.000000, 15.111111) rotate(-90.000000) translate(-6.000000, -15.111111) " points="6.45940048 18.5376545 6.45940048 9.77777778 5.54059952 9.77777778 5.54059952 18.5376545 2.64959228 15.4030074 2 16.1073441 6 20.4444444 10 16.1073441 9.35040772 15.4030074"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

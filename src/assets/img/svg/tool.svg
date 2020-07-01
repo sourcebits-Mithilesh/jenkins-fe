@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>tool</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Setup-Sidebar" transform="translate(-33.000000, -628.000000)" stroke="#6F6F6F" stroke-width="2">
+            <g id="tool" transform="translate(33.000000, 628.000000)">
+                <path d="M8.743,12.743 C6.46703653,13.4350814 3.99713477,12.7171862 2.44674533,10.9129471 C0.896355885,9.10870788 0.558309474,6.55890144 1.585,4.413 L5.95,8.778 L8.778,5.95 L4.413,1.585 C6.6867848,0.496712858 9.39834681,0.945729988 11.1999528,2.70887549 C13.0015588,4.47202099 13.5089753,7.17326393 12.47,9.47 L19.586,16.586 C20.3667639,17.3669997 20.3667639,18.6330003 19.586,19.414 L18.914,20.086 C18.1330003,20.8667639 16.8669997,20.8667639 16.086,20.086 L8.743,12.743 L8.743,12.743 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,76 @@
+<form name="form" #form="ngForm" [formGroup]="heatForm">
+  <div class="row">
+    <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+    <div class="white-text margin-top-12 pad-right-left-20" id="mat-heat-shed"
+      [ngStyle]="{ 'background-color': bgdClrForHeight, padding: '0px 49px' }">
+      <div>
+        <div class="row heat-schedule-head font-responsive">Heat Schedule</div>
+        <div style="width: 100%;padding-bottom: 20px">
+          <div style="text-align: right">
+            <span class="heat-color"></span>
+            <span class="heat-text" style="padding-right: 20px">Heat</span>
+            <span class="setback-color"></span>
+            <span class="heat-text">Setback</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row font-color">
+        <div class="col m4 s12 l3 xl3 pad-right-left-0" style="padding-left:0px">
+          <div class="row set-light-blue sheduler-grid" style="padding: 12px 10px;" style="display: none;">
+            <span class="custom-input">
+              <input autocomplete="off" class="input-time" id="input-time"type="text" formControlName="date"/>
+            </span>
+            <span class="toggle-custom-icon-example custom-input" style="margin-top: 7px" id="scheduleTime">
+              <!-- <nordson-time-selector></nordson-time-selector> -->
+              <input autocomplete="off" id="input-time" class="input-time" type="text" formControlName="timePicker" />
+            </span>
+            
+            <style>
+              .input-time{
+                height: 25px !important;
+              }
+              #input-time{
+                background:none !important 
+              }
+            </style>
+          </div>
+          <div class="row set-light-blue p-10">
+            <div class="col s8 m8 l8 xl8 padding-left-right-0">
+              <b>Scheduler</b>
+            </div>
+            <div class="col s4 m4 l4 xl4 right-align padding-left-right-0" id="heat-schedule">
+              <mat-slide-toggle (change)="toogleScheduler($event)" formControlName="enableScheduler"
+                panelClass="heat-toggle-button" [ngStyle]="accessType===1?{'pointer-events':'none'}:''">
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <div class="row set-light-blue mt-15 p-10" (click)="addHeatSetbackEvent('heatEvent')" [ngStyle]="accessType===1?{'pointer-events':'none','opacity':heatButton}:{'opacity':heatButton}">
+            <div>
+              <div style="float:left"> Add a Heat Event</div>
+              <img src="../../../assets/img/svg/addevent.svg" style="float: right" />
+            </div>
+          </div>
+          <div class="row set-light-blue mt-15 p-10" (click)="addHeatSetbackEvent('setbackEvent')" [ngStyle]="accessType===1?{'pointer-events':'none','opacity':heatButton}:{'opacity':heatButton}">
+            <div style="float:left"> Add a Setback Event </div>
+            <img src="../../../assets/img/svg/addevent.svg" style="float: right" />
+          </div>
+        </div>
+        <div class="col m9 s12 l9 xl9 pad-right-left-0 pad-top-20-responsive">
+          <app-heatscheduler [heatEvents]='heatevents' style=" border-radius: 4px;height: 80vh;"
+          (heatEventClick)="eventDblClickHandler($event)"
+          [timeFormat]='preference'
+          [ngStyle]="{'opacity':heatButton,'pointer-events':noScroll}"
+          ></app-heatscheduler>
+        </div>
+      </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </div>
+</form>
+<br /><br />
+
+
+
+

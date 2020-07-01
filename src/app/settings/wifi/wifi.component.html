@@ -1,0 +1,192 @@
+
+  <div>
+      <div class="dash-board">
+        <form *ngIf="wifiNetworkForm" #form="ngForm" [formGroup]="wifiNetworkForm" (submit)="onSubmit()">
+          <div class="row" style="padding: 0px">
+            <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh">
+            <div class=" setting-blue-zone setting-blue margin-top-12" id="networking ">
+              <div class="col s12 m12 l12 x12">
+                <article class="temp-heading pad-tp-15">
+                  <h4 class="zone-heading white-c cursor-pointer" style="
+                  font-size: 26px; outline: none;" routerLink="/settings/networking">Networking › Wifi </h4>
+                  <p class="right-align">
+                    <button class="apply btn submit-bt" type="submit" [disabled]="accessType === 1 || !wifiNetworkForm.dirty">
+                      SAVE
+                    </button>
+                  </p>
+                </article>
+                <div class="card-applicator col s12 m10 l10 xl8">  
+                    <div class="row row-margin">
+                        <div class="col s6 m6 l6 xl6 m-t pad-t-10" style="font-weight: Roboto Regular;">
+                          SSID
+                        </div>
+                        <div class="col s4 m4 l4 xl6 pressure text-right line-height-0">
+                          <div style="display: flex;
+                          align-items: center;
+                          justify-content: flex-end;"
+                          >
+                            <input
+                            autocomplete="off" 
+                            type="text"
+                            formControlName="WAP_SSID"
+                            id="ProfinetName"
+                            class="blurInput"
+                            minlength="1"
+                            maxlength="15"
+                            style="background-color: #aac9d6 !important;
+                            border-bottom: none;
+                            color: black;
+                            text-align: right;
+                            margin-bottom: 0px !important;
+                        "
+                            />
+                            <span *ngIf="editIcon" style="padding-left: 10px;"> <img
+                            (click)="editSSID()"
+                            class="edit-icon"
+                            src="../../../assets/pencil-edit-button.svg"
+                          /></span> 
+                        </div>
+                        </div>
+                        
+                      </div>
+                      <div class="112">
+                        <div class="row row-margin pt-25">
+                          <div class="col s12 m6 l6 xl6 m-t pad-t-10" style="font-weight: Roboto Regular;">
+                            Security Mode
+                          </div>
+                          <div class="col s4 m6 l6 xl6 pressure text-right line-height-0">
+                            <mat-form-field id="wifi-mat-sel" [floatLabel]="'never'">
+                                <mat-select
+                                  formControlName="WAP_SecType"
+                                  matNativeControl
+                                  required
+                                  panelClass="wifi-mat-set"
+                                  disableOptionCentering
+                                >
+                                <mat-option
+                                *ngFor="let range of wapModeRange"
+                                [value]="range"
+                              >
+                                {{ range.name }}
+                              </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="112">
+                        <div class="row row-margin pt-25">
+                          <div class="col s12 m6 l6 xl6 m-t pad-t-10"style="font-weight: Roboto Regular;">
+                            Password
+                          </div>
+                          <div class="col s12 m6 l6 xl6 pressure text-right line-height-0 password-text">
+                            <label class="input">
+                              <input
+                              [type]="show_button ? 'text' : 'password'"
+                              formControlName="WAP_SecPwd"
+                              autocomplete="off" 
+                              type="password" 
+                              class="input mat-select-arrow remove-arrows network-input"
+                              maxlength="63"
+                              minlength="8"
+                              pattern="^([^\s]+ )+[^\s]+$|^[^\s]+$"
+                              />
+                              <span style="margin-left: 15px;">
+                                <i
+                                behaviour="click"
+                                id="font-icon"
+                                class="fa fa-eye"
+                                [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'"
+                                style="font-size:20px"
+                                (click)="showPassword()"
+                              ></i>
+                              </span>  </label>
+                          </div>
+                        </div>
+                      </div>
+                  <div class="row row-margin display pt-25">
+                    <div class="col s8 m6 l6 xl6 pad-t-10" style="font-weight: Roboto Regular;">
+                      Wifi On
+                    </div>
+                    <div class="col s4 m6 l6 xl6 p-t-5 text-right">
+                      <mat-slide-toggle
+                      formControlName="SSID_ON"
+                      >
+                      </mat-slide-toggle
+                      >
+                    </div>
+                  </div>
+                  <div class="row row-margin display pt-25">
+                    <div class="col s8 m6 l6 xl6 pad-t-10" style="font-weight: Roboto Regular;">
+                      SSID Broadcast On
+                    </div>
+                    <div class="col s4 m6 l6 xl6 p-t-5 text-right">
+                      <mat-slide-toggle
+                      formControlName="SSID_BROADCAST_ON"
+                      >
+                      </mat-slide-toggle
+                      >
+                    </div>
+                  </div>
+  
+                  <div>
+                    <div class="112">
+                      <div class="row row-margin pt-25">
+                        <div class="col s12 m6 l6 xl6 m-t pad-t-10" style="font-weight: Roboto Regular;">
+                          Number Of Clients
+                        </div>
+                        <div class="col s4 m6 l6 xl6 pressure text-right line-height-0">
+                            <mat-form-field id="wifi-mat-sel" [floatLabel]="'never'">
+                                <mat-select
+                                  formControlName="WAP_MaxClients"
+                                  matNativeControl
+                                  required
+                                  panelClass="wifi-mat-set"
+                                  disableOptionCentering
+                                >
+                                <mat-option
+                                *ngFor="let range of clientRange"
+                                [value]="range"
+                              >
+                                {{ range.name }}
+                              </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="112">
+                        <div class="row row-margin pt-25">
+                          <div class="col s12 m6 l6 xl6 m-t pad-t-10" style="font-weight: Roboto Regular;">
+                            Channel
+                          </div>
+                          <div class="col s4 m6 l6 xl6 pressure text-right line-height-0">
+                            <mat-form-field id="wifi-mat-sel" [floatLabel]="'never'">
+                                <mat-select
+                                formControlName="WAP_ChNum"
+                                  matNativeControl
+                                  required
+                                  panelClass="wifi-mat-set"
+                                  disableOptionCentering
+                                >
+                                <mat-option
+                                *ngFor="let range of channnelRange"
+                                [value]="range"
+                              >
+                                {{ range.name }}
+                              </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                          </div>
+                        </div>
+                      </div>                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <nordson-footer></nordson-footer> -->
+</div>
+          </div>
+        </form>
+      </div>
+    </div>

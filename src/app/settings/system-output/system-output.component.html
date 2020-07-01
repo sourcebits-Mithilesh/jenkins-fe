@@ -1,0 +1,210 @@
+<div class="row dash-board">
+  <form
+    *ngIf="outputForm"
+    name="form"
+    class="form-left"
+    #form="ngForm"
+    [formGroup]="outputForm"
+    (submit)="onSubmit()"
+  >
+  <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+    <div class=" setting-blue margin-top-12 scroller">
+      <div class="pad-cor pad-right-left-10">
+        <div class="system-ou">
+          <div class="left">
+              <span class="white-c"> <a routerLink="/settings/system-io" style="color:#ffffff"> System I/O </a> › Output</span>
+          </div>
+          <div class="right">
+            <button
+              [disabled]="!form.valid || accessType === 1 || !outputForm.dirty"
+              type="submit"
+              class="apply btn"
+            >
+              SAVE
+            </button>
+          </div>
+          <div class="sys-tab col-bg pad-10-responsive" style="clear:both" [@.disabled]="true">
+            <mat-tab-group>
+
+              <mat-tab label="STANDARD" class="active">
+                <div class="row">
+                  <div class="col s2 m2 l2 xl2">
+                    <article class="sys-first">Output</article>
+                  </div>
+                  <div class="col s8 m8 l8 xl8"></div>
+                  <div class="col s2 m2 l2 xl2 text-right">
+                    <article class="sys-first pd-lef">Invert</article>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">S1</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field [floatLabel]="'never'" class="system">
+                          <mat-select
+                            panelClass="systemIO"
+                            disableOptionCentering
+                            formControlName="OutputOptions0"
+                          >
+                            <mat-option
+                              *ngFor="let range of ranges"
+                              [value]="range"
+                            >
+                              {{ range.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox
+                          formControlName="InvertOutput0"
+                          (change)="checked1($event)"
+                        >
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="LEGACY">
+                <div class="row">
+                  <div class="col s2 m2 l2 xl2">
+                    <article class="sys-first">Output</article>
+                  </div>
+                  <div class="col s8 m8 l8 xl8"></div>
+                  <div class="col s2 m2 l2 xl2 text-right">
+                    <article class="sys-first pd-lef">Invert</article>
+                  </div>
+                </div>
+                <div class="row" *ngFor="let item of outputArr; let i = index">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">{{ item }}</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field [floatLabel]="'never'" class="system">
+                          <mat-select
+                            panelClass="systemIO"
+                            disableOptionCentering
+                            formControlName="OutputOptions{{ i + 1 }}"
+                          >
+                            <mat-option
+                              *ngFor="let range of ranges"
+                              [value]="range"
+                            >
+                              {{ range.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox
+                          formControlName="InvertOutput{{ i + 1 }}"
+                          (change)="checked($event, i + 1)"
+                        >
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">L2</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field>
+                          <select matNativeControl required>
+                            <option class="sel-opt">Setback Control</option>
+                          </select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox></mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+                <!-- <div class="row">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">L2</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field>
+                          <select matNativeControl required>
+                            <option class="sel-opt">Heater Control</option>
+                          </select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox></mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+              </mat-tab>
+              
+              <mat-tab label="LIGHT TOWER">
+                <div class="row">
+                  <div class="col s2 m2 l2 xl2">
+                    <article class="sys-first">Output</article>
+                  </div>
+                  <div class="col s8 m8 l8 xl8"></div>
+                  <div class="col s2 m2 l2 xl2 text-right">
+                    <article class="sys-first pd-lef">Invert</article>
+                  </div>
+                </div>
+                <div class="row" *ngFor="let item of lightTowerArr; let i = index">
+                  <div class="col s12 m12 l12 xl12">
+                    <div class="sys-border">
+                      <div class="col s2 m1 l1 xl1 ">
+                        <span class="l-fonts">{{ item }}</span>
+                      </div>
+                      <div class="col s8 m10 l10 xl10">
+                        <mat-form-field [floatLabel]="'never'" class="system">
+                          <mat-select
+                            panelClass="systemIO"
+                            disableOptionCentering
+                            formControlName="OutputOptions{{ i + 4 }}"
+                          >
+                            <mat-option
+                              *ngFor="let range of ranges"
+                              [value]="range"
+                            >
+                              {{ range.name }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col s2 m1 l1 xl1">
+                        <mat-checkbox
+                          formControlName="InvertOutput{{ i + 4 }}"
+                          (change)="checked($event, i + 4)"
+                        >
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </form>
+</div>

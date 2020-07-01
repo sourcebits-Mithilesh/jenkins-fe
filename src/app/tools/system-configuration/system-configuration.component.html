@@ -1,0 +1,79 @@
+<div class="dash-board">
+  <div class="row" style="padding: 0px">
+    <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh">
+    <div
+      class=" setting-blue-zone margin-top-12"
+      id="temperature"
+    >
+      <div class="row">
+        <div class="col s12 m12 l12 x12" style="padding-left: 0px">
+          <article class="temp-heading font-responsive">
+            <h4 class="zone-heading font-responsive" style="padding: 0px">
+              <a
+                class="color-white font-responsive"
+                routerLink="/tools/system-configuration-main"
+                >System Configuration</a
+              >
+              › System Information
+            </h4>
+          </article>
+        </div>
+      </div>
+      <div class="pad-bottom-80-edge-firefox">
+      <div class=" system-config-div">
+        <div class=" row bg-color">
+          <div class="row">
+          <div class="col s3 m3 l3 x3"></div>
+          <div class="col s3 m3 l3 x3">
+            <p class="caption t-center">APPLICATION VERSION</p>
+          </div>
+          <div class="col s3 m3 l3 x3">
+            <p class="caption t-center">BOOT LOADER VERSION</p>
+          </div>
+          <div class="col s3 m3 l3 x3" style="padding-right: 0px">
+            <p class="caption t-center">HARDWARE REVISION</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class=" row bg-color-white pad-tp-10 pad-btm-10">
+              DAT: {{dat}}
+          </div>
+        </div>
+        </div>
+
+        <div class="row data" *ngFor="let configuration of systemInfo">
+          <div class="col s3 m3 l3 x3">
+            <p class="sub-caption">{{ configuration.software }}</p>
+          </div>
+          <div class="col s3 m3 l3 x3">
+            <p class="sub-caption t-center">
+              {{ configuration.applicationversion }}
+            </p>
+          </div>
+          <div class="col s3 m3 l3 x3">
+            <p class="sub-caption t-center">{{ configuration.bootversion }}</p>
+          </div>
+          <div class="col s3 m3 l3 x3">
+            <p class="sub-caption t-center">
+              {{ configuration.hardwarerevision }}
+            </p>
+          </div>
+        </div>
+        <div class="row data">
+          <div class="col s3 m3 l3 x3 pad-tp-10 pad-btm-10">
+            Standard I/O Board
+          </div>
+          <div class="col s3 m3 l3 x3">
+            <p class="caption t-center"></p>
+          </div>
+          <div class="col s3 m3 l3 x3"></div>
+          <div class="col s3 m3 l3 x3"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- <nordson-footer></nordson-footer> -->
+</div>
+  </div>
+</div>
+<!--main close tag--->

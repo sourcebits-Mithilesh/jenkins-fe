@@ -1,0 +1,132 @@
+<div style="margin-top: -128px;">
+  <div class="signin  login comm-height">
+        <form
+        name="form"
+        *ngIf="contactUsForm"
+        #form="ngForm"
+        [formGroup]="contactUsForm"
+        (submit)="onSubmit()"
+      >
+      <div class="row margin-null section">
+        <div class="login-section">
+          <div>
+            <section class="center">
+                <h6>Contact Us</h6>
+              <span class="span-inline-login" style="padding: 6px 75px;"
+                >Please enter your contact details and a short message below</span
+              >
+              <div>We will get back shortly... </div>
+            </section>
+            <div style="position: relative;left: 12%;">
+            <div class="sub-section">
+              <div>
+                <label class="text-above"
+                  >Name
+                  <sup>*</sup>
+                </label>
+                <input
+                autocomplete="off"
+                  type="text"
+                  id="name"
+                  class="form-control border-blue"
+                  required
+                  placeholder="Name"
+                  formControlName="name"
+                />
+              </div>
+              <div  class="invalid" *ngIf="f.name.errors && f.name.touched">
+                  <div  class="invalid" *ngIf="f.name.errors.required">
+                    Name is required
+                    </div>
+              </div>
+              <div class="">
+                <label class="text-above"
+                  >Email
+                  <sup>*</sup>
+                </label>
+                <input
+                autocomplete="off"
+                  type="text"
+                  id="email"
+                  class="form-control border-blue text-lower-case"
+                  required
+                  style="padding-right: 41px !important;
+                width: 256px !important;"
+                placeholder="Email"
+                formControlName="email"
+                ngvemail
+                nordsonLowercase
+                onPaste="return false"
+
+                />
+              </div>
+              <div  class="invalid" *ngIf="f.email.errors && f.email.touched">
+                  <div  class="invalid" *ngIf="f.email.errors.required">
+                    Email is required
+                    </div>
+                    <div class="invalid" *ngIf="f.email.errors?.email">
+                        Email is Invalid
+                      </div>
+              </div>
+              <div class="">
+                <label class="text-above"
+                  >Confirm Email
+                  <sup>*</sup>
+                </label>
+                <input
+                autocomplete="off"
+                  type="text"
+                  id="confirmEmail"
+                  class="form-control border-blue"
+                  required
+                  style="padding-right: 41px !important;
+                width: 256px !important;"
+                placeholder="Confirm Email"
+                formControlName="confirmEmail"
+                ngvemail
+                onPaste="return false"
+                />
+              </div>
+              <div class="invalid" *ngIf="f.confirmEmail.errors && f.confirmEmail.touched">
+                <div class="invalid" *ngIf="f.confirmEmail.errors.required">
+                  Confirm Email is required
+                </div>
+                <div class="invalid" *ngIf="f.confirmEmail.errors?.email">
+                  Confirm Email is Invalid
+                  </div>
+                <div class="invalid" *ngIf="f.confirmEmail.errors?.mustMatch">
+                  Confirm Email must match
+                </div>
+              
+              </div>
+              <div>
+                <label class="label text-above">Message
+                <sup>*</sup>
+              </label>
+                <textarea
+                  type="text"
+                  id="message"
+                  class="contactinput text-area-contact pad-tp-15"
+                  formControlName="message"
+                ></textarea>
+              </div>
+              <div  class="invalid" *ngIf="f.message.errors && f.message.touched">
+                  <div  class="invalid" *ngIf="f.message.errors.required">
+                  Message is required
+                    </div>
+              </div>
+              <div class="checkbox-contact">
+                <mat-checkbox formControlName="cc">Send me a copy</mat-checkbox>
+              </div> 
+              <div class="contact-button">
+                <button type="submit" class="btn-contact apply btn submit-bt" [disabled]="contactUsForm.invalid || !contactUsForm.dirty">Send Message</button>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

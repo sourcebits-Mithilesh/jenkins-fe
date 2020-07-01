@@ -1,0 +1,221 @@
+<form
+  name="form"
+  #form="ngForm"
+  [formGroup]="addMaintenanceForm"
+  (submit)="onSubmit()"
+>
+<div class="set-light-blue" id="addMaintenance">
+    <div class=" row dark-gray fs-15">
+      <div style="float:left"><b>Maintenance Reminder</b></div>
+      <div style="float: right">
+        <svg
+          class="cursor-pointer"
+          xmlns="http://www.w3.org/2000/svg"
+          (click)="closeAddMaintenance()"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+          <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 10px">
+        <div class="col s6 m6 l6 xl6 pad-0">
+            Tank - Maintenance Reminder
+        </div>
+        <div class="col s6 m6 l6 xl6 right-align pad-0">
+            <mat-slide-toggle
+            [checked]="maintenanceStatus"
+            (change)="toogleMaintenance($event)"
+            formControlName="maintenanceRemainder"
+            >
+            </mat-slide-toggle>
+        </div>
+    </div>
+    <div class="row display-flex-align-center">
+        <div class="col s12 m12 l3 xl3 pad-0">
+            <article>Title</article>
+        </div>
+        <div class="col s12 m12 l9 xl9 pad-0">
+            <div>
+                <input matInput
+                autocomplete="off"
+                type="text"
+                formControlName="title"
+                (keypress)="omit_special_char($event)"
+                />
+            </div>
+            <div class="invalid" *ngIf="f.title.errors?.maxlength"> 
+                Title can be max 160 characters long.
+           </div> 
+        </div>
+    </div>
+    <div class="row display-flex-align-center">
+        <div class="col s12 m12 l3 xl3 pad-0">
+            <article>Service Activity</article>
+        </div>
+        <div class="col s12 m12 l9 xl9 pad-0">
+            <div>
+                <input matInput
+                autocomplete="off"
+                type="text"
+                formControlName="activity"
+                (keypress)="omit_special_char($event)"
+                />
+            </div>
+            <div class="invalid" *ngIf="f.activity.errors?.maxlength"> 
+                Service Activity can be max 160 characters long.
+           </div> 
+        </div>
+    </div>
+    <div class="row display-flex-align-center">
+        <div class="col s12 m12 l3 xl3 pad-0 mrg-left-0">
+            <article>Interval</article>
+        </div>
+        <div class="col s9 m9 l4 xl4 pad-0 mrg-left-0">
+            <div>
+                <input matInput
+                autocomplete="off"
+                type="number"
+                min="160"
+                max="30000"
+                formControlName="interval"
+                (keypress)="numberOnly($event)"
+                />
+            </div>
+            <div
+                class="invalid"
+                *ngIf="f.interval.touched && f.interval.errors?.required"
+            >
+                Interval must be required
+            </div>
+        </div>
+        <div class="col s3 m3 l4 xl4 mrg-left-0">
+            Hrs <span class='note'>* Range 160 to 30000 </span>
+        </div>
+    </div>
+    <div class="row display-flex-align-center">
+        <div class="col s12 m12 l3 xl3 pad-0 mrg-left-0">
+            <article>Snooze</article>
+        </div>
+        <div class="col s9 m9 l4 xl4 pad-0 mrg-left-0">
+            <div>
+                <input matInput
+                autocomplete="off"
+                type="number"
+                min="8"
+                max="120"
+                formControlName="snooze"
+                (keypress)="numberOnly($event)"
+                />
+            </div>
+            <div
+            class="invalid"
+            *ngIf="f.snooze.touched && f.snooze.errors?.required"
+        >
+            Snooze must be required
+        </div>
+        </div>
+        <div class="col s3 m3 l4 xl4 mrg-left-0">
+            Hrs <span class='note'>* Range 8 to 120 </span>
+        </div>
+    </div>
+    <div class="row display-flex-align-center">
+        <div class="col s12 m12 l3 xl3 pad-0 mrg-left-0">
+            <article>Start On</article>
+        </div>
+        <div class="col s4 m4 l4 xl4 pad-0 mrg-right mrg-left-0">
+            <div style="position: relative">
+                    <input 
+                    matInput 
+                    [value]="addMaintenanceForm.get('starton').value | dateFilter : dateFormat"
+                    readonly
+                    >
+                <input matInput [matDatepicker]="dp3" disabled autocomplete="off"
+                type="text"
+                maxlength="10"
+                formControlName="starton" [min]="yesterday" class="shadow-dateInput">
+                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </div>
+        </div>
+        <div class="col s4 m4 l2 xl2 pad-0 mrg-left-0">
+            <div>
+                <mat-form-field class="hr-style" [floatLabel]="'never'">
+                        <mat-label>HH</mat-label>
+                        <mat-select
+                          formControlName="startonHH"
+                          panelClass="hour"
+                          disableOptionCentering
+                          [(value)]="selectedHour"
+                        >
+                          <mat-option
+                            *ngFor="let hour of hours"
+                            [value]="hour.value"
+                          >
+                            {{ hour.value }}
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span class="font-bold">:</span>
+            </div>
+            
+        </div>
+        <div class="col s4 m4 l2 xl2 pad-0 mrg-left-0">
+            <div>
+                <mat-form-field class="hr-style" [floatLabel]="'never'">
+                <mat-label>MM</mat-label>
+                <mat-select
+                  formControlName="startonMM"
+                  panelClass="minute"
+                  disableOptionCentering
+                  [(value)]="selectedMinute"
+                >
+                  <mat-option
+                    *ngFor="let minute of minutes"
+                    [value]="minute.value"
+                  >
+                    {{ minute.value }}
+                  </mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row display-flex-align-center" *ngIf="f.starton.invalid && dateFormat">
+            <div class="col s12 m12 l3 xl3 pad-0 mrg-left-0">
+            </div>
+            <div class="col s4 m4 l6 xl6 pad-0 mrg-right mrg-left-0">
+                    <div
+                    class="invalid pad-bottom-10"
+                >
+                    Start On Must be current or greater than current date 
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col s12 m12 l3 xl3 pad-0">
+            <article>Service Notes</article>
+        </div>
+        <div class="col s12 m12 l9 xl9 pad-0">
+            <div>
+                <textarea matInput rows="5" formControlName="notes" maxlength="160" style="padding:0px 12px;"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row pad-bottom-24-edge-firefox btn-align-right mrg-btn" >
+        <button
+          [disabled]="addMaintenanceForm.invalid"
+          class="apply btn submit-bt"
+          type="submit"
+          mat-button
+        >
+          ADD
+        </button>
+    </div>
+</div>
+</form>

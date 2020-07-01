@@ -1,0 +1,37 @@
+.header-background {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+nav ul a {
+  color: #000;
+}
+.brand-logo img {
+  /* width: 250px; */
+}
+@media only screen and (min-width: 601px) {
+  nav,
+  nav .nav-wrapper i,
+  nav a.button-collapse,
+  nav a.button-collapse i {
+    line-height: 40px;
+  }
+}
+.bg-trans:hover {
+  background: transparent !important;
+}
+::ng-deep:nav ul a:hover {
+  background-color: none !important;
+}
+@media only screen and (min-width: 601px) {
+  nav,
+  nav .nav-wrapper i,
+  nav a.button-collapse,
+  nav a.button-collapse i {
+    line-height: 40px;
+  }
+}
+::ng-deep img.responsive-img-dashboard,
+video.responsive-video {
+  max-width: inherit;
+}

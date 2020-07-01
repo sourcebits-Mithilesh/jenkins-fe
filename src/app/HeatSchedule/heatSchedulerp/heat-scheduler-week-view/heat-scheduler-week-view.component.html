@@ -1,0 +1,74 @@
+<!-- <div class="ax-scheduler__week-view__header">
+    <div>
+  
+    </div>
+<div>
+    <div *ngFor="let day of days">
+      <span class="header_number" [ngClass]="{ 'today' : day.isSame(today,'days') }">
+        {{ day.format('D') }}
+        <span class="header_day_title">
+          <p>th</p>
+          <p>{{ day.format('dddd') }}</p>
+        </span>
+      </span>
+    </div>
+  </div>
+
+
+  <div class="ax-scheduler__week-view__body">
+    <div class="ax-scheduler__week-view__body__hour-column">
+        <div *ngFor="let hour of hours;let index = index">
+            <div>
+              <span *ngIf="index > 0">
+                {{ hour.start.format('HH:mm') }}
+              </span>
+            </div>
+          </div>
+    </div>
+    <div class="ax-scheduler__week-view__body__day-column">
+        <div>
+            <div *ngFor="let day of days"
+            app-heat-scheduler-day-column
+            [hourColumn]="false"
+            [heatEventTemplate] = "heatEventTemplate"
+            [heatEventFormatter] = "heatEventFormatter"
+            [heatDragStep]="heatDragStep"
+            [heatStartDate]="day.toDate()"></div>
+        </div>
+    </div>
+</div> -->
+
+<div class="heat-scheduler__week-view__header">
+    <div style="display: flex;padding-right: 10px;align-items: center;">
+      <div style="width: 50px;">
+      </div>
+<div style="flex: 1;" *ngFor="let day of days">
+ <p style="text-align: center;margin-top:10px;font-size:11px">{{ day.format('ddd') |uppercase }}</p> 
+</div>
+
+    </div>
+  </div>
+  
+  <div class="heat-scheduler__week-view__body">
+      <div class="heat-scheduler__week-view__body__hour-column">
+          <div *ngFor="let hour of hours;let index = index">
+              <div>
+                <span *ngIf="index > 0">
+                  {{ hour.start.format(timepreference) }}
+                </span>
+              </div>
+            </div>
+      </div>
+      <div class="heat-scheduler__week-view__body__day-column">
+          <div>
+            <div *ngFor="let day of days"
+            app-heat-scheduler-day-column
+            [hourColumn]="false"
+            [heatEventTemplate] = "heatEventTemplate"
+            [heatEventFormatter] = "heatEventFormatter"
+            [heatDragStep]="heatDragStep"
+            [evenOdddays]="defineOdd(day)"
+            [heatStartDate]="day.toDate()"></div>
+          </div>
+      </div>
+  </div>

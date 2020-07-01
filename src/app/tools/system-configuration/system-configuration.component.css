@@ -1,0 +1,58 @@
+.zone-heading {
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 30px;
+}
+.setting-blue-zone {
+  background: #0d436d;
+  padding: 30px 49px 56px 49px;
+}
+.system-config-div {
+  padding: 22px 11px;
+  border-radius: 4px;
+  background-color: #aac9d6;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.bg-color {
+  background-color: #0b446d !important;
+  padding: 3px 3px 3px 3px;
+}
+.bg-color-white {
+  background-color: #aac9d6 !important;
+  padding: 2px 2px 2px 12px;
+}
+.caption {
+  color: #ffffff;
+  font-size: 11px;
+  letter-spacing: 0.92px;
+  line-height: 20px;
+}
+.data {
+  padding: 3px 5px;
+  /* background-color: #9FBCC9; */
+}
+.sub-caption {
+  color: #203535;
+  font-family: Roboto;
+  font-size: 14px;
+}
+.data:nth-child(even) {
+  background-color: #9fbcc9;
+}
+
+
+@media only screen and (max-width: 500px){
+
+ 
+  .setting-blue-zone{
+    background: #0d436d;
+    padding: 30px 10px 0px 10px;
+    /* overflow: scroll; */
+  }
+ 
+ 
+  }
+

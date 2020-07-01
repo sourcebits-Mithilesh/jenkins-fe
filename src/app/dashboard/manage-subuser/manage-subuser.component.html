@@ -1,0 +1,287 @@
+<div class="dash-board">
+  <div class="row">
+    <div class="col m8 s6 l7 xl9 board-padding margin-top-10 height-vh">
+      <article>
+        <h4>Manage Sub User Account 11111</h4>
+        <p class="sub-heading">Currently 11111 registered sub user accounts</p>
+      </article>
+      <div class="col s12 m12 l12 xl12" *ngFor="let user of users">
+        <div class="row manage-row">
+          <div class="col s4 m4 l4 xl4">
+            <ul class="manage-left">
+              <li><a> Name: </a></li>
+              <li><a> Email : </a></li>
+              <li><a> Access Type: </a></li>
+            </ul>
+          </div>
+          <div class="col s4 m4 l4 xl4">
+            <ul class="manage-right">
+              <li>
+                <a>{{ user.full_name }}</a>
+              </li>
+              <li>
+                <a>{{ user.email }}</a>
+              </li>
+              <li>
+                <a>{{ user.access_type }}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col s4 m4 l4 xl4">
+            <ul>
+              <li class="sprite-home">
+                <img
+                  src="./assets/img/icon/sprite1x.png"
+                  (click)="changeShowStatus(user.id)"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <span class="sprite-home"></span>
+      <button class="btn right add-user" (click)="adduser()">
+        Add Sub-User
+      </button>
+    </div>
+  </div>
+</div>
+<!--- overlay equpiment register Detail -->
+<form
+  name="form"
+  #form="ngForm"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="subuserForm"
+>
+  <div id="cover" *ngIf="showHide">
+    <div id="model-box" class="white">
+      <div class="modal-header">
+        <table>
+          <tr>
+            <td class="modal-h1">Edit Sub-User Details</td>
+            <td class="center">
+              <i
+                class="fa fa-close"
+                style="font-size:30px;color:#7AB800"
+                (click)="close()"
+              ></i>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-content scroll-user">
+        <table id="customers" cellpadding="10px">
+          <tr>
+            <td>Full Name:</td>
+            <td>
+              <input
+              autocomplete="off"
+                type="text"
+                class="border-blue"
+                name="full_name"
+                formControlName="full_name"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>
+              <input
+              autocomplete="off"
+                type="text"
+                class="border-blue text-lower-case"
+                name="email"
+                formControlName="email"
+                nordsonLowercase
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Access Type</td>
+            <td>
+              <input
+              autocomplete="off"
+                type="text"
+                class="border-blue"
+                name="access"
+                formControlName="access"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td><input  autocomplete="off" type="text" name="" /></td>
+          </tr>
+          <tr>
+            <td>Comapany Name:</td>
+            <td><input  autocomplete="off" type="text" name="" /></td>
+          </tr>
+          <tr>
+            <td>Comapany Type:</td>
+            <td><input  autocomplete="off" type="text" name="" /></td>
+          </tr>
+          <tr>
+            <td>Country:</td>
+            <td><input  autocomplete="off" type="text" name="" /></td>
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td><input  autocomplete="off" type="text" name="" /></td>
+          </tr>
+          <tr>
+            <td>Plant Name :</td>
+            <td><input  autocomplete="off" type="text" name="" /></td>
+          </tr>
+          <tr>
+            <td>Phone</td>
+            <td><input  autocomplete="off" type="text" name="" /></td>
+          </tr>
+          <tr>
+            <td>Equipment Model:</td>
+            <td><input  autocomplete="off" type="text" name="" /></td>
+          </tr>
+          <tr>
+            <td>Part No/Configuration code:</td>
+            <td><input  autocomplete="off" type="text" name="" /></td>
+          </tr>
+        </table>
+      </div>
+      <div class="row">
+        <div class="modal-footer">
+          <table>
+            <tr>
+              <td><a (click)="cancel()">Cancel</a></td>
+              <td class="text-right">
+                <button [disabled]="!form.valid" k class="submit-bt">
+                  Save changes
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!--- overlay Subuser register Detail -->
+<div id="cover" *ngIf="subUser">
+  <div id="model-box" class="white">
+    <div class="modal-header">
+      <table>
+        <tr>
+          <td class="modal-h1">Add Sub-User</td>
+          <td class="center">
+            <i
+              class="fa fa-close"
+              style="font-size:30px;color:#7AB800"
+              (click)="adduser()"
+            ></i>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="modal-content">
+      <form name="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="container">
+          <div class="col s4 l4 m4 xl4"></div>
+          <div class="col s4 m4 s4 xl4">
+            <div class="sub-section">
+              <label class="text-above">Full Name </label>
+              <input
+              autocomplete="off"
+                type="text"
+                class="border-blue"
+                name="full_name"
+                [(ngModel)]="full_name"
+                #full_name2="ngModel"
+                required=""
+                [maxlength]="60"
+                pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$"
+              />
+              <div
+                class="invalid"
+                *ngIf="
+                  full_name2.invalid &&
+                  full_name2.touched &&
+                  full_name2.errors.required
+                "
+              >
+                Full Name is required
+              </div>
+              <div class="invalid" *ngIf="full_name2.errors?.pattern">
+                Please enter your full name
+              </div>
+              <div class="invalid" *ngIf="full_name2.errors?.maxlength">
+                Please enter a valid full name
+              </div>
+              <label class="text-above">Email Address </label>
+              <input
+              autocomplete="off"
+                type="email"
+                class="border-blue text-lower-case"
+                name="email"
+                [(ngModel)]="email"
+                #email2="ngModel"
+                required=""
+                uniqueEmail
+                ngvemail
+                (ngModelChange)="email = $event.toLowerCase()"
+                [maxlength]="90"
+                [userId] = 0
+              />
+              <div
+                class="invalid"
+                *ngIf="
+                  email2.invalid && email2.touched && email2.errors.required
+                "
+              >
+                Email is required
+              </div>
+              <div class="invalid" *ngIf="email2.errors?.uniqueEmail">
+                Email must be unique
+              </div>
+              <div class="invalid" *ngIf="email2.errors?.email">
+                Email is Invalid
+              </div>
+              <label class="text-above"
+                >Access Type
+                <sup>*</sup>
+              </label>
+              <select
+                class="browser-default border-blue"
+                style="width:106%"
+                name="access"
+                [(ngModel)]="access"
+                #access2="ngModel"
+                required=""
+              >
+                <option value="Read Only" selected>Read Only</option>
+                <option value="Write Only">Write Only</option>
+              </select>
+            </div>
+          </div>
+          <div class="col l4 m4 s4 xl4"></div>
+        </div>
+        <div class="row">
+          <div class="modal-footer">
+            <table>
+              <tr>
+                <td><a (click)="cancel()">Cancel</a></td>
+                <td class="text-right">
+                  <button
+                    type="submit"
+                    [disabled]="!form.valid"
+                    class="btn submit-bt"
+                  >
+                    Save changes
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

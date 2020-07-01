@@ -1,0 +1,55 @@
+<div>
+  <div>
+    <div class="dash-board pump">
+      <div class="row" style="padding: 0px">
+        <div class="col m12 s12 l9 xl9  bg-color-blue p-0 height-vh responsive-pad-color">
+        <div
+          class="row setting-blue-zone pad-right-left-0  margin-top-12"
+          id="temperature"
+        >
+          <div class="col s12 m12 l12 x12">
+            <form
+              *ngIf="pumpForm"
+              name="form"
+              #form="ngForm"
+              [formGroup]="pumpForm"
+              (submit)="onSubmit()"
+            >
+              <article class="temp-heading">
+                <h4 class="zone-heading font-responsive" style="padding-left:13px">{{ valueLanguage | languageFilter : 'Pump' : 'PUMP'}}</h4>
+                <p class="right-align">
+                  <button
+                    [disabled]="accessType === 1 || !pumpForm.dirty"
+                    type="submit"
+                    class="apply btn"
+                  >
+                    {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE'}}
+                  </button>
+                </p>
+              </article>
+              <div class="col s12 m12 l6 xl6 ">
+                <div class="card-applicator" style="display:flex;align-items:center">
+                  <div class="col s6 m6 l6 xl6 ">
+                    {{ valueLanguage | languageFilter : 'Auto Pump' : 'AUTO_PUMP'}}
+                  </div>
+                  <div class="col s6 m6 l6 xl6 right-align">
+                    <mat-slide-toggle
+                      [checked]="pumpStatus"
+                      (change)="tooglePump($event)"
+                      formControlName="tooglePump"
+                    >
+                    </mat-slide-toggle>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- <nordson-footer></nordson-footer> -->
+</div>
+        <!-- col 12 close-->
+      </div>
+    </div>
+  </div>
+  <!--main close tag--->
+</div>

@@ -1,0 +1,223 @@
+<div class="row">
+  <div class="col m12 s12 l12 xl9 pad-main margin-top-12 height-vh display-flex-align-justify-center">
+  <div *ngIf="!isDescriptionOn && !isDescriptionOnLoad && !loadPrevious">
+    <div class="select-load-text">
+      Please select how to load
+    </div>
+    <div class="select-load-text">
+      a configuration file
+    </div>
+    <div>
+      <div class="button-div">
+        <label for="files" class="text-div" style="cursor: pointer">
+          Load from USB/Computer</label
+        >
+        <input
+        autocomplete="off"
+          #fileInput
+          (click)="fileInput.value = null"
+          value=""
+          type="file"
+          id="files"
+          style="visibility:hidden;"
+          (change)="onFileChange($event)"
+        />
+      </div>
+      <div *ngIf="norFilesCount == true">
+        <div class="button-div">
+          <div
+            class="text-div"
+            (click)="showPreviousNorFilePopup()"
+            style="cursor: pointer"
+          >
+            Use previous file
+          </div>
+        </div>
+      </div>
+      <div *ngIf="norFilesCount == false">
+        <div class="button-div-prev-norfile">
+          <div class="text-div" style="cursor: pointer">
+            Use previous file
+          </div>
+        </div>
+      </div>
+      <div class="button-div">
+        <div
+          class="text-div"
+          style="cursor: pointer"
+          (click)="addDescriptionCreate()"
+        >
+          <div>
+            CREATE NEW
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isDescriptionOn">
+    <div *ngIf="!loadercreatenew else loaderforcreatenew">
+    <div class="select-load-text">
+      Create Nor File 
+    </div>
+    <div *ngIf="selected" class="createnorfile" id="createselect">
+      <mat-form-field [floatLabel]="'never'">
+        <mat-select
+        [(ngModel)]="selected"
+        [placeholder]="selected.selectData"
+        panelClass="equipment-panel-select"
+        (selectionChange)="selectEquipment(selected)"
+        disableOptionCentering
+          >
+          <mat-option 
+          *ngFor="let equipmentData of equipmentData.equRes"
+          [value]="equipmentData"
+          >{{equipmentData.selectData}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div style="text-align: center;padding: 0px 0px 25px;position: relative;">
+      <label class="text-above-setup"
+          >Equipment Description
+          <sup>*</sup>
+        </label>
+      <input
+          type="text"
+          class="descriptionInput"
+          [(ngModel)]="editDescription"
+          readonly
+        />
+      </div> 
+    <div style="text-align: center;position: relative;" class="padding-create">
+      <label class="text-above-setup" style="top: -5px;"
+          >Nor File Description
+        </label>
+      <textarea
+        type="text"
+        class="set-up-description-input pad-tp-15"
+        [(ngModel)]="description"
+        placeholder="Write Description here..."
+        maxlength="120"
+        style="height: 90px !important;"
+      ></textarea>
+    </div>
+    <div class="padding-load" *ngIf="!loadsidenav else loading">
+      <div style="float: left;">
+        <button
+          class="btn-set-up cancel-btn-color"
+          (click)="removeDescriptionCreate()"
+        >
+          CANCEL
+        </button>
+      </div>
+      <div style="float: right;">
+        <button
+          class="btn-set-up submit-btn-color"
+          (click)="createNorFile();  loadsidenav = true"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+  <ng-template #loading>
+     <div class="t-center loading-sidenav">Please Wait ....</div> 
+  </ng-template>
+  <ng-template #loaderforcreatenew>
+    <div style="display:flex; align-items:center;justify-content:center;height: 30vh;">
+     <img src="../../assets/Spinner.gif"alt="">
+    </div>
+  </ng-template>
+
+  <div *ngIf="isDescriptionOnLoad">
+    <div class="select-load-text">
+      Load from USB Nor file Description
+    </div>
+    <div style="text-align: center;" class="padding-load">
+      <textarea
+        type="text"
+        class="set-up-description-input pad-tp-15"
+        [(ngModel)]="description"
+        placeholder="Write Description here..."
+        maxlength="120"
+      ></textarea>
+    </div>
+    <div class="padding-load" *ngIf="!loadsidenav else loading">
+      <div style="float: left;">
+        <button
+          class="btn-set-up cancel-btn-color"
+          (click)="removeDescriptionNor()"
+        >
+          CANCEL
+        </button>
+      </div>
+      <div style="float: right;">
+        <button
+          class="btn-set-up submit-btn-color"
+          (click)="CreteNorFromUsb(); loadsidenav = true"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--use previous file popup start-->
+  <div *ngIf="loadPrevious">
+    <div *ngIf="!loaderpreviousfile else loaderforpreviousfile">
+    <div class="select-load-text">
+      Use Previous File
+    </div>
+    <div *ngIf="selected" class="createnorfile" id="previousselect" style="padding-top: 10px;">
+      <mat-form-field [floatLabel]="'never'">
+        <mat-select
+        [(ngModel)]="selected"
+        [placeholder]="selected.selectData"
+        panelClass="equipment-panel-select"
+        (selectionChange)="selectEquipment(selected)"
+        disableOptionCentering
+          >
+          <mat-option 
+          *ngFor="let equipmentData of equipmentData.equRes"
+          [value]="equipmentData"
+          >{{equipmentData.selectData}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div style="text-align: center;padding: 0px 85px 0px">
+        <input
+            type="text"
+            class="descriptionInput"
+            [(ngModel)]="editDescription"
+            readonly
+          />
+        </div> 
+    </div>
+
+
+    <div class="padding-previous-file" style="padding: 60px 90px 0px" *ngIf="!loadsidenav else loading">
+      <div style="float: left;">
+        <button
+          class="btn-set-up cancel-btn-color"
+          (click)="removeDescriptionCreate()"
+        >
+          CANCEL
+        </button>
+      </div>
+      <div style="float: right;">
+        <button
+          class="btn-set-up submit-btn-color"
+          (click)="submitPreviousFile();  loadsidenav = true"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+  <ng-template #loaderforpreviousfile>
+    <div style="display:flex; align-items:center;justify-content:center;height: 30vh;">
+     <img src="../../assets/Spinner.gif"alt="">
+    </div>
+  </ng-template>
+  <!--use previous file popup ends-->
+</div>
+</div>

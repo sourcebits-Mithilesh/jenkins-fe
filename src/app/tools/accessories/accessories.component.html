@@ -1,0 +1,275 @@
+<div class="row dash-board">
+<div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+  <div class="setting-blue margin-top-12">
+    <div class="pad-cor">
+      <div class="system-ou">
+        <div class="left">
+          <span class="white-c font-responsive"
+            ><a
+              class="color-white font-responsive"
+              routerLink="/tools/system-configuration-main"
+              >System configuration</a
+            >
+            › Accessory Management</span
+          >
+        </div>
+        <div class="sys-tab col-bg" style="clear:both;   min-height: 216px;">
+          <div class="row">
+            <div class="col s12 m12 l12 xl12 acc-pad-left acc-bg-color">
+              <div class="cards acc-pad-left acc-inactive-height">
+                <div class="col s6 m6 l6 xl6">
+                  <div class="card-content">
+                    <article class="acc-fonts">I/O Accessories</article>
+                  </div>
+                </div>
+                <!-- {{ioAccessories}} -->
+                <div class="col s6 m6 l6 xl6">
+                  <div class="card-content">
+                    <article class="acc-fonts">{{ioAccessories.join(", ")}}</article>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m12 l12 xl12 acc-pad-left">
+              <div class="cards acc-pad-left acc-inactive-height">
+                <div class="col s6 m6 l6 xl6">
+                  <div class="card-content">
+                    <article class="acc-fonts">Accessories Base</article>
+                  </div>
+                </div>
+                <div class="col s6 m6 l6 xl6">
+                  <div class="card-content">
+                    <article class="acc-fonts">{{baseAccessories.join(", ")}}</article>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m12 l12 xl12 acc-pad-left acc-bg-color">
+              <div class="cards acc-pad-left acc-inactive-height">
+                <div class="col s6 m6 l6 xl6">
+                  <div class="card-content">
+                    <article class="acc-fonts">Transformer</article>
+                  </div>
+                </div>
+                <div class="col s5 m5 l5 xl5">
+                  <div class="card-content">
+                    <article class="acc-fonts">{{ trasnformerData }}</article>
+                  </div>
+                </div>
+                <div class="col s1 m1 l1 xl1" *ngIf="trasnformerData != ''">
+                   <!--  removed for the release(25th oct) -->
+                  <div class="text-right" *ngIf="modifyAccessory!=0">
+                    <span class="cursor-pointer" (click)="edit()">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+                        />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        </svg></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acc-bt">
+                   <!--  removed for the release(25th oct) -->
+            <div>
+              <button
+                class="apply btn submit-bt"
+                mat-button
+                (click)="add()"
+                style="padding: 0px 30px;width: 130px;"
+                [disabled]="accessType === 1 || modifyAccessory!='0'"
+              >
+                ADD
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <nordson-footer></nordson-footer> -->
+</div>
+</div>
+
+<!----ADD POPUP-->
+<!-- <form> -->
+
+<div id="acc-cover" *ngIf="showHide">
+  <div class="opa"></div>
+  <div id="acc-model-box">
+    <div class="text-right close-pd">
+      <svg
+        class="cursor-pointer"
+        xmlns="http://www.w3.org/2000/svg"
+        (click)="close()"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </svg>
+      <!-- <i class="fa fa-close"  style="font-size:36px"></i> -->
+    </div>
+    <div class="add-fonts acc-pad-bb">
+      <article>Add Accessories</article>
+    </div>
+    <div class="row">
+      <div class="col s12 m12 l12 xl12 acc-pad-left">
+        <div class="add-select">
+          <div class="row">
+            <div class="col s4 m4 l4 xl3 acc-pad-left">
+              <div>
+                <article class="acc--pop-font">Accessory Type</article>
+              </div>
+            </div>
+            <div class="col s8 m8 l8 xl9">
+              <div class="select-wrapper soft-lic">
+                <mat-form-field [floatLabel]="'never'">
+                  <mat-select
+                    [(ngModel)]="accessoryType"
+                    panelClass="softwarellc"
+                    disableOptionCentering
+                    (selectionChange)="addAccesStatus()"
+                  >
+                    <mat-option value="transformer">Transformer</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="padding-top: 15px;">
+            <div class="col s4 m4 l4 xl3 acc-pad-left">
+              <div>
+                <article class="acc--pop-font">Accessory</article>
+              </div>
+            </div>
+            <div class="col s8 m8 l8 xl9">
+              <div class="select-wrapper soft-lic">
+                <mat-form-field [floatLabel]="'never'">
+                  <mat-select
+                    [(ngModel)]="addAccessory"
+                    panelClass="softwarellc"
+                    disableOptionCentering
+                    (selectionChange)="addAccesStatus()"
+                  >
+                    <mat-option
+                      *ngFor="let range of transformerRange"
+                      [value]="range.value"
+                    >
+                      {{ range.name }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="left" style="margin-top: 10px;">
+              <button
+                *ngIf="accessType != 1"
+                type="submit"
+                class="apply btn submit-bt disablebutton"
+                style="color:#fff;background:#0181C5"
+                (click)="addAccessories()"
+                [disabled]="!addStatus"
+              >
+                ADD
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- </form> -->
+<!----EDIT START-->
+<div id="acc-cover" *ngIf="subUser">
+  <div class="opa"></div>
+  <div id="acc-model-box">
+    <div class="text-right close-pd">
+      <svg
+        class="cursor-pointer"
+        xmlns="http://www.w3.org/2000/svg"
+        (click)="close()"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </svg>
+      <!-- <i class="fa fa-close"  style="font-size:36px"></i> -->
+    </div>
+    <div class="add-fonts acc-pad-bb">
+      <article>Transformer</article>
+    </div>
+    <div class="row">
+      <div class="col s12 m12 l12 xl12 acc-pad-left">
+        <div class="add-select">
+          <div class="row">
+            <div class="col s4 m4 l4 xl3 acc-pad-left">
+              <div>
+                <article class="acc--pop-font">Accessory</article>
+              </div>
+            </div>
+            <div class="col s8 m8 l8 xl9">
+              <div class="select-wrapper soft-lic">
+                <mat-form-field [floatLabel]="'never'">
+                  <mat-select
+                    name="modifyAccessory"
+                    [(ngModel)]="modifyAccessory"
+                    #modifyAccessory2="ngModel"
+                    panelClass="softwarellc"
+                    disableOptionCentering
+                    (selectionChange)="modifyAccesStatus()"
+                  >
+                    <mat-option
+                      *ngFor="let range of transformerRange"
+                      [value]="range.value"
+                    >
+                      {{ range.name }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="padding-top: 1px;">
+            <div style="margin-top: 21px;">
+              <button
+                style="margin-right:20px;width: 130px;"
+                mat-button
+                class="apply btn submit-bt"
+                (click)="updateAccessory()"
+                [disabled]="accessType === 1 || (modifyAccessory==transformerValue)"
+              >
+                MODIFY
+              </button>
+              <button
+                style="width: 130px;"
+                mat-button
+                class="apply btn submit-bt"
+                (click)="deleteAccessory()"
+                [disabled]="accessType === 1 || (modifyAccessory!=transformerValue)"
+              >
+                REMOVE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

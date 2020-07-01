@@ -1,0 +1,154 @@
+
+
+$dark-main-bg: #37474f;
+$dark-main-color: #fff;
+$dark-today-color: #fff; 
+$dark-today-bg: #e53935; 
+$dark-header-btn-bg: #263238;
+$dark-header-btn-bg-active: #263238;
+$dark-header-active-border: #2196f3;
+$dark-event-tile-bg: #263238;
+
+.heat-scheduler.dark {
+  background-color: $dark-main-bg !important;
+  .heat-scheduler__month-view__day_list circle{
+    fill: #fff !important;
+  }
+  .heat-scheduler__header {
+    button {
+      background: $dark-header-btn-bg !important;
+      color: $dark-main-color !important;
+      border: none !important;
+      &:active {
+        background: $dark-header-btn-bg-active !important;
+      }
+    }
+  }
+  .heat-scheduler__header__nav-view-part {
+    button.active {
+      border-bottom: 2px solid $dark-header-active-border !important;
+    }
+  }
+  .heat-scheduler__header__nav-view-part {
+    button {
+      background-color: transparent !important;
+    }
+  }
+  .heat-scheduler__header__date-part__nav {
+    button {
+      svg {
+        > g {
+          fill: $dark-main-color;
+        }
+      }
+    }
+    .heat-scheduler__header__date-part__title {
+      color: $dark-main-color;
+      border: none;
+      &:active {
+        background: transparent;
+      }
+    }
+  }
+  .heat-scheduler-dropdown {
+    color: $dark-main-color;
+
+    .heat-scheduler-dropdown__model {
+      border-color: $dark-header-btn-bg;
+    }
+    .heat-scheduler-dropdown__list {
+      background-color: $dark-header-btn-bg;
+      border-color: $dark-header-btn-bg;
+      > div:hover {
+        background-color: $dark-main-bg;
+      }
+    }
+  }
+  .header_number,
+  .header_day_title p {
+    color: $dark-main-color !important;
+    font-weight: normal;
+  }
+  .heat-scheduler__day-view__hour-column,
+  .heat-scheduler__day-view__body > div:not(.heat-scheduler__event-tile){
+      border-color: $dark-main-bg !important;
+  }
+  .heat-scheduler__day-view__body > div:not(.heat-scheduler__event-tile) > div.heat-scheduler__day-view__hour-column:after,
+  .heat-scheduler__week-view .heat-scheduler__week-view__body > div.heat-scheduler__week-view__body__hour-column > div:not(.heat-scheduler__event-tile) > div:first-child:not(.heat-scheduler__event-tile__box):after{
+      background: $dark-main-bg !important;
+  }
+  .heat-scheduler__day-view__body > div:not(.heat-scheduler__event-tile) > div.heat-scheduler__day-view__hour-column > span,
+  .heat-scheduler__week-view .heat-scheduler__week-view__body > div.heat-scheduler__week-view__body__hour-column > div:not(.heat-scheduler__event-tile) > div:first-child:not(.heat-scheduler__event-tile__box) > span{
+      color: $dark-main-color !important;
+  }
+  .heat-scheduler__day-view__event-columm{
+      background: $dark-event-tile-bg !important;
+  }
+  .heat-scheduler__day-view__body > div:not(.heat-scheduler__event-tile) > div.heat-scheduler__day-view__hour-column,
+  .heat-scheduler__day-view__body > div:not(.heat-scheduler__event-tile),
+  .heat-scheduler__week-view .heat-scheduler__week-view__body > .heat-scheduler__week-view__body__day-column > div > div,
+  .heat-scheduler__week-view .heat-scheduler__week-view__body > div.heat-scheduler__week-view__body__hour-column > div:not(.heat-scheduler__event-tile) > div:first-child:not(.heat-scheduler__event-tile__box){
+    border-color:$dark-main-bg !important;
+  }
+  .heat-scheduler__day-view__body > div:not(.heat-scheduler__event-tile) > div.heat-scheduler__day-view__hour-column{
+    border-right: 1px solid $dark-main-bg;
+  }
+  .heat-scheduler__week-view .heat-scheduler__week-view__body > div.heat-scheduler__week-view__body__hour-column > div:not(.heat-scheduler__event-tile) > div:first-child:not(.heat-scheduler__event-tile__box):after{
+      right: -1px;
+  }
+  .heat-scheduler__month-view__day,
+  .heat-scheduler__month-view{
+      border-color: $dark-main-bg !important;
+  }
+  .heat-scheduler__month-view__day__label,
+  .heat-scheduler__month-view__day__number,
+  .heat-scheduler__month-view__day .more-item{
+      color: $dark-main-color !important;
+  }
+  .heat-scheduler__month-view__day .more-item:hover{
+      background-color: $dark-main-bg !important;
+  }
+  .heat-scheduler__month-view__day__events_container .heat-scheduler__event.expired .heat-scheduler__event__content{
+      color: #aaa;
+  }
+  .heat-scheduler__month-view__day__events_container .heat-scheduler__event.expired:hover{
+     background-color: $dark-main-bg !important;
+  }
+  .heat-scheduler__month-view__day__events__dialog{
+      background-color: #455A64;
+      border-color: $dark-header-btn-bg-active;
+  }
+  .heat-scheduler__close-button{
+      color: $dark-main-color !important;
+      &:hover{
+          background-color: $dark-header-btn-bg-active;
+      }
+  }
+  .heat-scheduler__year-view__month{
+      color: $dark-main-color;
+  }
+  .heat-scheduler__year-view__month .heat-scheduler__year-view__month__body > div > span{
+      color: #bbb;
+  }
+  .heat-scheduler__year-view__month .heat-scheduler__year-view__month__body > div.current:not(.today) > span{
+      color: $dark-main-color;
+  }
+  .heat-scheduler__day-view__body > div:not(.heat-scheduler__event-tile) > div.heat-scheduler__day-view__event-column,
+  .heat-scheduler__month-view__day{
+      background-color: $dark-header-btn-bg-active !important;
+  }
+  .heat-scheduler__day-view__header > div:last-child > div > span.header_number.today{
+    color: $dark-today-bg !important;
+  }
+  .heat-scheduler__year-view__month .heat-scheduler__year-view__month__body > div > span:hover{
+    background-color: $dark-header-btn-bg-active !important;
+  }
+  .heat-scheduler__sidebar{
+    background: $dark-main-bg;
+    border-left-color: $dark-header-btn-bg-active;
+    h6{
+      color: #fff;
+      border-bottom-color: $dark-header-btn-bg-active;
+    }
+  }
+}

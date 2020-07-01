@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="25px" viewBox="0 0 28 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>images_new-files-svg_Fault</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Setup-screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Tools_Maintenance_View-Event-Log-expanded" transform="translate(-504.000000, -452.000000)" fill-rule="nonzero">
+            <g id="images_new-files-svg_Fault" transform="translate(504.000000, 452.000000)">
+                <polyline id="Path" fill="#FF0000" points="0 24.5 14 0 28 24.5"></polyline>
+                <path d="M11.6375,21.39375 C11.6375,20.125 12.6,19.20625 14.04375,19.20625 C15.44375,19.20625 16.3625,20.125 16.40625,21.39375 C16.40625,22.6625 15.4875,23.58125 14.04375,23.58125 C12.6,23.58125 11.6375,22.61875 11.6375,21.39375 Z M12.5125,17.98125 L12.425,7 L15.575,7 L15.53125,17.98125 L12.5125,17.98125 Z" id="Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

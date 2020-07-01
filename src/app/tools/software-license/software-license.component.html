@@ -1,0 +1,405 @@
+<div class="row dash-board">
+  <div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+  <div class="setting-blue margin-top-12">
+    <div class="pad-cor">
+      <div class="system-ou">
+        <div class="left font-responsive">
+          <span class="white-c font-responsive"
+            ><a
+              class="color-white font-responsive"
+              routerLink="/tools/system-configuration-main"
+              >System Configuration</a
+            >
+            › Software License</span
+          >
+        </div>
+        <div class="sys-tab col-bg" style="clear:both;min-height: 539px">
+          <div class="row">
+            <div class="col s12 m12 l12 xl12 soft-bg-color soft-pad-left">
+              <div class="cards soft-pad-left row">
+                <div class="col s4 m3 l3 xl4">
+                  <div class="card-content">
+                    <article class="soft-fonts text-transform">NAME</article>
+                  </div>
+                </div>
+                <div class="col s4 m3 l3 xl2">
+                  <div class="card-content">
+                    <article class="soft-fonts text-transform">TYPE</article>
+                  </div>
+                </div>
+                <div class="col s4 m3 l3 xl2">
+                  <div class="card-content">
+                    <article class="soft-fonts text-transform">STATUS</article>
+                  </div>
+                </div>
+                <div class="col s4 m3 l3 xl4">
+                  <div class="card-content">
+                    <article class="soft-fonts text-transform">LICENSE TYPES</article>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m12 l12 xl12 soft-bg soft-pad-left" *ngIf="noLicense">
+              <div class="col">
+                <article class="soft-fonts-col">No License Keys</article>
+              </div>
+            </div>
+
+            <!-- <div *ngIf="obj">
+              <div *ngFor="let parent of licenseObj">
+              <div class="col s12 m12 l12 xl12  soft-pad-left" *ngFor="let child of obj2;let i=index">
+                <div class="cards soft-pad-left" *ngIf="obj[parent][child].isDisplay">
+                  <div class="col s4 m3 l3 xl4">
+                    <div class="card-content"> 
+                      <article class="soft-fonts-col">
+                        {{obj[parent][child].name}}
+                      </article>
+                    </div>
+                  </div>
+                  <div class="col s4 m3 l3 xl2">
+                    <div class="card-content">
+                      <article class="soft-fonts-col">
+                        {{obj[parent][child].type}}
+                      </article>
+                    </div>
+                  </div>
+                  <div class="col s4 m3 l3 xl2">
+                    <div class="card-content">
+                      <article class="soft-fonts-col">
+                        {{obj[parent][child].status}}
+                      </article>
+                    </div>
+                  </div>
+                  <div class="col s4 m3 l3 xl4">
+                    <div class="card-content">
+                      <article class="soft-fonts-col">
+                        {{parent.replace('_',' ')}}
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div> -->
+
+            <div *ngIf="obj">
+              <div class="col s12 m12 l12 xl12  soft-pad-left wrapper-color" *ngFor="let child of licenseObj2;let i=index">
+                <div class="cards soft-pad-left">
+                  <div class="col s4 m3 l3 xl4">
+                    <div class="card-content"> 
+                      <article class="soft-fonts-col">
+                        {{child.name}}
+                      </article>
+                    </div>
+                  </div>
+                  <div class="col s4 m3 l3 xl2">
+                    <div class="card-content">
+                      <article class="soft-fonts-col">
+                        {{child.type}}
+                      </article>
+                    </div>
+                  </div>
+                  <div class="col s4 m3 l3 xl2">
+                    <div class="card-content">
+                      <article class="soft-fonts-col">
+                        {{child.status}}
+                      </article>
+                    </div>
+                  </div>
+                  <div class="col s4 m3 l3 xl4">
+                    <div class="card-content">
+                      <article class="soft-fonts-col">
+                        {{child.parentKey.replace('_',' ')}}
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+<!-- add and remove button removed for release(25th oct) -->
+            <div class="soft-bt" *ngIf="accessType!=1 && (hideBtn)">
+              <div class="left pt-25">
+                <button
+                  class="soft-add"
+                  (click)="add()"
+                  style="color:#0080C8"
+                >
+                  ADD
+                </button>
+              </div> 
+            </div>
+              <div class="soft-bt" *ngIf="accessType!=1 && (removeBtn)">
+              <div class="left pt-25" >
+                <button
+                  class="soft-edit"
+                  (click)="edit()"
+                  style="color:#0080C8"
+                  
+                >
+                  REMOVE
+                </button>
+              </div>
+              </div>
+          <div *ngIf="accessType === 1" style="padding-top: 10px">
+            You don't have access to add license
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!----ADD POPUP-->
+  <!-- <form name="form"> -->
+  <form
+    *ngIf="addLicenseForm"
+    name="form"
+    #form="ngForm"
+    [formGroup]="addLicenseForm"
+    (submit)="onAddLicence()"
+  >
+    <div id="soft-cover" *ngIf="showHide">
+      <div class="opa"></div>
+      <div id="soft-model-box">
+        <div class="text-right close-pd">
+          <svg
+            class="cursor-pointer"
+            xmlns="http://www.w3.org/2000/svg"
+            (click)="close()"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        </div>
+        <div class="add-fonts soft-pad-bb">
+          <article>Add a software License</article>
+        </div>
+        <div class="row">
+          <div class="col s12 m12 l12 xl12 soft-pad-left">
+            <div class="add-select">
+              <div class="row">
+                <article class="soft--pop-font">License for</article>
+                <div class="col s8 m8 l8 xl9 soft-pad-left">
+                  <div class="select-wrapper soft-lic">
+                    <mat-form-field [floatLabel]="'never'">
+                      <mat-select
+                        panelClass="softwarellc"
+                        [value]="selectedOption"
+                        (selectionChange)="changeLicenseFor($event, value)"
+                        disableOptionCentering
+                      >
+                        <mat-option value="10">PLC Communications</mat-option>
+                        <mat-option value="11">Web Server</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col s4 m4 l4 xl4"></div>
+              </div>
+              <div class="row">
+                <article class="soft--pop-font">Key</article>
+                <div class="col s12 m12 l12 xl12 soft-pad-left">
+                  <div class="">
+                    <div class="col s3 m4 l4 xl3 soft-pad-left">
+                      <input
+                      autocomplete="off"
+                        maxlength="4"
+                        class="remove-arrows"
+                        type="text"
+                        formControlName="key1"
+                        name="key1"
+                        placeholder="****"
+                        (keypress)="preventalpha($event)"
+                        (keyup)="validateAddNUmKey('key1')"
+                      />
+                    </div>
+                    <div class="col s3 m4 l4 xl3 soft-pad-left">
+                      <!-- <input 
+                         maxlength="3"
+                           type="text" [(ngModel)]="key2" [ngModelOptions]="{standalone: true}"
+                                                placeholder="****" > -->
+                      <input
+                      autocomplete="off"
+                        maxlength="4"
+                        class="remove-arrows"
+                        type="text"
+                        formControlName="key2"
+                        name="key2"
+                        placeholder="****"
+                        (keypress)="preventalpha($event)"
+                        (keyup)="validateAddNUmKey('key2')"
+                      />
+                    </div>
+                    <div class="col s3 m4 l4 xl3 soft-pad-left">
+                      <!-- <input 
+                         maxlength="3"
+                           type="text" [(ngModel)]="key3" [ngModelOptions]="{standalone: true}"
+                                                placeholder="****" > -->
+                      <input
+                      autocomplete="off"
+                        maxlength="4"
+                        class="remove-arrows"
+                        type="text"
+                        formControlName="key3"
+                        name="key3"
+                        placeholder="****"
+                        (keypress)="preventalpha($event)"
+                        (keyup)="validateAddNUmKey('key3')"
+                      />
+                    </div>
+                    <div class="col s3 m4 l4 xl3 soft-pad-left">
+                      <!-- <input 
+                         maxlength="3"
+                           type="text" [(ngModel)]="key4" [ngModelOptions]="{standalone: true}"
+                                                placeholder="****" > -->
+                      <input
+                      autocomplete="off"   
+                        maxlength="4"
+                        class="remove-arrows"
+                        type="text"
+                        formControlName="key4"
+                        name="key4"
+                        placeholder="****"
+                        (keypress)="preventalpha($event)"
+                        (keyup)="validateAddNUmKey('key4')"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="left mt-35">
+          <button
+            class="apply btn submit-bt btn-width margin-btm-40"
+            type="submit"
+            [disabled]="!form.valid"
+          >
+            ADD
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!----REMOVE  START-->
+
+  <form
+    *ngIf="removeLicenseForm"
+    name="form"
+    #form="ngForm"
+    [formGroup]="removeLicenseForm"
+    (submit)="removeLicense()"
+  >
+    <div id="soft-remove" *ngIf="softLic">
+      <div class="opa"></div>
+      <div id="soft-model-remove">
+        <div class="text-right close-pd">
+          <svg
+            class="cursor-pointer"
+            xmlns="http://www.w3.org/2000/svg"
+            (click)="close()"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        </div>
+        <div class="add-fonts pb-35">
+          <article>Remove a Software License</article>
+        </div>
+        <div class="row">
+          <div class="col s12 m12 l12 xl12 soft-pad-left">
+            <div class="add-select">
+              <div class="row">
+                <article class="soft--pop-font">Key</article>
+                <div class="col s12 m12 l12 xl12 soft-pad-left">
+                  <div class="">
+                    <div class="col s3 m4 l4 xl3 soft-pad-left">
+                      <input
+                      autocomplete="off"
+                        maxlength="4"
+                        
+                        class="remove-arrows"
+                        type="text"
+                        formControlName="dkey1"
+                        name="dkey1"
+                        placeholder="****"
+                        (keypress)="preventalpha($event)"
+                        (keyup)="validateRemoveNUmKey('dkey1')"
+                      />
+                    </div>
+                    <div class="col s3 m4 l4 xl3 soft-pad-left">
+                      <input
+                      autocomplete="off"
+                        maxlength="4"
+                        
+                        class="remove-arrows"
+                        type="text"
+                        formControlName="dkey2"
+                        name="dkey2"
+                        placeholder="****"
+                        (keypress)="preventalpha($event)"
+                        (keyup)="validateRemoveNUmKey('dkey2')"
+                      />
+                    </div>
+                    <div class="col s3 m4 l4 xl3 soft-pad-left">
+                      <input
+                      autocomplete="off"
+                        maxlength="4"
+                        
+                        class="remove-arrows"
+                        type="text"
+                        formControlName="dkey3"
+                        name="dkey3"
+                        placeholder="****"
+                        (keypress)="preventalpha($event)"
+                        (keyup)="validateRemoveNUmKey('dkey3')"
+                      />
+                    </div>
+                    <div class="col s3 m4 l4 xl3 soft-pad-left">
+                      <input
+                        autocomplete="off"
+                        maxlength="4"
+                        
+                        class="remove-arrows"
+                        type="text"
+                        formControlName="dkey4"
+                        name="dkey4"
+                        placeholder="****"
+                        (keypress)="preventalpha($event)"
+                        (keyup)="validateRemoveNUmKey('dkey4')"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="left mt-35">
+          <button
+            class="apply btn submit-bt btn-width"
+            style="margin-bottom: 35px;"
+            type="submit"
+            [disabled]="!form.valid || validateEditKey == false"
+          >
+            REMOVE
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- <nordson-footer></nordson-footer> -->
+</div>
+</div>

@@ -1,0 +1,17 @@
+<div class="heat-scheduler__event-tile" *ngFor="let event of dayEvents" >
+
+  <div class="heat-scheduler__event-tile__box" #ev [event]="event" style="border-radius: 10px;" [heatEventTemplate]="heatEventTemplate" [heatEventToolbar]="heatEventToolbar" app-heat-scheduler-event>
+  </div>
+
+</div>
+
+<div *ngFor="let hour of hours;let index = index">
+  <div class="heat-scheduler__day-view__hour-column" >
+    <span *ngIf="index > 0">
+      {{ hour.start.format('HH:mm:A') }}
+    </span>
+  </div>
+  <div class="heat-scheduler__day-view__event-column" [ngStyle]="{'background-color':evenOdddays=== 'even' ? '#AAC9D6' : '#A1BEC9' }"  app-heat-scheduler-hour [hour]="hour" [heatEventTemplate]="heatEventTemplate"
+    [heatEventFormatter]="heatEventFormatter" >
+  </div>
+</div>

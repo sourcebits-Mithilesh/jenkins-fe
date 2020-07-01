@@ -1,0 +1,71 @@
+<div class="row" >
+<div class="col m12 s12 l9 xl9 p-0  bg-color-blue height-vh responsive-pad-color">
+  <div class="bg-blue margin-top-12">
+    <div class="row fs-26 color-white font-responsive" id="config-head">
+      <a class="color-white" routerLink="/tools/system-configuration-main"
+        >System Configuration</a
+      >
+      › Configuration Code
+    </div>
+
+    <div class="set-light-blue content-p content-m">
+      <div class="row bg-blue header-p fs-11 color-white">
+        <div class="col s4 m4 l4 xl4">&nbsp;</div>
+        <div class="col s4 m4 l4 xl4 text-transform">DATE</div>
+        <div class="col s4 m4 l4 xl4 text-transform">&nbsp;CODE</div>
+      </div>
+      <!-- <div  *ngIf="!loading; else loader"> -->
+      
+      <div class="row padding-12-0 gray">
+        <div class="col s4 m4 l4 xl4">Original Code</div>
+        <div class="col s4 m4 l4 xl4">{{originalCodeDate}}</div>
+        <div class="col s4 m4 l4 xl4">{{originalCode}}</div>
+      </div>
+
+      <div class="row padding-12-0 gray" *ngIf="currentCode">
+        <div class="col s4 m4 l4 xl4">Current Code</div>
+        <div class="col s4 m4 l4 xl4">{{currentCode[0].date}}</div>
+        <div class="col s4 m4 l4 xl4">{{currentCode[0].updateCode}}</div>
+      </div>
+      <!-- updated code is removed for the release(25th oct) -->
+      <div *ngIf="updatedCode">
+        <div  class="row padding-12-0 gray" *ngFor="let configuration of updatedCode | paginate: { itemsPerPage: 5, currentPage: p,totalItems: configCount };let i=index">
+          <div class="col s4 m4 l4 xl4">{{i === 0 ? 'Updated Code' : ''}}</div>
+          <div class="col s4 m4 l4 xl4">{{configuration[2]}}</div>
+          <div class="col s4 m4 l4 xl4">{{configuration[1]}}</div>
+        </div>
+        <div class="paging">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+      </div>
+      <div *ngIf="originalCodeErr && updatedCodeErr" class="error-msg">{{errorMsg}}</div>
+      
+      
+      <div>
+        <div class="row padding-12-0 gray">
+          <div class="col s12 m12 l12 xl12">{{CODE}}</div>
+        </div>
+      </div>
+    <!-- </div> -->
+    
+
+
+
+      <div class="pt-25" *ngIf="userType===0 || userType===4">
+        <button class="transparent-btn" (click)="viewConfig()" *ngIf="originalCode != '' && originalCode != null">VIEW</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="transparent-btn" (click)="editconfig()" *ngIf="originalCode != '' && originalCode != null && accessType === 0">MODIFY</button> 
+      </div>
+      <!-- </div> -->
+      <ng-template #loader>
+          <div class="config-loader pt-25">
+              <img src="../../../assets/Spinner.gif" alt="not working">
+          </div>
+        </ng-template>
+    </div>
+
+  </div>
+  <!-- <nordson-footer></nordson-footer> -->
+</div>
+</div>
+

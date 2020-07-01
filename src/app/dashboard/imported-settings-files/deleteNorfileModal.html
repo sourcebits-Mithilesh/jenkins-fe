@@ -1,0 +1,22 @@
+<div class="main-div-logout" id="deleteNorFile">
+    <div class="back">
+      <div class="t-center" id="logout-modal" style="padding: 25px 0px;">
+        <div class="logout-head">Are you sure you want to Delete?</div>
+        <div class="logout-sub-head" style="padding:25px 20px 0px">
+          You are about to permanently delete setup file and all its contents. You will not be able to recover this file. This operation cannot be undone
+        </div>
+        <div class="" style="display: flex;margin: 47px 13% 0px">
+          <div>
+            <button class="button-logout cancel-btn-logout" (click)="onNoClick()">
+              CANCEL
+            </button>
+          </div>
+          <div>
+            <button class="button-logout logout" (click)="deleteNorFile()">
+             CONFIRM
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

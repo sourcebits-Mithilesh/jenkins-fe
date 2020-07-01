@@ -1,0 +1,167 @@
+.setting-blue-zone {
+  background: #0d436d;
+  padding: 27px 50px 50px 50px;
+}
+.recipe-head {
+  color: #ffffff;
+  font-size: 26px;
+}
+.wrapper-div {
+  height: 63px;
+  width: 71px;
+  border-radius: 8px;
+  background-color: #0181c5;
+  display: inline-block;
+  margin-left: 15px;
+  padding-top: 11px;
+}
+.recipe-file-text {
+  color: #ffffff;
+  font-size: 10px;
+  letter-spacing: 0.83px;
+}
+.background-light-blue {
+  border-radius: 4px;
+  background-color: #aac9d6;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.background-dark-blue {
+  height: 48px;
+  background-color: #0d436d;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.recipe-content {
+  height: 48px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.recipe-content:nth-child(even) {
+  background-color: #9fbcc9;
+}
+.recipe-text {
+  color: #ffffff;
+  font-size: 11px;
+  letter-spacing: 0.92px;
+}
+.recipe-data {
+  color: #203535;
+  font-size: 14px;
+}
+::ng-deep #recipe-head .mat-checkbox-layout .mat-checkbox-label {
+  color: #ffffff;
+  font-size: 11px;
+  letter-spacing: 0.92px;
+  padding-left: 33%;
+}
+::ng-deep #recipe-body .mat-checkbox-layout .mat-checkbox-label {
+  color: #203535;
+  font-size: 14px;
+  padding-left: 26%;
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #000000;
+}
+
+::ng-deep #mat-recipe {
+  height: 36px;
+  width: 158px;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  background-color: #ffffff;
+  top:-10px;
+}
+
+::ng-deep #mat-recipe .mat-select-arrow {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid;
+  margin: 0 4px;
+  position: relative;
+  left: 21px;
+  top: 0px;
+  color: #d8d8d8;
+}
+
+::ng-deep .mat-select-panel-wrap .recipe-mat.mat-select-panel {
+  background-color: #ffffff;
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  position: relative;
+  left: 16px;
+  top: 27px;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  visibility: hidden;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-underline {
+  display: none;
+}
+::ng-deep #mat-recipe .mat-form-field-infix {
+  border-top: 0;
+  padding-right: 30px;
+  padding-top: 10px;
+}
+
+.saveas-save-btn {
+  height: 36px;
+  width: 130px;
+  background-color: #0181c5;
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  text-align: center;
+  border-radius: 4px;
+  color: #ffffff;
+  border: none;
+}
+
+::ng-deep .matsaveasmodal .mat-dialog-container {
+  background: #aac9d6;
+  border-radius: 4px;
+}
+::ng-deep .matcreaterecipemodal .mat-dialog-container {
+  background: #aac9d6;
+  border-radius: 4px;
+  padding: 23px;
+}
+.mat-label-sel {
+  margin-left: 13px;
+  color: rgba(0, 0, 0, 0.87);
+}
+::ng-deep #mat-recipe .mat-select-trigger {
+  padding-left: 15px;
+}
+.recipe-select{
+  float: right;
+  margin-top: -28px
+}
+@media only screen and (max-width: 1132px) {
+  .recipe-select {
+    margin-top: 38px
+  }
+}
+
+@media only screen and (max-width: 500px){
+  .recipe-select{
+   width: 100% !important;
+  }
+  #mat-recipe{
+    width: 266px !important;
+  }
+  #recipe-head1{
+    width: 25rem !important;
+    /* padding-right: 18rem; */
+    /* margin-right: -22rem; */
+    margin-left: -2.5rem !important;
+}
+
+}
+.margin-left-recipe{
+  margin-left: -80px;
+}

@@ -1,0 +1,15 @@
+.email-link {
+  color: #000000;
+  font-family: Roboto;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+}
+.sub-email-link {
+  height: 21px;
+  color: #000000;
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+}

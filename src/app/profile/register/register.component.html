@@ -1,0 +1,260 @@
+<div [ngClass]="['backgroundImg']">
+  <div class="signin  background-img comm-height">
+    <nordson-header></nordson-header>
+    <form name="form2" #form2="ngForm" (ngSubmit)="onSubmit(form2.value)">
+      <div class="row margin-null pad-responsive-signup" id="register-input">
+        <div class="login-section">
+          <div class="main-section pad-right-left-20" style="margin-bottom: 6.7% !important">
+            <section class="center">
+              <h6>Welcome to Nordson</h6>
+              <span class="span-inline-login"
+                >We just need a few details to get you up and running.</span
+              >
+            </section>
+            <div class="sub-section">
+              <div class="margin-t-4">
+                <label class="text-above"
+                  >Full Name
+                  <sup>*</sup>
+                </label>
+                <input
+                autocomplete="off"
+                class = "autocomplete off"
+                  type="text"
+                  id="fname"
+                  name="fname"
+                  #fname2="ngModel"
+                  [(ngModel)]="fname"
+                  class="form-control border-blue"
+                  required=""
+                  [maxlength]="60"
+                  pattern="^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$"
+                />
+                <div
+                  class="invalid"
+                  *ngIf="
+                    fname2.invalid && fname2.touched && fname2.errors.required
+                  "
+                >
+                  Full name is required!
+                </div>
+                <div class="invalid" *ngIf="fname2.errors?.pattern">
+                  Please enter a valid full name
+                </div>
+              </div>
+              <div>
+                <label class="text-above"
+                  >Company Name
+                  <sup>*</sup>
+                </label>
+                <input
+                autocomplete="off"
+                  type="text"
+                  id="cname"
+                  name="cname"
+                  #cname2="ngModel"
+                  [(ngModel)]="cname"
+                  class="form-control border-blue"
+                  required=""
+                  [minlength]="2"
+                  [disabled]="disabled"
+                  pattern="^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$"
+                />
+                <div
+                  class="invalid"
+                  *ngIf="
+                    cname2.invalid && cname2.touched && cname2.errors.required
+                  "
+                >
+                  Company name is required!
+                </div>
+                <div class="invalid" *ngIf="cname2.errors?.minlength">
+                  Please enter a valid Company name
+                </div>
+                <div
+                  class="invalid"
+                  *ngIf="!cname2.errors?.minlength && cname2.errors?.pattern"
+                >
+                  Please enter a valid Company name
+                </div>
+              </div>
+              <div class="selectdiv">
+                <label class="text-above"
+                  >Company Type
+                  <sup>*</sup>
+                </label>
+                <mat-form-field id="register-mat-sel" [floatLabel]="'never'">
+                  <mat-label class="mat-label"> Select company</mat-label>
+                  <mat-select
+                    class="browser-default"
+                    name="option"
+                    #option2="ngModel"
+                    [(ngModel)]="option"
+                    required
+                    [disabled]="disabled"
+                    panelClass="registermatsel"
+                    disableOptionCentering
+                  >
+                    <mat-option value="OEM">OEM</mat-option>
+                    <mat-option value="End User">End User</mat-option>
+                    <mat-option value="Nordson">Nordson</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="invalid" *ngIf="option2.invalid && option2.touched">
+                  Company type is required!
+                </div>
+              </div>
+              <div>
+                <label class="text-above"
+                  >Address
+                  <sup>*</sup>
+                </label>
+                <input autocomplete="off"
+                  type="text"
+                  id="address"
+                  class="form-control border-blue"
+                  required=""
+                  name="address"
+                  #address2="ngModel"
+                  [(ngModel)]="address"
+                  [minlength]="2"
+                  pattern="^([A-Za-z0-9,-]+ )+[A-Za-z0-9,-]+$|^[A-Za-z0-9,-]+$"
+                />
+              </div>
+              <div
+                class="invalid"
+                *ngIf="
+                  address2.invalid &&
+                  address2.touched &&
+                  address2.errors?.required"
+              >
+                Address is required!
+              </div>
+              <div class="invalid" *ngIf="address2.errors?.minlength">
+                Please enter a valid Address
+              </div>
+              <div
+                class="invalid"
+                *ngIf="!address2.errors?.minlength && address2.errors?.pattern"
+              >
+                Please enter a valid Address
+              </div>
+              <div class="selectdiv">
+                <label class="text-above"
+                  >Country
+                  <sup>*</sup>
+                </label>
+                <mat-form-field id="register-mat-sel-1" [floatLabel]="'never'">
+                  <mat-label class="mat-label">Select country</mat-label>
+                  <mat-select
+                    class="browser-default"
+                    required=""
+                    name="country"
+                    #country2="ngModel"
+                    [(ngModel)]="country"
+                    panelClass="registermatsel"
+                    disableOptionCentering
+                    (selectionChange)="setCountryCode($event.value)"
+                  >
+                    <mat-option
+                      *ngFor="let country of countries"
+                      value="{{ country.name }}"
+                    >
+                      {{ country.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="invalid" *ngIf="country2.invalid && country2.touched">
+                Country name is required!
+              </div>
+              <div>
+                <label class="text-above"
+                  >Plant
+                  <sup></sup>
+                </label>
+                <input
+                autocomplete="off"
+                  type="text"
+                  id="plant"
+                  class="form-control border-blue"
+                  name="plant"
+                  #plant2="ngModel"
+                  [(ngModel)]="plant"
+                  pattern="^([A-Za-z0-9]+ )+[A-Za-z0-9]+$|^[A-Za-z0-9]+$"
+                />
+                <div class="invalid" *ngIf="plant2.errors?.pattern">
+                  Please enter a valid Plant
+                </div>
+              </div>
+              <div>
+                <label class="text-above"
+                  >Phone Number
+                  <sup>*</sup>
+                </label>
+                <input
+                autocomplete="off"
+                  type="text"
+                  id="padding-left-66"
+                  class="form-control border-blue disabled-input "
+                  name="contact"
+                  #contact2="ngModel"
+                  pattern="^([0-9]{7,15})$"
+                  [(ngModel)]="contact"
+                  required=""
+                  style="width: 232px !important;"
+                  [disabled]="disabledcontact"
+                />
+                 <span style="position: relative;
+                 left: 5%;
+                 top: -48px;font-size: 16px;">{{countryCode}} </span>
+
+                <div
+                style="margin-top: -20px;"
+                  class="invalid"
+                  *ngIf="
+                    contact2.invalid &&
+                    contact2.touched &&
+                    contact2.errors.required"
+                >
+                  Contact number is required!
+                </div>
+                <div style="margin-top: -20px;" class="invalid" *ngIf="contact2.errors?.pattern">
+                  Please enter a valid Contact Number
+                </div>
+              </div>
+              <div class="continue margin-t-13">
+                <button
+                  [disabled]="!form2.valid"
+                  type="submit"
+                  roterLink="/signup"
+                  class="btn submit-bt right submit-bt"
+                >
+                  Continue
+                </button>
+              </div>
+              <div
+                class="button-section-center"
+                style="padding-bottom:0px !important"
+              >
+                <p class="cancel-1">
+                  Next Step: Model Details
+                </p>
+              </div>
+            </div>
+            <div class="margin-minus">
+              <p>
+                <span>
+                  Already a user
+                </span>
+                <a href="#" class="n-green" routerLink="/login"> Sign In</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class=" col s2 m2 l2"></div> -->
+      </div>
+    </form>
+  </div>
+</div>
+<!-- <nordson-footer></nordson-footer> -->

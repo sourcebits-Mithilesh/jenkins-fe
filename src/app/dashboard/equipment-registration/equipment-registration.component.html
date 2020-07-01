@@ -1,0 +1,170 @@
+<div class="dash-board">
+  <div class="row">
+    <div class="row">
+      <!-- for responsive class medium shud be col m12 -->
+      <!-- <div class="col m12 s12 l9 xl9 margin-top-12 height-vh p-0" style="background: rgb(249,253,255)"> -->
+      <div *ngIf="(equipments | async)?.length as length" class="pad-main col m12 s12 l9 xl9 margin-top-12 height-vh"  style="background: rgb(249,253,255)"
+        >
+        <div>
+          <div>
+            <div class="equipment-heading font-responsive">Model Registration</div>
+            <div>
+              <span class="equipment-sub-heading" style="padding-top: 35px;display:inline-block">Currently registered
+                model</span>
+              <span *ngIf="accessType != 1" class="sub-user-bt" style="float: right;margin-top: -7px">
+                <button (click)="openAddDialog(length)">
+                  <span class="add-svg text-transform" style="fill: #0181C5 ">
+                    <svg style="top: 6px;
+                    position: relative;left:-6px" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                      viewBox="0 0 24 24">
+                      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                      <path d="M0 0h24v24H0z" fill="none" /></svg>
+                    ADD MODEL
+                  </span>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="equip-registration display-none-responsive">
+          <div class="row" style="margin: 0px;width: 100%;color: #6b6b6b;">
+            <div class="col s3 m3 l3 xl3" style="padding-left: 45px;">
+              Model
+            </div>
+
+            <div class="col s2 m2 l2 xl2" style="padding-left: 5px;">
+              Serial Number
+            </div>
+            <div class="col s2 m3 l3 xl3" style="padding-left: 20px;">
+              Unique Number
+            </div>
+            <div class="col s5 m4 l4 xl4" style="padding-left: 0px;">
+              Description
+            </div>
+          </div>
+        </div>
+        <div id="equipment-accordion" class="row pad-btm-80">
+          <mat-accordion class="equip-accordion">
+            <mat-expansion-panel *ngFor="let equip of equipments | async | paginate: { id: 'server',itemsPerPage: 50, currentPage: currentPage,totalItems: count }" class="eqp-contents" style="margin-top:13px;">
+              <mat-expansion-panel-header style="padding: 5px 0px 5px 10px;" [collapsedHeight]="'auto'"
+                [expandedHeight]="'auto'">
+                <div class="row display-flex-responsive align-items-center-responsive"
+                  style="margin-left: -25px;width: 100%;padding-top: 10px;">
+                  <div class="col s12 m12 l3 xl3 display-responsive padding-responsive">
+                    Model
+                  </div>
+                  <div class="col s12 m3 l3 xl3 center-align text-align-left-responsive"
+                    style="text-transform: uppercase">
+                    {{ equip.equipment_model }}
+                  </div>
+                  <div class="col s12 m12 l3 xl3 display-responsive padding-responsive">
+                    Serial Number
+                  </div>
+                  <div class="col s12 m2 l2 xl2 text-align-left-responsive">
+                    {{ equip.equipment_sn }}
+                  </div>
+                  <div class="col s12 m12 l3 xl3 display-responsive padding-responsive">
+                    Unique Number
+                  </div>
+                  <div class="col s12 m3 l3 xl3 text-align-left-responsive" id="Unique-number" style="padding-left: 35px;">
+                    <div>{{ equip.uid }}</div>
+                  </div>
+                  <div class="col s12 m12 l3 xl3 display-responsive padding-responsive">
+                    Description
+                  </div>
+                  <div class="col s12 m4 l4 xl4">
+                    <div class="row">
+                      <div class="col s10 m10 l10 xl10 desc text-align-left-responsive pad-left-0" style="-webkit-line-clamp: 2;
+                      text-overflow: ellipsis;
+                      overflow: hidden;
+                      display: -webkit-box;
+                      -webkit-box-orient: vertical;
+                      word-wrap: break-word;
+                  ">
+                        {{ equip.equipment_description }}
+                      </div>
+                      <div class="col s12 m2 l2 xl2 t-right">
+                        <div (click)="openEditDialog(equip.id)" *ngIf="accessType != 1">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path
+                              d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                            <path d="M0 0h24v24H0z" fill="none" /></svg></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-expansion-panel-header>
+              <div>
+                <div class="fields">Configuration Code/Name</div>
+                <div class="Description"> {{ equip.equipment_pn }}</div>
+              </div>
+
+              <div class="" *ngIf="equip.nordata && equip.nordata.length>0">
+                <div class="fields" style="padding-top:15px">
+                  Files
+                </div>
+                <div *ngFor="let norfile of equip.nordata; let last = last">
+                  <div class="nor-files display-flex-responsive" style="padding-top:20px;padding-bottom: 20px;">
+
+                    <div class="file-name display-flex-align-center">
+                      {{ norfile.nor_file_name }}
+                    </div>
+                    <div class="date display-flex-align-center padding-responsive">
+                      {{ norfile.Date }}
+                    </div>
+                    <div class="pad-btm-resp-20">
+                      <div class="float download display-flex-align-center padding-responsive"> <a class="disable"
+                          style="cursor:pointer;width: 85px;"
+                          (click)="onDown(norfile.nor_file_name, norfile.user_id, norfile.nor_id)">DOWNLOAD</a></div>
+                      <div class="float-right cursor-pointer" style="padding:3px 5px" *ngIf="accessType ==0 "
+                        [matMenuTriggerFor]="menu">
+                        <img src="../../../assets/img/icon/3dots.svg" alt="">
+                        <mat-menu #menu="matMenu">
+                          <button mat-menu-item (click)="edit(norfile.nor_id,norfile.location_url)">EDIT</button>
+                          <button mat-menu-item (click)="editAsNewfile(norfile.nor_id)">EDIT AS NEW FILE</button>
+                          <button mat-menu-item (click)="opendeleteModalEquip(norfile.nor_id)">DELETE</button>
+                        </mat-menu>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="fields pad-tp-15 padding-responsive">
+                      Norfile Description
+                    </div>
+                    <div class="float pad-top-8 pad-bottom-10">
+                      {{ norfile.norfile_description }}
+                    </div>
+                    <div class="float-right pad-top-8 pad-bottom-10" *ngIf="accessType !=1">
+                      <svg _ngcontent-c17="" class="cursor-pointer" height="24" viewBox="0 0 24 24" width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        (click)="OpenNorFileEditModal(norfile.norfile_description,norfile.nor_id)">
+                        <path _ngcontent-c17=""
+                          d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z">
+                        </path>
+                        <path _ngcontent-c17="" d="M0 0h24v24H0z" fill="none"></path>
+                      </svg>
+
+                    </div>
+                  </div>
+                  <div class="clear-both">
+                    <hr *ngIf="!last" />
+                  </div>
+
+                </div>
+              </div>
+            </mat-expansion-panel>
+           
+          </mat-accordion>
+          
+            <pagination-controls id="server" (pageChange)="getPage($event)" *ngIf="count" style="display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;"></pagination-controls>
+          
+        </div>
+      </div>
+      <!-- <nordson-footer></nordson-footer> -->
+    <!-- </div> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>circle-plus</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Setup-screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Setup_Heat-Schedule_Add-Event" transform="translate(-537.000000, -362.000000)" fill-rule="nonzero">
+            <g id="circle-plus" transform="translate(536.000000, 361.000000)">
+                <polygon id="placeholder" fill-opacity="0" fill="#FFFFFF" points="0 0 24 0 24 24 0 24"></polygon>
+                <path d="M12,23 C5.925,23 1,18.075 1,12 C1,5.925 5.925,1 12,1 C18.075,1 23,5.925 23,12 C23,18.075 18.075,23 12,23 Z M13,11 L13,7 L11,7 L11,11 L7,11 L7,13 L11,13 L11,17 L13,17 L13,13 L17,13 L17,11 L13,11 Z" id="Oval-17" fill="#0271BE"></path>
+            </g>
+        </g>
+    </g>
+</svg>

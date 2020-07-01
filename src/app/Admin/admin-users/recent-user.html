@@ -1,0 +1,323 @@
+<form
+  name="form"
+  *ngIf="adminUserForm"
+  #form="ngForm"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="adminUserForm"
+>
+  <div class="row" style=" padding-left: 30px;padding-top: 20px;">
+    <div class="col s12 m12 l12 xl12">
+      <div class="fonts-heading">{{userData.full_name}}</div>
+      <div id="admin-tab" [@.disabled]="true" style="padding-top: 30px;">
+        <mat-tab-group
+          md-border-bottom=""
+          md-autoselect=""
+          md-no-pagination="true"
+        >
+          <mat-tab label="ACCOUNT DETAILS ">
+            <div class="row">
+              <div class="col s12 m12 l12 xl12">
+                <article class="font-detail text-captalize pad-top-48">
+                  Full name
+                </article>
+                <div class="font-sub-detail pad-top-8  text-captalize">
+                  {{userData.full_name}}
+                </div>
+                <article class="font-detail pad-top-32">Email</article>
+                <div class="font-sub-detail pad-top-8">{{userData.email}}</div>
+                <div class="country-section">
+                  <div class="left" style="padding-right: 31%">
+                    <article class="font-detail pad-top-32">Country</article>
+                    <div class="font-sub-detail pad-top-8">
+                      {{userData.country}}
+                    </div>
+                  </div>
+                  <div class="">
+                    <article class="font-detail pad-top-32">Plant Name</article>
+                    <div class="font-sub-detail pad-top-8">
+                      {{userData.plant}}
+                    </div>
+                  </div>
+                </div>
+                <div class="country-section">
+                  <div class="left" style="padding-right: 31%">
+                    <article class="font-detail pad-top-32">phone number</article>
+                    <div class="font-sub-detail pad-top-8">
+                      {{userData.mobile_number}}
+                    </div>
+                  </div>
+                  <div class="">
+                    <article class="font-detail pad-top-32">Company name</article>
+                    <div class="font-sub-detail pad-top-8">
+                      {{userData.company_name}}
+                    </div>
+                  </div>
+                </div>
+                <article
+                  class="font-detail pad-top-32"
+                  style="margin-top: 12px"
+                >
+                  Address
+                </article>
+                <div class="font-sub-detail pad-top-8 ">
+                  {{userData.company_address}}
+                </div>
+                <article *ngIf="userData.user_type_id!=3"
+                  class="font-detail pad-top-32"
+                  style="margin-top: 12px"
+                >
+                  Nordson Account Number
+                </article>
+                <div class="font-sub-detail pad-top-8 " *ngIf="userData.user_type_id!=3">
+                  {{userData.account_number}}
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="MANAGE USER">
+            <div class="row">
+              <div class="col s12 m12 l12 xl12">
+                <!-- <article class="font-detail">Full name</article>
+              <p class="font-sub-detail">Carole Landu</p> -->
+              <div class="font-detail pad-top-32">Email</div>
+                <div class="font-sub-detail pad-top-8">{{userData.email}}</div>
+              <div class="user-input pad-top-32" style="width: 78%;" *ngIf="userData.user_type_id!=3 && userData.user_type_id!=4">
+                <div style="width: 76%;">
+                  <label class="user-invite-label">Nordson Account Number</label>
+                  <input
+                  autocomplete="off"
+                    formControlName="nordsonAccountNo"
+                    class="input-dailog-border"
+                    placeholder="Nordson Account Number"
+                    [maxlength]="60"
+                  />
+                </div>
+                 <div class="change-class pad-top-32" style="margin-top: -77px;">
+                    <button type="button" (click)="addAccountNo()" [disabled]="f.nordsonAccountNo.errors ? true : false">
+                      ADD
+                    </button>
+                  </div>
+              </div>
+              <div
+                  class="invalid"
+                  *ngIf="userData.user_type_id!=3 && (f.nordsonAccountNo.touched && f.nordsonAccountNo.errors?.required)"
+                >
+                  Nordson Account Number is required!
+                </div>
+                <div
+                class="invalid"
+                *ngIf="userData.user_type_id!=3 && f.nordsonAccountNo.errors?.pattern"
+              >
+               Space not allowed before and after the Account Number!
+              </div>
+                
+                <div class="user-input" style="width: 78%;" *ngIf="modifyAccess">
+                  <div style="float: left;width: 76%;" class="pad-top-8">
+                    <label class="user-invite-label">New Email</label>
+                    <input
+                    autocomplete="off"
+                      formControlName="email"
+                      class="input-dailog-border text-lower-case"
+                      ngvemail
+                      nordsonLowercase
+                      placeholder="Email"
+                      onPaste="return false"
+                    />
+                    <div
+                      class="invalid"
+                      *ngIf="f.email.touched && f.email.errors?.required"
+                    >
+                      Email is required!
+                    </div>
+                    <div class="invalid" *ngIf="f.email.errors?.email">
+                      Please enter a valid Email address!
+                    </div>
+                    <div class="invalid" *ngIf="f.email.errors?.uniqueEmail">
+                      Email must be unique!
+                    </div>
+                  </div>
+                  <!-- <div class="change-class pad-top-32">
+                    <button type="submit" [disabled]="!form.valid">
+                      CHANGE
+                    </button>
+                  </div> -->
+                </div>
+                <div class="user-input" style="width: 78%;" *ngIf="modifyAccess">
+                  <div style="float: left;width: 76%;" class="pad-top-8">
+                    <label class="user-invite-label">Confirm Email</label>
+                    <input
+                    autocomplete="off"
+                      class="input-dailog-border text-lower-case"
+                      formControlName="cemail"
+                      placeholder="Confirm Email"
+                      ngvemail
+                      nordsonLowercase
+                      onPaste="return false"
+                    />
+                    <div
+                    class="invalid"
+                    *ngIf="f.cemail.touched && f.cemail.errors?.required"
+                  >
+                   Confirm Email is required!
+                  </div>
+                  <div class="invalid" *ngIf="f.cemail.errors?.email">
+                    Please enter a valid Email address!
+                  </div>
+                  <div class="invalid" *ngIf="f.cemail.errors?.mustMatch">
+                    Confirm Email and Email must match!
+                  </div>
+                  </div>
+                  <div class="change-class" style="padding-top: 15px;">
+                    <button type="submit" [disabled]="!f.email.valid || !f.cemail.valid">
+                      CHANGE
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="admin-user-mat"
+              style="    margin-top: 36px;
+          padding-left: 13px;" *ngIf="modifyAccess && selectedSortOptions!=5"
+            >
+              <mat-checkbox
+                id="chekbox-admin-user"
+                formControlName="blockUnblockuser"
+                (change)="blockUnblockUser($event,userData)"
+                disableRipple
+              >
+                Block User</mat-checkbox
+              >
+            </div>
+            <!-- <div>
+              <div style="position: absolute;bottom:0">
+                <button class="cancel" (click)="onNoClick()">CANCEL</button>
+              </div>
+              <div style="position: absolute;right:0px;bottom:0">
+                <button type="submit" class="add">SAVE</button>
+              </div>
+            </div> -->
+            <!-- <div style="padding-top: 30px;">
+              <button  class="admin-manage-cncl-btn float">
+                CANCEL
+              </button>
+              <button  class="admin-manage-change-btn float-right">
+                CHANGE
+              </button>
+            </div> -->
+          </mat-tab>
+          <mat-tab label="DATA">
+            <div style="padding-top: 28px">
+              <mat-accordion displayMode="">
+                <div
+                  *ngFor="let equipmentNorfiles of equipmentNorfiles| paginate: { id: 'server',itemsPerPage: 50, currentPage: currentPage,totalItems: count }; let i=index"
+                  style="margin: 3px;margin-top: 20px"
+                >
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header class="mat-row">
+                      <span class="mat-cell"
+                        >{{equipmentNorfiles.equipment_model}} +
+                        {{equipmentNorfiles.equipment_pn}} +
+                        {{equipmentNorfiles.equipment_sn}}
+                      </span>
+                    </mat-expansion-panel-header>
+                    <mat-accordion>
+                      <div *ngIf="equipmentNorfiles.nordata.length === 0">
+                        No Norfiles have been uploaded for the equipment
+                      </div>
+                      <div *ngIf="equipmentNorfiles.nordata.length">
+                        <div
+                          *ngFor="let nordata of equipmentNorfiles.nordata; let j=index"
+                          style="margin: 3px;margin-top: 20px"
+                        >
+                          <mat-expansion-panel id="nestedAccordian">
+                            <mat-expansion-panel-header>
+                              <div class="mat-cell">
+                                Backup {{j+1}}
+                                <span
+                                  class="download-nor-admin right"
+                                  (click)="downloadNorfile(userData.id,nordata.nor_id)"
+                                >
+                                  DOWNLOAD .NOR File</span
+                                >
+                              </div>
+                            </mat-expansion-panel-header>
+                            <hr />
+                            <ul style="margin:0px">
+                              <div
+                                *ngFor="let recipes of nordata.recipes let j=index"
+                              >
+                                <li class="paddind-download-nor">
+                                  {{recipes}}
+                                  <span class="right download-nor-admin"
+                                    ><span
+                                      class="download-postion cursor"
+                                      (click)="downloadRecipefile(userData.id,recipes,'Recipes',nordata.nor_id)"
+                                      >Download</span
+                                    >
+                                    <span
+                                    class="cursor"
+                                      (click)="viewRecipefile(userData.id,recipes,'Recipes',nordata.nor_id)"
+                                      >view</span
+                                    ></span
+                                  >
+                                </li>
+                                <hr />
+                              </div>
+                              <div
+                                *ngFor="let event_logs of nordata.event_logs let k=index"
+                              >
+                                <li class="paddind-download-nor">
+                                  Log {{k}}
+                                  <span class="right download-nor-admin"
+                                    ><span
+                                      class="download-postion cursor"
+                                      (click)="downloadRecipefile(userData.id,event_logs,'Logs',nordata.nor_id)"
+                                      >Download</span
+                                    >
+                                    <span
+                                    class="cursor"
+                                      (click)="viewEventLog(nordata.nor_id)"
+                                      >view</span
+                                    ></span
+                                  >
+                                </li>
+                                <hr />
+                              </div>
+                              <div *ngIf="nordata.current_recipe">
+                                <li class="paddind-download-nor">
+                                  Setting Data
+                                  <span class="right download-nor-admin"
+                                    ><span
+                                      class="download-postion cursor"
+                                      (click)="downloadRecipefile(userData.id,nordata.current_recipe,'Settings',nordata.nor_id)"
+                                      >Download</span
+                                    >
+                                    <span
+                                    class="cursor"
+                                      (click)="viewCurrentRecipefile(userData.id,nordata.current_recipe,'Settings',nordata.nor_id)"
+                                      >view</span
+                                    ></span
+                                  >
+                                </li>
+                                <hr />
+                              </div>
+                            </ul>
+                          </mat-expansion-panel>
+                         
+                        </div>
+                      </div>
+                    </mat-accordion>
+                  </mat-expansion-panel>
+                </div>
+                <div class="paging" *ngIf="count">
+                  <pagination-controls id="server" (pageChange)="getPage($event)"></pagination-controls>
+                </div>
+              </mat-accordion>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</form>

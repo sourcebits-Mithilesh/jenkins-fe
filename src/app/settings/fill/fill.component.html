@@ -1,0 +1,337 @@
+<div>
+  
+
+  <div>
+    <div class="dash-board">
+      <form
+        name="form"
+        #form="ngForm"
+        #aForm
+        class="fill-mat"
+        id="fill-mat"
+        [formGroup]="fillForm"
+        (submit)="onSubmit()"
+      >
+        <div class="row" style="padding: 0px;margin-top: 0px">
+          <div class="col m12 s12 l9 xl9 p-0 bg-color-blue height-vh responsive-pad-color">
+          <div
+            class="setting-blue-zone-fill margin-top-12 pad-right-left-0"
+            id="temperature"
+          >
+            <div class="col s12 m12 l12 x12">
+              <article class="temp-heading">
+                <h4 class="zone-heading font-responsive" style="padding-left: 10px">
+                  {{ valueLanguage | languageFilter : 'Fill Settings' : 'FILL_SETTINGS'}}
+                </h4>
+                <p class="right-align">
+                  <button
+                    class="apply btn submit-bt"
+                    type="submit"
+                    [disabled]="accessType === 1 || disableBtn"
+                  >
+                    {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE'}}
+                  </button>
+                </p>
+              </article>
+              <!-- <ng-flash-message></ng-flash-message> -->
+              <div class="col s12 m9 l6 xl6 ">
+                <div class="card-applicator-top">
+                  <div class="row m-t-10">
+                    <div class="col s12 m12 l12 xl12" style="margin-bottom: 8px;
+                    margin-top: -5px;">
+                      <mat-form-field id="fill-mat-sel" [floatLabel]="'never'">
+                        <mat-select
+                          name="selectfill"
+                          formControlName="selectfill"
+                          matNativeControl
+                          required
+                          (change)="setValue($event)"
+                          panelClass="fill-mat-set"
+                          disableOptionCentering
+                        >
+                          <mat-option
+                            (onSelectionChange)="setValue($event)"
+                            *ngFor="let item of data"
+                            [value]="item"
+                            >{{ item }}</mat-option
+                          >
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div [ngSwitch]="choice">
+                  <!-- tank with fill system start-->
+                  <div
+                    class="card-applicator"
+                    *ngSwitchCase="'MOD and Tank with Fill System'"
+                    style="padding-bottom: 7px;padding-top:10px"
+                  >
+                    <div class="row">
+                      <div class="col s6 m7 l7 xl7 m-t">
+                        {{ valueLanguage | languageFilter : 'Maximum Fill Time' : 'MAX_FILL_TIME'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 pressure t-right-responsive">
+                        <label class="input">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            class="input remove-arrows"
+                            formControlName="MaxFillTime"
+                            name="MaxFillTime"
+                            (keypress)="preventalpha($event)"
+                          />
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : 'Sec' : 'SEC'}}</span>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col s6 m7 l7 xl7 m-t">
+                        {{ valueLanguage | languageFilter : 'Target Fill Level' : 'TARGET_FILL_LEVEL'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 pressure t-right-responsive">
+                        <label class="input">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            class="input remove-arrows"
+                            formControlName="TargetFillLevel"
+                            name="TargetFillLevel"
+                            (keypress)="preventalpha($event)"
+                          />
+                        </label>
+                        <span class="min">%</span>
+                        <!-- <div
+                            class="invalid"
+                            *ngIf="f.TargetFillLevel.errors?.required"
+                          >
+                            Invalid
+                          </div> -->
+                        <div
+                          class="invalid"
+                          *ngIf="
+                            f.TargetFillLevel.errors?.min &&
+                            f.TargetFillLevel.errors?.max
+                          "
+                        >
+                          {{ valueLanguage | languageFilter : 'Invalid' : 'INVALID'}}
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div class="row">
+                      <div class="col s6 m7 l7 xl7 ">
+                        {{ valueLanguage | languageFilter : 'Low Level Alert' : 'LOW_LEVEL_ALERT'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 p-t-5 right-align">
+                        <mat-slide-toggle
+                          formControlName="RefillEnableLowLevelAlert"
+                          (change)="
+                            toogleHose($event, 'RefillEnableLowLevelAlert')
+                          "
+                        >
+                        </mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s6 m7 l7 xl7 m-t">
+                        {{ valueLanguage | languageFilter : 'Low Level Threshold' : 'LOW_LEVEL_THRESHOLD'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 pressure t-right-responsive">
+                        <label class="input">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            class="input remove-arrows"
+                            formControlName="LowLevelAlertThreshold"
+                            name="LowLevelAlertThreshold"
+                            (keypress)="preventalpha($event)"
+                          />
+                        </label>
+                        <span class="min">%</span>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div class="row" style="line-height: 50px">
+                      <div class="col s6 m7 l7 xl7 m-t">
+                        {{ valueLanguage | languageFilter : 'Empty Stop' : 'EMPTY_STOP'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 pressure right-align">
+                        <mat-slide-toggle
+                          formControlName="EmptyStop"
+                          (change)="toogleHose($event, 'EmptyStop')"
+                        >
+                        </mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div class="row" style="margin-top: 16px;">
+                      <div class="col s6 m7 l7 xl7 ">
+                        {{ valueLanguage | languageFilter : 'Lid Open Alert' : 'LID_OPEN_ALERT'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 p-t-5 right-align">
+                        <mat-slide-toggle
+                          (change)="toogleHose($event, 'LidOpenAlertEnable')"
+                          formControlName="LidOpenAlertEnable"
+                        >
+                        </mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s6 m7 l7 xl7 m-t">
+                        {{ valueLanguage | languageFilter : 'Lid Open Alert Time' : 'LID_OPEN_ALERT_TIME'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 pressure t-right-responsive">
+                        <label class="input">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            class="input remove-arrows"
+                            formControlName="LidOpenAlertTimeout"
+                            name="LidOpenAlertTimeout"
+                            (keypress)="preventalpha($event)"
+                          />
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : 'min' : 'MIN'}}</span>
+                        <div
+                          class="invalid"
+                          f
+                          *ngIf="
+                            !f.LidOpenAlertTimeout.errors?.required &&
+                            f.LidOpenAlertTimeout.errors?.min &&
+                            f.LidOpenAlertTimeout.errors?.max
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="card-applicator"
+                    *ngSwitchCase="'Tank Only'"
+                    style="padding-top: 10px; padding-bottom: 7px;"
+                  >
+                    <div class="row">
+                      <div class="col s6 m7 l7 xl7 ">
+                        {{ valueLanguage | languageFilter : 'Low Level alert' : 'LOW_LEVEL_ALERT'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 p-t-5 right-align">
+                        <mat-slide-toggle
+                          formControlName="RefillEnableLowLevelAlert"
+                          (change)="
+                            toogleHose($event, 'RefillEnableLowLevelAlert')
+                          "
+                        >
+                        </mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s6 m7 l7 xl7 m-t">
+                        {{ valueLanguage | languageFilter : 'Low Level Alert Threshold' : 'LOW_LEVEL_ALERT_THRESHOLD'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 pressure t-right-responsive">
+                        <label class="input">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            class="input remove-arrows"
+                            name="LowLevelAlertThreshold"
+                            formControlName="LowLevelAlertThreshold"
+                            (keypress)="preventalpha($event)"
+                          />
+                        </label>
+                        <span class="min">%</span>
+                        <div
+                          class="invalid"
+                          *ngIf="f.low.errors?.required"
+                        ></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div class="row" style="line-height: 50px">
+                      <div class="col s6 m7 l7 xl7 m-t">
+                        {{ valueLanguage | languageFilter : 'Empty Stop' : 'EMPTY_STOP'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 pressure right-align">
+                        <mat-slide-toggle
+                          formControlName="EmptyStop"
+                          (change)="toogleHose($event, 'EmptyStop')"
+                        ></mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div class="row" style="margin-top: 16px;">
+                      <div class="col s6 m7 l7 xl7 ">
+                        {{ valueLanguage | languageFilter : 'Lid Open Alert' : 'LID_OPEN_ALERT'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 p-t-5 right-align">
+                        <mat-slide-toggle
+                          (change)="toogleHose($event, 'LidOpenAlertEnable')"
+                          formControlName="LidOpenAlertEnable"
+                        >
+                        </mat-slide-toggle>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s6 m7 l7 xl7 m-t">
+                        {{ valueLanguage | languageFilter : 'Lid Open Alert Time' : 'LID_OPEN_ALERT_TIME'}}
+                      </div>
+                      <div class="col s6 m5 l5 xl5 pressure t-right-responsive">
+                        <label class="input">
+                          <input
+                          autocomplete="off"
+                            maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text"
+                            maxlength="3"
+                            class="input remove-arrows"
+                            formControlName="LidOpenAlertTimeout"
+                            name="LidOpenAlertTimeout"
+                            (keypress)="preventalpha($event)"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          />
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : 'min' : 'MIN'}}</span>
+                        <div
+                          class="invalid"
+                          *ngIf="
+                            !f.LidOpenAlertTimeout.errors?.required &&
+                            f.LidOpenAlertTimeout.errors?.min &&
+                            f.LidOpenAlertTimeout.errors?.max
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Tank only END-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <nordson-footer></nordson-footer> -->
+</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

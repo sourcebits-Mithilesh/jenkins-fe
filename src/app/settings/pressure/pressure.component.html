@@ -1,0 +1,267 @@
+<div>
+  
+  <div>
+    <div class="dash-board">
+      <form *ngIf="pressureForm" name="form" #form="ngForm" #aForm [formGroup]="pressureForm" (submit)="onSubmit()">
+        <div class="row" style="padding: 0px" id="pressure">
+          <div class="col m12 s12 l9 xl9 p-0 bg-color-blue height-vh responsive-pad-color">
+          <div class="setting-blue-zone margin-top-12 pad-right-left-10" id="temperature">
+            <div class="col s12 m12 l12 x12" [ngSwitch]="choice">
+              <article class="temp-heading" style="padding-top: 13px">
+                <h4 class="zone-heading">{{ valueLanguage | languageFilter : 'Pressure Settings' : 'PRESSURE_SETTING' }}</h4>
+
+                <p class="right-align">
+                  <button class="apply btn submit-bt" type="submit"
+                    [disabled]="accessType === 1 || !pressureForm.dirty">
+                    {{ valueLanguage | languageFilter : 'SAVE' : 'SAVE' }}
+                  </button>
+                </p>
+                <toastr-notification></toastr-notification>
+              </article>
+              <div class="card-applicator col s12 m10 l10 xl10 " >
+                <div class=" row row-margin m-t-10" style="margin-top: 0px">
+                  <div class="col s12 m5 l5 xl5">
+                    {{ valueLanguage | languageFilter : 'Main Pressure Mode Selection' : 'MAIN_PRESSURE_MODE_SELECTION' }}
+                  </div>
+                  <div class="col s12 m7 l7 xl7 text-right">
+
+                    <form name="form" #form="ngForm" [formGroup]="selectPressureMode" (submit)="onSubmitPressureMode()">
+                      <mat-form-field [floatLabel]="'never'" id="pressure-select" floatPlaceholder="never">
+                        <mat-select class="pressure-mat-select" name="selectPressure" formControlName="selectPressure"
+                          required panelClass="pressure-mat-set-0" disableOptionCentering>
+                          <mat-option (onSelectionChange)="setValue($event)" *ngFor="let item of pressuredata"
+                            [value]="item">{{ item }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </form>
+                  </div>
+                </div>
+                <div>
+                  <div  style="margin-bottom:10px; padding-top: 10px">
+                    <div class="row" *ngSwitchCase="'Electronic Pressure Adjust'">
+                      <div class="col s8 m8 l8 xl8 m-t" style="padding-top: 5px">
+                        Pressure Set Point
+                      </div>
+                      <div class="col s4 m4 l4 xl4 pressure text-right">
+                        <label class="input">
+                          <input autocomplete="off" [maxLength]="maxlength" min="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text" name="ulPressureSetPoint" class="input remove-arrows"
+                            formControlName="ulPressureSetPoint" (keypress)="preventalpha($event)" (keyup)="onKeyUp($event)" />
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : pressureUnit : pressureUnit }}</span>
+                        <div class="invalid" *ngIf="f.ulPressureSetPoint.errors?.maxlength"></div>
+                        <div class="invalid" *ngIf="f.ulPressureSetPoint.errors?.max"></div>
+                        <div class="invalid" *ngIf="f.ulPressureSetPoint.errors?.min"></div>
+                        <div class="invalid" *ngIf="f.ulPressureSetPoint.errors?.required"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="hr"></div>
+                </div>
+                <div class="row row-margin" style="margin-bottom: 0px">
+                  <div class="col s8 m8 l8 xl8" style="font-weight: bold">
+                    {{ valueLanguage | languageFilter : 'Pressure Setting Range Alert' : 'PRESSURE_SETTING_RANGE_ALERT' }}
+                  </div>
+                  <div class="col s4 m4 l4 xl4 p-t-5 text-right">
+                    <mat-slide-toggle [checked]="airPressureStatus" (change)="tooglePressure($event)"
+                      name="airPressureStatus" formControlName="airPressureStatus"></mat-slide-toggle>
+                  </div>
+                </div>
+                <div [ngSwitch]="choice">
+                  <div class="" *ngSwitchCase="'Manual Adjust'">
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div class="row row-margin" style="margin-top: 20px">
+                      <div class="col s8 m8 l8 xl8 m-t" style="padding-top: 5px">
+                        {{ valueLanguage | languageFilter : 'Minimum Pressure Alert' : 'MIN_PRESSURE_ALERT' }}
+                      </div>
+                      <div class="col s4 m4 l4 xl4 pressure text-right">
+                        <label class="input">
+                          <input autocomplete="off" maxlength="6"  min="0"
+                            type="text" name="ulPressureMinSetPoint" class="input remove-arrows"
+                            formControlName="ulPressureMinSetPoint" (keypress)="preventalpha($event)" (keyup)="onKeyUp($event)" />
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : pressureUnit : pressureUnit }}</span>
+                        <div class="invalid" *ngIf="f.ulPressureMinSetPoint.errors?.max"></div>
+                        <div class="invalid" *ngIf="f.ulPressureMinSetPoint.errors?.min"></div>
+                        <div class="invalid" *ngIf="f.ulPressureMinSetPoint.errors?.maxlength"></div>
+                        <div class="invalid" *ngIf="f.ulPressureMinSetPoint.errors?.required"></div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s8 m8 l8 xl8 m-t" style="padding-top: 15px">
+                        {{ valueLanguage | languageFilter : 'Maximum Pressure Alert' : 'MAX_PRESSURE_ALERT' }}
+                      </div>
+                      <div class="col s4 m4 l4 xl4 pressure text-right">
+                        <label class="input">
+                          <input autocomplete="off" maxlength="6" min="0" name="ulPressureMaxSetPoint"
+                            type="text" class="input remove-arrows" formControlName="ulPressureMaxSetPoint"
+                            (keypress)="preventalpha($event)" (keyup)="onKeyUp($event)" />
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : pressureUnit : pressureUnit }}</span>
+                        <div class="invalid" *ngIf="f.ulPressureMaxSetPoint.errors?.max"></div>
+                        <div class="invalid" *ngIf="f.ulPressureMaxSetPoint.errors?.min"></div>
+                        <div class="invalid" *ngIf="f.ulPressureMaxSetPoint.errors?.required"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Manual ends -->
+                  <div class="" *ngSwitchCase="'Electronic Pressure Adjust'">
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div class="row row-margin" [ngClass]="checkStatus()" id="lowpressure">
+                      <div class="col s8 m8 l8 xl8 m-t">
+                        {{ valueLanguage | languageFilter : 'Low Pressure Alert Threshold' : 'LOW_PRESSURE_ALERT_THRESHOLD' }}
+                      </div>
+                      <div class="col s4 m4 l4 xl4 pressure text-right">
+                        <label class="input">
+                          <input autocomplete="off" [maxLength]="maxlength" min="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text" class="input remove-arrows" formControlName="ulLowPressureAlertDelta" name="ulLowPressureAlertDelta"
+                            (keypress)="preventalpha($event)" (keyup)="onKeyUp($event)"/>
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : pressureUnit : pressureUnit }}</span>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertDelta.errors?.max"></div>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertDelta.errors?.min"></div>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertDelta.errors?.maxlength"></div>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertDelta.errors?.required"></div>
+                      </div>
+                    </div>
+                    <div class="row row-margin" id="highpressure" [ngClass]="checkStatus()" id="highpressure">
+                      <div class="col s8 m8 l8 xl8 m-t">
+                        {{ valueLanguage | languageFilter : 'High Pressure Alert Threshold' : 'HIGH_PRESSURE_ALERT_THRESHOLD' }}
+                      </div>
+                      <div class="col s4 m4 l4 xl4 pressure text-right">
+                        <label class="input">
+                          <input autocomplete="off" [maxLength]="maxlength" min="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text" class="input remove-arrows" formControlName="ulHighPressureAlertDelta"
+                            name="ulHighPressureAlertDelta"
+                            (keypress)="preventalpha($event)" (keyup)="onKeyUp($event)" />
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : pressureUnit : pressureUnit }}</span>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertDelta.errors?.max"></div>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertDelta.errors?.min"></div>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertDelta.errors?.maxlength"></div>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertDelta.errors?.required"></div>
+                      </div>
+                    </div>
+
+                    <div class="row row-margin">
+                      <div class="col s8 m8 l8 xl8 m-t">
+                        {{ valueLanguage | languageFilter : 'Minimum Pressure Set Point Range' : 'MIN_PRESSURE_SETPOINT_RANGE' }}
+                      </div>
+                      <div class="col s4 m4 l4 xl4 pressure text-right">
+                        <label class="input">
+                          <input autocomplete="off" [maxLength]="maxlength" min="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text" class="input remove-arrows" formControlName="ulLowPressureAlertThreshold" name="ulLowPressureAlertThreshold"
+                            [disabled]="isDisabled()" (keypress)="preventalpha($event)"  (keyup)="onKeyUp($event)"/>
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : pressureUnit : pressureUnit }}</span>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertThreshold.errors?.max"></div>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertThreshold.errors?.min"></div>
+                        <div class="invalid" *ngIf="
+                            f.ulLowPressureAlertThreshold.errors?.maxlength
+                          "></div>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertThreshold.errors?.required"></div>
+                      </div>
+                    </div>
+                    <div class="row row-margin">
+                      <div class="col s8 m8 l8 xl8 m-t">
+                       {{ valueLanguage | languageFilter : 'Maximum Pressure Set Point Range' : 'MAX_PRESSURE_SETPOINT_RANGE' }}
+                      </div>
+                      <div class="col s4 m4 l4 xl4 pressure text-right">
+                        <label class="input">
+                          <input autocomplete="off" [maxLength]="maxlength" min="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text" class="input remove-arrows" formControlName="ulHighPressureAlertThreshold"
+                            name="ulHighPressureAlertThreshold"
+                            (keypress)="preventalpha($event)"  (keyup)="onKeyUp($event)" />
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : pressureUnit : pressureUnit }}</span>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertThreshold.errors?.max"></div>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertThreshold.errors?.min"></div>
+                        <div class="invalid" *ngIf="
+                            f.ulHighPressureAlertThreshold.errors?.maxlength
+                          "></div>
+                        <div class="invalid" *ngIf="
+                            f.ulHighPressureAlertThreshold.errors?.required
+                          "></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- electronic Ends here-->
+                  <div *ngSwitchCase="'Runup'">
+                    <div>
+                      <div class="hr"></div>
+                    </div>
+                    <div class="row row-margin" [ngClass]="checkStatus()" id="lowpressure">
+                      <div class="col s8 m8 l8 xl8 m-t">
+                        {{ valueLanguage | languageFilter : 'Low Pressure Alert Threshold' : 'LOW_PRESSURE_ALERT_THRESHOLD' }}
+                      </div>
+                      <div class="col s4 m4 l4 xl4 pressure text-right">
+                        <label class="input">
+                          <input autocomplete="off" [maxLength]="maxlength" min="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text" class="input remove-arrows" formControlName="ulLowPressureAlertDelta" name="ulLowPressureAlertDelta"
+                            (keypress)="preventalpha($event)" (keyup)="onKeyUp($event)"/>
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : pressureUnit : pressureUnit }}</span>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertDelta.errors?.max"></div>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertDelta.errors?.min"></div>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertDelta.errors?.maxlength"></div>
+                        <div class="invalid" *ngIf="f.ulLowPressureAlertDelta.errors?.required"></div>
+                      </div>
+                    </div>
+                    <div class="row row-margin" id="highpressure" [ngClass]="checkStatus()" id="highpressure">
+                      <div class="col s8 m8 l8 xl8 m-t">
+                        {{ valueLanguage | languageFilter : 'High Pressure Alert Threshold' : 'HIGH_PRESSURE_ALERT_THRESHOLD' }}
+                      </div>
+                      <div class="col s4 m4 l4 xl4 pressure text-right">
+                        <label class="input">
+                          <input autocomplete="off" [maxLength]="maxlength" min="0"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="text" class="input remove-arrows" formControlName="ulHighPressureAlertDelta"
+                            name="ulHighPressureAlertDelta"
+                            (keypress)="preventalpha($event)" (keyup)="onKeyUp($event)" />
+                        </label>
+                        <span class="min">{{ valueLanguage | languageFilter : pressureUnit : pressureUnit }}</span>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertDelta.errors?.max"></div>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertDelta.errors?.min"></div>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertDelta.errors?.maxlength"></div>
+                        <div class="invalid" *ngIf="f.ulHighPressureAlertDelta.errors?.required"></div>
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'Runup'" class="col s12 m12 l9 xl12" id="outputSettings" style="padding-top: 20px;padding-left: 0px;">
+                      <a routerLink="pressure-output-settings">
+                        <div class="output-settings-btn display-flex-align-justify-center">
+                          OUTPUT SETTINGS
+                        </div>
+                      </a>
+                    </div>
+                    <div class="row row-margin" style="margin-bottom: 0px">
+                      <!-- <div class="col s8 m8 l8 xl8" style="font-weight: bold">
+                       Temporary Pressure Adjust
+                      </div> -->
+                      <!-- <div class="col s4 m4 l4 xl4 p-t-5 text-right">
+                        <mat-slide-toggle [checked]="airPressureTemporaryStatus" (change)="togglePressureTemperature($event)"
+                          name="airPressureTemporaryStatus" formControlName="airPressureTemporaryStatus"></mat-slide-toggle>
+                      </div> -->
+                    </div>  
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+          <!-- <nordson-footer></nordson-footer> -->
+</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

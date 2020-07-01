@@ -1,0 +1,212 @@
+<form
+  name="form"
+  #form="ngForm"
+  [formGroup]="editconfigForm"
+  (submit)="onSubmit()"
+>
+  <div class="set-light-blue" id="mat-config-code">
+    <div class=" row dark-gray fs-15">
+      <div style="float:left"><b>Configuration Code</b></div>
+      <div style="float: right">
+        <svg
+          class="cursor-pointer"
+          xmlns="http://www.w3.org/2000/svg"
+          (click)="closeEditConfig()"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+          <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
+      </div>
+    </div>
+    <div class="bg-gray-div" style="padding-top: 10px">
+      <div class="row padding-12-0">
+        <div class="col s12 m5 l5 xl6">Melter Series</div>
+        <div class="col s12 m7 l7 xl6" style="margin-bottom:-18px">
+          {{CFC_Ser[0].name}}
+          <!-- <mat-form-field>
+            <mat-label></mat-label>
+            <mat-select
+              disableOptionCentering
+              formControlName="CFC_Ser"
+              panelClass="classtest"
+            >
+              <mat-option *ngFor="let CFC_Ser of CFC_Ser" [value]="CFC_Ser"
+                >{{CFC_Ser.name}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field> -->
+        </div>
+      </div>
+      <div class="row padding-12-0">
+        <div class="col s12 m5 l5 xl6">Melt Section</div>
+        <div class="col s12 m7 l7 xl6" style="margin-bottom:-18px">
+          <mat-form-field>
+            <mat-label></mat-label>
+            <mat-select
+              disableOptionCentering
+              formControlName="CFC_Tank"
+              panelClass="classtest"
+            >
+              <mat-option *ngFor="let CFC_Tank of CFC_Tank" [value]="CFC_Tank"
+                >{{CFC_Tank.name}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row padding-12-0">
+        <div class="col s12 m5 l5 xl6">Pump</div>
+        <div class="col s12 m7 l7 xl6" style="margin-bottom:-18px">
+          <mat-form-field>
+            <mat-label></mat-label>
+            <mat-select
+              disableOptionCentering
+              formControlName="CFC_Pump"
+              panelClass="classtest"
+            >
+              <mat-option *ngFor="let CFC_Pump of CFC_Pump" [value]="CFC_Pump"
+                >{{CFC_Pump.name}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row padding-12-0">
+        <div class="col s12 m5 l5 xl6">Warm up Performance</div>
+        <div class="col s12 m5 l7 xl6" style="margin-bottom:-18px">
+          <mat-form-field>
+            <mat-label></mat-label>
+            <mat-select
+              disableOptionCentering
+              formControlName="CFC_Warmup"
+              panelClass="classtest"
+            >
+              <mat-option
+                *ngFor="let CFC_Warmup of CFC_Warmup"
+                [value]="CFC_Warmup"
+                >{{CFC_Warmup.name}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row padding-12-0">
+        <div class="col s12 m5 l5 xl6">Number of Hose/Applicator</div>
+        <div class="col s12 m5 l7 xl6" style="margin-bottom:-18px">
+          {{CFC_NumHG[0].name}}
+          <!-- <mat-form-field>
+            <mat-label></mat-label>
+            <mat-select
+              disableOptionCentering
+              formControlName="CFC_NumHG"
+              panelClass="classtest"
+            >
+              <mat-option
+                *ngFor="let CFC_NumHG of CFC_NumHG"
+                [value]="CFC_NumHG"
+                >{{CFC_NumHG.name}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field> -->
+          <!-- {{toSelect5.name}} -->
+        </div>
+      </div>
+      <div class="row padding-12-0">
+        <div class="col s12 m5 l5 xl6">Pressure Management</div>
+        <div class="col s12 m7 l7 xl6" style="margin-bottom:-18px">
+          {{CFC_PresMgmt[0].name}}
+          <!-- <mat-form-field>
+            <mat-label></mat-label>
+            <mat-select
+              disableOptionCentering
+              formControlName="CFC_PresMgmt"
+              panelClass="classtest"
+            >
+              <mat-option
+                *ngFor="let CFC_PresMgmt of CFC_PresMgmt"
+                [value]="CFC_PresMgmt"
+                >{{CFC_PresMgmt.name}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field> -->
+          <!-- {{toSelect6.name}} -->
+        </div>
+      </div>
+      <div class="row padding-12-0">
+        <div class="col s12 m5 l5 xl6">Product Performance Upgrades</div>
+        <div class="col s12 m7 l7 xl6" style="margin-bottom:-18px">
+          {{CFC_ProdPerformUpgr[0].name}}
+          <!-- <mat-form-field>
+            <mat-label></mat-label>
+            <mat-select
+              formControlName="CFC_ProdPerformUpgr"
+              panelClass="classtest"
+              disableOptionCentering
+            >
+              <mat-option
+                *ngFor="let CFC_ProdPerformUpgr of CFC_ProdPerformUpgr"
+                [value]="CFC_ProdPerformUpgr"
+                >{{CFC_ProdPerformUpgr.name}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field> -->
+        </div>
+      </div>
+      <div class="row padding-12-0">
+        <div class="col s12 m5 l5 xl6">UI (Melter Mounted User Interface)</div>
+        <div class="col s12 m7 l7 xl6" style="margin-bottom:-18px">
+          {{CFC_UI[0].name}}
+          <!-- <mat-form-field>
+            <mat-label></mat-label>
+            <mat-select
+              disableOptionCentering
+              formControlName="CFC_UI"
+              panelClass="classtest"
+            >
+              <mat-option
+                *ngFor="let CFC_UI of CFC_UI"
+                [value]="CFC_UI"
+                >{{CFC_UI.name}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field> -->
+          <!-- {{toSelect8.name}} -->
+        </div>
+      </div>
+      <div class="row padding-12-0">
+        <div class="col s12 m5 l5 xl6">Pressure Switch</div>
+        <div class="col s12 m7 l7 xl6" style="margin-bottom:-18px">
+          <mat-form-field>
+            <mat-label></mat-label>
+            <mat-select
+              disableOptionCentering
+              formControlName="CFC_PresSW"
+              panelClass="classtest"
+            >
+              <mat-option
+                *ngFor="let CFC_PresSW of CFC_PresSW"
+                [value]="CFC_PresSW"
+                >{{CFC_PresSW.name}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row pad-bottom-24-edge-firefox " style="padding-top: 30px">
+        <button
+          [disabled]="accessType === 1 || !editconfigForm.dirty"
+          class="apply btn submit-bt" style="padding: 0px 30px;"
+          type="submit"
+          mat-button
+        >
+          UPDATE
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

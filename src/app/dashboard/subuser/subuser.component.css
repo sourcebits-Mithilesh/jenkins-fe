@@ -1,0 +1,382 @@
+*,
+input {
+  outline: none;
+}
+.subuser-heading h1 {
+  color: #4a4a4a;
+  font-family: 'Roboto';
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+}
+.subuser-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* justify-items: center;
+   */
+  align-items: center;
+}
+.sub-user-bt {
+  text-align: right;
+}
+.sub-user-bt button {
+  height: 36px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  color: #0181c5;
+  font-family: 'Roboto';
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  font-weight: 400;
+  background: none;
+  padding: 0px 15px;
+}
+.subuser-heading p {
+  color: #8f8e8f;
+  font-family: Roboto;
+  font-size: 15px;
+  line-height: 21px;
+}
+.grid-col {
+  margin-top: 15px;
+  display: flex;
+  grid-template-columns: repeat(4, 1fr);
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  padding: 21px 20px 9px 17px;
+  cursor: pointer;
+}
+::ng-deep input:not([type]):focus:not([readonly]) {
+  border-bottom: 1px solid rgba(25, 25, 25, 0.32);
+  box-shadow: none;
+}
+.add-svg {
+  top: -4px;
+  position: relative;
+}
+button:focus {
+  background: none;
+}
+.sub-detail {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 21px 20px 9px 17px;
+}
+::ng-deep #edit-col {
+  /* width:50% !important;
+   */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 2rem;
+}
+.edit-p {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+.fname {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+}
+.email-sub,
+.read {
+  width: 175px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Roboto;
+  font-size: 14px;
+}
+::ng-deep .cancel {
+  height: 36px;
+  width: 104px;
+  background-color: #e4e4e4;
+  color: rgba(0, 0, 0, 0.38);
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  border: none;
+  border-radius: 4px;
+}
+::ng-deep .add {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  line-height: 16px;
+  text-align: center;
+  font-weight: 500;
+  background-color: #0181c5 !important;
+  height: 36px;
+  width: 104px;
+  right: 104px !important;
+  border: none;
+  border-radius: 4px;
+}
+/* #slide {
+   position: absolute;
+   right: -600px;
+   width: 600px;
+   height: 370px;
+   background: blue;
+   -webkit-animation: slide 0.5s forwards;
+   -webkit-animation-delay: 2s;
+   animation: slide 0.5s forwards;
+   animation-delay: 2s;
+}
+*/
+::ng-deep .add:focus {
+  background-color: #0181c5 !important;
+}
+::ng-deep .cdk-global-overlay-wrapper .cdk-overlay-pane.mataddsubuser,
+::ng-deep .cdk-global-overlay-wrapper .cdk-overlay-pane.mateditsubuser {
+  position: absolute !important;
+  right: -1500px;
+  -webkit-animation: slide 0.5s forwards !important;
+  -webkit-animation-delay: 0.5s !important;
+  animation: slide 0.2s forwards !important;
+  animation-delay: 1s;
+}
+@-webkit-keyframes slide {
+  100% {
+    right: 0;
+  }
+}
+@keyframes slide {
+  100% {
+    right: 0;
+  }
+}
+::ng-deep .mataddsubuser .mat-dialog-container .mat-form-field {
+  width: 100%;
+}
+::ng-deep .mataddsubuser .mat-dialog-container .mat-form-field-flex {
+  width: 100%;
+}
+::ng-deep .mataddsubuser .mat-form-field-infix input {
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  padding-left: 11px;
+}
+::ng-deep .mateditsubuser .mat-form-field-infix input {
+  border: 1px solid rgba(25, 25, 25, 0.32);
+  border-radius: 4px;
+  padding-left: 11px;
+}
+::ng-deep .mataddsubuser .mat-dialog-container {
+  padding: 80px 60px 40px;
+}
+::ng-deep .mateditsubuser .mat-dialog-container {
+  padding: 80px 60px 40px;
+}
+::ng-deep .modle-bt {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  position: absolute !important;
+  bottom: 71px;
+}
+::ng-deep .mat-form-field-label {
+  transform: none !important;
+}
+span:focus {
+  outline: none !important;
+  border: 0 !important;
+}
+::ng-deep #dialog-edit .mat-form-field-label,
+::ng-deep #dialog-sub .mat-form-field-label {
+  display: block;
+  top: 15px;
+  left: 16px !important;
+  background: #fff;
+  width: auto !important;
+  font-size: 12px !important;
+  letter-spacing: 0.4px;
+
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 12px;
+}
+/* radio button */
+
+::ng-deep .mat-slide-toggle-persistent-ripple,
+.mat-slide-toggle.mat-disabled
+  .mat-slide-toggle-bar:hover
+  .mat-slide-toggle-persistent-ripple {
+  opacity: 0;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #05940a !important;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #fff;
+}
+::ng-deep .mat-slide-toggle-label .mat-slide-toggle-bar {
+  border-radius: 14px;
+  height: 25px;
+  width: 50px;
+  background: #fff;
+}
+::ng-deep .mat-slide-toggle-thumb-container .mat-slide-toggle-thumb {
+  height: 19px;
+  width: 19px;
+  border-radius: 14px;
+  position: relative;
+  top: 5px;
+  left: 2px;
+  background: #ababab;
+}
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(26px, 0, 0) !important;
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-ripple {
+  opacity: 0;
+}
+::ng-deep
+  .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle,
+.mat-radio-outer-circle {
+  border-color: #0181c5;
+}
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #0181c5;
+}
+::ng-deep .mat-ripple-element {
+  opacity: 0 !important;
+}
+::ng-deep .mat-dialog-content {
+  overflow: unset !important;
+}
+::ng-deep .mat-radio-sub .mat-radio-label {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 16px;
+  letter-spacing: 0.15px;
+}
+::ng-deep .mat-radio-sub .mat-radio-outer-circle {
+  border-color: #0181c5;
+}
+::ng-deep .mat-radio-sub .mat-radio-button {
+  padding-right: 14%;
+}
+/* EDIT user */
+::ng-deep #dialog-edit .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+.p-50 {
+  padding: 0px 50px 50px 50px;
+  background: rgb(249, 253, 255);
+}
+.add-subuser-head {
+  color: #4a4a4a;
+  font-size: 26px;
+  line-height: 30px;
+  padding-bottom: 30px;
+}
+::ng-deep #dialog-sub .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+.read-pad-top {
+  padding-top: 30px;
+}
+::ng-deep #dialog-edit .mat-form-field-infix {
+  width: auto;
+}
+@media only screen and (max-width: 1200px){
+  .height-invite {
+    height: 55vh;
+}
+::ng-deep .mateditsubuser{
+  max-width: 65% !important;
+}
+}
+
+@media only screen and (max-width: 500px) {
+  ::ng-deep .cdk-global-overlay-wrapper .cdk-overlay-pane.mataddsubuser,
+::ng-deep .cdk-global-overlay-wrapper .cdk-overlay-pane.mateditsubuser {
+  height:80% !important;
+  width: 100% !important;
+}
+::ng-deep .cdk-global-overlay-wrapper{
+  align-items:center !important;
+}
+::ng-deep .mataddsubuser .mat-dialog-container {
+  margin-left: 40px !important;
+  height: 80vh;
+  margin-right: -10px !important;
+  margin-top: -65px !important;
+}
+.cancel{
+  margin-right: -30px;
+}
+.grid-col{
+  padding: 0px 16px 46px 14px;
+}
+.padding-responsive {
+  padding-left: 10px !important;
+}
+::ng-deep .mateditsubuser .mat-dialog-container {
+  padding: 15px 37px 50px 35px !important;
+  margin-left: 0px !important;
+  margin-top: -60px;
+}
+#editbutton{
+  right: 20px !important;
+}
+.mat-dialog-container{
+  width: 345px !important;
+}
+.mat-form-field{
+  width: 275px !important;
+}
+::ng-deep.mateditsubuser{
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+  max-width: 90vw !important;
+  margin-top: 65px !important;
+  height: 87% !important;
+}
+#dialog-sub{
+  margin-top: -3pc;
+  margin-left: -20px;
+}
+
+::ng-deep.mataddsubuser{
+  margin-right: 25px !important;
+  margin-top: 65px !important;
+}
+/* .input-field{
+  width: 225px !important;
+} */
+.mataddsubuser .mat-dialog-container {
+  padding: 70px 40px 40px !important;
+}
+.mateditsubuser .mat-dialog-container {
+  /* padding: 10px 30px 75px 30px !important; */
+  height: 80vh !important;
+  margin-left: 0px !important;
+  margin-top: -115px !important;
+}
+
+};
+@media only screen and (max-width: 375px){
+  .mateditsubuser .mat-dialog-container {
+    padding: 15px 49px 59px 14px !important;
+    margin-left: 0px !important;
+    margin-top: -60px;
+}
+#dialog-sub{
+    margin-top: -3pc;
+    margin-left: -40px !important;
+}
+#dialog-edit{
+  margin-left: -20px !important;
+}
+};
+
+
+
