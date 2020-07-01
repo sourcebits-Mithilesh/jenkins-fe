@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { interval, Subscription } from 'rxjs';
 import { ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { environment } from 'src/environments/environment';
+//import { environment } from 'src/environments/environment';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AdminDhasboardService } from 'src/app/shared/admin-dhasboard.service';
 import { toDate } from '@angular/common/src/i18n/format_date';
